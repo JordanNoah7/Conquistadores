@@ -137,6 +137,8 @@ orleans.codegen.cs
 *.mtc1
 *.out
 *.synctex.gz
+*.bcf
+*.run.xml
 
 # Archivos de PDF
 *.pdf
