@@ -3,12 +3,14 @@
 
 # Compiled output
 /dist
+dist/
 /tmp
 /out-tsc
 /build
 
 # Dependencies
 /node_modules
+node_modules/
 
 # Angular build output
 /.angular/cache
