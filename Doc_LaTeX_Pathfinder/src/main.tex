@@ -14,7 +14,7 @@
 % Config
 \DeclareLanguageMapping{american}{american-apa}
 %\addbibresource{bibliography.bib}
-\title{SISTEMA DE INFORMACIÓN PARA LA GESTIÓN DE UN CLUB DE CONQUISTADORES PARA AUTOMATIZAR TAREAS SEMANALES}
+\title{SISTEMA DE INFORMACIÓN PARA LA GESTIÓN DE UN CLUB DE CONQUISTADORES QUE AUTOMATIZA TAREAS SEMANALES}
 \shorttitle{Sistema para un club de conquistadores}
 \author{John Jordan Quispe Supo}
 \affiliation{Instituto de Educación Superior Privado del Sur}
@@ -24,10 +24,40 @@
 % Document
 \begin{document}
     \maketitle
-
-Prueba de LaTeX
-
-    \bibliography{main}
-    \bibliographystyle{plain}
-
+    \section{Titulo de Nivel 1}
+    \subsection{titulo 2}
+    \subsection{titulo 2}
+    \section{titulo 1}
+    \subsection{titulo 2}
+    \subsubsection{titulo 3}
+    \section{Resultados}
+    \begin{table}[h]
+        \caption{Sample Basic Table}
+        \label{tab:BasicTable}
+        \begin{tabular}{@{}llr@{}}         \toprule
+        \multicolumn{2}{c}{Item}        \\ \cmidrule(r){1-2}
+        Animal    & Description & Price \\ \midrule
+        Gnat      & per gram    & 13.65 \\
+        & each        &  0.01 \\
+        Gnu       & stuffed     & 92.50 \\
+        Emu       & stuffed     & 33.33 \\
+        Armadillo & frozen      &  8.99 \\ \bottomrule
+        \end{tabular}
+    \end{table}
+    \begin{figure}
+        \caption{Descripción de figuras.}
+        %\includegraphics[scale=]{Figure1.pdf}
+        \label{fig:Figure1}
+    \end{figure}
+    \section{Discusión}
+    \section{Conclusiones}
+    \printbibliography
+    \appendix
+    \section{Instrumentos}
+    \label{Ap. instrumentos}
+    ver detalles en las figuras
+    In this picture you can see a bar graph that shows. In this picture you can see a bar graph that shows
+    \section{Datos}
+    \label{Ap.Datos}
+    detalles en las tablas
 \end{document}
