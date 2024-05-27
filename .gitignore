@@ -1,5 +1,7 @@
 .idea
 /.idea
+.vs
+/.vs
 
 # Compiled output
 /dist

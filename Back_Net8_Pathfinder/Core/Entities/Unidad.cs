@@ -1,10 +1,16 @@
-﻿namespace Core.Entities;
+﻿using System.Collections.ObjectModel;
+
+namespace Core.Entities;
 
 public class Unidad
 {
-    private int m_unid_id;
-    private string m_m_unid_nombre;
-    private string m_unid_lema;
-    private string m_unid_gritoguerra;
-    
+    public int UnidId { get; set; }
+    public string UnidNombre { get; set; }
+    public string UnidLema { get; set; }
+    public string UnidGritoGuerra { get; set; }
+    public string UnidDescripcion { get; set; }
+    public Conquistador UnidConsejero { get; set; }
+    public Conquistador UnidSubConsejero { get; set; }
+    public Conquistador UnidCapitar { get; set; }
+    public ObservableCollection<Conquistador> UnidIntegrantes { get; set; }
 }
