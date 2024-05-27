@@ -45,30 +45,50 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActiId"));
 
-                    b.Property<float>("ActiCosto")
-                        .HasColumnType("real");
+                    b.Property<decimal>("ActiCosto")
+                        .HasColumnType("decimal(9,3)");
 
                     b.Property<string>("ActiDescripcion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<DateTime>("ActiFechaFin")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<DateTime>("ActiFechaInicio")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("ActiLugar")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ActiNombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ActiRequisitos")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("ActiId");
 
@@ -91,7 +111,27 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("AccoTipo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1)");
+                        .HasColumnType("nchar(1)");
+
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("AccoId");
 
@@ -110,35 +150,55 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AsisID"));
 
-                    b.Property<int>("AsisAnioBiblico")
-                        .HasColumnType("int");
+                    b.Property<byte>("AsisAnioBiblico")
+                        .HasColumnType("tinyint");
 
                     b.Property<int>("AsisConquistadorConqID")
                         .HasColumnType("int");
 
-                    b.Property<int>("AsisCuota")
-                        .HasColumnType("int");
+                    b.Property<byte>("AsisCuota")
+                        .HasColumnType("tinyint");
 
-                    b.Property<int>("AsisDevocion")
-                        .HasColumnType("int");
+                    b.Property<byte>("AsisDevocion")
+                        .HasColumnType("tinyint");
 
-                    b.Property<int>("AsisDisciplina")
-                        .HasColumnType("int");
+                    b.Property<byte>("AsisDisciplina")
+                        .HasColumnType("tinyint");
 
                     b.Property<DateTime>("AsisFecha")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
-                    b.Property<int>("AsisFrecuencia")
-                        .HasColumnType("int");
+                    b.Property<byte>("AsisFrecuencia")
+                        .HasColumnType("tinyint");
 
-                    b.Property<float>("AsisMonto")
-                        .HasColumnType("real");
+                    b.Property<decimal>("AsisMonto")
+                        .HasColumnType("decimal(9,3)");
 
-                    b.Property<int>("AsisRequerimiento")
-                        .HasColumnType("int");
+                    b.Property<byte>("AsisRequerimiento")
+                        .HasColumnType("tinyint");
 
-                    b.Property<int>("AsisTotal")
-                        .HasColumnType("int");
+                    b.Property<byte>("AsisTotal")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("AsisID");
 
@@ -155,17 +215,37 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CateID"));
 
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("CateColor")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("CateDescripcion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("CateNombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("CateID");
 
@@ -180,13 +260,33 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClasID"));
 
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("ClasDescripcion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("ClasNombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("ClasID");
 
@@ -201,30 +301,50 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ConqID"));
 
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("ConqApellidoMaterno")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("ConqApellidoPaterno")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("ConqClaseClasID")
                         .HasColumnType("int");
 
                     b.Property<string>("ConqDni")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nchar(8)");
 
                     b.Property<DateTime?>("ConqFechaInvestidura")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<DateTime>("ConqFechaNacimiento")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("ConqNombres")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("ConqUnidadUnidID")
                         .HasColumnType("int");
@@ -250,6 +370,26 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CoicId"));
+
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<bool>("CoicEstaCompleto")
                         .HasColumnType("bit");
@@ -277,14 +417,34 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CronID"));
 
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<bool>("CronEstaHecho")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("CronFechaFin")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<DateTime>("CronFechaInicio")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("CronItemItcuID")
                         .HasColumnType("int");
@@ -304,16 +464,36 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EspeID"));
 
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<int>("EspeCategoriaCateID")
                         .HasColumnType("int");
 
                     b.Property<string>("EspeDescripcion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("EspeNombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("EspeID");
 
@@ -330,14 +510,34 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InscID"));
 
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<int>("InscConquistadorConqID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("InscFecha")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
-                    b.Property<float>("InscMonto")
-                        .HasColumnType("real");
+                    b.Property<decimal>("InscMonto")
+                        .HasColumnType("decimal(9, 3)");
 
                     b.HasKey("InscID");
 
@@ -353,6 +553,26 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItcuID"));
+
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("ItcuClaseClasID")
                         .HasColumnType("int");
@@ -376,13 +596,33 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"));
 
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("RoleDescripcion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("RoleNombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("RoleID");
 
@@ -397,21 +637,41 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UnidID"));
 
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("UnidDescripcion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("UnidGritoGuerra")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("UnidLema")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("UnidNombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("UnidID");
 
@@ -426,13 +686,33 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UsuaID"));
 
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("UsuaContrasenia")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UsuaUsuario")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("UsuaID");
 

@@ -17,19 +17,19 @@ namespace Infrastructure.Migrations
                 {
                     ActiId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ActiNombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ActiLugar = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ActiDescripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ActiNombre = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    ActiLugar = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    ActiDescripcion = table.Column<string>(type: "nvarchar(250)", nullable: false),
                     ActiRequisitos = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ActiCosto = table.Column<float>(type: "real", nullable: false),
-                    ActiFechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ActiFechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ActiCosto = table.Column<decimal>(type: "decimal(9,3)", nullable: false),
+                    ActiFechaInicio = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ActiFechaFin = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -42,15 +42,15 @@ namespace Infrastructure.Migrations
                 {
                     CateID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CateNombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CateDescripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CateColor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CateNombre = table.Column<string>(type: "nvarchar(25)", nullable: false),
+                    CateDescripcion = table.Column<string>(type: "nvarchar(250)", nullable: false),
+                    CateColor = table.Column<string>(type: "nvarchar(10)", nullable: false),
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -61,15 +61,16 @@ namespace Infrastructure.Migrations
                 name: "Clases",
                 columns: table => new
                 {
-                    ClasID = table.Column<int>(type: "int", nullable: false),
-                    ClasNombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ClasDescripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ClasID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClasNombre = table.Column<string>(type: "nvarchar(30)", nullable: false),
+                    ClasDescripcion = table.Column<string>(type: "nvarchar(250)", nullable: false),
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -82,14 +83,14 @@ namespace Infrastructure.Migrations
                 {
                     RoleID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleNombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RoleDescripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    RoleNombre = table.Column<string>(type: "nvarchar(30)", nullable: false),
+                    RoleDescripcion = table.Column<string>(type: "nvarchar(250)", nullable: false),
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -102,16 +103,16 @@ namespace Infrastructure.Migrations
                 {
                     UnidID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UnidNombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UnidLema = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UnidGritoGuerra = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UnidDescripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    UnidNombre = table.Column<string>(type: "nvarchar(25)", nullable: false),
+                    UnidLema = table.Column<string>(type: "nvarchar(250)", nullable: false),
+                    UnidGritoGuerra = table.Column<string>(type: "nvarchar(250)", nullable: false),
+                    UnidDescripcion = table.Column<string>(type: "nvarchar(250)", nullable: false),
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -124,14 +125,14 @@ namespace Infrastructure.Migrations
                 {
                     UsuaID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UsuaUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UsuaContrasenia = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    UsuaUsuario = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    UsuaContrasenia = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -144,15 +145,15 @@ namespace Infrastructure.Migrations
                 {
                     EspeID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    EspeNombre = table.Column<string>(type: "nvarchar(30)", nullable: false),
+                    EspeDescripcion = table.Column<string>(type: "nvarchar(250)", nullable: false),
                     EspeCategoriaCateID = table.Column<int>(type: "int", nullable: false),
-                    EspeNombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EspeDescripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -171,14 +172,14 @@ namespace Infrastructure.Migrations
                 {
                     ItcuID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ItcuClaseClasID = table.Column<int>(type: "int", nullable: false),
                     ItcuDescripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ItcuClaseClasID = table.Column<int>(type: "int", nullable: false),
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -197,21 +198,21 @@ namespace Infrastructure.Migrations
                 {
                     ConqID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ConqDni = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ConqNombres = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ConqApellidoPaterno = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ConqApellidoMaterno = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ConqFechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ConqFechaInvestidura = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ConqDni = table.Column<string>(type: "nchar(8)", nullable: false),
+                    ConqNombres = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    ConqApellidoPaterno = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    ConqApellidoMaterno = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    ConqFechaNacimiento = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ConqFechaInvestidura = table.Column<DateTime>(type: "datetime", nullable: true),
                     ConqUsuarioUsuaID = table.Column<int>(type: "int", nullable: false),
                     ConqUnidadUnidID = table.Column<int>(type: "int", nullable: false),
                     ConqClaseClasID = table.Column<int>(type: "int", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -267,15 +268,15 @@ namespace Infrastructure.Migrations
                     CronID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CronEstaHecho = table.Column<bool>(type: "bit", nullable: false),
-                    CronFechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CronFechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CronFechaInicio = table.Column<DateTime>(type: "datetime", nullable: false),
+                    CronFechaFin = table.Column<DateTime>(type: "datetime", nullable: false),
                     CronItemItcuID = table.Column<int>(type: "int", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -296,13 +297,13 @@ namespace Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AccoActividadActiId = table.Column<int>(type: "int", nullable: false),
                     AccoConquistadorConqID = table.Column<int>(type: "int", nullable: false),
-                    AccoTipo = table.Column<string>(type: "nvarchar(1)", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AccoTipo = table.Column<string>(type: "nchar(1)", nullable: false),
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -328,21 +329,21 @@ namespace Infrastructure.Migrations
                     AsisID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AsisConquistadorConqID = table.Column<int>(type: "int", nullable: false),
-                    AsisFecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AsisFrecuencia = table.Column<int>(type: "int", nullable: false),
-                    AsisDevocion = table.Column<int>(type: "int", nullable: false),
-                    AsisCuota = table.Column<int>(type: "int", nullable: false),
-                    AsisDisciplina = table.Column<int>(type: "int", nullable: false),
-                    AsisAnioBiblico = table.Column<int>(type: "int", nullable: false),
-                    AsisRequerimiento = table.Column<int>(type: "int", nullable: false),
-                    AsisTotal = table.Column<int>(type: "int", nullable: false),
-                    AsisMonto = table.Column<float>(type: "real", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AsisFecha = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AsisFrecuencia = table.Column<byte>(type: "tinyint", nullable: false),
+                    AsisDevocion = table.Column<byte>(type: "tinyint", nullable: false),
+                    AsisCuota = table.Column<byte>(type: "tinyint", nullable: false),
+                    AsisDisciplina = table.Column<byte>(type: "tinyint", nullable: false),
+                    AsisAnioBiblico = table.Column<byte>(type: "tinyint", nullable: false),
+                    AsisRequerimiento = table.Column<byte>(type: "tinyint", nullable: false),
+                    AsisTotal = table.Column<byte>(type: "tinyint", nullable: false),
+                    AsisMonto = table.Column<decimal>(type: "decimal(9,3)", nullable: false),
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -386,14 +387,14 @@ namespace Infrastructure.Migrations
                     CoicId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ConqID = table.Column<int>(type: "int", nullable: false),
-                    CoicEstaCompleto = table.Column<bool>(type: "bit", nullable: false),
                     ItcuID = table.Column<int>(type: "int", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CoicEstaCompleto = table.Column<bool>(type: "bit", nullable: false),
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -416,15 +417,15 @@ namespace Infrastructure.Migrations
                 {
                     InscID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    InscFecha = table.Column<DateTime>(type: "datetime", nullable: false),
+                    InscMonto = table.Column<decimal>(type: "decimal(9,3)", nullable: false),
                     InscConquistadorConqID = table.Column<int>(type: "int", nullable: false),
-                    InscFecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    InscMonto = table.Column<float>(type: "real", nullable: false),
-                    AudiUserCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostCrea = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiUserMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiFechMod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AudiHostMod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AudiUserCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiFechCrea = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AudiHostCrea = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    AudiUserMod = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    AudiFechMod = table.Column<DateTime>(type: "datetime", nullable: true),
+                    AudiHostMod = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
