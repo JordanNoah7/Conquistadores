@@ -1,21 +1,22 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities;
 
-public class Rol
+public class ConquistadorItemCuadernillo
 {
     [Key]
-    public int RoleID { get; set; }
+    public int CoicId { get; set; }
     [Required]
-    [Column(TypeName = "nvarchar(30)")]
-    public string RoleNombre { get; set; }
+    public int ConqID { get; set; }
     [Required]
-    [Column(TypeName = "nvarchar(250)")]
-    public string RoleDescripcion { get; set; }
+    public int ItcuID { get; set; }
+    [Required]
+    [Column(TypeName = "bit")]
+    public bool CoicEstaCompleto { get; set; }
     
-    public ObservableCollection<Usuario> RoleUsuarios { get; set; }
+    public ItemCuadernillo CoicItemCuadernillo { get; set; }
+    public Conquistador CoicConquistador { get; set; }
     
     [Required(ErrorMessage = "El usuario creador es requerido")]
     [Column(TypeName = "nvarchar(20)")]
