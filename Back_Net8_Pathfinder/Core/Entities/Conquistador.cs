@@ -9,21 +9,21 @@ public class Conquistador
     [Key]
     public int ConqID { get; set; }
     [Required(ErrorMessage = "El DNI es obligatorio")]
-    [Column(TypeName = "nchar(8)")]
+    //[Column(TypeName = "nchar(8)")]
     public string ConqDni { get; set; }
     [Required(ErrorMessage = "El nombre es obligatorio")]
-    [Column(TypeName = "nvarchar(50)")]
+    //[Column(TypeName = "nvarchar(50)")]
     public string ConqNombres { get; set; }
     [Required(ErrorMessage = "El apellido paterno es obligatorio")]
-    [Column(TypeName = "nvarchar(20)")]
+    //[Column(TypeName = "nvarchar(20)")]
     public string ConqApellidoPaterno { get; set; }
     [Required(ErrorMessage = "El apellido materno es obligatorio")]
-    [Column(TypeName = "nvarchar(20)")]
+    //[Column(TypeName = "nvarchar(20)")]
     public string ConqApellidoMaterno { get; set; }
     [Required(ErrorMessage = "La fecha de nacimiento es obligatorio")]
-    [Column(TypeName = "datetime")]
+    //[Column(TypeName = "datetime")]
     public DateTime ConqFechaNacimiento { get; set; }
-    [Column(TypeName = "datetime")]
+    //[Column(TypeName = "datetime")]
     public DateTime? ConqFechaInvestidura { get; set; }
     
     [Required]
@@ -36,19 +36,19 @@ public class Conquistador
     public ObservableCollection<ActividadConquistador> ConqActividades { get; set; }
     public ObservableCollection<ConquistadorItemCuadernillo> ConqItemsCuadernillo { get; set; }
     
-    [Required(ErrorMessage = "El usuario creador es requerido")]
-    [Column(TypeName = "nvarchar(20)")]
-    public string AudiUserCrea { get; set; }
-    [Required(ErrorMessage = "La fecha de creación es requerida")]
-    [Column(TypeName = "datetime")]
-    public string AudiFechCrea { get; set; }
-    [Required(ErrorMessage = "El host creador es requerido")]
-    [Column(TypeName = "nvarchar(20)")]
-    public string AudiHostCrea { get; set; }
-    [Column(TypeName = "nvarchar(20)")]
-    public string? AudiUserMod { get; set; }
-    [Column(TypeName = "datetime")]
-    public string? AudiFechMod { get; set; }
-    [Column(TypeName = "nvarchar(20)")]
-    public string? AudiHostMod { get; set; }
+    // [Required(ErrorMessage = "El usuario creador es requerido")]
+    // [Column(TypeName = "nvarchar(20)")]
+    // public string AudiUserCrea { get; set; }
+    // [Required(ErrorMessage = "La fecha de creación es requerida")]
+    // [Column(TypeName = "datetime")]
+    // public string AudiFechCrea { get; set; }
+    // [Required(ErrorMessage = "El host creador es requerido")]
+    // [Column(TypeName = "nvarchar(20)")]
+    // public string AudiHostCrea { get; set; }
+    // [Column(TypeName = "nvarchar(20)")]
+    // public string? AudiUserMod { get; set; }
+    // [Column(TypeName = "datetime")]
+    // public string? AudiFechMod { get; set; }
+    // [Column(TypeName = "nvarchar(20)")]
+    // public string? AudiHostMod { get; set; }
 }
