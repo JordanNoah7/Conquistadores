@@ -4,7 +4,7 @@ import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { ChartsModule as chartjsModule } from "ng2-charts";
 import { NgxEchartsModule } from "ngx-echarts";
 import { MatIconModule } from "@angular/material/icon";
-import { MatButtonModule } from "@angular/material/button";
+import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
 import { AdminRoutingModule } from "./admin-routing.module";
 import { ComponentsModule } from "../shared/components/components.module";
 

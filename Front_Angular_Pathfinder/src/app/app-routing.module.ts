@@ -9,6 +9,9 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    data: {
+      title: 'Main',
+    },
     canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: '/authentication/signin', pathMatch: 'full' },
@@ -16,6 +19,7 @@ const routes: Routes = [
         path: 'admin',
         canActivate: [AuthGuard],
         data: {
+          title: 'Admin',
           role: Role.Admin,
         },
         loadChildren: () =>
@@ -25,6 +29,7 @@ const routes: Routes = [
         path: 'doctor',
         canActivate: [AuthGuard],
         data: {
+          title: 'Doctor',
           role: Role.Doctor,
         },
         loadChildren: () =>
@@ -34,6 +39,7 @@ const routes: Routes = [
         path: 'patient',
         canActivate: [AuthGuard],
         data: {
+          title: 'Patient',
           role: Role.Patient,
         },
         loadChildren: () =>
@@ -42,6 +48,9 @@ const routes: Routes = [
       {
         path: 'extra-pages',
         canActivate: [AuthGuard],
+        data: {
+          title: 'Extra Pages',
+        },
         loadChildren: () =>
           import('./extra-pages/extra-pages.module').then(
             (m) => m.ExtraPagesModule
@@ -50,6 +59,9 @@ const routes: Routes = [
       {
         path: 'multilevel',
         canActivate: [AuthGuard],
+        data: {
+          title: 'Multinivel',
+        },
         loadChildren: () =>
           import('./multilevel/multilevel.module').then(
             (m) => m.MultilevelModule
@@ -60,12 +72,17 @@ const routes: Routes = [
   {
     path: 'authentication',
     component: AuthLayoutComponent,
+    data: {
+      title: 'Authentication',
+    },
     loadChildren: () =>
       import('./authentication/authentication.module').then(
         (m) => m.AuthenticationModule
       ),
   },
-  { path: '**', component: Page404Component },
+  { path: '**', component: Page404Component, data: {
+      title: 'Page not found',
+    }, },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, {})],

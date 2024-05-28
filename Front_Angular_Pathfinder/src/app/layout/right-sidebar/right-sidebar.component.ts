@@ -10,7 +10,7 @@ import {
 } from "@angular/core";
 import { ConfigService } from "src/app/config/config.service";
 import { RightSidebarService } from "src/app/core/service/rightsidebar.service";
-import { MatSlideToggleChange } from "@angular/material/slide-toggle";
+import { MatLegacySlideToggleChange as MatSlideToggleChange } from "@angular/material/legacy-slide-toggle";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
 import { DirectionService } from "src/app/core/service/direction.service";
 
