@@ -30,11 +30,11 @@ public class Conquistador
     public Usuario ConqUsuario { get; set; }
     public Unidad ConqUnidad { get; set; }
     public Clase ConqClase { get; set; }
-    public ObservableCollection<Inscripcion> ConqInscripciones { get; set; }
-    public ObservableCollection<Asistencia> ConqAsistencias { get; set; }
-    public ObservableCollection<Especialidad> ConqEspecialidades { get; set; }
-    public ObservableCollection<ActividadConquistador> ConqActividades { get; set; }
-    public ObservableCollection<ConquistadorItemCuadernillo> ConqItemsCuadernillo { get; set; }
+    public ICollection<Inscripcion> ConqInscripciones { get; set; }
+    public ICollection<Asistencia> ConqAsistencias { get; set; }
+    public ICollection<Especialidad> ConqEspecialidades { get; set; }
+    public ICollection<ActividadConquistador> ConqActividades { get; set; }
+    public ICollection<ConquistadorItemCuadernillo> ConqItemsCuadernillo { get; set; }
     
     [Required]
     [Column(TypeName = "nvarchar(20)")]

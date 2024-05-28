@@ -15,7 +15,7 @@ public class Usuario
     [Column(TypeName = "nvarchar(100)")]
     public string UsuaContrasenia { get; set; }
     
-    public ObservableCollection<Rol> UsuaRoles { get; set; }
+    public ICollection<Rol> UsuaRoles { get; set; }
     
     [Required]
     [Column(TypeName = "nvarchar(20)")]

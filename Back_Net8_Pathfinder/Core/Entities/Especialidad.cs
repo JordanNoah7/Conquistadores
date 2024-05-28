@@ -17,7 +17,7 @@ public class Especialidad
     
     [Key]
     public Categoria EspeCategoria { get; set; }
-    public ObservableCollection<Conquistador> EspeConquistadores { get; set; }
+    public ICollection<Conquistador> EspeConquistadores { get; set; }
     
     [Required]
     [Column(TypeName = "nvarchar(20)")]

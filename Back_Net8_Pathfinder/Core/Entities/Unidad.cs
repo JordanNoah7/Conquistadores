@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities;
@@ -21,7 +20,7 @@ public class Unidad
     [Column(TypeName = "nvarchar(250)")]
     public string UnidDescripcion { get; set; }
     
-    public ObservableCollection<Conquistador> UnidConquistadores { get; set; }
+    public ICollection<Conquistador> UnidConquistadores { get; set; }
     
     [Required]
     [Column(TypeName = "nvarchar(20)")]

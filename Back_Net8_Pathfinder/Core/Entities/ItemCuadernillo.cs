@@ -14,8 +14,8 @@ public class ItemCuadernillo
     
     [Required]
     public Clase ItcuClase { get; set; }
-    public ObservableCollection<Cronograma> ItcuCronogramas { get; set; }
-    public ObservableCollection<ConquistadorItemCuadernillo> ItcuConquistadores { get; set; }
+    public ICollection<Cronograma> ItcuCronogramas { get; set; }
+    public ICollection<ConquistadorItemCuadernillo> ItcuConquistadores { get; set; }
     
     [Required]
     [Column(TypeName = "nvarchar(20)")]

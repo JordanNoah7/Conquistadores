@@ -18,7 +18,7 @@ public class Categoria
     [Column(TypeName = "nvarchar(10)")]
     public string CateColor { get; set; }
     [Required]
-    public ObservableCollection<Especialidad> CateEspecialidades { get; set; }
+    public ICollection<Especialidad> CateEspecialidades { get; set; }
     
     [Required]
     [Column(TypeName = "nvarchar(20)")]

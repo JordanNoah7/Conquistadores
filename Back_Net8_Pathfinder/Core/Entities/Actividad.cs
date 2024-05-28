@@ -30,7 +30,7 @@ public class Actividad
     [Column(TypeName = "datetime")]
     public DateTime ActiFechaFin { get; set; }
     [Required(ErrorMessage = "El responsable es obligatorio")]
-    public ObservableCollection<ActividadConquistador> ActiParticipantes { get; set; }
+    public ICollection<ActividadConquistador> ActiParticipantes { get; set; }
     
     [Required]
     [Column(TypeName = "nvarchar(20)")]

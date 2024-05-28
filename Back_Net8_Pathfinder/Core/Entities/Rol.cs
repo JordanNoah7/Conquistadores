@@ -15,7 +15,7 @@ public class Rol
     [Column(TypeName = "nvarchar(250)")]
     public string RoleDescripcion { get; set; }
     
-    public ObservableCollection<Usuario> RoleUsuarios { get; set; }
+    public ICollection<Usuario> RoleUsuarios { get; set; }
     
     [Required]
     [Column(TypeName = "nvarchar(20)")]

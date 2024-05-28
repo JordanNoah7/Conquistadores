@@ -14,9 +14,9 @@ public class Clase
     [Required]
     [Column(TypeName = "nvarchar(250)")]
     public string ClasDescripcion { get; set; }
-    public ObservableCollection<Conquistador> ClasConquistadores { get; set; }
+    public ICollection<Conquistador> ClasConquistadores { get; set; }
     [Required]
-    public ObservableCollection<ItemCuadernillo> ClasItemsCuadernillo { get; set; }
+    public ICollection<ItemCuadernillo> ClasItemsCuadernillo { get; set; }
     
     [Required]
     [Column(TypeName = "nvarchar(20)")]
