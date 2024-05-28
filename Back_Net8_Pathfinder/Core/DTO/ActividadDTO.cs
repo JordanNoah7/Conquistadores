@@ -15,11 +15,4 @@ public class ActividadDTO
     public DateTime ActiFechaFin { get; set; }
     
     public ICollection<ActividadConquistador> ActiParticipantes { get; set; }
-    
-    public string AudiUserCrea { get; set; }
-    public DateTime AudiFechCrea { get; set; }
-    public string AudiHostCrea { get; set; }
-    public string? AudiUserMod { get; set; }
-    public DateTime? AudiFechMod { get; set; }
-    public string? AudiHostMod { get; set; }
 }
