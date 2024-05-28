@@ -5,6 +5,9 @@ const routes: Routes = [
   {
     path: 'blank',
     component: BlankComponent,
+    data: {
+      title: 'Blank'
+    },
   },
 ];
 @NgModule({

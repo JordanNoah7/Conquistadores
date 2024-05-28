@@ -7,10 +7,16 @@ const routes: Routes = [
   {
     path: "second1",
     component: Second1Component,
+    data: {
+      title: 'Second1'
+    },
   },
   {
     path: "second2",
     component: Second2Component,
+    data: {
+      title: 'Second2'
+    },
   },
 ];
 

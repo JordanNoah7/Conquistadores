@@ -8,14 +8,23 @@ const routes: Routes = [
   {
     path: "first1",
     component: First1Component,
+    data: {
+      title: 'First1'
+    },
   },
   {
     path: "first2",
     component: First2Component,
+    data: {
+      title: 'First2'
+    },
   },
   {
     path: "first3",
     component: First3Component,
+    data: {
+      title: 'First3'
+    },
   },
   {
     path: "secondlevel",

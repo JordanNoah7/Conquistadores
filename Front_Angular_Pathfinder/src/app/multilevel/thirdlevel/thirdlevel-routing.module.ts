@@ -6,6 +6,9 @@ const routes: Routes = [
   {
     path: "third1",
     component: Third1Component,
+    data: {
+      title: 'Third1'
+    },
   },
 ];
 

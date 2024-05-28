@@ -38,12 +38,16 @@
               "@ckeditor/ckeditor5-build-classic",
               "fast-deep-equal"
             ],
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
             "styles": [
               "./node_modules/@fullcalendar/common/main.css",
               "./node_modules/@fullcalendar/daygrid/main.css",
               "./node_modules/@fullcalendar/timegrid/main.css",
               "./node_modules/@fullcalendar/list/main.css",
+              "./node_modules/bootstrap/scss/bootstrap.scss",
               "src/assets/scss/style.scss",
               "src/assets/scss/theme/all-themes.scss",
               "src/styles.scss"
@@ -107,7 +111,10 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
           }
         }
       }

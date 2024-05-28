@@ -6,6 +6,9 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    data: {
+      title: 'Dashboard'
+    },
   },
   { path: '**', component: Page404Component },
 ];
