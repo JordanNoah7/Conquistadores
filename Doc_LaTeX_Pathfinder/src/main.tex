@@ -2,47 +2,108 @@
 %! Date = 20/05/2024
 
 % Preamble
-\documentclass[man, floatsintext]{apa7}
+\documentclass[stu, 12pt, letterpaper, donotrepeattitle, floatsintext, natbib]{apa7}
 
 % Packages
-\usepackage[american]{babel}
-\usepackage[section]{placeins}
+\usepackage[utf8]{inputenc}
+\usepackage{comment}
+\usepackage{marvosym}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[normalem]{ulem}
+\usepackage[spanish]{babel}
 \usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
-\usepackage{csquotes}
-\usepackage{array,fancyvrb,graphicx,verbatim,xurl}
+\usepackage{standalone}
+\selectlanguage{spanish}
+\useunder{\uline}{\ul}{}
+\newcommand{\myparagraph}[i]{\paragraph{#1}\mbox{}\\}
+%\usepackage[section]{placeins}
+%\usepackage{csquotes}
+%\usepackage{array,fancyvrb,graphicx,verbatim,xurl}
 
 % Config
-\DeclareLanguageMapping{american}{american-apa}
+%\DeclareLanguageMapping{american}{american-apa}
 %\addbibresource{bibliography.bib}
-\title{DISE\~{N}O Y DESARROLLO DE UN SISTEMA DE INFORMACI\'ON INTEGRAL PARA LA GESTI\'ON DE CONQUISTADORES, ACTIVIDADES Y
+\thispagestyle{empty}
+\title{\large DISE\~{N}O Y DESARROLLO DE UN SISTEMA DE INFORMACI\'ON INTEGRAL PARA LA GESTI\'ON DE CONQUISTADORES, ACTIVIDADES Y
 PROGRESOS EN EL CLUB DE CONQUISTADORES}
 \shorttitle{Sistema Integral para la Gesti\'on del Club de Conquistadores}
 \author{John Jordan Quispe Supo}
 \affiliation{Instituto de Educaci\'on Superior Privado del Sur}
-\abstract{Este proyecto se centra en el dise\~{n}o y desarrollo de un Sistema de Informaci\'on Integral para la Gesti\'on de
-Conquistadores, Actividades y Progresos en el Club de Conquistadores. El sistema propuesto permitir\'a el registro de
-nuevos conquistadores, la planificaci\'on y registro de actividades, el seguimiento del avance de los conquistadores en
-sus especialidades y clases, y la toma de asistencia y actividades semanales en la unidad. Este trabajo busca optimizar
-la gesti\'on del club, mejorar la eficiencia de las actividades y proporcionar una plataforma web para el seguimiento y
-desarrollo de los conquistadores. Se espera que este sistema integral mejore significativamente la administraci\'on del
-club y enriquezca la experciencia de los conquistadores.}
-\keywords{Sistema de Informaci\'on Integral, Gesti\'on de Conquistadores, Registro de Actividades, Seguimiento de Progresos,
-Club de Conquistadores, Planificaci\'on de Actividades, Toma de Asistencia, Actividades Semanales, Especialidades y Clases
-de Conquistadores, Plataforma Web, Optimizaci\'on de la Gesti\'on, Eficiencia de las Actividades}
+\course{Desarrollo de Sistemas de Informaci\'on}
+\professor{Gustavo Delgado Ugarte}
+\duedate{20/05/2024}
+
+%\abstract{Este proyecto se centra en el dise\~{n}o y desarrollo de un Sistema de Informaci\'on Integral para la Gesti\'on de
+%Conquistadores, Actividades y Progresos en el Club de Conquistadores. El sistema propuesto permitir\'a el registro de
+%nuevos conquistadores, la planificaci\'on y registro de actividades, el seguimiento del avance de los conquistadores en
+%sus especialidades y clases, y la toma de asistencia y actividades semanales en la unidad. Este trabajo busca optimizar
+%la gesti\'on del club, mejorar la eficiencia de las actividades y proporcionar una plataforma web para el seguimiento y
+%desarrollo de los conquistadores. Se espera que este sistema integral mejore significativamente la administraci\'on del
+%club y enriquezca la experciencia de los conquistadores.}
+%\keywords{Sistema de Informaci\'on Integral, Gesti\'on de Conquistadores, Registro de Actividades, Seguimiento de Progresos,
+%Club de Conquistadores, Planificaci\'on de Actividades, Toma de Asistencia, Actividades Semanales, Especialidades y Clases
+%de Conquistadores, Plataforma Web, Optimizaci\'on de la Gesti\'on, Eficiencia de las Actividades}
 
 % Document
 \begin{document}
     \maketitle
+
+%   Indices
+    \pagenumbering{roman}
+%   Contenido
+    \renewcommand\contentsname{\large\'Indice}
     \tableofcontents
+    \setcounter{tocdepth}{2}
+    \newpage
+%   Figuras
+    \renewcommand\listfigurename{\large\'Indice de figuras}
     \listoffigures
+    \newpage
+%   Tablas
+    \renewcommand\listtablename{\large\'Indice de tablas}
     \listoftables
+    \newpage
+
+%   Cuerpo
+    \pagenumbering{arabic}
 
 
-    \section{T\'ITULO}
-    DISE\~{N}O Y DESARROLLO DE UN SISTEMA DE INFORMACI\'ON INTEGRAL PARA LA GESTI\'ON DE CONQUISTADORES, ACTIVIDADES Y
+    \section{\large T\'ITULO}
+    \noindent DISE\~{N}O Y DESARROLLO DE UN SISTEMA DE INFORMACI\'ON INTEGRAL PARA LA GESTI\'ON DE CONQUISTADORES, ACTIVIDADES Y
     PROGRESOS EN EL CLUB DE CONQUISTADORES
 
-    \subsection{titulo 2}
+
+    \section{\large DATOS DEL AUTOR}
+    \noindent
+    \begin{tabular}{ll}
+        \textbf{Nombres}    & : John Jordan                                                             \\
+        \textbf{Apellidos}  & : Quispe Supo                                                             \\
+        \textbf{Carrera}    & : Desarrollo de Sistemas de Informaci\'on                                 \\
+        \textbf{Rese\~{n}a} & : Soy egresado del Instituto del Sur y actualmente me encuentro laborando \\ & en Soluciones de Informaci\'on NextSoft S.A.C.
+    \end{tabular}
+
+
+    \section{\large RESUMEN}
+    Este proyecto se centra en el dise\~{n}o y desarrollo de un Sistema de Informaci\'on Integral para la Gesti\'on de
+    Conquistadores, Actividades y Progresos en el Club de Conquistadores. El sistema propuesto permitir\'a el registro de
+    nuevos conquistadores, la planificaci\'on y registro de actividades, el seguimiento del avance de los conquistadores en
+    sus especialidades y clases, y la toma de asistencia y actividades semanales en la unidad. Este trabajo busca optimizar
+    la gesti\'on del club, mejorar la eficiencia de las actividades y proporcionar una plataforma web para el seguimiento y
+    desarrollo de los conquistadores. Se espera que este sistema integral mejore significativamente la administraci\'on del
+    club y enriquezca la experciencia de los conquistadores.
+
+
+    \section{\large INTRODUCCI\'ON}
+
+    \subsection{Descripci\'on de la Unidad de Estudio}
+    \noindent
+    \begin{tabular}{ll}
+        \textbf{RUC}                            & : 20202020202                                        \\
+        \textbf{Raz\'on Social}                 & : Club de Conquistadores "Las \'Aguilas"             \\
+        \textbf{Fecha de Inicio de Actividades} & : 20/05/2012                                         \\
+        \textbf{Actividad principal}            & : Ayudar a los adolescentes a crecer en las 3 partes \\ & esenciales que son fisico mental y espiritual
+    \end{tabular}
 
     \subsection{titulo 2}
 
