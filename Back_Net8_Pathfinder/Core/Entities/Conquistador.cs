@@ -26,6 +26,17 @@ public class Conquistador
     [Column(TypeName = "datetime")]
     public DateTime? ConqFechaInvestidura { get; set; }
     
+    [Required(ErrorMessage = "El correo personal es obligatorio")]
+    [Column(TypeName = "nvarchar(50)")]
+    public string ConqCorreoPersonal { get; set; }
+    [Column(TypeName = "nvarchar(50)")]
+    public string? ConqCorreoCorporativo { get; set; }
+    [Required(ErrorMessage = "El celular es obligatorio")]
+    [Column(TypeName = "nvarchar(18)")]
+    public string ConqCelular { get; set; }
+    [Column(TypeName = "nvarchar(18)")]
+    public string? ConqTelefono { get; set; }
+    
     [Required]
     public Usuario ConqUsuario { get; set; }
     public Unidad ConqUnidad { get; set; }

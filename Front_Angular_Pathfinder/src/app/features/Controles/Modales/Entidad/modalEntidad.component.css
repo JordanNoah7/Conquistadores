@@ -1,0 +1,34 @@
+i.btnAyuda{
+  background-color: #3b9ff3;
+  color: white;
+  border-radius: 5px;
+  padding: 0px;
+  border-color: transparent;
+  margin-top: -1px;
+}
+
+.btnAyuda{
+  background-color: #3b9ff3;
+  color: white;
+  border-radius: 5px;
+  padding: 0px;
+  border-color: transparent;
+}
+
+.btnAyuda:hover{
+  background-color: #257ec7;
+  cursor: pointer;
+}
+
+.btnAyudaSearched{
+  background-color: #f12c57;
+  color: white;
+  border-radius: 5px;
+  padding: 0px;
+  border-color: transparent;
+}
+
+.btnAyudaSearched:hover{
+  background-color: #dd1e47;
+  cursor: pointer;
+}

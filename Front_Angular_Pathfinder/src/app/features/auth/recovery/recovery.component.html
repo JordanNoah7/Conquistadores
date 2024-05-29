@@ -1,0 +1,44 @@
+<header id="header" class="animated fadeInDown">
+
+  <span id="logo">
+    <img class="logo_empresa" [src]="this.logo" alt="Logo">
+  </span>
+
+</header>
+<div id="main" role="main" class="animated fadeInDown">
+
+  <div id="content" class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-6 col-lg-offset-4 col-lg-4">
+        <div class="well no-padding">
+          <form id="login-form" class="smart-form client-form">
+            <header>
+              Recuperar contraseña
+            </header>
+
+            <fieldset>
+              <section>
+                <label class="label">Tu nombre de usuario</label>
+                <label class="input"> <i class="icon-append fa fa-user"></i>
+                  <input type="text" name="username">
+                  <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Ingresa tu nombre de usuario</b> </label>
+                <div class="note">
+                  <a routerLink="/auth/login">¡Recordé mi contraseña!</a>
+                </div>
+              </section>
+
+            </fieldset>
+            <footer>
+              <button (click)="submit($event)" class="btn btn-primary">
+                Recuperar
+              </button>
+            </footer>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

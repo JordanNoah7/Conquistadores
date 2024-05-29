@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-label="Close" (click)="CerrarModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h4 class="modal-title">{{ Titulo }}</h4>
+</div>
+
+<div class="modal-body">
+  <div class="table-responsive">
+    <sa-datatable
+      [options]="options"
+      [tableId]="tableId"
+      tableClass="table table-striped table-bordered table-hover"
+      width="100%"
+    >
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Producto</th>
+          <th>Marca</th>
+          <th>Unidad</th>
+          <th>Saldo</th>
+          <th>Costo</th>
+          <th>Almacén</th>
+          <th>Descripcion&nbsp;Corta</th>
+        </tr>
+      </thead>
+    </sa-datatable>
+  </div>
+</div>

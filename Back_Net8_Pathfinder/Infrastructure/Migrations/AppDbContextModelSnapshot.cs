@@ -329,8 +329,19 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("ConqCelular")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(18)");
+
                     b.Property<int>("ConqClaseClasID")
                         .HasColumnType("int");
+
+                    b.Property<string>("ConqCorreoCorporativo")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ConqCorreoPersonal")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ConqDni")
                         .IsRequired()
@@ -345,6 +356,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("ConqNombres")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ConqTelefono")
+                        .HasColumnType("nvarchar(18)");
 
                     b.Property<int>("ConqUnidadUnidID")
                         .HasColumnType("int");
@@ -588,6 +602,47 @@ namespace Infrastructure.Migrations
                     b.ToTable("ItemsCuadernillo");
                 });
 
+            modelBuilder.Entity("Core.Entities.Parametro", b =>
+                {
+                    b.Property<int>("ParaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ParaID"));
+
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ParaNombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<string>("ParaValor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("ParaID");
+
+                    b.ToTable("Parametros");
+                });
+
             modelBuilder.Entity("Core.Entities.Rol", b =>
                 {
                     b.Property<int>("RoleID")
@@ -627,6 +682,38 @@ namespace Infrastructure.Migrations
                     b.HasKey("RoleID");
 
                     b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("Core.Entities.Sesion", b =>
+                {
+                    b.Property<int>("SesiID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SesiID"));
+
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("SesiFecha")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("SesiUsuarioUsuaID")
+                        .HasColumnType("int");
+
+                    b.HasKey("SesiID");
+
+                    b.HasIndex("SesiUsuarioUsuaID");
+
+                    b.ToTable("Sesiones");
                 });
 
             modelBuilder.Entity("Core.Entities.Unidad", b =>
@@ -867,6 +954,17 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("ItcuClase");
+                });
+
+            modelBuilder.Entity("Core.Entities.Sesion", b =>
+                {
+                    b.HasOne("Core.Entities.Usuario", "SesiUsuario")
+                        .WithMany()
+                        .HasForeignKey("SesiUsuarioUsuaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SesiUsuario");
                 });
 
             modelBuilder.Entity("RolUsuario", b =>

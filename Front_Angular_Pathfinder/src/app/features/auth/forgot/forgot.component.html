@@ -1,0 +1,27 @@
+<form id="login-form" class="smart-form client-form" novalidate="novalidate">
+    <header>
+        Recuperar contraseña
+    </header>
+    <fieldset>
+        <section>
+            <label class="label">Tu nombre de usuario</label>
+            <label class="input"> <i class="icon-append fa fa-user"></i>
+                <input type="text" name="username">
+                <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Ingresa tu nombre de
+                    usuario</b> </label>
+            <div class="note">
+                <a routerLink="/auth/login"> ¡Recordé de mi contraseña!</a>
+            </div>
+        </section>
+    </fieldset>
+    <footer>
+        <!-- <button type="button" class="btn btn-primary">
+            <i class="fa fa-spinner fa-spin mr-5"></i>
+            Recuperar
+        </button> -->
+        <button type="submit" class="btn btn-primary" [disabled]="!form?.valid || loading">
+            <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+            Recuperar
+          </button>
+    </footer>
+</form>

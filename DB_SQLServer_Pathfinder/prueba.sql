@@ -5,3 +5,6 @@ SELECT * FROM Usuarios
 
 select * from Roles
 select * from RolUsuario
+
+select * from parametros
+SELECT * FROM Sesiones

@@ -10,8 +10,7 @@ public static class ServiceExtensions
 {
     public static IServiceCollection AddCoreServices(this IServiceCollection services)
     {
-        services.AddTransient<IActividadService, ActividadService>();
-        services.AddTransient<IUsuarioService, UsuarioService>();
+        services.AddTransient<IService, Service>();
         return services;
     }
 
@@ -23,6 +22,8 @@ public static class ServiceExtensions
 
         services.AddTransient<IActividadRepository, ActividadRepository>();
         services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+        services.AddTransient<IConquistadorRepository, ConquistadorRepository>();
+        services.AddTransient<IRolRepository, RolRepository>();
         return services;
     }
 }

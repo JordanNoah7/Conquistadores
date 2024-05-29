@@ -1,0 +1,31 @@
+<form [formGroup]="myForm">
+
+
+  <label class="col col-1 control-label">Solicitado por:</label>
+  <!-- <section class="col col-2">
+    <label class="input">
+      <input #inputAyuda type="text" placeholder="DNI/RUC" [disabled]="true" class="disabled-input" />
+    </label>
+  </section> -->
+  <section class="col col-lg-6">
+    <label class="input">
+      <i #btnAyudaDesc
+        class="btnAyuda icon-append fa fa-search"
+        (click)="MostrarModal(1, inputAyudaDesc)" *ngIf="!loading"></i>
+        <i *ngIf="loading" class="icon-append icon-append-spin fa fa-spinner fa-spin"></i>
+      <input #inputAyudaDesc type="text" placeholder="Nombre/Razón social"/>
+    </label>
+  </section>
+
+  <label class="col col-1 control-label">Área:</label>
+  <section class="col col-4">
+    <label class="select">
+      <select #mySelectArea id="areaSelect" formControlName="areaSelect" (change)="changeAreas(mySelectArea.value)">
+        <option value="" disabled>--Seleccione--</option>
+        <option *ngFor="let area of Areas" value="{{ area.TIPO_CodTipo }}">
+          {{ area.TIPO_Desc1 }}
+        </option>
+      </select>
+    </label>
+  </section>
+</form>

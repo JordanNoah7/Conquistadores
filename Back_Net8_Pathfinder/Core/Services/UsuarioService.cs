@@ -4,26 +4,19 @@ using Core.Interfaces;
 
 namespace Core.Services;
 
-public class UsuarioService : IUsuarioService
+public partial class Service
 {
-    private readonly IUsuarioRepository _usuarioRepository;
-
-    public UsuarioService(IUsuarioRepository usuarioRepository)
-    {
-        _usuarioRepository = usuarioRepository;
-    }
-
-    public async Task<Usuario> GetByIdAsync(int id)
+    public async Task<Usuario> GetUserByIdAsync(int id)
     {
         return await _usuarioRepository.GetByIdAsync(id);
     }
 
-    public async Task<Usuario> GetByUsernameAsync(string username)
+    public async Task<Usuario> GetUserByUsernameAsync(string username)
     {
         return await _usuarioRepository.GetByUsernameAsync(username);
     }
 
-    public async Task<List<Rol>> GetRolesAsync(int id)
+    public async Task<List<Rol>> GetUserRolesAsync(int id)
     {
         return await _usuarioRepository.GetRolesAsync(id);
     }

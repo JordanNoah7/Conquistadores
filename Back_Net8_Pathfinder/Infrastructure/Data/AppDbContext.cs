@@ -16,7 +16,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Especialidad> Especialidades { get; set; }
     public DbSet<Inscripcion> Inscripciones { get; set; }
     public DbSet<ItemCuadernillo> ItemsCuadernillo { get; set; }
+    public DbSet<Parametro> Parametros { get; set; }
     public DbSet<Rol> Roles { get; set; }
+    public DbSet<Sesion> Sesiones { get; set; }
     public DbSet<Unidad> Unidades { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
 

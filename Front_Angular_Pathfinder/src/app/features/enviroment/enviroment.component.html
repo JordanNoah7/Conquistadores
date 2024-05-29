@@ -1,0 +1,54 @@
+<header id="header" class="animated fadeInDown">
+  <span id="logo">
+    <img class="logo_empresa" [src]="this.logo" alt="Logo">
+  </span>
+</header>
+<div id="main" role="main" class="animated fadeInDown">
+  <div id="content" class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-4 col-lg-offset-2 col-lg-5">
+        <div class="well no-padding">
+          <form id="login-form" class="smart-form client-form">
+            <header>
+              Entorno de trabajo
+            </header>
+
+            <form [formGroup]="form">
+              <fieldset>
+                <section>
+                  <label class="label">Almacenes asignados:</label>
+                  <label class="select">
+                    <select formControlName="_almacen">
+                      <option value="{{ almacen.ALMA_Codigo }}" *ngFor="let almacen of almacenes">
+                        {{ almacen.ALMA_Nombre }}
+                      </option>
+                    </select>
+                    <i></i>
+                  </label>
+                </section>
+
+                <section>
+                  <label class="label">Su usuario:</label>
+                  <label class="input">
+                    <input class="disabled-input" type="text" formControlName="_usuario" readonly />
+                  </label>
+                </section>
+              </fieldset>
+            </form>
+
+            <footer>
+              <button class="btn btn-default custombutton" type="button" (click)="Salir()">
+                <i class="fa fa-sign-out"></i>
+                <span>Salir</span>
+              </button>
+              <button type="button" class="btn btn-primary custombutton" (click)="Ingresar()">
+                <i class="fa fa-check"></i>
+                <span>Aceptar</span>
+              </button>    
+            </footer>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

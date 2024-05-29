@@ -1,0 +1,19 @@
+<!-- <div class="login-info" *ngIf="!!user">
+  <span><a>
+      <i class="fa fa-user fa-2x" aria-hidden="true" style="font-size: 40px;"></i>
+      <span class="cstm-name-menu ajustar-texto">{{user.user.USER_Nombre | i18n }}</span>
+    </a>
+  </span>
+</div> -->
+
+
+<div class="login-info" style="display: flex; align-items: center;padding-left: 6px;">
+  <div class="usersiglas" style="width: 40px; height: 40px; border-radius: 50%;
+              background-color: #3498db;color: #ffffff;text-align: center;
+              line-height: 40px;font-size: 16px;font-weight: bold;">
+    {{ userSiglas }}
+  </div>
+  <div class="nombreuser" style="flex-grow: 1; margin-left: 6px; max-width: 140px; word-wrap: break-word; font-size: 12px; color: #69737A !important;">
+    {{user.user.USER_Nombre}}
+  </div>
+</div>

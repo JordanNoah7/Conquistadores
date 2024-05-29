@@ -3,9 +3,9 @@ using Core.Entities;
 
 namespace Core.Interfaces;
 
-public interface IUsuarioService
+public partial interface IService
 {
-    Task<Usuario> GetByIdAsync(int id);
-    Task<Usuario> GetByUsernameAsync(string username);
-    Task<List<Rol>> GetRolesAsync(int id);
+    Task<Usuario> GetUserByIdAsync(int id);
+    Task<Usuario> GetUserByUsernameAsync(string username);
+    Task<List<Rol>> GetUserRolesAsync(int id);
 }

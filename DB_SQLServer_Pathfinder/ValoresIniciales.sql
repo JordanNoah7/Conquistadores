@@ -14,3 +14,6 @@ VALUES (1, 1),
        (1, 2),
        (1, 3)
 GO
+INSERT INTO Parametros (ParaNombre, ParaValor, AudiUserCrea, AudiFechCrea, AudiHostCrea)
+VALUES ('TiempoSesion', '1', 'SISTEMAS', GETDATE(), 'J-PC')
+GO

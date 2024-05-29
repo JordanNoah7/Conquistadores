@@ -3,7 +3,7 @@ using Core.Entities;
 
 namespace Core.Interfaces;
 
-public interface IRolService
+public partial interface IService
 {
-    Task<ICollection<Rol>> GetByUsuaIdAsync(int id);
+    Task<ICollection<Rol>> GetRolesByUsuaIdAsync(int id);
 }

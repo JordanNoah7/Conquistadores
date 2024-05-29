@@ -1,0 +1,541 @@
+/* You can add global styles to this file, and also import other style files */
+.btnAyuda {
+  background-color: #bebdbd;
+  color: white !important;
+  border-radius: 5px;
+  padding: 0px;
+  border-color: transparent;
+  margin-top: -1px;
+  padding-left: 0px !important;
+  cursor: pointer;
+}
+
+.btnAyuda:hover {
+  background-color: #257ec7;
+  color: white;
+  cursor: pointer;
+}
+
+.btnAyudaSearched {
+  background-color: #bebdbd;
+  color: white !important;;
+  border-radius: 5px;
+  padding: 0px;
+  border-color: transparent;
+  margin-top: -1px;
+  padding-left: 0px !important;
+  cursor: pointer;
+}
+
+.btnAyudaSearched:hover {
+  background-color: #dd1e47;
+  color: white;
+  cursor: pointer;
+}
+
+.modal-body{
+  padding: 0 20px !important;
+}
+.app-loading{
+  margin-top: 20%;
+}
+.app-loader {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-top: 25%;
+}
+
+.app-loader i{
+  font-size: 60px;
+}
+
+.row-contend{
+  column-count: 2;
+  column-gap: 4px;
+  orphans: 1;
+  widows: 1;
+}
+
+.row-contend .col {
+  break-inside: avoid;
+  display: inline-block;
+  width: 100%;
+}
+
+.title-cstm-apro{
+  text-align: center;
+  /* margin-right: 32%;
+  padding: 5px; */
+  font-weight: 900;
+}
+
+.btn-cstm-apro{
+  height: 40px;
+  background-color: #52b202;
+  border: none;
+  text-align: center;
+  width: 101px;
+  border-radius: 1ch;
+}
+
+.loaders{
+  display: none;
+}
+
+.ocultar{
+  display: none;
+}
+
+.mostrar{
+  display: inline-block;
+}
+
+
+.disabled-input,.disabled-input:hover{
+  background: #dcdcdc !important;
+  background-color: #dcdcdc !important;
+  border-width: 0 solid !important;
+  cursor: default !important;
+  color: #919191 !important;
+}
+
+
+.smart-style-2 nav ul li a i {
+  font-size: 20px!important;
+  margin-right: 15px !important;
+}
+
+#logo .logo_empresa{
+  width: auto;
+  height: 49px;
+  padding-left: 0px;
+  background-color: #FFF;
+}
+
+
+.card-body{
+  padding: 0 !important;
+}
+
+#logo {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+}
+
+input{
+  border-radius: 1ch !important;
+}
+
+ #btn-head-reload button{
+  border-radius: 1ch;
+}
+
+.spinnerLoading{
+  text-align: center;
+  vertical-align: middle;
+  font-size: xx-large;
+  background-color: #fefcfe !important;
+  border-style: solid;
+  border-width: 1px 1px 2px;
+  border-color: #CCC;
+}
+.spinnerLoading img{
+  height: 180px;
+}
+
+.has-error  select {
+  border-color: #b94a48 !important;
+}
+
+.custombutton {
+  border-radius: 50px !important;
+  padding: 0 12px !important;
+  height: 31px !important;
+  font: 300 15px/29px 'Open Sans', Helvetica, Arial, sans-serif !important;
+  margin-right: 5px !important;
+  float: right !important;
+}
+
+.custombuttonnofloat {
+  border-radius: 50px !important;
+  padding: 0 12px !important;
+  height: 31px !important;
+  font: 300 15px/29px 'Open Sans', Helvetica, Arial, sans-serif !important;
+}
+
+.custombuttonleft {
+  border-radius: 50px !important;
+  padding: 0 12px !important;
+  height: 31px !important;
+  font: 300 15px/29px 'Open Sans', Helvetica, Arial, sans-serif !important;
+  margin-right: 5px !important;
+  float: left !important;
+}
+.custombutton i, .custombuttonleft i, .custombuttonnofloat i {
+  margin-right: 5px;
+}
+
+.customtextarea {
+  width: 100%
+}
+.tableModal {
+  font-size: small !important;
+}
+.btn-cstm-proceso{
+  border-radius: 50px !important;
+}
+
+.ddmcustom{
+  font-size: 15px;
+}
+
+.smart-form .icon-append-spin{
+  border-left-width: 0px !important;
+  border-left-style: solid !important;
+}
+
+.cstm-icon-menu{
+  position: absolute;
+  margin-top: 1% !important;
+}
+
+.cstm-name-menu{
+  position: absolute;
+  margin-top: 0% !important;
+  margin-left: 3% !important;
+  max-width: 65% !important
+}
+
+
+.nomTituloEmpresa{
+  color: #fff;
+    margin-left: 1%;
+    margin-top: 1%;
+    position: absolute;
+}
+
+#busquedaPrincipal .btn-rounded-nuevo{
+  background-color: #66c916 !important;
+  border: none;
+  margin-top: -11px;
+  margin-left: 10px;
+}
+
+.btn-rounded-search{
+  background-color: #336cc1 !important;
+  border: none;
+  margin-top: -11px;
+  height: 32px;
+  margin-top: -2px;
+  width: 80px;
+}
+
+.btn-rounded-new{
+  background-color: #66c916 !important;
+  border: none;
+  margin-top: -11px;
+  height: 32px;
+  margin-top: -2px;
+  padding: 7px;
+}
+
+#busquedaPrincipal .jarviswidget-ctrls .jarviswidget-toggle-btn{
+  display: none !important;
+}
+
+.btnCMS{
+  display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    border-radius: 2px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.ajustar-texto{
+  word-break: break-word !important;
+  white-space: pre-line !important;
+  overflow-wrap: break-word !important;
+  -ms-word-break: break-word !important;
+  word-break: break-word !important;
+  -ms-hyphens: auto !important;
+  -moz-hyphens: auto !important;
+  -webkit-hyphens: auto !important;
+  hyphens: auto !important;
+  font-size: 14px !important;
+}
+
+
+.float-right{
+  position: relative;
+  float: right;
+}
+
+.border-bottom{
+  border-bottom: 1px solid #e1e1e1;
+}
+
+
+.detalleRU {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0.5fr 1.7fr 0.8fr;
+  grid-template-rows: 0.4fr 1.6fr;
+  gap: 5px 5px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "idProducto nombreProducto nombreProducto"
+    "descripCosto descripCosto cantidadProducto";
+}
+
+.idProducto { grid-area: idProducto; }
+
+.nombreProducto {
+  text-align: justify;
+  grid-area: nombreProducto;
+ }
+
+.descripCosto { grid-area: descripCosto; }
+
+.cantidadProducto {
+  grid-area: cantidadProducto;
+  position: relative;
+}
+
+.cantidadProducto span,.cantidadProducto input{
+  float: right;
+}
+
+.inputDetalleRU{
+  width: 80px;
+  text-align: right;
+  height: 30px;
+  font-size: 20px;
+  color: black;
+}
+
+
+.conte-reque {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "titu-requerimiento"
+    "desc-requerimiento";
+}
+
+.titu-requerimiento { grid-area: titu-requerimiento; }
+
+.desc-requerimiento { grid-area: desc-requerimiento; }
+
+#tbRequerimiento{
+  margin-bottom: 3rem;
+}
+
+.loaderAprob{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+#reCaptcha_login{
+  -webkit-transform: scale(1.1);
+  -moz-transform:    scale(1.1);
+  -ms-transform:     scale(1.1);
+  -o-transform:      scale(1.1);
+  transform:         scale(1.1);
+
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+@media (min-width: 600px){
+  #tbRequerimiento{
+    font-size:2rem;
+  }
+  #tbRequerimiento div{
+    border-radius:1ch;
+    margin:0.3rem;
+  }
+  #tbRequerimiento .col {
+    border:solid rgb(225, 225, 225) 1px;
+  }
+  #tbRequerimiento .titu-requerimiento {
+    border-bottom: 1px solid rgb(225, 225, 225);
+  }
+}
+
+@media screen and (max-width: 990px){
+  .textGuardar{
+    display: none !important;
+  }
+  .iconGuardar{
+    font-size: 3rem !important;
+  }
+  .nomTituloEmpresa{
+    margin-top: 2%;
+    width: 30%;
+  }
+
+  .card-body{
+    padding: 1rem !important;
+  }
+
+  .row-contend{
+    column-count: 1;
+    display: block;
+    column-gap: 0;
+    orphans: 0;
+    widows: 0;
+  }
+
+  .row-contend .col {
+    width: 100%;
+  }
+
+  #main-titles{
+    display: inline-block;
+    display: -webkit-inline-box;
+    width: 88%;
+  }
+
+  #btn-head{
+    /* margin-right: 7px;*/
+    order: 2 !important;
+  }
+
+  #title-head{
+    width: 100%;
+  }
+
+  #btn-head button{
+    height: 49px !important;
+    width: 123px !important;
+    position: fixed;
+    z-index: 999;
+    right: 5%;
+    top: 13%;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 40%)
+  }
+
+  #cardDetalleRU .card-inside{
+    padding: 0 !important;
+  }
+
+
+}
+
+@media screen and (max-width: 955px){
+  .nomTituloEmpresa{
+    margin-top: 1%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .search{
+    display: none;
+  }
+  .nomTituloEmpresa{
+    display: none;
+  }
+
+  #btn-head button{
+    top: 16%;
+  }
+
+  #main-titles{
+    width: 100%;
+  }
+
+  #title-head{
+    width: 98%;
+  }
+
+  .title-cstm-apro{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  #title-head, #btn-head-reload{
+    order: 1 !important;
+  }
+
+  #btn-head-reload{
+    /* order: 3 !important; */
+    width: 15%;
+  }
+
+  .inputDetalleRU{
+    width: 60px;
+  }
+
+  .conte-reque {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "titu-requerimiento desc-requerimiento";
+  }
+
+  #tbRequerimiento div:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  #tbRequerimiento div:first-child { border-top-left-radius: 10px !important; }
+  #tbRequerimiento div:first-child { border-top-right-radius: 10px !important; }
+
+  #tbRequerimiento div:last-child { border-bottom-left-radius: 10px !important; }
+  #tbRequerimiento div:last-child { border-bottom-right-radius: 10px !important; }
+
+  .nota-requerimiento{
+    width: 94% !important;
+    margin-left: 1.5rem;
+  }
+
+  #tbRequerimiento .titu-requerimiento,#tbRequerimiento .desc-requerimiento,#tbRequerimiento .nota-requerimiento {
+    border: 1px solid rgb(225, 225, 225) !important;
+    padding: 1rem;
+  }
+
+}
+
+@media screen and (max-width: 510px){
+  .nota-requerimiento{
+    width: 92% !important;
+  }
+}
+
+@media screen and (max-width: 361px){
+  #reCaptcha_login{
+    -webkit-transform: scale(1.05);
+    -moz-transform:    scale(1.05);
+    -ms-transform:     scale(1.05);
+    -o-transform:      scale(1.05);
+    transform:         scale(1.05);
+  }
+}

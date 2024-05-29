@@ -1,0 +1,36 @@
+<form id="login-form" class="smart-form client-form" [formGroup]="form" (keyup.enter)="login()">
+   <header>
+      Iniciar sesión
+   </header>
+   <fieldset>
+      <section>
+         <label class="label">Usuario</label>
+         <label class="input"> <i class="icon-append fa fa-user"></i>
+            <input type="text" name="username" placeholder="Ingresa tu nombre de usuario" formControlName="username"
+               autofocus>
+            <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>Por favor ingrese un nombre de
+               Usuario</b>
+         </label>
+      </section>
+      <section>
+         <label class="label">Contraseña</label>
+         <label class="input"> <i class="icon-append" [ngClass]="this.showPassword ? 'fa fa-lock' : 'fa fa-eye'"
+               (click)="this.showPassword = !this.showPassword"></i>
+            <input [type]="this.showPassword ? 'text' : 'password'" name="password" placeholder="Ingresa tu contraseña"
+               formControlName="password">
+            <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i>Por favor Ingrese una
+               contraseña</b>
+         </label>
+         <div class="note">
+            <a routerLink="/auth/forgot">¿Olvidó su contraseña?</a>
+         </div>
+      </section>
+   </fieldset>
+   <footer>
+      <button type="button" class="btn btn-primary custombutton" (click)="login()" [disabled]="this.loading">
+         <i [ngClass]="this.loading ? 'fa fa-spinner fa-spin' : 'fa fa-sign-in'"></i>
+         <span *ngIf="!this.loading">Autenticar</span>
+         <span *ngIf="this.loading">Autenticando</span>
+      </button>
+   </footer>
+</form>

@@ -3,8 +3,8 @@ using Core.Entities;
 
 namespace Core.Interfaces;
 
-public interface IActividadService
+public partial interface IService
 {
-    Task<Actividad> GetByIdAsync(int id);
-    Task CreateAsync(ActividadDTO actividad);
+    Task<Actividad> GetActividadByIdAsync(int id);
+    Task CreateActividadAsync(ActividadDTO actividad);
 }

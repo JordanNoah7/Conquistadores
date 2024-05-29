@@ -1,28 +1,51 @@
-import { NgModule } from "@angular/core";
+import { NgModule, ModuleWithProviders } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
-import { MaterialModule } from "./material.module";
-import { FeatherIconsModule } from "./components/feather-icons/feather-icons.module";
+import { SmartadminLayoutModule } from "./layout";
+
+import {I18nModule} from "./i18n/i18n.module";
+import { UserModule } from "./user/user.module";
+import { BootstrapModule } from "../shared/bootstrap.module";
+
+import {SmartadminWidgetsModule} from "./widgets/smartadmin-widgets.module";
+
+import {UtilsModule} from "./utils/utils.module";
+import {PipesModule} from "./pipes/pipes.module";
+import {StatsModule} from "./stats/stats.module";
+import {InlineGraphsModule} from "./graphs/inline/inline-graphs.module";
+import {SmartadminFormsLiteModule} from "./forms/smartadmin-forms-lite.module";
+import {SmartProgressbarModule} from "./ui/smart-progressbar/smart-progressbar.module";
+import { CalendarComponentsModule } from "../shared/calendar/calendar-components.module";
+import { LoadingComponent } from "../shared/layout/loading/loading.component";
+
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     RouterModule,
-    NgbModule,
+    SmartadminLayoutModule,
+    BootstrapModule
   ],
+  declarations: [LoadingComponent],
   exports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     RouterModule,
-    NgbModule,
-    MaterialModule,
-    FeatherIconsModule,
-  ],
+    UserModule,
+    SmartadminLayoutModule,
+    BootstrapModule,
+    I18nModule,
+    UtilsModule,
+    PipesModule,
+    SmartadminFormsLiteModule,
+    SmartProgressbarModule,
+    InlineGraphsModule,
+    SmartadminWidgetsModule,
+    StatsModule,
+    CalendarComponentsModule,
+    LoadingComponent,
+  ]
 })
 export class SharedModule {}
