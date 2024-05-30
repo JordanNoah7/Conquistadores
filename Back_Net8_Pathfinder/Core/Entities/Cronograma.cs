@@ -6,7 +6,7 @@ namespace Core.Entities;
 public class Cronograma
 {
     [Key]
-    public int CronID { get; set; }
+    public int CronId { get; set; }
     [Column(TypeName = "bit")]
     public bool CronEstaHecho { get; set; }
     [Required]
@@ -16,7 +16,8 @@ public class Cronograma
     [Column(TypeName = "datetime")]
     public DateTime CronFechaFin { get; set; }
     
-    [Required]
+    [Column(TypeName = "int")]
+    public int ItcuId { get; set; }
     public ItemCuadernillo CronItem { get; set; }
     
     [Required]

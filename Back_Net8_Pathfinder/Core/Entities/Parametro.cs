@@ -6,7 +6,7 @@ namespace Core.Entities;
 public class Parametro
 {
     [Key]
-    public int ParaID { get; set; }
+    public int ParaId { get; set; }
     [Required(ErrorMessage = "El nombre del parámetro es obligatorio")]
     [Column(TypeName = "nvarchar(25)")]
     public string ParaNombre { get; set; }

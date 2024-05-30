@@ -4,5 +4,5 @@ namespace Core.Interfaces;
 
 public partial interface IService
 {
-    Task CreateSesionAsync(SesionDTO sesion);
+    Task CreateSesionAsync(SesionDTO sesion, string ip);
 }

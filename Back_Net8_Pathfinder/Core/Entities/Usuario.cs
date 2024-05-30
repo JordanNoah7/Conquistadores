@@ -7,7 +7,7 @@ namespace Core.Entities;
 public class Usuario
 {
     [Key]
-    public int UsuaID { get; set; }
+    public int UsuaId { get; set; }
     [Required(ErrorMessage = "El usuario es obligatorio")]
     [Column(TypeName = "nvarchar(20)")]
     public string UsuaUsuario { get; set; }
@@ -15,7 +15,9 @@ public class Usuario
     [Column(TypeName = "nvarchar(100)")]
     public string UsuaContrasenia { get; set; }
     
-    public ICollection<Rol> UsuaRoles { get; set; }
+    public Conquistador UsuaConquistador { get; set; }
+    public ICollection<RolUsuario> UsuaRoles { get; set; }
+    public ICollection<Sesion> UsuaSesiones { get; set; }
     
     [Required]
     [Column(TypeName = "nvarchar(20)")]

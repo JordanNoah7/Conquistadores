@@ -3,13 +3,13 @@ using Core.Interfaces;
 
 namespace Core.Services;
 
-public partial class Service
+public partial class Service : IService
 {
-    public async Task<Conquistador> GetConquistadorByUsuaIdAsync(int id)
+    public async Task<Parametro> GetParametroByNameAsync(string name)
     {
         try
         {
-            return await _conquistadorRepository.GetByUsuaIdAsync(id);
+            return await _parametroRepository.GetByNameAsync(name);
         }
         catch (Exception e)
         {

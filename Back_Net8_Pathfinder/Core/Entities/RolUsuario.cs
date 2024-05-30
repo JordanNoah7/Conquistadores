@@ -1,21 +1,18 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities;
 
-public class Rol
+public class RolUsuario
 {
-    [Key]
-    public int RoleId { get; set; }
-    [Required]
-    [Column(TypeName = "nvarchar(30)")]
-    public string RoleNombre { get; set; }
-    [Required]
-    [Column(TypeName = "nvarchar(250)")]
-    public string RoleDescripcion { get; set; }
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int RousId { get; set; }
     
-    public ICollection<RolUsuario> RoleUsuarios { get; set; }
+    public int RoleId { get; set; }
+    public Rol RousRol { get; set; }
+    
+    public int UsuaId { get; set; }
+    public Usuario RousUsuario { get; set; }
     
     [Required]
     [Column(TypeName = "nvarchar(20)")]

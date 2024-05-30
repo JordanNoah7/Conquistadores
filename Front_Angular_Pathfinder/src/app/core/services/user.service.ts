@@ -31,7 +31,7 @@ export class UserService {
 
       let payload = new Request();
       payload.UsuaUsuario = this.encrypt.encrypt(credentials);
-      console.log(payload);
+      payload.AudiHost = ip;
 
       let response = await this.api.CallService(payload, 'ValidarUsuario');
       console.log(response);

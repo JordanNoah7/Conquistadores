@@ -6,7 +6,7 @@ namespace Core.Entities;
 public class Unidad
 {
     [Key]
-    public int UnidID { get; set; }
+    public int UnidId { get; set; }
     [Required(ErrorMessage = "El nombre de la unidad es obligatorio")]
     [Column(TypeName = "nvarchar(25)")]
     public string UnidNombre { get; set; }

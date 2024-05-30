@@ -8,16 +8,27 @@ public partial class Service
 {
     public async Task<Usuario> GetUserByIdAsync(int id)
     {
-        return await _usuarioRepository.GetByIdAsync(id);
+        try
+        {
+            return await _usuarioRepository.GetByIdAsync(id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     public async Task<Usuario> GetUserByUsernameAsync(string username)
     {
-        return await _usuarioRepository.GetByUsernameAsync(username);
-    }
-
-    public async Task<List<Rol>> GetUserRolesAsync(int id)
-    {
-        return await _usuarioRepository.GetRolesAsync(id);
+        try
+        {
+            return await _usuarioRepository.GetByUsernameAsync(username);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

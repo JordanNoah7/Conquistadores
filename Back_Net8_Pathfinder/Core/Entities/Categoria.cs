@@ -7,7 +7,7 @@ namespace Core.Entities;
 public class Categoria
 {
     [Key]
-    public int CateID { get; set; }
+    public int CateId { get; set; }
     [Required]
     [Column(TypeName = "nvarchar(25)")]
     public string CateNombre { get; set; }

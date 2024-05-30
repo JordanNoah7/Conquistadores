@@ -54,8 +54,8 @@ public class RestServiceAuth : ControllerBase
                 return NotFound("Usuario o contraseña incorrectos");
             }
 
-            usuario.UsuaRoles = await _service.GetUserRolesAsync(usuario.UsuaID);
-            Conquistador conquistador = await _service.GetConquistadorByUsuaIdAsync(usuario.UsuaID);
+            usuario.UsuaRoles = await _service.GetRolesByUserAsync(usuario.UsuaId);
+            Conquistador conquistador = await _service.GetConquistadorByUsuaIdAsync(usuario.UsuaId);
             UsuarioDTO usuarioDto = new UsuarioDTO();
             usuarioDto.CopyFrom(ref usuario);
             ConquistadorDTO conquistadorDto = new ConquistadorDTO();
@@ -65,9 +65,10 @@ public class RestServiceAuth : ControllerBase
             {
                 SesiUsuario = usuarioDto,
                 SesiFecha = DateTime.Now,
-                //TODO: Obtener el parametro de tiempo y asignarlo a SesiTiempo
+                SesiTiempo = Convert.ToUInt16((await _service.GetParametroByNameAsync("TiempoSesion")).ParaValor),
             };
-            _service.CreateSesionAsync(sesionDto);
+            await _service.CreateSesionAsync(sesionDto, request.AudiHost);
+            conquistadorDto.ConqSesion = sesionDto;
             return Ok(conquistadorDto);
         }
         catch (Exception e)

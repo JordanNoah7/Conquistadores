@@ -1,14 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using DateTime = System.DateTime;
 
 namespace Core.Entities;
 
 public class Asistencia
 {
-    [Key]
-    public Conquistador AsisConquistador { get; set; }
-    [Key]
-    public int AsisID { get; set; }
+    public int AsisId { get; set; }
     [Required(ErrorMessage = "La fecha es obligatoria")]
     [Column(TypeName = "datetime")]
     public DateTime AsisFecha { get; set; }
@@ -36,7 +34,9 @@ public class Asistencia
     [Required(ErrorMessage = "El monto es obligatorio")]
     [Column(TypeName = "decimal(9,3)")]
     public float AsisMonto { get; set; }
-    
+    public int ConqId { get; set; }
+    public Conquistador AsisConquistador { get; set; }
+
     [Required]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiUserCrea { get; set; }
@@ -46,10 +46,7 @@ public class Asistencia
     [Required]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiHostCrea { get; set; }
-    [Column(TypeName = "nvarchar(20)")]
-    public string? AudiUserMod { get; set; }
-    [Column(TypeName = "datetime")]
-    public DateTime? AudiFechMod { get; set; }
-    [Column(TypeName = "nvarchar(20)")]
-    public string? AudiHostMod { get; set; }
+    [Column(TypeName = "nvarchar(20)")] public string? AudiUserMod { get; set; }
+    [Column(TypeName = "datetime")] public DateTime? AudiFechMod { get; set; }
+    [Column(TypeName = "nvarchar(20)")] public string? AudiHostMod { get; set; }
 }

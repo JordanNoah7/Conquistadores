@@ -5,20 +5,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class ConquistadorRepository : IConquistadorRepository
+public class RolUsuarioRepository : IRolUsuarioRepository
 {
     private readonly AppDbContext _dbContext;
 
-    public ConquistadorRepository(AppDbContext dbContext)
+    public RolUsuarioRepository(AppDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task<Conquistador> GetByUsuaIdAsync(int id)
+    public async Task<List<RolUsuario>> GetByUserAsync(int id)
     {
         try
         {
-            return await _dbContext.Conquistadores.FirstOrDefaultAsync(c => c.ConqUsuario.UsuaId == id);
+            var rolesUsuario = await _dbContext.RolesUsuario
+                .Where(ru => ru.UsuaId == id)
+                .Include(ru => ru.RousRol)
+                .ToListAsync();
+            return rolesUsuario;
         }
         catch (Exception e)
         {

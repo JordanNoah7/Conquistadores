@@ -5,15 +5,14 @@ namespace Core.Entities;
 
 public class ActividadConquistador
 {
-    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int AccoId { get; set; }
-    [Required]
+    public int ActiId { get; set; }
     public Actividad AccoActividad { get; set; }
-    [Required]
+    public int ConqId { get; set; }
     public Conquistador AccoConquistador { get; set; }
-    [Required]
-    [Column(TypeName = "nchar(1)")]
-    public char AccoTipo { get; set; }
+    public int AccoTipoParticipacionId { get; set; }
+    public Tipo AccoTipoParticipacion { get; set; }
     
     [Required]
     [Column(TypeName = "nvarchar(20)")]
@@ -24,10 +23,7 @@ public class ActividadConquistador
     [Required]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiHostCrea { get; set; }
-    [Column(TypeName = "nvarchar(20)")]
-    public string? AudiUserMod { get; set; }
-    [Column(TypeName = "datetime")]
-    public DateTime? AudiFechMod { get; set; }
-    [Column(TypeName = "nvarchar(20)")]
-    public string? AudiHostMod { get; set; }
+    [Column(TypeName = "nvarchar(20)")] public string? AudiUserMod { get; set; }
+    [Column(TypeName = "datetime")] public DateTime? AudiFechMod { get; set; }
+    [Column(TypeName = "nvarchar(20)")] public string? AudiHostMod { get; set; }
 }

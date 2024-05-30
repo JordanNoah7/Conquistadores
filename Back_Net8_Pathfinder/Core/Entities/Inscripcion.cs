@@ -6,7 +6,7 @@ namespace Core.Entities;
 public class Inscripcion
 {
     [Key]
-    public int InscID { get; set; }
+    public int InscId { get; set; }
     [Required(ErrorMessage = "La fecha de inscripción es obligatoria")]
     [Column(TypeName = "datetime")]
     public DateTime InscFecha { get; set; }
@@ -14,7 +14,8 @@ public class Inscripcion
     [Column(TypeName = "decimal(9, 3)")]
     public float InscMonto { get; set; }
     
-    [Key]
+    [Column(TypeName = "int")]
+    public int ConqId { get; set; }
     public Conquistador InscConquistador { get; set; }
     
     [Required]

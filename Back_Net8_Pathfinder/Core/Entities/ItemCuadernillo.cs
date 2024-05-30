@@ -7,12 +7,13 @@ namespace Core.Entities;
 public class ItemCuadernillo
 {
     [Key]
-    public int ItcuID { get; set; }
+    public int ItcuId { get; set; }
     [Required]
     [Column(TypeName = "nvarchar(max)")]
     public string ItcuDescripcion { get; set; }
     
-    [Required]
+    [Column(TypeName = "int")]
+    public int ClasId { get; set; }
     public Clase ItcuClase { get; set; }
     public ICollection<Cronograma> ItcuCronogramas { get; set; }
     public ICollection<ConquistadorItemCuadernillo> ItcuConquistadores { get; set; }

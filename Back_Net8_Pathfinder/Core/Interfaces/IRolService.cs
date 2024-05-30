@@ -5,5 +5,4 @@ namespace Core.Interfaces;
 
 public partial interface IService
 {
-    Task<ICollection<Rol>> GetRolesByUsuaIdAsync(int id);
 }

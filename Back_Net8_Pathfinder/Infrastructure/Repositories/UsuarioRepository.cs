@@ -14,20 +14,30 @@ public class UsuarioRepository : IUsuarioRepository
     {
         _dbContext = dbContext;
     }
-    
+
     public async Task<Usuario> GetByIdAsync(int id)
     {
-        return await _dbContext.Usuarios.FindAsync(id);
+        try
+        {
+            return await _dbContext.Usuarios.FindAsync(id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     public async Task<Usuario> GetByUsernameAsync(string username)
     {
-        return await _dbContext.Usuarios.FirstOrDefaultAsync(u => u.UsuaUsuario == username);
-    }
-
-    public async Task<List<Rol>> GetRolesAsync(int id)
-    {
-        Usuario usuario = await _dbContext.Usuarios.Include(u => u.UsuaRoles).FirstOrDefaultAsync(u => u.UsuaID == id);
-        return usuario?.UsuaRoles.Select(ur => ur).ToList();
+        try
+        {
+            return await _dbContext.Usuarios.FirstOrDefaultAsync(u => u.UsuaUsuario == username);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

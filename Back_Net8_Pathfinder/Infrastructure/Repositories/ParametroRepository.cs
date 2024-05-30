@@ -5,20 +5,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class ConquistadorRepository : IConquistadorRepository
+public class ParametroRepository : IParametroRepository
 {
     private readonly AppDbContext _dbContext;
 
-    public ConquistadorRepository(AppDbContext dbContext)
+    public ParametroRepository(AppDbContext dbContext)
     {
         _dbContext = dbContext;
     }
-
-    public async Task<Conquistador> GetByUsuaIdAsync(int id)
+    
+    public async Task<Parametro> GetByNameAsync(string name)
     {
         try
         {
-            return await _dbContext.Conquistadores.FirstOrDefaultAsync(c => c.ConqUsuario.UsuaId == id);
+            return await _dbContext.Parametros.FirstOrDefaultAsync(p => p.ParaNombre == name);
         }
         catch (Exception e)
         {

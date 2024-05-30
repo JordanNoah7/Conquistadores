@@ -1,15 +1,14 @@
 ﻿using Core.Entities;
-using Core.Interfaces;
 
 namespace Core.Services;
 
 public partial class Service
 {
-    public async Task<Conquistador> GetConquistadorByUsuaIdAsync(int id)
+    public async Task<List<RolUsuario>> GetRolesByUserAsync(int id)
     {
         try
         {
-            return await _conquistadorRepository.GetByUsuaIdAsync(id);
+            return await _rolUsuarioRepository.GetByUserAsync(id);
         }
         catch (Exception e)
         {

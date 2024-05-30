@@ -13,9 +13,4 @@ public class RolRepository : IRolRepository
     {
         _dbContext = dbContext;
     }
-    
-    public Task<ICollection<Rol>> GetByUsuaIdAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
 }

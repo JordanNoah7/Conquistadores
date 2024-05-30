@@ -7,7 +7,7 @@ namespace Core.Entities;
 public class Clase
 {
     [Key]
-    public int ClasID { get; set; }
+    public int ClasId { get; set; }
     [Required]
     [Column(TypeName = "nvarchar(30)")]
     public string ClasNombre { get; set; }

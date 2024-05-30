@@ -8,12 +8,28 @@ public partial class Service
 {
     public async Task<Actividad> GetActividadByIdAsync(int id)
     {
-        return await _actividadRepository.GetByIdAsync(id);
+        try
+        {
+            return await _actividadRepository.GetByIdAsync(id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     public async Task CreateActividadAsync(ActividadDTO actividad)
     {
-        Actividad _actividad = new Actividad();
-        await _actividadRepository.AddAsync(_actividad);
+        try
+        {
+            Actividad _actividad = new Actividad();
+            await _actividadRepository.AddAsync(_actividad);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

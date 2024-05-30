@@ -5,9 +5,8 @@ namespace Core.Entities;
 
 public class Sesion
 {
-    [Key]
-    public int SesiID { get; set; }
-    [Required]
+    public int SesiId { get; set; }
+    public int UsuaId { get; set; }
     public Usuario SesiUsuario { get; set; }
     [Required]
     [Column(TypeName = "datetime")]

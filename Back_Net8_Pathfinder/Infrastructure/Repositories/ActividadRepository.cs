@@ -15,12 +15,28 @@ public class ActividadRepository : IActividadRepository
     
     public async Task<Actividad> GetByIdAsync(int id)
     {
-        return await _dbContext.Actividades.FindAsync(id);
+        try
+        {
+            return await _dbContext.Actividades.FindAsync(id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     public async Task AddAsync(Actividad actividad)
     {
-        await _dbContext.Actividades.AddAsync(actividad);
-        await _dbContext.SaveChangesAsync();
+        try
+        {
+            await _dbContext.Actividades.AddAsync(actividad);
+            await _dbContext.SaveChangesAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

@@ -12,30 +12,13 @@ public class UsuarioDTO
 
     public void CopyTo(ref Usuario usuario)
     {
-        usuario.UsuaID = UsuaID;
+        usuario.UsuaId = UsuaID;
         usuario.UsuaUsuario = UsuaUsuario;
-        usuario.UsuaContrasenia = UsuaContrasenia;
-        usuario.UsuaRoles = new List<Rol>();
-        foreach (RolDTO rol in UsuaRoles)
-        {
-            Rol _rol = new Rol();
-            rol.CopyTo(ref _rol);
-            usuario.UsuaRoles.Add(_rol);
-        }
     }
-    
+
     public void CopyFrom(ref Usuario usuario)
     {
-        UsuaID = usuario.UsuaID;
+        UsuaID = usuario.UsuaId;
         UsuaUsuario = usuario.UsuaUsuario;
-        UsuaContrasenia = usuario.UsuaContrasenia;
-        UsuaRoles = new List<RolDTO>();
-        foreach (Rol rol in usuario.UsuaRoles)
-        {
-            RolDTO _rol = new RolDTO();
-            var rol1 = rol;
-            _rol.CopyFrom(ref rol1);
-            UsuaRoles.Add(_rol);
-        }
     }
 }

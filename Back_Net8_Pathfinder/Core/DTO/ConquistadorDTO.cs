@@ -17,7 +17,7 @@ public class ConquistadorDTO
     
     public void CopyTo(ref Conquistador conquistador)
     {
-        conquistador.ConqID = ConqID;
+        conquistador.ConqId = ConqID;
         conquistador.ConqDni = ConqDni;
         conquistador.ConqNombres = ConqNombres;
         conquistador.ConqApellidoPaterno = ConqApellidoPaterno;
@@ -28,7 +28,7 @@ public class ConquistadorDTO
     
     public void CopyFrom(ref Conquistador conquistador)
     {
-        ConqID = conquistador.ConqID;
+        ConqID = conquistador.ConqId;
         ConqDni = conquistador.ConqDni;
         ConqNombres = conquistador.ConqNombres;
         ConqApellidoPaterno = conquistador.ConqApellidoPaterno;

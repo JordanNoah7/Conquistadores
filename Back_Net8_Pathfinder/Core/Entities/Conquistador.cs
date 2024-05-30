@@ -7,7 +7,7 @@ namespace Core.Entities;
 public class Conquistador
 {
     [Key]
-    public int ConqID { get; set; }
+    public int ConqId { get; set; }
     [Required(ErrorMessage = "El DNI es obligatorio")]
     [Column(TypeName = "nchar(8)")]
     public string ConqDni { get; set; }
@@ -36,15 +36,24 @@ public class Conquistador
     public string ConqCelular { get; set; }
     [Column(TypeName = "nvarchar(18)")]
     public string? ConqTelefono { get; set; }
-    
-    [Required]
+
+    [Column(TypeName = "int")]
+    public int UsuaId { get; set; }
     public Usuario ConqUsuario { get; set; }
-    public Unidad ConqUnidad { get; set; }
-    public Clase ConqClase { get; set; }
-    public ICollection<Inscripcion> ConqInscripciones { get; set; }
-    public ICollection<Asistencia> ConqAsistencias { get; set; }
-    public ICollection<Especialidad> ConqEspecialidades { get; set; }
-    public ICollection<ActividadConquistador> ConqActividades { get; set; }
+
+    [Column(TypeName = "int")]
+    public int? UnidId { get; set; }
+    public Unidad? ConqUnidad { get; set; }
+    
+    [Column(TypeName = "int")]
+    public int? ClasId { get; set; }
+    public Clase? ConqClase { get; set; }
+
+    public ICollection<TutorConquistador> ConqTutores { get; set; }
+    public ICollection<Inscripcion>? ConqInscripciones { get; set; }
+    public ICollection<Asistencia>? ConqAsistencias { get; set; }
+    public ICollection<ConquistadorEspecialidad>? ConqEspecialidades { get; set; }
+    public ICollection<ActividadConquistador>? ConqActividades { get; set; }
     public ICollection<ConquistadorItemCuadernillo> ConqItemsCuadernillo { get; set; }
     
     [Required]

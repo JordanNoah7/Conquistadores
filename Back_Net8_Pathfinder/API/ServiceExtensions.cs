@@ -21,9 +21,12 @@ public static class ServiceExtensions
             options.UseSqlServer(configuration.GetConnectionString("ConexionSQL")));
 
         services.AddTransient<IActividadRepository, ActividadRepository>();
-        services.AddTransient<IUsuarioRepository, UsuarioRepository>();
         services.AddTransient<IConquistadorRepository, ConquistadorRepository>();
+        services.AddTransient<IParametroRepository, ParametroRepository>();
         services.AddTransient<IRolRepository, RolRepository>();
+        services.AddTransient<IRolUsuarioRepository, RolUsuarioRepository>();
+        services.AddTransient<ISesionRepository, SesionRepository>();
+        services.AddTransient<IUsuarioRepository, UsuarioRepository>();
         return services;
     }
 }

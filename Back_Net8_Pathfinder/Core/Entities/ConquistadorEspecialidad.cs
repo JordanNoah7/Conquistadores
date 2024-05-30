@@ -1,25 +1,17 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities;
 
-public class Especialidad
+public class ConquistadorEspecialidad
 {
-    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int CoesId { get; set; }
+    public int ConqId { get; set; }
+    public Conquistador CoesConquistador { get; set; }
     public int EspeId { get; set; }
-    [Required]
-    [Column(TypeName = "nvarchar(30)")]
-    public string EspeNombre { get; set; }
-    [Required]
-    [Column(TypeName = "nvarchar(250)")]
-    public string EspeDescripcion { get; set; }
+    public Especialidad CoesEspecialidad { get; set; }
     
-    [Column(TypeName = "int")]
-    public int CateId { get; set; }
-    public Categoria EspeCategoria { get; set; }
-    public ICollection<ConquistadorEspecialidad> EspeConquistadores { get; set; }
-
     [Required]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiUserCrea { get; set; }
