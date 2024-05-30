@@ -266,6 +266,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             .WithOne(c => c.ConqUsuario)
             .HasForeignKey<Conquistador>(c => c.UsuaId);
 
+        modelBuilder.Entity<Usuario>()
+            .HasOne(u => u.UsuaTutor)
+            .WithOne(t => t.TutoUsuario)
+            .HasForeignKey<Tutor>(t => t.UsuaId)
+            .OnDelete(DeleteBehavior.NoAction);
+
         #endregion
     }
 }

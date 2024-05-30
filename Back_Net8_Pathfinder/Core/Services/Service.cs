@@ -10,11 +10,13 @@ public partial class Service : IService
     private readonly IRolRepository _rolRepository;
     private readonly IRolUsuarioRepository _rolUsuarioRepository;
     private readonly ISesionRepository _sesionRepository;
+    private readonly ITutorRepository _tutorRepository;
     private readonly IUsuarioRepository _usuarioRepository;
 
     public Service(IActividadRepository actividadRepository, IConquistadorRepository conquistadorRepository,
-        IParametroRepository parametroRepository, IRolRepository rolRepository, IRolUsuarioRepository rolUsuarioRepository, ISesionRepository sesionRepository,
-        IUsuarioRepository usuarioRepository)
+        IParametroRepository parametroRepository, IRolRepository rolRepository,
+        IRolUsuarioRepository rolUsuarioRepository, ISesionRepository sesionRepository,
+        ITutorRepository tutorRepository, IUsuarioRepository usuarioRepository)
     {
         _actividadRepository = actividadRepository;
         _conquistadorRepository = conquistadorRepository;
@@ -22,6 +24,7 @@ public partial class Service : IService
         _rolRepository = rolRepository;
         _rolUsuarioRepository = rolUsuarioRepository;
         _sesionRepository = sesionRepository;
+        _tutorRepository = tutorRepository;
         _usuarioRepository = usuarioRepository;
     }
 }

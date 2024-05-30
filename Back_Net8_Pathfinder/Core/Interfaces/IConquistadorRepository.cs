@@ -4,5 +4,5 @@ namespace Core.Interfaces;
 
 public interface IConquistadorRepository
 {
-    Task<Conquistador> GetByUsuaIdAsync(int id);
+    Task<Conquistador> GetByUsuarioAsync(int id);
 }

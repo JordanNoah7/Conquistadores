@@ -11,9 +11,15 @@ public class ConquistadorDTO
     public string ConqApellidoMaterno { get; set; }
     public DateTime ConqFechaNacimiento { get; set; }
     public DateTime? ConqFechaInvestidura { get; set; }
+    public string ConqCorreoPersonal { get; set; }
+    public string? ConqCorreoCorporativo { get; set; }
+    public string ConqCelular { get; set; }
+    public string? ConqTelefono { get; set; }
     
     public UsuarioDTO ConqUsuario { get; set; }
     public SesionDTO ConqSesion { get; set; }
+    public ClaseDTO ConqClase { get; set; }
+    public UnidadDTO ConqUnidad { get; set; }
     
     public void CopyTo(ref Conquistador conquistador)
     {
@@ -24,6 +30,10 @@ public class ConquistadorDTO
         conquistador.ConqApellidoMaterno = ConqApellidoMaterno;
         conquistador.ConqFechaNacimiento = ConqFechaNacimiento;
         conquistador.ConqFechaInvestidura = ConqFechaInvestidura;
+        conquistador.ConqCorreoPersonal = ConqCorreoPersonal;
+        conquistador.ConqCorreoCorporativo = ConqCorreoCorporativo;
+        conquistador.ConqCelular = ConqCelular;
+        conquistador.ConqTelefono = ConqTelefono;
     }
     
     public void CopyFrom(ref Conquistador conquistador)
@@ -35,5 +45,9 @@ public class ConquistadorDTO
         ConqApellidoMaterno = conquistador.ConqApellidoMaterno;
         ConqFechaNacimiento = conquistador.ConqFechaNacimiento;
         ConqFechaInvestidura = conquistador.ConqFechaInvestidura;
+        ConqCorreoPersonal = conquistador.ConqCorreoPersonal;
+        ConqCorreoCorporativo = conquistador.ConqCorreoCorporativo;
+        ConqCelular = conquistador.ConqCelular;
+        ConqTelefono = conquistador.ConqTelefono;
     }
 }

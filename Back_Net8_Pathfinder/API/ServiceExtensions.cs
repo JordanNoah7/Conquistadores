@@ -26,6 +26,7 @@ public static class ServiceExtensions
         services.AddTransient<IRolRepository, RolRepository>();
         services.AddTransient<IRolUsuarioRepository, RolUsuarioRepository>();
         services.AddTransient<ISesionRepository, SesionRepository>();
+        services.AddTransient<ITutorRepository, TutorRepository>();
         services.AddTransient<IUsuarioRepository, UsuarioRepository>();
         return services;
     }

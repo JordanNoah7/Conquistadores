@@ -99,7 +99,6 @@ export class RequestService {
       let message = null;
       let data = null;
       let apiResponse: ApiResponse = new ApiResponse();
-      debugger;
       const result = await this.generalRequestService.CallService(payload, method);
       if (result != null) {
          code = result.Codigo;

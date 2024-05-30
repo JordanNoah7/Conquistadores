@@ -1,6 +1,6 @@
 ﻿namespace Core.DTO;
 
-public class RequestDTO
+public class Request
 {
     public int UsuaId { get; set; }
     public string UsuaUsuario { get; set; }

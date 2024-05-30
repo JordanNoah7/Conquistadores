@@ -16,6 +16,7 @@ public class Usuario
     public string UsuaContrasenia { get; set; }
     
     public Conquistador UsuaConquistador { get; set; }
+    public Tutor UsuaTutor { get; set; }
     public ICollection<RolUsuario> UsuaRoles { get; set; }
     public ICollection<Sesion> UsuaSesiones { get; set; }
     

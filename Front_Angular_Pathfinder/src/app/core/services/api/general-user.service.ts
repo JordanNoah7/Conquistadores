@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { CoreService } from '../core.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import {Observable, throwError} from "rxjs";
+import {catchError} from "rxjs/operators";
 
 @Injectable()
 export class GeneralUserService {

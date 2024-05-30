@@ -34,7 +34,7 @@ public class SesionRepository : ISesionRepository
         {
             return await _dbContext.Sesiones
                 .Where(s => s.UsuaId == UsuaId)
-                .MaxAsync(s => (int?)s.SesiId) ?? 1;
+                .MaxAsync(s => (int?)s.SesiId) ?? 0;
         }
         catch (Exception e)
         {

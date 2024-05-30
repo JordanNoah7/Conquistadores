@@ -1,5 +1,6 @@
 INSERT INTO Usuarios (UsuaUsuario, UsuaContrasenia, AudiUserCrea, AudiHostCrea)
-VALUES ('dyfmeks', 'd51d6c6902da30d427b8e29267b94036', 'SISTEMAS', 'J-PC')
+VALUES ('dyfmeks', 'd51d6c6902da30d427b8e29267b94036', 'SISTEMAS', 'J-PC'),
+    ('gQuispe', '6b043205253a236a414f0ac9aaff1338', 'SISTEMAS', 'J-PC')
 GO
 INSERT INTO Roles (RoleNombre, RoleDescripcion, AudiUserCrea, AudiHostCrea)
 VALUES ('Administrador', 'Administrador del sistema', 'SISTEMAS', 'J-PC'),

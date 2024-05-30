@@ -33,6 +33,10 @@ public class Tutor
     [Column(TypeName = "nvarchar(18)")]
     public string? TutoTelefono { get; set; }
     
+    [Column(TypeName = "int")]
+    public int UsuaId { get; set; }
+    public Usuario TutoUsuario { get; set; }
+    
     public ICollection<TutorConquistador> TutoConquistadores { get; set; }
     
     [Required]

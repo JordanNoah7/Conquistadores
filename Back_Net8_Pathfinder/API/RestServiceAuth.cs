@@ -35,7 +35,7 @@ public class RestServiceAuth : ControllerBase
     #region [ Endpoints ]
 
     [HttpPost("ValidarUsuario")]
-    public async Task<IActionResult> ValidarUsuario([FromBody] RequestDTO request)
+    public async Task<IActionResult> ValidarUsuario([FromBody] Request request)
     {
         try
         {
@@ -55,12 +55,8 @@ public class RestServiceAuth : ControllerBase
             }
 
             usuario.UsuaRoles = await _service.GetRolesByUserAsync(usuario.UsuaId);
-            Conquistador conquistador = await _service.GetConquistadorByUsuaIdAsync(usuario.UsuaId);
             UsuarioDTO usuarioDto = new UsuarioDTO();
             usuarioDto.CopyFrom(ref usuario);
-            ConquistadorDTO conquistadorDto = new ConquistadorDTO();
-            conquistadorDto.CopyFrom(ref conquistador);
-            conquistadorDto.ConqUsuario = usuarioDto;
             SesionDTO sesionDto = new SesionDTO()
             {
                 SesiUsuario = usuarioDto,
@@ -68,13 +64,28 @@ public class RestServiceAuth : ControllerBase
                 SesiTiempo = Convert.ToUInt16((await _service.GetParametroByNameAsync("TiempoSesion")).ParaValor),
             };
             await _service.CreateSesionAsync(sesionDto, request.AudiHost);
-            conquistadorDto.ConqSesion = sesionDto;
-            return Ok(conquistadorDto);
+            Conquistador conquistador = await _service.GetConquistadorByUsuarioAsync(usuario.UsuaId);
+            if (conquistador != null)
+            {
+                ConquistadorDTO conquistadorDto = new ConquistadorDTO();
+                conquistadorDto.CopyFrom(ref conquistador);
+                conquistadorDto.ConqUsuario = usuarioDto;
+                conquistadorDto.ConqSesion = sesionDto;
+                return Ok(conquistadorDto);
+            }
+
+            //TODO: Insertar un usuario de tipo tutor para probar
+            
+            Tutor tutor = await _service.GetTutorByUsuarioAsync(usuario.UsuaId);
+            TutorDTO tutorDto = new TutorDTO();
+            tutorDto.CopyFrom(ref tutor);
+            tutorDto.TutoUsuario = usuarioDto;
+            tutorDto.TutoSesion = sesionDto;
+            return Ok(tutorDto);
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            return BadRequest("Error al validar credenciales");
         }
     }
 

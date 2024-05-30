@@ -5,6 +5,7 @@ import {RouterService} from './router.service';
 import {SessionService} from './session.service';
 import {Request, RequestRest} from '../models';
 import {EncryptService} from "./encrypt.service";
+import {resolve} from "dns";
 
 @Injectable()
 export class UserService {
@@ -34,22 +35,14 @@ export class UserService {
       payload.AudiHost = ip;
 
       let response = await this.api.CallService(payload, 'ValidarUsuario');
-      console.log(response);
-      if (response && response.codigo && response.codigo == 99) {
-         const payload_new = {
-            Key: this.encrypt.encrypt(credentials),
-            APLI_CodApli: 'GIV',
-         };
-         response = await this.api.CallService(payload_new, 'ValidarUsuario');
-      }
-      if (response && response.Usuario) {
-         success = true;
-         this.sessionService.configureTarget(response);
-         this.sessionService.setMinutosDisponibles(response.TiempoSesion);
-         this.validateEnviroment(response);
-      }
-      if (!success)
-         this.notifyService.showSmallMessage(response.Mensaje, success);
+      // if (response && response.Usuario) {
+      //    success = true;
+      //    this.sessionService.configureTarget(response);
+      //    this.sessionService.setMinutosDisponibles(response.TiempoSesion);
+      //    this.validateEnviroment(response);
+      // }
+      // if (!success)
+      //    this.notifyService.showSmallMessage(response.Mensaje, success);
    }
 
    private validateEnviroment(data: any) {

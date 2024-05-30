@@ -4,5 +4,5 @@ namespace Core.Interfaces;
 
 public partial interface IService
 {
-    Task<Conquistador> GetConquistadorByUsuarioAsync(int id);
+    Task<Tutor> GetTutorByUsuarioAsync(int id);
 }
