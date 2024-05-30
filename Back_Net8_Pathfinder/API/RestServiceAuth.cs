@@ -57,6 +57,14 @@ public class RestServiceAuth : ControllerBase
             usuario.UsuaRoles = await _service.GetRolesByUserAsync(usuario.UsuaId);
             UsuarioDTO usuarioDto = new UsuarioDTO();
             usuarioDto.CopyFrom(ref usuario);
+            usuarioDto.UsuaRoles = new List<RolDTO>();
+            foreach (RolUsuario rolUsuario in usuario.UsuaRoles)
+            {
+                RolDTO rolDto = new RolDTO();
+                var rol = rolUsuario.RousRol;
+                rolDto.CopyFrom(ref rol);
+                usuarioDto.UsuaRoles.Add(rolDto);
+            }
             SesionDTO sesionDto = new SesionDTO()
             {
                 SesiUsuario = usuarioDto,
@@ -69,18 +77,16 @@ public class RestServiceAuth : ControllerBase
             {
                 ConquistadorDTO conquistadorDto = new ConquistadorDTO();
                 conquistadorDto.CopyFrom(ref conquistador);
-                conquistadorDto.ConqUsuario = usuarioDto;
-                conquistadorDto.ConqSesion = sesionDto;
+                conquistadorDto.Usuario = usuarioDto;
+                conquistadorDto.Sesion = sesionDto;
                 return Ok(conquistadorDto);
             }
-
-            //TODO: Insertar un usuario de tipo tutor para probar
             
             Tutor tutor = await _service.GetTutorByUsuarioAsync(usuario.UsuaId);
             TutorDTO tutorDto = new TutorDTO();
             tutorDto.CopyFrom(ref tutor);
-            tutorDto.TutoUsuario = usuarioDto;
-            tutorDto.TutoSesion = sesionDto;
+            tutorDto.Usuario = usuarioDto;
+            tutorDto.Sesion = sesionDto;
             return Ok(tutorDto);
         }
         catch (Exception e)

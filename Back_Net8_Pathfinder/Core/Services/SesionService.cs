@@ -11,8 +11,8 @@ public partial class Service
         {
             Sesion _sesion = new Sesion();
             sesion.CopyTo(ref _sesion);
-            _sesion.SesiId = await _sesionRepository.GetMaxSesionIdAsync(sesion.SesiUsuario.UsuaID) + 1;
-            _sesion.UsuaId = sesion.SesiUsuario.UsuaID;
+            _sesion.SesiId = await _sesionRepository.GetMaxSesionIdAsync(sesion.SesiUsuario.UsuaId) + 1;
+            _sesion.UsuaId = sesion.SesiUsuario.UsuaId;
             _sesion.AudiUserCrea = sesion.SesiUsuario.UsuaUsuario;
             _sesion.AudiHostCrea = ip;
             await _sesionRepository.AddAsync(_sesion);

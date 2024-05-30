@@ -15,8 +15,8 @@ public class TutorDTO
     public string TutoCelular { get; set; }
     public string? TutoTelefono { get; set; }
 
-    public UsuarioDTO TutoUsuario { get; set; }
-    public SesionDTO TutoSesion { get; set; }
+    public UsuarioDTO Usuario { get; set; }
+    public SesionDTO Sesion { get; set; }
 
     public ICollection<ConquistadorDTO> TutoConquistadores { get; set; }
 

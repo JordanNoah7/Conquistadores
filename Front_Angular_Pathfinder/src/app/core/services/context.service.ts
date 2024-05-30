@@ -4,7 +4,6 @@ import { BehaviorSubject } from 'rxjs';
 import { NotificationService } from './notification.service';
 import { RequestService } from './request.service';
 import { SessionService } from './session.service';
-import { resolve } from 'dns';
 import { AxisDateTimeLabelFormatsOptions } from 'highcharts';
 
 @Injectable()

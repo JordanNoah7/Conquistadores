@@ -1118,7 +1118,7 @@ namespace Infrastructure.Migrations
                         .WithMany("UnidConquistadores")
                         .HasForeignKey("UnidId");
 
-                    b.HasOne("Core.Entities.Usuario", "ConqUsuario")
+                    b.HasOne("Core.Entities.Usuario", "Usuario")
                         .WithOne("UsuaConquistador")
                         .HasForeignKey("Core.Entities.Conquistador", "UsuaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1128,7 +1128,7 @@ namespace Infrastructure.Migrations
 
                     b.Navigation("ConqUnidad");
 
-                    b.Navigation("ConqUsuario");
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Core.Entities.ConquistadorEspecialidad", b =>
@@ -1243,13 +1243,13 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Tutor", b =>
                 {
-                    b.HasOne("Core.Entities.Usuario", "TutoUsuario")
+                    b.HasOne("Core.Entities.Usuario", "Usuario")
                         .WithOne("UsuaTutor")
                         .HasForeignKey("Core.Entities.Tutor", "UsuaId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("TutoUsuario");
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Core.Entities.TutorConquistador", b =>

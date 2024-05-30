@@ -15,3 +15,7 @@ SELECT * FROM Sesiones
 
 select * from Asistencias
 select * from Inscripciones
+
+update Parametros
+set ParaValor = 2
+where ParaId = 1

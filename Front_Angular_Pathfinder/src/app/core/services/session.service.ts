@@ -1,8 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Md5 } from 'ts-md5/dist/md5';
-import RijndaelBlock from 'rijndael-js';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {EncryptService} from "./encrypt.service";
 
 const TIMER_TAG: string = '9Dl0KQrqjXEJUDLLnalvs3IHSx4D1o';
 const DATES_TAG: string = '1W4lzCkyDp6ITgYv6C74RhZQrG6s2h';
@@ -39,7 +38,8 @@ export class SessionService {
    constructor(
       private router: Router,
       private route: ActivatedRoute,
-      private http: HttpClient
+      private http: HttpClient,
+      private encrypt: EncryptService
    ) {
       this.localStorageService = localStorage;
       this.route.queryParams.subscribe((res) => {
@@ -56,7 +56,6 @@ export class SessionService {
             }
          }
       });
-      this.generateKeys();
       this.currentSession = this.loadSessionData();
       this.getMinutosDisponibles();
    }
@@ -92,8 +91,12 @@ export class SessionService {
    //#region [ COUNTER ]
 
    startCounter() {
-      this.contador = setTimeout(() => { this.logout(); }, this.time_remaing);
-      this.contadorMin = setInterval(() => { this.changeTimes(); }, 60000);
+      this.contador = setTimeout(() => {
+         this.logout();
+      }, this.time_remaing);
+      this.contadorMin = setInterval(() => {
+         this.changeTimes();
+      }, 60000);
    }
 
    renovateCounter() {
@@ -118,9 +121,10 @@ export class SessionService {
 
    changeTimes() {
       this.minutos_disponibles--;
+      console.log(this.minutos_disponibles)
       this.localStorageService.setItem(
          TIMER_TAG,
-         this.encryptData(JSON.stringify(this.minutos_disponibles))
+         this.encrypt.encryptAuth(JSON.stringify(this.minutos_disponibles))
       );
 
       if (this.date_catch) {
@@ -138,13 +142,12 @@ export class SessionService {
       if (!minutos || minutos == null || minutos == 0) {
          return;
       }
-      this.generateKeys();
       this.minutos_disponibles = minutos;
       this.default_minutos = minutos;
       this.date_catch = new Date();
       this.time_remaing = this.minutos_disponibles * 60 * 1000;
-      this.localStorageService.setItem(TIMER_TAG, this.encryptData(JSON.stringify(minutos)));
-      this.localStorageService.setItem(DATES_TAG, this.encryptData(JSON.stringify(this.date_catch)));
+      this.localStorageService.setItem(TIMER_TAG, this.encrypt.encryptAuth(JSON.stringify(minutos)));
+      this.localStorageService.setItem(DATES_TAG, this.encrypt.encryptAuth(JSON.stringify(this.date_catch)));
       this.renovateCounter();
    }
 
@@ -153,13 +156,13 @@ export class SessionService {
          return;
       }
 
-      const min_disp = this.decryptData(
+      const min_disp = this.encrypt.decryptAuth(
          this.localStorageService.getItem(TIMER_TAG)
       );
       this.minutos_disponibles = parseFloat(min_disp) ? parseFloat(min_disp) : 0;
       this.minutos_disponibles =
          this.minutos_disponibles < 0 ? 0 : this.minutos_disponibles;
-      const tim_rem = this.decryptData(
+      const tim_rem = this.encrypt.decryptAuth(
          this.localStorageService.getItem(DATES_TAG)
       );
       this.date_catch = new Date(tim_rem) ? new Date(tim_rem) : new Date();
@@ -170,71 +173,6 @@ export class SessionService {
       this.startCounter();
    }
 
-   /*
-    private encryptData(data: any): string{
-       let cipher = new RijndaelBlock(this.key, 'cbc');
-       let ciphertext = cipher.encrypt(data, (256).toString(), this.iv);
-       let result = btoa(ciphertext.toString())
-       return result;
-    }
-
-    private decryptData(data: any){
-       if (!data || data == ''){
-          return '';
-       }
-       let text_encrypt = atob(data);
-       let text_encrypted = Buffer.from(text_encrypt, 'utf8');//data.split(',').map(Number);
-       let decypher = new RijndaelBlock(this.key, 'cbc');
-       let plaintext = decypher.decrypt(text_encrypted, (256).toString(), this.iv);
-       let original_text = String.fromCharCode.apply(null, plaintext);
-       return original_text;
-    }*/
-
-   public encryptData(data: string): any {
-      let cipher = new RijndaelBlock(this.key, 'cbc');
-      let ciphertext = cipher.encrypt(data, '256', this.iv);
-      ciphertext.toString('base64');
-      return ciphertext;
-   }
-
-   private decryptData(data: any) {
-      if (!data || data == '') {
-         return '';
-      }
-      let text_encrypted = data.split(',').map(Number);
-      let decypher = new RijndaelBlock(this.key, 'cbc');
-      let plaintext = decypher.decrypt(text_encrypted, '256', this.iv);
-      //let original_text = String.fromCharCode.apply(null, plaintext);
-      return plaintext.toString();
-   }
-
-   public generateKeys() {
-      this.existKeys = true;
-      if (!((!this.key || this.key == '') && (!this.iv || this.iv == ''))) {
-         return;
-      }
-
-      const session = this.currentSession;
-      const keys = this.localStorageService.getItem(TOKEN_TAG);
-      if (session) {
-         const token = session.token.SESS_Token;
-         const intoken = token.split('').reverse().join('');
-         const md5 = new Md5();
-         this.key = md5.appendStr(token).end();
-         this.iv = md5.appendStr(intoken).end();
-         const _keys = btoa(this.key + '$' + this.iv);
-         this.localStorageService.setItem(TOKEN_TAG, _keys);
-      } else if (keys) {
-         const _keys = atob(keys);
-         let unkeys = _keys.split('$');
-         this.key = unkeys[0];
-         this.iv = unkeys[1];
-      } else {
-         this.endSession();
-         this.removeCurrentSession();
-         this.existKeys = false;
-      }
-   }
    //#endregion
 
    //#region
@@ -267,10 +205,9 @@ export class SessionService {
 
    public setCurrentSession(session: any): void {
       this.currentSession = session;
-      this.generateKeys();
       this.localStorageService.setItem(
          SESSION_TAG,
-         this.encryptData(JSON.stringify(session))
+         this.encrypt.encryptAuth(JSON.stringify(session))
       );
    }
 
@@ -279,7 +216,7 @@ export class SessionService {
          return;
       }
 
-      let sessionStr: string = this.decryptData(
+      let sessionStr: string = this.encrypt.decryptAuth(
          this.localStorageService.getItem(SESSION_TAG)
       );
       let ArrayNumbers = sessionStr.split(',').map(Number);
@@ -358,60 +295,20 @@ export class SessionService {
    }
 
    public configureTarget(data: any) {
-      const company = data.Usuario.ItemsEmpresas[0];
       const session = Object.freeze({
          token: {
-            SESS_Token: data.SESS_Token,
-            USER_IdUser: data.Usuario.USER_IdUser,
-            USER_CodUsr: data.Usuario.USER_CodUsr,
-            AUDI_Host: "ServiciosWeb",
-            ENTC_Codigo: data.Usuario.ENTC_Codigo,
-            ENTC_RazonSocResponsable: data.Usuario.ENTC_RazonSocResponsable,
-            APLI_CodApli: 'GIV'
-            //EMPR_RUC: company.EMPR_RUC
+            UsuaId: data.Usuario.UsuaId,
+            EntiId: data.ConqId ? data.ConqId : data.TutoId,
+            UsuaNombre: data.ConqId ? data.ConqNombres + ' ' + data.ConqApellidoPaterno + ' ' + data.ConqApellidoMaterno : data.TutoNombres + ' ' + data.TutoApellidoPaterno + ' ' + data.TutoApellidoMaterno
          },
-         enviroment: {
-            Almacen: null,
-            Usuario: null
-         },
-         ItemAlmacenes: data.ItemAlmacenes,
-         // params: {
-         //   //EMPR_MesesConsultaPorDefecto: company.EMPR_MesesConsultaPorDefecto,
-         //   NIVE_CodNivel: data.Usuario.NIVE_CodNivel,
-         //   gcMonedaDefault: data.Parametros.gcMonedaDefault,
-         //   gcFamiliaRepuestos: data.Parametros.gcFamiliaRepuestos,
-         //   gcFamiliaInsumos: data.Parametros.gcFamiliaInsumos,
-         //   gcFamiliaServExternos: data.Parametros.gcFamiliaServExternos,
-         //   gdTamanoOrden: data.Parametros.gdTamanoOrden,
-         //   gdTamanoEquipo: data.Parametros.gdTamanoEquipo,
-         //   TipoCambio: data.Parametros.TipoCambio,
-         //   PorcImp1: data.Impuestos.PorcImp1,
-         //   PorcImp2: data.Impuestos.PorcImp2,
-         //   PorcImp3: data.Impuestos.PorcImp3,
-         //   PorcImp4: data.Impuestos.PorcImp4,
-         //   //USER_Perfil: data.Usuario.USER_Perfil,
-         //   //USER_Proceso: data.Usuario.USER_Proceso,
-         //   //EMPR_RUC: company.EMPR_RUC
-         // },
          menu: (() => {
-            return data.Usuario.ItemsPlantillaMenu;
+            return data.Usuario.UsuaRoles;
          })(),
          user: {
-            //TRAB_Nombres: data.Usuario.TRAB_Nombres,
-            //TRAB_Apellidos: data.Usuario.TRAB_Apellidos,
-            //TARJ_Codigo: data.Usuario.TARJ_Codigo,
-            USER_Nombre: data.Usuario.USER_Nombre,
-            USER_IdUser: data.Usuario.USER_IdUser,
-            USER_CodUsr: data.Usuario.USER_CodUsr,
-            TRAB_NroDocIden: data.Usuario.USER_CodUsr
+            UsuaUsuario: data.Usuario.UsuaUsuario,
+            UsuaId: data.Usuario.UsuaId,
+            EntiDni: data.ConqId ? data.ConqDni : data.TutoDni
          },
-         company: {
-            EMPR_Desc: company.EMPR_Desc,
-            EMPR_RUC: company.EMPR_RUC,
-            EMPR_Logo: company.EMPR_Logo,
-            EMPR_Icono: company.EMPR_Icono
-         },
-         ItemsEmpresas: data.Usuario.ItemsEmpresas,
          PassForce: data.PassForce
       });
       this.setCurrentSession(session);

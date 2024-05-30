@@ -16,8 +16,11 @@ VALUES (1, 1, 'SISTEMAS', 'J-PC'),
        (3, 1, 'SISTEMAS', 'J-PC')
 GO
 INSERT INTO Parametros (ParaNombre, ParaValor, AudiUserCrea, AudiFechCrea, AudiHostCrea)
-VALUES ('TiempoSesion', '1', 'SISTEMAS', GETDATE(), 'J-PC')
+VALUES ('TiempoSesion', '60', 'SISTEMAS', GETDATE(), 'J-PC')
 GO
 INSERT INTO Conquistadores (ConqDni, ConqNombres, ConqApellidoPaterno, ConqApellidoMaterno, ConqFechaNacimiento, UsuaId, ConqCorreoPersonal, ConqCorreoCorporativo, ConqCelular, ConqTelefono, AudiUserCrea, AudiHostCrea)
 VALUES ('70685341', 'John Jordan', 'Quispe', 'Supo', '19990709', 1, 'j.jordan.quispe.supo@gmail.com', 'jordan.quispe@nextsoft.com.pe', '914786862', '054329166', 'SISTEMAS', 'J-PC');
+GO
+INSERT INTO Tutores (TutoDni, TutoNombres, TutoApellidoPaterno, TutoApellidoMaterno, TutoFechaNacimiento, TutoCorreoPersonal, TutoCorreoCorporativo, TutoCelular, TutoTelefono, AudiUserCrea, AudiHostCrea, UsuaId)
+VALUES ('06549277', 'Gerardo', 'Quispe', 'Supo', '19481013', '', '', '997089302', '', 'SISTEMAS', 'J-PC', 2)
 GO

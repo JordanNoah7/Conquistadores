@@ -5,20 +5,20 @@ namespace Core.DTO;
 
 public class UsuarioDTO
 {
-    public int UsuaID { get; set; }
+    public int UsuaId { get; set; }
     public string UsuaUsuario { get; set; }
     public string UsuaContrasenia { get; set; }
     public ICollection<RolDTO> UsuaRoles { get; set; }
 
     public void CopyTo(ref Usuario usuario)
     {
-        usuario.UsuaId = UsuaID;
+        usuario.UsuaId = UsuaId;
         usuario.UsuaUsuario = UsuaUsuario;
     }
 
     public void CopyFrom(ref Usuario usuario)
     {
-        UsuaID = usuario.UsuaId;
+        UsuaId = usuario.UsuaId;
         UsuaUsuario = usuario.UsuaUsuario;
     }
 }

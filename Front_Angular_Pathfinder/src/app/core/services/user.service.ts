@@ -5,7 +5,6 @@ import {RouterService} from './router.service';
 import {SessionService} from './session.service';
 import {Request, RequestRest} from '../models';
 import {EncryptService} from "./encrypt.service";
-import {resolve} from "dns";
 
 @Injectable()
 export class UserService {
@@ -31,16 +30,21 @@ export class UserService {
       let success = false;
 
       let payload = new Request();
-      payload.UsuaUsuario = this.encrypt.encrypt(credentials);
+      payload.UsuaUsuario = this.encrypt.encryptAuth(credentials);
       payload.AudiHost = ip;
 
       let response = await this.api.CallService(payload, 'ValidarUsuario');
-      // if (response && response.Usuario) {
-      //    success = true;
-      //    this.sessionService.configureTarget(response);
-      //    this.sessionService.setMinutosDisponibles(response.TiempoSesion);
-      //    this.validateEnviroment(response);
-      // }
+      console.log(response);
+      debugger;
+      if (response && (response.ConqId || response.TutoId)) {
+         console.log('entro al if');
+         success = true;
+         this.sessionService.configureTarget(response);
+         console.log('configuro la sesion');
+         this.sessionService.setMinutosDisponibles(response.Sesion.SesiTiempo);
+         console.log('configuro el tiempo');
+         // this.validateEnviroment(response);
+      }
       // if (!success)
       //    this.notifyService.showSmallMessage(response.Mensaje, success);
    }
@@ -74,7 +78,7 @@ export class UserService {
 
    public async ObtenerCorreo(username: string) {
       const payload = {
-         USER_CodUsr: this.encrypt.encrypt(username)
+         USER_CodUsr: this.encrypt.encryptAuth(username)
       };
       let success = false;
       let message = null;
