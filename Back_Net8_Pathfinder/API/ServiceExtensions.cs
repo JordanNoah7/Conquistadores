@@ -11,6 +11,7 @@ public static class ServiceExtensions
     public static IServiceCollection AddCoreServices(this IServiceCollection services)
     {
         services.AddTransient<IService, Service>();
+        services.AddTransient<IEmailService, EmailService>();
         return services;
     }
 

@@ -31,4 +31,17 @@ public partial class Service
             throw;
         }
     }
+
+    public async Task<bool> UpdateUsuarioAsync(Usuario usuario)
+    {
+        try
+        {
+            return await _usuarioRepository.UpdateAsync(usuario);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

@@ -20,13 +20,6 @@ const routes: Routes = [
          import('src/app/features/auth/auth.module').then((m) => m.AuthModule),
    },
    {
-      path: 'enviroment',
-      loadChildren: () =>
-         import('src/app/features/enviroment/enviroment.module').then(
-            (m) => m.EnviromentModule
-         ),
-   },
-   {
       path: 'loading',
       loadChildren: () =>
          import('src/app/features/loader/loader.module').then(

@@ -121,7 +121,6 @@ export class SessionService {
 
    changeTimes() {
       this.minutos_disponibles--;
-      console.log(this.minutos_disponibles)
       this.localStorageService.setItem(
          TIMER_TAG,
          this.encrypt.encryptAuth(JSON.stringify(this.minutos_disponibles))
@@ -174,30 +173,6 @@ export class SessionService {
    }
 
    //#endregion
-
-   //#region
-   setcurrentEmpresa(empresa: any): void {
-      this.currentEmpresa = empresa;
-      this.localStorageService.setItem(EMPRESA_TAG, JSON.stringify(empresa));
-   }
-
-   getcurrentEmpresa(): any {
-      return this.currentEmpresa;
-   }
-
-   //#endregion
-
-   setRUC(url: any): void {
-      this.url = url;
-   }
-
-   getRUC(): any {
-      return this.url;
-   }
-
-   setManual(manual: any): void {
-      this.manual = manual;
-   }
 
    getManual(): any {
       return this.manual;
@@ -281,19 +256,6 @@ export class SessionService {
       return recovered;
    }
 
-   public configureTargetEmpresa(data: any, code: any) {
-      const empresa = Object.freeze({
-         Icono: data.Icono,
-         Logo: data.Logo,
-         background: data.background,
-         CadenaConexion: data.CadenaConexion,
-         EMPR_CodReferencia: data.EMPR_CodReferencia,
-         code: code,
-      });
-
-      this.setcurrentEmpresa(empresa);
-   }
-
    public configureTarget(data: any) {
       const session = Object.freeze({
          token: {
@@ -314,13 +276,6 @@ export class SessionService {
       this.setCurrentSession(session);
    }
 
-   public configureSucursal(data: any) {
-      const session = this.getCurrentSession();
-      session.enviroment.Sucursal = data;
-      session.token.Sucursal = data.SUCR_Codigo;
-      this.setCurrentSession(session);
-   }
-
    public configureAlmacen(data: any) {
       const session = this.getCurrentSession();
       session.enviroment.Almacen = data;
@@ -334,24 +289,6 @@ export class SessionService {
       const session = this.getCurrentSession();
       session.enviroment.Usuario = data;
       session.token.Usuario = data.USER_CodUsr;
-      this.setCurrentSession(session);
-   }
-
-   public configurePuntoVenta(data: any) {
-      const session = this.getCurrentSession();
-      session.enviroment.PuntoVenta = data;
-      this.setCurrentSession(session);
-   }
-
-   public configureEmpresa(data: any) {
-      const session = this.getCurrentSession();
-      session.enviroment.Empresa = data;
-      this.setCurrentSession(session);
-   }
-
-   public configureMoneda(data: any) {
-      const session = this.getCurrentSession();
-      session.enviroment.Moneda = data;
       this.setCurrentSession(session);
    }
 }

@@ -11,7 +11,7 @@ public class Parametro
     [Column(TypeName = "nvarchar(25)")]
     public string ParaNombre { get; set; }
     [Required(ErrorMessage = "El valor del parámetro es obligatorio")]
-    [Column(TypeName = "nvarchar(250)")]
+    [Column(TypeName = "nvarchar(max)")]
     public string ParaValor { get; set; }
     
     [Required]

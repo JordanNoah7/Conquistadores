@@ -14,6 +14,8 @@ public class Usuario
     [Required(ErrorMessage = "La contraseña es obligatoria")]
     [Column(TypeName = "nvarchar(100)")]
     public string UsuaContrasenia { get; set; }
+    [Column(TypeName = "bit")]
+    public bool? UsuaCambiarContrasenia { get; set; }
     
     public Conquistador UsuaConquistador { get; set; }
     public Tutor UsuaTutor { get; set; }

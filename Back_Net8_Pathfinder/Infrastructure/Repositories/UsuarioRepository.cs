@@ -40,4 +40,19 @@ public class UsuarioRepository : IUsuarioRepository
             throw;
         }
     }
+
+    public async Task<bool> UpdateAsync(Usuario usuario)
+    {
+        try
+        {
+            usuario.AudiFechMod = DateTime.Now;
+            _dbContext.Usuarios.Update(usuario);
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
 }

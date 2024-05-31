@@ -15,6 +15,7 @@ public class RestServiceAuth : ControllerBase
 
     private IConfiguration _configuration;
     private readonly IService _service;
+    private readonly IEmailService _emailService;
     private readonly byte[] key;
     private readonly byte[] iv;
 
@@ -22,10 +23,11 @@ public class RestServiceAuth : ControllerBase
 
     #region [ Constructor ]
 
-    public RestServiceAuth(IConfiguration configuration, IService service)
+    public RestServiceAuth(IConfiguration configuration, IService service, IEmailService emailService)
     {
         _configuration = configuration;
         _service = service;
+        _emailService = emailService;
         key = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("key"));
         iv = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("iv"));
     }
@@ -65,11 +67,12 @@ public class RestServiceAuth : ControllerBase
                 rolDto.CopyFrom(ref rol);
                 usuarioDto.UsuaRoles.Add(rolDto);
             }
+
             SesionDTO sesionDto = new SesionDTO()
             {
                 SesiUsuario = usuarioDto,
                 SesiFecha = DateTime.Now,
-                SesiTiempo = Convert.ToUInt16((await _service.GetParametroByNameAsync("TiempoSesion")).ParaValor),
+                SesiTiempo = Convert.ToUInt16((await _service.GetParametroByNameAsync("SessionTimeMinutes")).ParaValor),
             };
             await _service.CreateSesionAsync(sesionDto, request.AudiHost);
             Conquistador conquistador = await _service.GetConquistadorByUsuarioAsync(usuario.UsuaId);
@@ -81,7 +84,7 @@ public class RestServiceAuth : ControllerBase
                 conquistadorDto.Sesion = sesionDto;
                 return Ok(conquistadorDto);
             }
-            
+
             Tutor tutor = await _service.GetTutorByUsuarioAsync(usuario.UsuaId);
             TutorDTO tutorDto = new TutorDTO();
             tutorDto.CopyFrom(ref tutor);
@@ -92,6 +95,80 @@ public class RestServiceAuth : ControllerBase
         catch (Exception e)
         {
             return BadRequest("Error al validar credenciales");
+        }
+    }
+
+    [HttpPost("EnviarCorreo")]
+    public async Task<IActionResult> EnviarCorreo([FromBody] Request request)
+    {
+        ResponseAuth responseAuth = new ResponseAuth();
+        try
+        {
+            string username = DecryptString(request.UsuaUsuario);
+            Usuario usuario = await _service.GetUserByUsernameAsync(username);
+            if (usuario == null)
+            {
+                return NotFound("Si su usuario es correcto, recibirá un correo electrónico con su nueva contraseña.");
+            }
+
+            string newPassword = GenerateRandomString();
+            string pass = EncryptMD5($"{username}|{newPassword}|{username}");
+            usuario.UsuaContrasenia = pass;
+            usuario.UsuaCambiarContrasenia = true;
+            usuario.AudiUserMod = "";
+            usuario.AudiHostMod = request.AudiHost;
+            await _service.UpdateUsuarioAsync(usuario);
+            string name, email;
+            Conquistador conquistador = await _service.GetConquistadorByUsuarioAsync(usuario.UsuaId);
+            if (conquistador == null)
+            {
+                Tutor tutor = await _service.GetTutorByUsuarioAsync(usuario.UsuaId);
+                name = tutor.TutoNombres;
+                email = tutor.TutoCorreoPersonal;
+            }
+            else
+            {
+                name = conquistador.ConqNombres;
+                email = conquistador.ConqCorreoPersonal;   
+            }
+            string body = GetBodyMail(name, newPassword);
+            if (!string.IsNullOrEmpty(email))
+            {
+                _emailService.SendMail(email, "Nueva contraseña", body, name);   
+            }
+            else
+            {
+                return NotFound("Recibirá un correo electrónico con su nueva contraseña en la dirección de correo asociada a su cuenta.");
+            }
+            responseAuth.Mensaje = "Le hemos enviado un correo electrónico con su nueva contraseña. Deberá cambiarla la próxima vez que inicie sesión.";
+            return Ok(responseAuth);
+        }
+        catch (Exception e)
+        {
+            return BadRequest("Error al obtener el correo del usuario.");
+        }
+    }
+
+    [HttpPost("CambiarContrasena")]
+    public async Task<IActionResult> CambiarContrasena([FromBody] Request request)
+    {
+        try
+        {
+            string credenciales = DecryptString(request.UsuaUsuario);
+            string username = credenciales.Split('|')[0];
+            string password = credenciales.Split('|')[1];
+            Usuario usuario = await _service.GetUserByUsernameAsync(username);
+            string pass = EncryptMD5($"{username}|{password}|{username}");
+            usuario.UsuaContrasenia = pass;
+            usuario.UsuaCambiarContrasenia = false;
+            usuario.AudiUserMod = usuario.UsuaUsuario;
+            usuario.AudiHostMod = request.AudiHost;
+            await _service.UpdateUsuarioAsync(usuario);
+            return Ok(true);
+        }
+        catch (Exception e)
+        {
+            return BadRequest("Error al cambiar la contraseña.");
         }
     }
 
@@ -152,24 +229,61 @@ public class RestServiceAuth : ControllerBase
 
     private string DecryptString(string encryptText)
     {
-        byte[] cipherTextBytes = Convert.FromBase64String(encryptText);
-        using (Aes aes = Aes.Create())
+        try
         {
-            aes.Key = key;
-            aes.IV = iv;
-            using (ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV))
+            byte[] cipherTextBytes = Convert.FromBase64String(encryptText);
+            using (Aes aes = Aes.Create())
             {
-                using (MemoryStream ms = new MemoryStream(cipherTextBytes))
+                aes.Key = key;
+                aes.IV = iv;
+                using (ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV))
                 {
-                    using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                    using (MemoryStream ms = new MemoryStream(cipherTextBytes))
                     {
-                        using (StreamReader sr = new StreamReader(cs))
+                        using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
                         {
-                            return sr.ReadToEnd();
+                            using (StreamReader sr = new StreamReader(cs))
+                            {
+                                return sr.ReadToEnd();
+                            }
                         }
                     }
                 }
             }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private string GenerateRandomString()
+    {
+        try
+        {
+            Random _random = new Random();
+            string _chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            return new string(Enumerable.Repeat(_chars, 8).Select(s => s[_random.Next(s.Length)]).ToArray());
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private string GetBodyMail(string name, string newPassword)
+    {
+        try
+        {
+            Parametro body = _service.GetParametroByNameAsync("PasswordRecoveryTemplate").Result;
+            return body.ParaValor.Replace("%%name%%", name).Replace("%%newPassword%%", newPassword);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
         }
     }
 

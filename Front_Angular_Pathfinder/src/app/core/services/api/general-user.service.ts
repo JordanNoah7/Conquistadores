@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import {Observable, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
+import {Request} from "../../models";
 
 @Injectable()
 export class GeneralUserService {
@@ -30,23 +31,19 @@ export class GeneralUserService {
             )
     )
 
-    public ObtenerCorreo = (payload: { USER_CodUsr: string | false; }) => new Promise<any>((resolve) =>
-        this.http.post<any>('/auth/ObtenerCorreo', payload, { headers: this.core.getDefaultOptions() })
+    public SendMail = (payload: Request) => new Promise<any>((resolve) =>
+        this.http.post<any>((this.url + 'EnviarCorreo'), payload, { headers: this.core.getDefaultOptions()})
             .subscribe(
                 data => resolve(data),
-                err => resolve(null)
+                err => resolve(err)
             )
     )
 
-    public EnviarCorreo = (payload: any) => new Promise<any>((resolve) =>
-        this.http.post<any>('/auth/EnviarCorreo', payload, { headers: this.core.getDefaultOptions() })
-            .subscribe(
-                data => resolve(data),
-                err => resolve(null)
-            )
-    )
-
-    public TokenTimeOut = () => {
-        this.router.navigate(['/auth/login']);
-    }
+   public ChangePassword = (payload: any) => new Promise<any>((resolve) =>
+      this.http.post<any>(this.url + 'CambiarContrasena', payload, { headers: this.core.getDefaultOptions() })
+         .subscribe(
+            data => resolve(data),
+            err => resolve(null)
+         )
+   )
 }
