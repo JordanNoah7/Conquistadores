@@ -14,5 +14,5 @@ public class ActividadDTO
     public DateTime ActiFechaInicio { get; set; }
     public DateTime ActiFechaFin { get; set; }
     
-    public ICollection<ActividadConquistador> ActiParticipantes { get; set; }
+    public ICollection<ConquistadorDTO> ActiParticipantes { get; set; }
 }

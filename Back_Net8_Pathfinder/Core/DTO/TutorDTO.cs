@@ -17,7 +17,6 @@ public class TutorDTO
 
     public UsuarioDTO Usuario { get; set; }
     public SesionDTO Sesion { get; set; }
-
     public ICollection<ConquistadorDTO> TutoConquistadores { get; set; }
 
     public void CopyTo(ref Tutor tutor)

@@ -20,6 +20,8 @@ public class ConquistadorDTO
     public SesionDTO Sesion { get; set; }
     public ClaseDTO ConqClase { get; set; }
     public UnidadDTO ConqUnidad { get; set; }
+    public TipoDTO ConqParentesco { get; set; }
+    public TipoDTO ConqParticipacion { get; set; }
     
     public void CopyTo(ref Conquistador conquistador)
     {
