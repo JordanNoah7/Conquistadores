@@ -1,6 +1,6 @@
-@Back_Net8_Pathfinder_HostAddress = http://localhost:5139
+@API = http://localhost:5139
 
-GET {{Back_Net8_Pathfinder_HostAddress}}/weatherforecast/
+GET {{API}}/weatherforecast/
 Accept: application/json
 
 ###

@@ -4,7 +4,7 @@ using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace Back_Net8_Pathfinder;
+namespace API;
 
 public static class ServiceExtensions
 {

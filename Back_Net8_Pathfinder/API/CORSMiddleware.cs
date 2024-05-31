@@ -1,4 +1,4 @@
-﻿namespace Back_Net8_Pathfinder;
+﻿namespace API;
 
 public class CORSMiddleware
 {

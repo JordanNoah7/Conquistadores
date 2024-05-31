@@ -5,7 +5,7 @@ using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Back_Net8_Pathfinder;
+namespace API;
 
 [ApiController]
 [Route("RESTService")]
