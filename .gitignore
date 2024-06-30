@@ -23,7 +23,6 @@ node_modules/
 *.suo
 *.ntvs*
 *.njsproj
-*.sln
 
 # Logs and reports
 npm-debug.log*
