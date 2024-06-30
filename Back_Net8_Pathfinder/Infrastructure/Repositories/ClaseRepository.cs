@@ -1,24 +1,23 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class ConquistadorRepository : IConquistadorRepository
+public class ClaseRepository : IClaseRepository
 {
     private readonly AppDbContext _dbContext;
 
-    public ConquistadorRepository(AppDbContext dbContext)
+    public ClaseRepository(AppDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task<Conquistador> GetByUsuarioAsync(int id)
+    public async Task<Clase> GetByIdAsync(int id)
     {
         try
         {
-            return await _dbContext.Conquistadores.FirstOrDefaultAsync(c => c.ConqUsuario.UsuaId == id);
+            return await _dbContext.Clases.FindAsync(id);
         }
         catch (Exception e)
         {

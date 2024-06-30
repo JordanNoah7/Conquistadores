@@ -1,4 +1,6 @@
-﻿namespace Core.DTO;
+﻿using Core.Entities;
+
+namespace Core.DTO;
 
 public class UnidadDTO
 {
@@ -9,4 +11,22 @@ public class UnidadDTO
     public string UnidDescripcion { get; set; }
     
     public ICollection<ConquistadorDTO> UnidConquistadores { get; set; }
+
+    public void CopyTo(ref Unidad unidad)
+    {
+        unidad.UnidId = UnidId;
+        unidad.UnidNombre = UnidNombre;
+        unidad.UnidLema = UnidLema;
+        unidad.UnidGritoGuerra = UnidGritoGuerra;
+        unidad.UnidDescripcion = UnidDescripcion;
+    }
+
+    public void CopyFrom(ref Unidad unidad)
+    {
+        UnidId = unidad.UnidId;
+        UnidNombre = unidad.UnidNombre;
+        UnidLema = unidad.UnidLema;
+        UnidGritoGuerra = unidad.UnidGritoGuerra;
+        UnidDescripcion = unidad.UnidDescripcion;
+    }
 }

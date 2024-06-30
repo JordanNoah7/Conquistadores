@@ -1,4 +1,6 @@
-﻿namespace Core.DTO;
+﻿using Core.Entities;
+
+namespace Core.DTO;
 
 public class ClaseDTO
 {
@@ -7,4 +9,18 @@ public class ClaseDTO
     public string ClasDescripcion { get; set; }
     public ICollection<ConquistadorDTO> ClasConquistadores { get; set; }
     public ICollection<ItemCuadernilloDTO> ClasItemsCuadernillo { get; set; }
+
+    public void CopyTo(ref Clase clase)
+    {
+        clase.ClasId = ClasId;
+        clase.ClasNombre = ClasNombre;
+        clase.ClasDescripcion = ClasDescripcion;
+    }
+
+    public void CopyFrom(ref Clase clase)
+    {
+        ClasId = clase.ClasId;
+        ClasNombre = clase.ClasNombre;
+        ClasDescripcion = clase.ClasDescripcion;
+    }
 }
