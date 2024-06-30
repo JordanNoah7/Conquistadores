@@ -17,27 +17,27 @@ import { ImageViewerModule } from 'ngx-image-viewer';
 registerLocaleData(localeEsPE);
 
 @NgModule({
-   declarations: [
-      AppComponent,
-   ],
-   imports: [
-      BrowserModule,
-      BrowserAnimationsModule,
-      ModalModule.forRoot(),
-      ImageViewerModule.forRoot(),
-      AppRoutingModule,
-      CoreModule,
-      SharedModule,
-      I18nModule,
-   ],
-   providers: [
-      { provide: LocationStrategy, useClass: HashLocationStrategy },
-      { provide: LOCALE_ID, useValue: 'es-PE' },
-      DatePipe
-   ],
-   bootstrap: [AppComponent],
-   exports: [
-      AppComponent
-   ]
+    declarations: [
+        AppComponent,
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        ModalModule.forRoot(),
+        ImageViewerModule.forRoot(),
+        AppRoutingModule,
+        CoreModule,
+        SharedModule,
+        I18nModule,
+    ],
+    providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        { provide: LOCALE_ID, useValue: 'es-PE' },
+        DatePipe
+    ],
+    bootstrap: [AppComponent],
+    exports: [
+        AppComponent
+    ]
 })
 export class AppModule { }

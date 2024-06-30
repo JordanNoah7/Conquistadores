@@ -1,96 +1,96 @@
 <aside id="left-panel">
-   <sa-login-info></sa-login-info>
-   <nav>
-      <ul saSmartMenu>
-         <li *ngIf="APROB == true" routerLinkActive="active">
-            <a title="Configuración">
-               <i class="fa fa-cogs"></i>
-               <span class="menu-item-parent cstm-icon-menu">{{ "Configuración" | i18n }}</span>
-            </a>
-            <ul>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/configuracion/usuariosalmacen">{{ "Usuarios por almacén" | i18n }}</a>
-               </li>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/maestros/tipos">{{ "Tipos" | i18n }}</a>
-               </li>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/configuracion/parametros">{{ "Parámetros" | i18n }}</a>
-               </li>
-            </ul>
-         </li>
-         <li *ngIf="REGIS == true" routerLinkActive="active">
-            <a title="Maestros"><i class="fa fa-recycle"></i>
-               <span class="menu-item-parent cstm-icon-menu">{{ "Maestros" | i18n }}</span></a>
-            <ul>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/maestros/categorias">{{ "Categorias" | i18n }}</a>
-               </li>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/maestros/marcas">{{ "Marcas" | i18n }}</a>
-               </li>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/maestros/modelos">{{ "Modelos" | i18n }}</a>
-               </li>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/maestros/almacenes">{{ "Almacenes y sub almacenes" | i18n }}</a>
-               </li>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/maestros/proyectos">{{ "Proyectos" | i18n }}</a>
-               </li>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/maestros/ubicaciones">{{ "Ubicaciones" | i18n }}</a>
-               </li>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/configuracion/atributos">{{ "Atributos" | i18n }}</a>
-               </li>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/configuracion/atributostipoequipo">{{ "Atributos por categoría" | i18n }}</a>
-               </li>
-            </ul>
-         </li>
-         <li *ngIf="APROB == true" routerLinkActive="active">
-            <a title="Procesos">
-               <i class="fa fa-list"></i>
-               <span class="menu-item-parent cstm-icon-menu">{{ "Procesos" | i18n }}</span>
-            </a>
-            <ul>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/procesos/equipos">{{ "Equipos" | i18n }}</a>
-               </li>
-               <li *ngIf="RUNID == true" routerLinkActive="active">
-                  <a routerLink="/procesos/movimientos">{{ "Entregas y devoluciones" | i18n }}</a>
-               </li>
-               <li *ngIf="RUNID == true" routerLinkActive="active">
-                  <a routerLink="/procesos/tranferencias">{{ "Transferencias" | i18n }}</a>
-               </li>
-            </ul>
-         </li>
-         <li *ngIf="APROB == true" routerLinkActive="active">
-            <a title="Reportes">
-               <i class="fa fa-bar-chart-o"></i>
-               <span class="menu-item-parent cstm-icon-menu">{{ "Reportes" | i18n }}</span>
-            </a>
-            <ul>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/reportes/equipos">{{ "Equipos" | i18n }}</a>
-               </li>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/reportes/movimientos">{{ "Movimientos" | i18n }}</a>
-               </li>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/reportes/transferencias">{{ "Transferencias" | i18n }}</a>
-               </li>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/reportes/pendev">{{ "Pendientes y Devoluciones" | i18n }}</a>
-               </li>
-               <li *ngIf="REGRU == true" routerLinkActive="active">
-                  <a routerLink="/reportes/perubi">{{ "Persona/Ubicaci&oacute;n" | i18n }}</a>
-               </li>
-            </ul>
-         </li>
-      </ul>
-   </nav>
+    <sa-login-info></sa-login-info>
+    <nav>
+        <ul saSmartMenu>
+            <li routerLinkActive="active">
+                <a title="Configuración">
+                    <i class="fa fa-cogs"></i>
+                    <span class="menu-item-parent cstm-icon-menu">{{ "Configuración" | i18n }}</span>
+                </a>
+                <ul>
+                    <li routerLinkActive="active">
+                        <a routerLink="/configuracion/usuariosalmacen">{{ "Usuarios por almacén" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/maestros/tipos">{{ "Tipos" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/configuracion/parametros">{{ "Parámetros" | i18n }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li routerLinkActive="active">
+                <a title="Maestros"><i class="fa fa-recycle"></i>
+                    <span class="menu-item-parent cstm-icon-menu">{{ "Maestros" | i18n }}</span></a>
+                <ul>
+                    <li routerLinkActive="active">
+                        <a routerLink="/maestros/categorias">{{ "Categorias" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/maestros/marcas">{{ "Marcas" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/maestros/modelos">{{ "Modelos" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/maestros/almacenes">{{ "Almacenes y sub almacenes" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/maestros/proyectos">{{ "Proyectos" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/maestros/ubicaciones">{{ "Ubicaciones" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/configuracion/atributos">{{ "Atributos" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/configuracion/atributostipoequipo">{{ "Atributos por categoría" | i18n }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li routerLinkActive="active">
+                <a title="Procesos">
+                    <i class="fa fa-list"></i>
+                    <span class="menu-item-parent cstm-icon-menu">{{ "Procesos" | i18n }}</span>
+                </a>
+                <ul>
+                    <li routerLinkActive="active">
+                        <a routerLink="/procesos/equipos">{{ "Equipos" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/procesos/movimientos">{{ "Entregas y devoluciones" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/procesos/tranferencias">{{ "Transferencias" | i18n }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li routerLinkActive="active">
+                <a title="Reportes">
+                    <i class="fa fa-bar-chart-o"></i>
+                    <span class="menu-item-parent cstm-icon-menu">{{ "Reportes" | i18n }}</span>
+                </a>
+                <ul>
+                    <li routerLinkActive="active">
+                        <a routerLink="/reportes/equipos">{{ "Equipos" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/reportes/movimientos">{{ "Movimientos" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/reportes/transferencias">{{ "Transferencias" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/reportes/pendev">{{ "Pendientes y Devoluciones" | i18n }}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/reportes/perubi">{{ "Persona/Ubicaci&oacute;n" | i18n }}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 
-   <sa-minify-menu></sa-minify-menu>
+    <sa-minify-menu></sa-minify-menu>
 </aside>

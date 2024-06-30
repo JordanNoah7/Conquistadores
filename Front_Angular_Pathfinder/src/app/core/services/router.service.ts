@@ -4,58 +4,37 @@ import { Location } from '@angular/common'
 
 @Injectable()
 export class RouterService {
-  constructor(private router: Router, private location: Location) { }
+    constructor(private router: Router, private location: Location) { }
 
-  toBack() {
-    this.location.back()
-  }
+    toBack() {
+        this.location.back()
+    }
 
-  toRoot(){
-    this.router.navigate(['/']);
-  }
+    toRoot() {
+        this.router.navigate(['/']);
+    }
 
-  toLogin(){
-    this.router.navigate(['/auth/login']);
-  }
+    toLogin() {
+        this.router.navigate(['/auth/login']);
+    }
 
-  toLoading(){
-    this.router.navigate(['/loading']);
-  }
+    toLoading() {
+        this.router.navigate(['/loading']);
+    }
 
-  toEnviroment(){
-    this.router.navigate(['/enviroment']);
-  }
+    toMain() {
+        this.router.navigate(['/procesos']);
+    }
 
-  toMain(){
-    this.router.navigate(['/procesos']);
-  }
+    toConfiguracion() {
+        this.router.navigate(['/configuracion']);
+    }
 
-  toConfiguracion(){
-    this.router.navigate(['/configuracion']);
-  }
+    redirectToError404() {
 
-  toVendedor(){
-    this.router.navigate(['/vendedor']);
-  }
+    }
 
-  toCotizacion(){
-    this.router.navigate(['/cotizacion']);
-  }
+    redirectToError500() {
 
-  toPedido(){
-    this.router.navigate(['/pedido']);
-  }
-
-  toFinalizarPedido(){
-    this.router.navigate(['/finalizarPedido']);
-  }
-
-  toCuenta(){
-    this.router.navigate(['/cuentacorriente']);
-  }
-
-  toCliente(){
-    this.router.navigate(['/cliente']);
-  }
-
+    }
 }
