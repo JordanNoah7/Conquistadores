@@ -38,6 +38,7 @@ export class DashboardComponent implements OnInit {
         debugger;
         let request: Request = this.contextService.getRequest();
         request.AudiHost = await this.ipClientService.GetIp();
+        debugger;
         //TODO: Mejorar la llamada al servicio con el ejemplo de LoginAdmin
         const conquistador = await this.repositoryService.GetConquistador(request);
     }

@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { CoreService } from '../core.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import {Observable, throwError} from "rxjs";
-import {catchError} from "rxjs/operators";
-import {Request} from "../../models";
+import { Observable, throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
+import { Request } from "../../models";
 
 @Injectable()
 export class GeneralUserService {
@@ -32,18 +32,18 @@ export class GeneralUserService {
     )
 
     public SendMail = (payload: Request) => new Promise<any>((resolve) =>
-        this.http.post<any>((this.url + 'EnviarCorreo'), payload, { headers: this.core.getDefaultOptions()})
+        this.http.post<any>((this.url + 'EnviarCorreo'), payload, { headers: this.core.getDefaultOptions() })
             .subscribe(
                 data => resolve(data),
                 err => resolve(err)
             )
     )
 
-   public ChangePassword = (payload: any) => new Promise<any>((resolve) =>
-      this.http.post<any>(this.url + 'CambiarContrasena', payload, { headers: this.core.getDefaultOptions() })
-         .subscribe(
-            data => resolve(data),
-            err => resolve(null)
-         )
-   )
+    public ChangePassword = (payload: any) => new Promise<any>((resolve) =>
+        this.http.post<any>(this.url + 'CambiarContrasena', payload, { headers: this.core.getDefaultOptions() })
+            .subscribe(
+                data => resolve(data),
+                err => resolve(null)
+            )
+    )
 }

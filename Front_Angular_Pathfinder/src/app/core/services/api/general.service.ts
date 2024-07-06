@@ -33,6 +33,7 @@ export class GeneralService {
     )
 
     connectBackend(method: string, data: any): Observable<any> {
+        debugger;
         return this.http.post<any>((this.url + method), data, {
             headers: this.core.getDefaultOptions(),
             observe: 'response',

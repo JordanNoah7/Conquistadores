@@ -26,7 +26,6 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "assets": [
-                            "assets/img/logotipo.ico",
                             "src/assets",
                             {
                                 "glob": "**/*",
@@ -98,7 +97,6 @@
                         "tsConfig": "tsconfig.spec.json",
                         "karmaConfig": "karma.conf.js",
                         "assets": [
-                            "assets/img/logotipo.ico",
                             "src/assets"
                         ],
                         "styles": [
