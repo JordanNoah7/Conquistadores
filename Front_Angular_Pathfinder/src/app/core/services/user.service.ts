@@ -26,9 +26,10 @@ export class UserService {
         const credentials = `${username}|${password}`;
         let success = false;
 
-        let payload = new Request();
-        payload.UsuaUsuario = this.encrypt.encryptAuth(credentials);
-        payload.AudiHost = await this.address.GetIp();
+        let payload: Request = {
+            UsuaUsuario: this.encrypt.encryptAuth(credentials),
+            AudiHost: await this.address.GetIp(),
+        }
 
         let response = await this.api.CallService(payload, 'ValidarUsuario');
         if (response && response.Usuario) {
@@ -47,8 +48,9 @@ export class UserService {
     }
 
     public async RecoverPassword(username: string) {
-        const payload = new Request();
-        payload.UsuaUsuario = this.encrypt.encryptAuth(username);
+        const payload: Request = {
+            UsuaUsuario: this.encrypt.encryptAuth(username),
+        }
         let success = false;
         let message = null;
         this.notifyService.smartMessageBox(
@@ -76,9 +78,10 @@ export class UserService {
 
     public async ChangePassword(username: string, password: string) {
         const credentials = `${username}|${password}`;
-        let payload = new Request();
-        payload.UsuaUsuario = this.encrypt.encryptAuth(credentials);
-        payload.AudiHost = await this.address.GetIp();
+        let payload: Request = {
+            UsuaUsuario: this.encrypt.encryptAuth(credentials),
+            AudiHost: await this.address.GetIp(),
+        }
         let response = await this.api.ChangePassword(payload);
         return response;
     }

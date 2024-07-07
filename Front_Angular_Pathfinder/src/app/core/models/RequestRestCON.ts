@@ -1,5 +1,5 @@
-import {Request} from "./Request";
+import { Request } from "./Request";
 
-export class RequestRestCON {
-   itemRequest: Request = new Request();
+export interface RequestRestCON {
+    itemRequest: Request;
 }

@@ -17,6 +17,7 @@ export interface ConquistadorDTO {
     ConqCelular: string;
     ConqTelefono: string;
     ConqAvance: string;
+    ConqSexo: string;
 
     Usuario: UsuarioDTO;
     Sesion: SesionDTO;

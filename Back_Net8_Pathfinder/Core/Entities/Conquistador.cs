@@ -36,6 +36,8 @@ public class Conquistador
     public string ConqCelular { get; set; }
     [Column(TypeName = "nvarchar(18)")]
     public string? ConqTelefono { get; set; }
+    [Column(TypeName = "char(1)")]
+    public string ConqSexo { get; set; }
 
     [Column(TypeName = "int")]
     public int UsuaId { get; set; }

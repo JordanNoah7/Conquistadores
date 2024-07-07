@@ -11,18 +11,14 @@ export class RepositoryService {
     constructor(private requestService: GeneralService) { }
 
     public GetConquistador(payload: Request): Observable<ConquistadorDTO> {
-        debugger;
         return this.requestService.connectBackend("ObtenerConquistador", payload).pipe(
             map(response => {
-                debugger;
+                console.log(response);
                 if (!!response) {
-                    return response;
+                    return response.conquistadorDTO;
                 }
                 return null;
             }),
-            tap(response => {
-
-            })
         );
     }
 }

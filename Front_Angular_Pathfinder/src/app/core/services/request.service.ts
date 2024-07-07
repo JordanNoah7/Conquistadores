@@ -100,7 +100,6 @@ export class RequestService {
         let data = null;
         let apiResponse;
         const result = await this.generalRequestService.CallService(payload, method);
-        console.log(result);
         if (result != null) {
             code = result.Codigo;
             message = result.Mensaje;

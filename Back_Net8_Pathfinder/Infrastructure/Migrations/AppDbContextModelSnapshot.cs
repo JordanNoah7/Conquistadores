@@ -350,6 +350,10 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("ConqSexo")
+                        .IsRequired()
+                        .HasColumnType("char(1)");
+
                     b.Property<string>("ConqTelefono")
                         .HasColumnType("nvarchar(18)");
 

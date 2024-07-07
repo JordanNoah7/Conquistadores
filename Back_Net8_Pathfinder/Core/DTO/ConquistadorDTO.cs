@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.DTO;
 
@@ -16,6 +17,7 @@ public class ConquistadorDTO
     public string ConqCelular { get; set; }
     public string? ConqTelefono { get; set; }
     public string ConqAvance { get; set; }
+    public string ConqSexo { get; set; }
 
     public UsuarioDTO Usuario { get; set; }
     public SesionDTO Sesion { get; set; }
@@ -36,6 +38,7 @@ public class ConquistadorDTO
         conquistador.ConqCorreoCorporativo = ConqCorreoCorporativo;
         conquistador.ConqCelular = ConqCelular;
         conquistador.ConqTelefono = ConqTelefono;
+        conquistador.ConqSexo = ConqSexo;
     }
     
     public void CopyFrom(ref Conquistador conquistador)
@@ -51,5 +54,6 @@ public class ConquistadorDTO
         ConqCorreoCorporativo = conquistador.ConqCorreoCorporativo;
         ConqCelular = conquistador.ConqCelular;
         ConqTelefono = conquistador.ConqTelefono;
+        ConqSexo = conquistador.ConqSexo;
     }
 }
