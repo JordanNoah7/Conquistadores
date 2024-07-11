@@ -13,12 +13,22 @@ export class RepositoryService {
     public GetConquistador(payload: Request): Observable<ConquistadorDTO> {
         return this.requestService.connectBackend("ObtenerConquistador", payload).pipe(
             map(response => {
-                console.log(response);
                 if (!!response) {
                     return response.conquistadorDTO;
                 }
                 return null;
             }),
+        );
+    }
+
+    public GetConquistadores(payload: Request): Observable<ConquistadorDTO[]> {
+        return this.requestService.connectBackend("ObtenerConquistadores", payload).pipe(
+            map(response => {
+                if (!!response) {
+                    return response.conquistadores;
+                }
+                return null;
+            })
         );
     }
 }

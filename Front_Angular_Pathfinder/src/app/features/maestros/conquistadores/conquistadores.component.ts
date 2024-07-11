@@ -1,11 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { NotificationService, ContextService } from 'src/app/core/services';
-import { EMPTY, of } from 'rxjs';
-import { ModalDirective } from 'ngx-bootstrap/modal';
-import { switchMap } from 'rxjs/operators';
-// import { RepositoryService, AlmacenesService, } from 'src/app/core/services/GestionInventario/GestionInventarioServices';
-// import { ApiResponse, RequestRestGIV, Almacen, Estado, } from 'src/app/core/models/GestionInventarioModels/GestionInventarioModels';
+import { RepositoryService } from 'src/app/core/services/repository.service';
 
 @Component({
     selector: 'ns-ss',
@@ -14,18 +10,16 @@ import { switchMap } from 'rxjs/operators';
 })
 export class ConquistadoresComponent implements OnInit {
     public isSearching: boolean = false;
-    public isSaving: boolean = false;
-    public isLoading: boolean = true;
-    public searchForm: FormGroup = this.createAlmacenForm(false);
-    public almacenForm: FormGroup = this.createAlmacenForm(true);
-
-    // public almacenes: Almacen[] = [];
-    // public estados: Estado[] = [];
-
-    Title: string = '';
-    @ViewChild('MView') public MView: ModalDirective | undefined;
-
+    public isLoading: boolean = false;
     public tableId: string = 'tableId';
+
+    public searchForm: FormGroup = new FormGroup({
+        ConqDni: new FormControl('', []),
+        ConqNombres: new FormControl('', []),
+        ConqApellidos: new FormControl('', []),
+        ConqEdad: new FormControl('', []),
+    });
+
     options: any = {
         pageLength: 25,
         paging: false,
@@ -45,30 +39,21 @@ export class ConquistadoresComponent implements OnInit {
                 exportOptions: { columns: [1, 2, 3, 4] },
             },
         ],
-        //order: [[1, 'asc']],
         columnDefs: [],
         columns: [
             {
                 title: 'Editar',
-                data: 'ALMA_Codigo',
+                data: 'ConqId',
                 render: function (data: any, type: any, row: any, meta: any) {
                     return '<button title="Editar" class="editar btn btn-default txt-color-yellow btn-circle"><i class="fa fa-edit"></i></button>';
                 },
             },
-            { title: 'Nombre', data: 'ALMA_Nombre' },
-            { title: 'Descripción', data: 'ALMA_Descripcion' },
-            { title: 'Almacén padre', data: 'ALMA_NomPadre' },
-            {
-                title: 'Estado',
-                data: 'ALMA_Estado',
-                render: function (data: any) {
-                    if (data) {
-                        return '<input type="checkbox" checked disabled>';
-                    } else {
-                        return '<input type="checkbox" disabled>';
-                    }
-                },
-            },
+            { title: 'Nombres', data: 'ConqNombres' },
+            { title: 'Apellido Paterno', data: 'ConqApellidoPaterno' },
+            { title: 'Apellido Materno', data: 'ConqApellidoMaterno' },
+            { title: 'Edad', data: 'ConqEdad' },
+            { title: 'Celular | Teléfono', data: 'ConqMovil', },
+            { title: 'Correos', data: 'ConqCorreos', },
         ],
         drawCallback: function (settings: any) {
             (<any>$('button')).tooltip();
@@ -83,37 +68,22 @@ export class ConquistadoresComponent implements OnInit {
     };
 
     constructor(
-        // private repositoryService: RepositoryService,
-        // private almacenesService: AlmacenesService
         private contextService: ContextService,
         private notificationService: NotificationService,
+        private repositoryService: RepositoryService,
     ) { }
 
-    ngOnInit() {
-        // this.LoadLView();
-    }
+    ngOnInit() { }
 
-    createAlmacenForm(Mview: boolean) {
-        if (Mview) {
-            return new FormGroup({
-                ALMA_Codigo: new FormControl('', []),
-                ALMA_CodPadre: new FormControl('', []),
-                ALMA_Nombre: new FormControl('', [
-                    Validators.required,
-                    Validators.maxLength(100),
-                ]),
-                ALMA_Descripcion: new FormControl('', [
-                    Validators.required,
-                    Validators.maxLength(100),
-                ]),
-                ALMA_Estado: new FormControl(true, [Validators.required]),
-            });
-        } else {
-            return new FormGroup({
-                ALMA_Nombre: new FormControl('', [Validators.maxLength(100)]),
-                ALMA_CodPadre: new FormControl('', []),
-                ALMA_EstadoTxt: new FormControl('', []),
-            });
-        }
+    async Buscar(){
+        await this.repositoryService.GetConquistador({}).subscribe(
+            data => {
+                console.log(data);
+            },
+            error => {
+                console.log(error);
+                this.notificationService.showSmallMessage('Error al cargar el dashboard: ' + error, false);
+            }
+        );
     }
 }
