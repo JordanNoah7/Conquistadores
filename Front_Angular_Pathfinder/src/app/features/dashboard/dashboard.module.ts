@@ -11,8 +11,12 @@ import { RepositoryService } from 'src/app/core/services/repository.service';
         SharedModule,
         FeatureModule,
     ],
-    declarations: [DashboardComponent],
-    providers: [RepositoryService],
+    declarations: [
+        DashboardComponent
+    ],
+    providers: [
+        RepositoryService
+    ],
     entryComponents: []
 })
 export class DashboardModule { }

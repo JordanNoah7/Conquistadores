@@ -10,15 +10,25 @@ import { map, tap } from "rxjs/operators";
 export class RepositoryService {
     constructor(private requestService: GeneralService) { }
 
-    public GetConquistador(payload: Request): Observable<ConquistadorDTO> {
+    public GetConquistador(payload: Request): Observable<any> {
         return this.requestService.connectBackend("ObtenerConquistador", payload).pipe(
             map(response => {
-                console.log(response);
                 if (!!response) {
                     return response.conquistadorDTO;
                 }
                 return null;
             }),
+        );
+    }
+
+    public GetConquistadores(payload: Request): Observable<any> {
+        return this.requestService.connectBackend("ObtenerConquistadores", payload).pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
         );
     }
 }

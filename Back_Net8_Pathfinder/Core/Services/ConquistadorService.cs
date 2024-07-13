@@ -17,4 +17,17 @@ public partial class Service
             throw;
         }
     }
+
+    public async Task<ICollection<Conquistador>> GetConquistadores()
+    {
+        try
+        {
+            return await _conquistadorRepository.GetAll();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }
