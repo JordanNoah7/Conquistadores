@@ -13,28 +13,28 @@ import { SessionService } from './session.service';
 import { IpClientService } from './ipclient.service';
 import { ContextService } from './context.service';
 import { FilesService } from './files.service';
-import {EncryptService} from "./encrypt.service";
+import { EncryptService } from "./encrypt.service";
 
 export const services = [
-   AuthService,
-   BodyService,
-   CoreService,
-   LayoutService,
-   NotificationService,
+    AuthService,
+    BodyService,
+    CoreService,
+    LayoutService,
+    NotificationService,
 
-   FilesService,
-   RequestService,
-   RouterService,
-   SessionService,
-   SoundService,
-   StorageService,
-   UserService,
-   IpClientService,
-   ContextService,
-   EncryptService,
+    FilesService,
+    RequestService,
+    RouterService,
+    SessionService,
+    SoundService,
+    StorageService,
+    UserService,
+    IpClientService,
+    ContextService,
+    EncryptService,
 
-   fromApi.GeneralService,
-   fromApi.GeneralUserService,
+    fromApi.GeneralService,
+    fromApi.GeneralUserService,
 ];
 
 export * from './auth.service';

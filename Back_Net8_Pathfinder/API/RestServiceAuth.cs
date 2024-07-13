@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API;
 
 [ApiController]
-[Route("RESTService")]
+[Route("[Controller]")]
 public class RestServiceAuth : ControllerBase
 {
     #region [ Variables ]

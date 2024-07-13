@@ -10,7 +10,7 @@ import { map, tap } from "rxjs/operators";
 export class RepositoryService {
     constructor(private requestService: GeneralService) { }
 
-    public GetConquistador(payload: Request): Observable<ConquistadorDTO> {
+    public GetConquistador(payload: Request): Observable<any> {
         return this.requestService.connectBackend("ObtenerConquistador", payload).pipe(
             map(response => {
                 if (!!response) {
@@ -21,11 +21,11 @@ export class RepositoryService {
         );
     }
 
-    public GetConquistadores(payload: Request): Observable<ConquistadorDTO[]> {
+    public GetConquistadores(payload: Request): Observable<any> {
         return this.requestService.connectBackend("ObtenerConquistadores", payload).pipe(
             map(response => {
                 if (!!response) {
-                    return response.conquistadores;
+                    return response;
                 }
                 return null;
             })

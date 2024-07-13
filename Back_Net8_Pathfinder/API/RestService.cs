@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System.Collections.ObjectModel;
+using System.Security.Cryptography;
 using System.Text;
 using Core.DTO;
 using Core.Entities;
@@ -8,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API;
 
 [ApiController]
-[Route("RESTServiceCON")]
+[Route("[Controller]")]
 public class RestService : ControllerBase
 {
     #region [ Variables ]
@@ -74,6 +75,28 @@ public class RestService : ControllerBase
             var entidad = new { conquistadorDTO, TiempoSesion = 20 };
             
             return Ok(entidad);
+        }
+        catch (Exception e)
+        {
+            return BadRequest("Error al validar credenciales");
+        }
+    }
+
+    [HttpPost("ObtenerConquistadores")]
+    public async Task<IActionResult> ObtenerConquistadores()
+    {
+        try
+        {
+            var items = await _service.GetConquistadores();
+            ObservableCollection<Conquistador> conquistadores = new ObservableCollection<Conquistador>(items);
+            if(conquistadores != null && conquistadores.Count > 0)
+            {
+                return Ok(conquistadores);
+            }
+            else
+            {
+                return NotFound("No se encontrarón conquistadores registrados.");
+            }
         }
         catch (Exception e)
         {

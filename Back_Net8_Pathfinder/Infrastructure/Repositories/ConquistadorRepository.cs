@@ -26,4 +26,17 @@ public class ConquistadorRepository : IConquistadorRepository
             throw;
         }
     }
+
+    public async Task<ICollection<Conquistador>> GetAll()
+    {
+        try
+        {
+            return await _dbContext.Conquistadores.ToListAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

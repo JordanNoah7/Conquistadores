@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
         await this.repositoryService.GetConquistador(request).subscribe(
             data => {
                 this.conquistador = data;
-                this.birthdate = formatDate(this.conquistador.ConqFechaNacimiento, 'dd MMMM yyyy', 'es');
+                this.birthdate = formatDate(this.conquistador!.ConqFechaNacimiento, 'dd MMMM yyyy', 'es');
                 this.birthdate = this.birthdate.replace(/ /g, " de ");
             },
             error => {

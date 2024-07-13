@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NotificationService, ContextService } from 'src/app/core/services';
 import { RepositoryService } from 'src/app/core/services/repository.service';
+import { ConquistadorService } from 'src/app/core/services/services';
 
 @Component({
     selector: 'ns-ss',
@@ -23,11 +24,10 @@ export class ConquistadoresComponent implements OnInit {
     options: any = {
         pageLength: 25,
         paging: false,
-
         ajax: (data: any, callback: any, settings: any) => {
-            // this.almacenesService.ListadoAlmacenes$.subscribe((res: any) => {
-            //     callback({ aaData: res });
-            // });
+            this.conquistadorService.ListadoConquistadores$.subscribe((res: any) => {
+                callback({ aaData: res })
+            });
         },
         searching: false,
         buttons: [
@@ -71,14 +71,17 @@ export class ConquistadoresComponent implements OnInit {
         private contextService: ContextService,
         private notificationService: NotificationService,
         private repositoryService: RepositoryService,
+        private conquistadorService: ConquistadorService
     ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.Buscar();
+    }
 
-    async Buscar(){
-        await this.repositoryService.GetConquistador({}).subscribe(
+    async Buscar() {
+        await this.repositoryService.GetConquistadores({}).subscribe(
             data => {
-                console.log(data);
+                this.conquistadorService.ListadoConquistadores$.next(data);
             },
             error => {
                 console.log(error);
