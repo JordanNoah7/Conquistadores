@@ -28,8 +28,8 @@ public class RestServiceAuth : ControllerBase
         _configuration = configuration;
         _service = service;
         _emailService = emailService;
-        key = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("key"));
-        iv = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("iv"));
+        key = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("key")!);
+        iv = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("iv")!);
     }
 
     #endregion
@@ -92,7 +92,7 @@ public class RestServiceAuth : ControllerBase
             tutorDto.Sesion = sesionDto;
             return Ok(tutorDto);
         }
-        catch (Exception e)
+        catch
         {
             return BadRequest("Error al validar credenciales");
         }
@@ -143,7 +143,7 @@ public class RestServiceAuth : ControllerBase
             responseAuth.Mensaje = "Le hemos enviado un correo electrónico con su nueva contraseña. Deberá cambiarla la próxima vez que inicie sesión.";
             return Ok(responseAuth);
         }
-        catch (Exception e)
+        catch
         {
             return BadRequest("Error al obtener el correo del usuario.");
         }
@@ -166,37 +166,37 @@ public class RestServiceAuth : ControllerBase
             await _service.UpdateUsuarioAsync(usuario);
             return Ok(true);
         }
-        catch (Exception e)
+        catch
         {
             return BadRequest("Error al cambiar la contraseña.");
         }
     }
 
-    [HttpGet("PruebaGet/{id}")]
-    public async Task<IActionResult> PruebaGet(int id, [FromQuery] string nombre)
-    {
-        try
-        {
-            return Ok("_usuarioDto");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
-    }
+    //[HttpGet("PruebaGet/{id}")]
+    //public async Task<IActionResult> PruebaGet(int id, [FromQuery] string nombre)
+    //{
+    //    try
+    //    {
+    //        return Ok("_usuarioDto");
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        Console.WriteLine(e);
+    //        throw;
+    //    }
+    //}
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateItem(int id, [FromQuery] string name, [FromBody] UsuarioDTO request)
-    {
-        if (request == null)
-        {
-            return BadRequest("Invalid request body");
-        }
+    //[HttpPut("{id}")]
+    //public async Task<IActionResult> UpdateItem(int id, [FromQuery] string name, [FromBody] UsuarioDTO request)
+    //{
+    //    if (request == null)
+    //    {
+    //        return BadRequest("Invalid request body");
+    //    }
 
-        // Lógica para manejar la actualización del item con id y nombre de la query string
-        return Ok(new { Id = id, Name = name, Updated = request });
-    }
+    //    // Lógica para manejar la actualización del item con id y nombre de la query string
+    //    return Ok(new { Id = id, Name = name, Updated = request });
+    //}
 
     #endregion
 

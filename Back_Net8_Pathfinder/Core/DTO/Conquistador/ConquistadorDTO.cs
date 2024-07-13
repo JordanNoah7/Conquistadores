@@ -1,5 +1,4 @@
 ﻿using Core.Entities;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.DTO;
 

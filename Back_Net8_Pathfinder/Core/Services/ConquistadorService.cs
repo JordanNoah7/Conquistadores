@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using Core.DTO;
+using Core.Entities;
 using Core.Interfaces;
 
 namespace Core.Services;
@@ -18,11 +19,11 @@ public partial class Service
         }
     }
 
-    public async Task<ICollection<Conquistador>> GetConquistadores()
+    public async Task<ICollection<ConquistadorList_DTO>> GetConquistadoresAsync()
     {
         try
         {
-            return await _conquistadorRepository.GetAll();
+            return await _conquistadorRepository.GetAllAsync();
         }
         catch (Exception e)
         {

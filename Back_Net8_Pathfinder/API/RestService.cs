@@ -26,8 +26,8 @@ public class RestService : ControllerBase
         _configuration = configuration;
         _service = service;
         _emailService = emailService;
-        key = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("key"));
-        iv = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("iv"));
+        key = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("key")!);
+        iv = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("iv")!);
     }
     #endregion
 
@@ -37,6 +37,11 @@ public class RestService : ControllerBase
     {
         try
         {
+            if(!await ValidarSesion(request.UsuaId))
+            {
+                return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
+            }
+
             Conquistador conquistador = await _service.GetConquistadorByUsuarioAsync(request.UsuaId);
             if (conquistador == null)
             {
@@ -53,14 +58,14 @@ public class RestService : ControllerBase
                 claseDTO.CopyFrom(ref clase);
             }
 
-            if(conquistador.UnidId != null && conquistador.UnidId != 0)
+            if (conquistador.UnidId != null && conquistador.UnidId != 0)
             {
                 UnidadDTO unidadDTO = new UnidadDTO();
                 var unidad = conquistador.ConqUnidad;
-                unidadDTO.CopyFrom(ref unidad);
+                unidadDTO.CopyFrom(ref unidad!);
             }
 
-            if(conquistador.ConqEspecialidades != null)
+            if (conquistador.ConqEspecialidades != null)
             {
                 conquistadorDTO.ConqEspecialidades = new List<EspecialidadDTO>();
                 foreach (ConquistadorEspecialidad conqes in conquistador.ConqEspecialidades)
@@ -73,22 +78,26 @@ public class RestService : ControllerBase
             }
 
             var entidad = new { conquistadorDTO, TiempoSesion = 20 };
-            
+
             return Ok(entidad);
         }
-        catch (Exception e)
+        catch
         {
             return BadRequest("Error al validar credenciales");
         }
     }
 
     [HttpPost("ObtenerConquistadores")]
-    public async Task<IActionResult> ObtenerConquistadores()
+    public async Task<IActionResult> ObtenerConquistadores([FromBody] Request request)
     {
         try
         {
-            var items = await _service.GetConquistadores();
-            ObservableCollection<Conquistador> conquistadores = new ObservableCollection<Conquistador>(items);
+            if (!await ValidarSesion(request.UsuaId))
+            {
+                return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
+            }
+
+            ObservableCollection<ConquistadorList_DTO> conquistadores = new ObservableCollection<ConquistadorList_DTO>(await _service.GetConquistadoresAsync());
             if(conquistadores != null && conquistadores.Count > 0)
             {
                 return Ok(conquistadores);
@@ -98,7 +107,7 @@ public class RestService : ControllerBase
                 return NotFound("No se encontrarón conquistadores registrados.");
             }
         }
-        catch (Exception e)
+        catch
         {
             return BadRequest("Error al validar credenciales");
         }
@@ -160,6 +169,16 @@ public class RestService : ControllerBase
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    private async Task<bool> ValidarSesion(int UsuaId)
+    {
+        try
+        {
+            Sesion sesion = await _service.GetOneSesionAsync(UsuaId);
+            return sesion != null;
+        }
+        catch { throw; }
     }
     #endregion
 }

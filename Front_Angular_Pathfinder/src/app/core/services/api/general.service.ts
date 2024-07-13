@@ -6,6 +6,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { SessionService } from '../session.service';
 import { RouterService } from '../router.service';
+import { NotificationService } from '../notification.service';
 
 @Injectable()
 export class GeneralService {
@@ -16,7 +17,8 @@ export class GeneralService {
         private core: CoreService,
         private http: HttpClient,
         private router: RouterService,
-        private sessionService: SessionService
+        private sessionService: SessionService,
+        private notificationService: NotificationService
     ) {
         this.url = environment.appsettings.http['/api'].target;
         if (!(this.url.slice(this.url.length - 1) == '/')) {
@@ -46,7 +48,12 @@ export class GeneralService {
                 }
             }),
             catchError((error: HttpErrorResponse) => {
-                if (error.status === 404) {
+                console.log(error);
+                if (error.status === 401) {
+                    this.notificationService.showSmallMessage(error.error, false);
+                    this.sessionService.logout();
+                }
+                else if (error.status === 404) {
                     this.router.redirectToError404();
                 } else if (error.status === 500) {
                     this.router.redirectToError500();

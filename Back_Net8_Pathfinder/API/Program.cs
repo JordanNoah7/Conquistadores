@@ -28,7 +28,7 @@ if (app.Environment.IsDevelopment())
 }
 #endif
 app.UseMiddleware<CORSMiddleware>();
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 

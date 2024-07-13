@@ -23,4 +23,17 @@ public partial class Service
             throw;
         }
     }
+
+    public async Task<Sesion> GetOneSesionAsync(int UsuaId)
+    {
+        try
+        {
+            return await _sesionRepository.GetOneAsync(UsuaId);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }
