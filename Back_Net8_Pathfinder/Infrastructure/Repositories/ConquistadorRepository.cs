@@ -39,7 +39,7 @@ public class ConquistadorRepository : IConquistadorRepository
     {
         try
         {
-            using(SqlConnection cnx = new SqlConnection(CadCon))
+            using (SqlConnection cnx = new SqlConnection(CadCon))
             {
                 try
                 {
@@ -55,5 +55,16 @@ public class ConquistadorRepository : IConquistadorRepository
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    public async Task<bool> Insert(Conquistador conquistador)
+    {
+        try
+        {
+            await _dbContext.Conquistadores.AddAsync(conquistador);
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+        catch { return false; }
     }
 }
