@@ -45,7 +45,9 @@ export class ConquistadoresComponent implements OnInit {
                 title: 'Editar',
                 data: 'ConqId',
                 render: function (data: any, type: any, row: any, meta: any) {
-                    return '<button title="Editar" class="editar btn btn-default txt-color-yellow btn-circle"><i class="fa fa-edit"></i></button>';
+                    return `<button title="Editar" class="editar btn btn-default txt-color-yellow btn-circle">
+                                <i class="fa fa-edit"></i>
+                            </button>`;
                 },
             },
             { title: 'Nombres', data: 'ConqNombres' },
