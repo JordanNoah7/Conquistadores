@@ -1,0 +1,10 @@
+﻿using Core.DTO;
+using Core.Entities;
+
+namespace Core.Interfaces;
+
+public interface IConquistadorRepository
+{
+    Task<Conquistador> GetByUsuarioAsync(int id);
+    Task<ICollection<ConquistadorList_DTO>> GetAllAsync();
+}

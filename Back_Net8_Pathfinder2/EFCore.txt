@@ -1,0 +1,12 @@
+Add Migration:
+ef migrations add --project Infrastructure\Infrastructure.csproj --startup-project API\API.csproj --context Infrastructure.Data.AppDbContext --configuration Debug ConqSexo_Conquistadores --output-dir Migrations
+
+Delete Last Migration:
+ef migrations remove
+
+Update Migration:
+ef database update --project Infrastructure\Infrastructure.csproj --startup-project API\API.csproj --context Infrastructure.Data.AppDbContext --configuration Debug 20240707052428_ConqSexo_Conquistadores
+
+
+
+Windows + control + D -> Crea un nuevo escritorio
