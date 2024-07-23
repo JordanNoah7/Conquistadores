@@ -6,6 +6,7 @@ namespace Core.Entities;
 
 public class Asistencia
 {
+    #region [ Propiedades ]
     [Column(TypeName = "int")]
     public int ConqId { get; set; }
     [Column(TypeName = "int")]
@@ -28,6 +29,11 @@ public class Asistencia
     public byte AsisTotal { get; set; }
     [Column(TypeName = "decimal(9,3)")]
     public float AsisMonto { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public Conquistador AsisConquistador { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]

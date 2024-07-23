@@ -5,6 +5,7 @@ namespace Core.Entities;
 
 public class Cronograma
 {
+    #region [ Propiedades ]
     [Column(TypeName = "int")]
     public int ClasId { get; set; }
     [Column(TypeName = "int")]
@@ -17,6 +18,11 @@ public class Cronograma
     public DateTime CronFechaInicio { get; set; }
     [Column(TypeName = "datetime")]
     public DateTime CronFechaFin { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public ItemCuadernillo CronItemCuadernillo { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]

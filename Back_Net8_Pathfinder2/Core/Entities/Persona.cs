@@ -5,6 +5,7 @@ namespace Core.Entities;
 
 public class Persona
 {
+    #region [ Propiedades ]
     [Key]
     public int PersId { get; set; }
     [Column(TypeName = "nchar(8)")]
@@ -37,6 +38,11 @@ public class Persona
     public string PersCiudad { get; set; }
     [Column(TypeName = "int")]
     public int UsuaId { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public Usuario PersUsuario { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]

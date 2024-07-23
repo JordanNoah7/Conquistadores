@@ -6,6 +6,7 @@ namespace Core.Entities;
 
 public class Usuario
 {
+    #region [ Propiedades ]
     [Key]
     public int UsuaId { get; set; }
     [Column(TypeName = "nvarchar(20)")]
@@ -14,6 +15,13 @@ public class Usuario
     public string UsuaContrasenia { get; set; }
     [Column(TypeName = "bit")]
     public bool? UsuaCambiarContrasenia { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public ICollection<Sesion> UsuaSesiones { get; set; }
+    public Persona UsuaPersona { get; set; }
+    public ICollection<UsuarioRol> UsuaRoles { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]

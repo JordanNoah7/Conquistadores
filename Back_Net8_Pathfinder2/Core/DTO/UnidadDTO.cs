@@ -9,7 +9,7 @@ public class UnidadDTO
     public string UnidLema { get; set; }
     public string UnidGritoGuerra { get; set; }
     public string UnidDescripcion { get; set; }
-    
+
     public ICollection<ConquistadorDTO> UnidConquistadores { get; set; }
 
     public void CopyTo(ref Unidad unidad)

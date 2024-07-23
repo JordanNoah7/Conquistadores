@@ -5,6 +5,7 @@ namespace Core.Entities;
 
 public class TutorConquistador
 {
+    #region [ Propiedades ]
     [Column(TypeName = "int")]
     public int TutoId { get; set; }
     [Column(TypeName = "int")]
@@ -13,6 +14,13 @@ public class TutorConquistador
     public string TucoTipoParentescoTabla { get; set; }
     [Column(TypeName = "int")]
     public int TucoTipoParentescoId { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public Tutor TucoTutor { get; set; }
+    public Conquistador TucoConquistador { get; set; }
+    public Tipo TucoTipoParentesco { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]

@@ -5,10 +5,17 @@ namespace Core.Entities;
 
 public class UsuarioRol
 {
+    #region [ Propiedades ]
     [Column(TypeName = "int")]
     public int UsuaId { get; set; }
     [Column(TypeName = "int")]
     public int RoleId { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public Usuario UsroUsuario { get; set; }
+    public Rol UsroRol { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]

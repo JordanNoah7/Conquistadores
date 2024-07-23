@@ -18,6 +18,7 @@ public class Tipo
 
     #region [ Relaciones ]
     public ICollection<ActividadConquistador> TipoActividades { get; set; }
+    public ICollection<TutorConquistador> TipoParentescos { get; set; }
     #endregion
 
     #region [ Auditoria ]

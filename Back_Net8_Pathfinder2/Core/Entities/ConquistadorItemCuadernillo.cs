@@ -5,6 +5,7 @@ namespace Core.Entities;
 
 public class ConquistadorItemCuadernillo
 {
+    #region [ Propiedades ]
     [Column(TypeName = "int")]
     public int ConqId { get; set; }
     [Column(TypeName = "int")]
@@ -17,6 +18,12 @@ public class ConquistadorItemCuadernillo
     public DateTime CoicFechaCompleto { get; set; }
     [Column(TypeName = "nvarchar(50)")]
     public string CoicFirma { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public Conquistador CoicConquistador { get; set; }
+    public ItemCuadernillo CoicItemCuadernillo { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]

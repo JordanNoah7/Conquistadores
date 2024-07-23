@@ -6,6 +6,7 @@ namespace Core.Entities;
 
 public class Especialidad
 {
+    #region [ Propiedades ]
     [Column(TypeName = "int")]
     public int CateId { get; set; }
     [Column(TypeName = "int")]
@@ -14,6 +15,12 @@ public class Especialidad
     public string EspeNombre { get; set; }
     [Column(TypeName = "nvarchar(250)")]
     public string EspeDescripcion { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public ICollection<ConquistadorEspecialidad> EspeConquistadores { get; set; }
+    public Categoria EspeCategoria { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]

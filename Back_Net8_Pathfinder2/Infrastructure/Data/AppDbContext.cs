@@ -64,7 +64,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         modelBuilder.Entity<Conquistador>()
             .Property(c => c.AudiFechCrea)
             .HasDefaultValueSql("GETDATE()");
-        
+
         modelBuilder.Entity<ConquistadorEspecialidad>()
             .Property(c => c.AudiFechCrea)
             .HasDefaultValueSql("GETDATE()");
@@ -108,11 +108,11 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         modelBuilder.Entity<Tipo>()
             .Property(s => s.AudiFechCrea)
             .HasDefaultValueSql("GETDATE()");
-        
+
         modelBuilder.Entity<Tutor>()
             .Property(s => s.AudiFechCrea)
             .HasDefaultValueSql("GETDATE()");
-        
+
         modelBuilder.Entity<TutorConquistador>()
             .Property(s => s.AudiFechCrea)
             .HasDefaultValueSql("GETDATE()");
@@ -136,7 +136,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         #region [ ForeigKeys ]
 
-        //// ActividadConquistador
+        #region [ ActividadConquistador ]
         modelBuilder.Entity<ActividadConquistador>()
             .HasKey(ac => new { ac.ActiId, ac.ConqId });
 
@@ -154,167 +154,184 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             .HasOne(ac => ac.AccoTipoParticipacion)
             .WithMany(t => t.TipoActividades)
             .HasForeignKey(ac => new { ac.AccoTipoParticipacionTabla, ac.AccoTipoParticipacionId });
+        #endregion
 
-        ////Asistencia
+        #region [ Asistencia ]
         modelBuilder.Entity<Asistencia>()
             .HasKey(a => new { a.ConqId, a.AsisId });
 
-        //modelBuilder.Entity<Asistencia>()
-        //    .HasOne(a => a.AsisConquistador)
-        //    .WithMany(c => c.ConqAsistencias)
-        //    .HasForeignKey(a => a.ConqId);
+        modelBuilder.Entity<Asistencia>()
+            .HasOne(a => a.AsisConquistador)
+            .WithMany(c => c.ConqAsistencias)
+            .HasForeignKey(a => a.ConqId);
+        #endregion
 
-        ////Asistencia
+        #region [ ClaseConquistador ]
         modelBuilder.Entity<ClaseConquistador>()
             .HasKey(a => new { a.ConqId, a.ClasId });
 
-        ////Conquistador
-        //modelBuilder.Entity<Conquistador>()
-        //    .HasOne(c => c.ConqClase)
-        //    .WithMany(c => c.ClasConquistadores)
-        //    .HasForeignKey(c => c.ClasId);
+        modelBuilder.Entity<ClaseConquistador>()
+            .HasOne(cc => cc.ClcoClase)
+            .WithMany(c => c.ClasConquistadores)
+            .HasForeignKey(cc => cc.ClasId);
 
-        //modelBuilder.Entity<Conquistador>()
-        //    .HasOne(c => c.ConqUnidad)
-        //    .WithMany(u => u.UnidConquistadores)
-        //    .HasForeignKey(c => c.UnidId);
+        modelBuilder.Entity<ClaseConquistador>()
+            .HasOne(cc => cc.ClcoConquistador)
+            .WithMany(c => c.ConqClases)
+            .HasForeignKey(cc => cc.ConqId);
+        #endregion
 
-        // ConquistadorEspecialidad
+        #region [ ConquistadorEspecialidad ]
         modelBuilder.Entity<ConquistadorEspecialidad>()
             .HasKey(e => new { e.ConqId, e.EspeId });
 
-        //modelBuilder.Entity<ConquistadorEspecialidad>()
-        //    .HasOne(ce => ce.CoesConquistador)
-        //    .WithMany(c => c.ConqEspecialidades)
-        //    .HasForeignKey(ce => ce.ConqId);
+        modelBuilder.Entity<ConquistadorEspecialidad>()
+            .HasOne(ce => ce.CoesConquistador)
+            .WithMany(c => c.ConqEspecialidades)
+            .HasForeignKey(ce => ce.ConqId);
 
-        //modelBuilder.Entity<ConquistadorEspecialidad>()
-        //    .HasOne(ce => ce.CoesEspecialidad)
-        //    .WithMany(e => e.EspeConquistadores)
-        //    .HasForeignKey(ce => ce.EspeId);
+        modelBuilder.Entity<ConquistadorEspecialidad>()
+            .HasOne(ce => ce.CoesEspecialidad)
+            .WithMany(e => e.EspeConquistadores)
+            .HasForeignKey(ce => ce.EspeId);
+        #endregion
 
-        //ConquistadorItemCuadernillo
+        #region [ ConquistadorItemCuadernillo ]
         modelBuilder.Entity<ConquistadorItemCuadernillo>()
             .HasKey(e => new { e.ConqId, e.ClasId, e.ItcuId });
 
-        //modelBuilder.Entity<ConquistadorItemCuadernillo>()
-        //    .HasOne(cic => cic.CoicConquistador)
-        //    .WithMany(c => c.ConqItemsCuadernillo)
-        //    .HasForeignKey(cic => cic.ConqId)
-        //    .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity<ConquistadorItemCuadernillo>()
+            .HasOne(cic => cic.CoicConquistador)
+            .WithMany(c => c.ConqItemsCuadernillo)
+            .HasForeignKey(cic => cic.ConqId);
 
-        //modelBuilder.Entity<ConquistadorItemCuadernillo>()
-        //    .HasOne(cic => cic.CoicItemCuadernillo)
-        //    .WithMany(ic => ic.ItcuConquistadores)
-        //    .HasForeignKey(cic => cic.ItcuId)
-        //    .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity<ConquistadorItemCuadernillo>()
+            .HasOne(cic => cic.CoicItemCuadernillo)
+            .WithMany(ic => ic.ItcuConquistadores)
+            .HasForeignKey(cic => new { cic.ClasId, cic.ItcuId });
+        #endregion
 
-        // Cronograma
+        #region [ Cronograma ]
         modelBuilder.Entity<Cronograma>()
             .HasKey(e => new { e.ClasId, e.ItcuId, e.CronAno });
 
-        //modelBuilder.Entity<Cronograma>()
-        //    .HasOne(c => c.CronItem)
-        //    .WithMany(ic => ic.ItcuCronogramas)
-        //    .HasForeignKey(c => c.ItcuId);
+        modelBuilder.Entity<Cronograma>()
+            .HasOne(c => c.CronItemCuadernillo)
+            .WithMany(ic => ic.ItcuCronogramas)
+            .HasForeignKey(c => new { c.ClasId, c.ItcuId });
+        #endregion
 
-        // Especialidad
+        #region [ Especialidad ]
         modelBuilder.Entity<Especialidad>()
             .HasKey(e => new { e.CateId, e.EspeId });
 
-        //modelBuilder.Entity<Especialidad>()
-        //    .HasOne(e => e.EspeCategoria)
-        //    .WithMany(c => c.CateEspecialidades)
-        //    .HasForeignKey(e => e.CateId);
+        modelBuilder.Entity<Especialidad>()
+            .HasOne(e => e.EspeCategoria)
+            .WithMany(c => c.CateEspecialidades)
+            .HasForeignKey(e => e.CateId);
+        #endregion
 
-        // FichaMedica
+        #region [ FichaMedica ]
         modelBuilder.Entity<FichaMedica>()
-            .HasKey(e => new { e.ConqId, e.FimeId });
+            .HasKey(e => new { e.ConqId, e.FimeId, e.FimeAnio });
 
-        // Inscripcion
+        modelBuilder.Entity<FichaMedica>()
+            .HasOne(fm => fm.FimeConquistador)
+            .WithMany(c => c.ConqFichasMedicas)
+            .HasForeignKey(e => e.ConqId);
+        #endregion
+
+        #region [ Inscripcion ]
         modelBuilder.Entity<Inscripcion>()
             .HasKey(i => new { i.ConqId, i.InscAnio });
 
-        //modelBuilder.Entity<Inscripcion>()
-        //    .HasOne(i => i.InscConquistador)
-        //    .WithMany(c => c.ConqInscripciones)
-        //    .HasForeignKey(i => i.ConqId);
+        modelBuilder.Entity<Inscripcion>()
+            .HasOne(i => i.InscConquistador)
+            .WithMany(c => c.ConqInscripciones)
+            .HasForeignKey(i => i.ConqId);
+        #endregion
 
-        // ItemCuadernillo
+        #region [ ItemCuadernillo ]
         modelBuilder.Entity<ItemCuadernillo>()
             .HasKey(i => new { i.ClasId, i.ItcuId });
 
-        //modelBuilder.Entity<ItemCuadernillo>()
-        //    .HasOne(ic => ic.ItcuClase)
-        //    .WithMany(c => c.ClasItemsCuadernillo)
-        //    .HasForeignKey(ic => ic.ClasId);
+        modelBuilder.Entity<ItemCuadernillo>()
+            .HasOne(ic => ic.ItcuClase)
+            .WithMany(c => c.ClasItemsCuadernillo)
+            .HasForeignKey(ic => ic.ClasId);
+        #endregion
 
-        //// RolUsuario
-        //modelBuilder.Entity<UsuarioRol>()
-        //    .HasKey(ru => new { ru.RousId, ru.UsuaId, ru.RoleId });
-
-        //modelBuilder.Entity<UsuarioRol>()
-        //    .HasOne(ru => ru.RousUsuario)
-        //    .WithMany(u => u.UsuaRoles)
-        //    .HasForeignKey(ru => ru.UsuaId);
-
-        //modelBuilder.Entity<UsuarioRol>()
-        //    .HasOne(ru => ru.RousRol)
-        //    .WithMany(r => r.RoleUsuarios)
-        //    .HasForeignKey(ru => ru.RoleId);
-
-        // Sesion
+        #region [ Sesion ]
         modelBuilder.Entity<Sesion>()
             .HasKey(s => new { s.UsuaId, s.SesiId });
 
-        //modelBuilder.Entity<Sesion>()
-        //    .HasOne(s => s.SesiUsuario)
-        //    .WithMany(u => u.UsuaSesiones)
-        //    .HasForeignKey(s => s.UsuaId);
+        modelBuilder.Entity<Sesion>()
+            .HasOne(s => s.SesiUsuario)
+            .WithMany(u => u.UsuaSesiones)
+            .HasForeignKey(s => s.UsuaId);
+        #endregion
 
-        // Tipo
+        #region [ Tipo ]
         modelBuilder.Entity<Tipo>()
             .HasKey(t => new { t.TipoTabla, t.TipoId });
+        #endregion
 
-        // TutorConquistador
+        #region [ TutorConquistador ]
         modelBuilder.Entity<TutorConquistador>()
             .HasKey(tc => new { tc.TutoId, tc.ConqId });
 
-        //modelBuilder.Entity<TutorConquistador>()
-        //    .HasOne(tc => tc.TucoParentesco)
-        //    .WithMany(t => t.TipoParentescos)
-        //    .HasForeignKey(tc => tc.TucoParentescoId);
+        modelBuilder.Entity<TutorConquistador>()
+            .HasOne(tc => tc.TucoTutor)
+            .WithMany(t => t.TutoConquistadores)
+            .HasForeignKey(tc => tc.TutoId);
 
-        //modelBuilder.Entity<TutorConquistador>()
-        //    .HasOne(tc => tc.TucoTutor)
-        //    .WithMany(t => t.TutoConquistadores)
-        //    .HasForeignKey(tc => tc.TutoId);
+        modelBuilder.Entity<TutorConquistador>()
+            .HasOne(tc => tc.TucoConquistador)
+            .WithMany(c => c.ConqTutores)
+            .HasForeignKey(tc => tc.ConqId);
 
-        //modelBuilder.Entity<TutorConquistador>()
-        //    .HasOne(tc => tc.TucoConquistador)
-        //    .WithMany(c => c.ConqTutores)
-        //    .HasForeignKey(tc => tc.ConqId);
+        modelBuilder.Entity<TutorConquistador>()
+            .HasOne(tc => tc.TucoTipoParentesco)
+            .WithMany(t => t.TipoParentescos)
+            .HasForeignKey(tc => new { tc.TucoTipoParentescoTabla, tc.TucoTipoParentescoId });
+        #endregion
 
-        // UnidadConquistador
+        #region [ UnidadConquistador ]
         modelBuilder.Entity<UnidadConquistador>()
             .HasKey(uc => new { uc.UnidId, uc.ConqId, uc.UncoAno });
 
-        //// Usuario
-        //modelBuilder.Entity<Usuario>()
-        //    .HasOne(u => u.UsuaConquistador)
-        //    .WithOne(c => c.ConqUsuario)
-        //    .HasForeignKey<Conquistador>(c => c.UsuaId);
+        modelBuilder.Entity<UnidadConquistador>()
+            .HasOne(uc => uc.UncoUnidad)
+            .WithMany(u => u.UnidConquistadores)
+            .HasForeignKey(uc => uc.UnidId);
 
-        //modelBuilder.Entity<Usuario>()
-        //    .HasOne(u => u.UsuaTutor)
-        //    .WithOne(t => t.TutoUsuario)
-        //    .HasForeignKey<Tutor>(t => t.UsuaId)
-        //    .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity<UnidadConquistador>()
+            .HasOne(uc => uc.UncoConquistador)
+            .WithMany(c => c.ConqUnidades)
+            .HasForeignKey(uc => uc.ConqId);
+        #endregion
 
-        // UsuarioRol
+        #region [ Usuario ]
+        modelBuilder.Entity<Usuario>()
+            .HasOne(u => u.UsuaPersona)
+            .WithOne(p => p.PersUsuario)
+            .HasForeignKey<Persona>(c => c.UsuaId);
+        #endregion
+
+        #region [ UsuarioRol ]
         modelBuilder.Entity<UsuarioRol>()
             .HasKey(ur => new { ur.UsuaId, ur.RoleId });
 
+        modelBuilder.Entity<UsuarioRol>()
+            .HasOne(ru => ru.UsroUsuario)
+            .WithMany(u => u.UsuaRoles)
+            .HasForeignKey(ru => ru.UsuaId);
+
+        modelBuilder.Entity<UsuarioRol>()
+            .HasOne(ru => ru.UsroRol)
+            .WithMany(r => r.RoleUsuarios)
+            .HasForeignKey(ru => ru.RoleId);
+        #endregion
         #endregion
     }
 }

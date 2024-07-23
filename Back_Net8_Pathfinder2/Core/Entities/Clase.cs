@@ -6,12 +6,19 @@ namespace Core.Entities;
 
 public class Clase
 {
+    #region [ Propiedades ]
     [Key]
     public int ClasId { get; set; }
     [Column(TypeName = "nvarchar(30)")]
     public string ClasNombre { get; set; }
     [Column(TypeName = "nvarchar(250)")]
     public string ClasDescripcion { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public ICollection<ClaseConquistador> ClasConquistadores { get; set; }
+    public ICollection<ItemCuadernillo> ClasItemsCuadernillo { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]

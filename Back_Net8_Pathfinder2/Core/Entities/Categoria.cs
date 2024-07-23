@@ -6,6 +6,7 @@ namespace Core.Entities;
 
 public class Categoria
 {
+    #region [ Propiedades ]
     [Key]
     public int CateId { get; set; }
     [Column(TypeName = "nvarchar(25)")]
@@ -14,6 +15,11 @@ public class Categoria
     public string CateDescripcion { get; set; }
     [Column(TypeName = "nvarchar(10)")]
     public string CateColor { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public ICollection<Especialidad> CateEspecialidades { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]

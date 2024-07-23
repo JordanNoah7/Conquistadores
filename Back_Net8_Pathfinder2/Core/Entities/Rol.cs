@@ -6,12 +6,18 @@ namespace Core.Entities;
 
 public class Rol
 {
+    #region [ Propiedades ]
     [Key]
     public int RoleId { get; set; }
     [Column(TypeName = "nvarchar(30)")]
     public string RoleNombre { get; set; }
     [Column(TypeName = "nvarchar(250)")]
     public string RoleDescripcion { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public ICollection<UsuarioRol> RoleUsuarios { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]

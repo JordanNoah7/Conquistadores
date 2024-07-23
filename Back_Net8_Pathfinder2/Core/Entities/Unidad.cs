@@ -5,6 +5,7 @@ namespace Core.Entities;
 
 public class Unidad
 {
+    #region [ Propiedades ]
     [Key]
     public int UnidId { get; set; }
     [Column(TypeName = "nvarchar(50)")]
@@ -15,6 +16,11 @@ public class Unidad
     public string UnidGritoGuerra { get; set; }
     [Column(TypeName = "nvarchar(max)")]
     public string UnidDescripcion { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public ICollection<UnidadConquistador> UnidConquistadores { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]

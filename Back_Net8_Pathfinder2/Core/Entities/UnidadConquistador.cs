@@ -5,6 +5,7 @@ namespace Core.Entities;
 
 public class UnidadConquistador
 {
+    #region [ Propiedades ]
     [Column(TypeName = "int")]
     public int UnidId { get; set; }
     [Column(TypeName = "int")]
@@ -15,6 +16,12 @@ public class UnidadConquistador
     public string UncoCargoTabla { get; set; }
     [Column(TypeName = "int")]
     public int UncoCargoId { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public Unidad UncoUnidad { get; set; }
+    public Conquistador UncoConquistador { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]

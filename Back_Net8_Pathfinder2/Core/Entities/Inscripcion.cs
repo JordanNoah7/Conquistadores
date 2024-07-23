@@ -5,6 +5,7 @@ namespace Core.Entities;
 
 public class Inscripcion
 {
+    #region [ Propiedades ]
     [Column(TypeName = "int")]
     public int ConqId { get; set; }
     [Column(TypeName = "int")]
@@ -15,6 +16,11 @@ public class Inscripcion
     public float InscMonto { get; set; }
     [Column(TypeName = "bit")]
     public bool InscCompleto { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public Conquistador InscConquistador { get; set; }
+    #endregion
 
     #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]
