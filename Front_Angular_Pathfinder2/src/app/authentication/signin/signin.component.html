@@ -1,0 +1,69 @@
+<div class="blur-bg-images"></div>
+<div class="container">
+    <div class="auth-container">
+        <div class="card shadow mt-3 bg-body rounded">
+            <div class="card-body p-0">
+                <div class="row auth-main">
+                    <div class="col-sm-6 px-0 d-none d-md-block">
+                        <carousel>
+                            <slide *ngFor="let slide of slides; let index=index" class="carousel-dark">
+                                <img [src]="slide.image" alt="image slide" class="d-block w-100 rounded-start" style="max-height: 90vh;display: block; width: 100%;">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>{{slide.title}}</h5>
+                                    <p>{{slide.text}}</p>
+                                </div>
+                            </slide>
+                        </carousel>
+                    </div>
+                    <div class="col-sm-6 auth-form-section">
+                        <div class="form-section">
+                            <div class="auth-wrapper">
+                                <img class="img-fluid mb-3" src="/assets/images/logotipo.png" alt="logo-empresa">
+                                <h2 class="login-title">Iniciar sesi&oacute;n</h2>
+                                <form class="validate-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                            <mat-form-field class="example-full-width" appearance="outline">
+                                                <mat-label>Usuario</mat-label>
+                                                <input matInput formControlName="username" />
+                                                <mat-icon matSuffix>face</mat-icon>
+                                                <mat-error *ngIf="authForm.get('username').hasError('required')">
+                                                    Debe ingresar su usuario
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
+                                            <mat-form-field class="example-full-width" appearance="outline">
+                                                <mat-label>Contrase&ntilde;a</mat-label>
+                                                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                                                <a style="margin-left: -35px;" class="show-pwd-icon" href="#" onClick="return false;" matSuffix (click)="hide = !hide"
+                                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                                </a>
+                                                <mat-error *ngIf="authForm.get('password').hasError('required')">
+                                                    Debe ingresar su contrase&ntilde;a
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                                    <div class="container-auth-form-btn">
+                                        <div style="text-align:center">
+                                            <button mat-raised-button color="primary" [class.auth-spinner]="loading" [disabled]="loading" class="auth-form-btn" [disabled]="!authForm.valid "
+                                                type="submit">
+                                                <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
+                                                Autenticar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

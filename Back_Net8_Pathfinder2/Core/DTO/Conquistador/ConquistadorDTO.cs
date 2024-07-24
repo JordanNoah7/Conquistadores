@@ -23,36 +23,36 @@ public class ConquistadorDTO
     public ClaseDTO ConqClase { get; set; }
     public UnidadDTO ConqUnidad { get; set; }
     public ICollection<EspecialidadDTO> ConqEspecialidades { get; set; }
-    
-    //public void CopyTo(ref Conquistador conquistador)
-    //{
-    //    conquistador.ConqId = ConqId;
-    //    conquistador.ConqDni = ConqDni;
-    //    conquistador.ConqNombres = ConqNombres;
-    //    conquistador.ConqApellidoPaterno = ConqApellidoPaterno;
-    //    conquistador.ConqApellidoMaterno = ConqApellidoMaterno;
-    //    conquistador.ConqFechaNacimiento = ConqFechaNacimiento;
-    //    conquistador.ConqFechaInvestidura = ConqFechaInvestidura;
-    //    conquistador.ConqCorreoPersonal = ConqCorreoPersonal;
-    //    conquistador.ConqCorreoCorporativo = ConqCorreoCorporativo;
-    //    conquistador.ConqCelular = ConqCelular;
-    //    conquistador.ConqTelefono = ConqTelefono;
-    //    conquistador.ConqSexo = ConqSexo;
-    //}
-    
-    //public void CopyFrom(ref Conquistador conquistador)
-    //{
-    //    ConqId = conquistador.ConqId;
-    //    ConqDni = conquistador.ConqDni;
-    //    ConqNombres = conquistador.ConqNombres;
-    //    ConqApellidoPaterno = conquistador.ConqApellidoPaterno;
-    //    ConqApellidoMaterno = conquistador.ConqApellidoMaterno;
-    //    ConqFechaNacimiento = conquistador.ConqFechaNacimiento;
-    //    ConqFechaInvestidura = conquistador.ConqFechaInvestidura;
-    //    ConqCorreoPersonal = conquistador.ConqCorreoPersonal;
-    //    ConqCorreoCorporativo = conquistador.ConqCorreoCorporativo;
-    //    ConqCelular = conquistador.ConqCelular;
-    //    ConqTelefono = conquistador.ConqTelefono;
-    //    ConqSexo = conquistador.ConqSexo;
-    //}
+
+    public void CopyTo(ref Conquistador conquistador)
+    {
+        conquistador.PersId = ConqId;
+        conquistador.PersDni = ConqDni;
+        conquistador.PersNombres = ConqNombres;
+        conquistador.PersApellidoPaterno = ConqApellidoPaterno;
+        conquistador.PersApellidoMaterno = ConqApellidoMaterno;
+        conquistador.PersFechaNacimiento = ConqFechaNacimiento;
+        conquistador.ConqFechaInvestidura = ConqFechaInvestidura;
+        conquistador.PersCorreoPersonal = ConqCorreoPersonal;
+        conquistador.PersCorreoCorporativo = ConqCorreoCorporativo;
+        conquistador.PersCelular = ConqCelular;
+        conquistador.PersTelefono = ConqTelefono;
+        conquistador.PersSexo = ConqSexo;
+    }
+
+    public void CopyFrom(ref Conquistador conquistador)
+    {
+        ConqId = conquistador.PersId;
+        ConqDni = conquistador.PersDni;
+        ConqNombres = conquistador.PersNombres;
+        ConqApellidoPaterno = conquistador.PersApellidoPaterno;
+        ConqApellidoMaterno = conquistador.PersApellidoMaterno;
+        ConqFechaNacimiento = conquistador.PersFechaNacimiento;
+        ConqFechaInvestidura = conquistador.ConqFechaInvestidura;
+        ConqCorreoPersonal = conquistador.PersCorreoPersonal;
+        ConqCorreoCorporativo = conquistador.PersCorreoCorporativo;
+        ConqCelular = conquistador.PersCelular;
+        ConqTelefono = conquistador.PersTelefono;
+        ConqSexo = conquistador.PersSexo;
+    }
 }

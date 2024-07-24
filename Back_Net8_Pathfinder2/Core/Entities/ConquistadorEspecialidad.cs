@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities;
 
@@ -8,6 +7,8 @@ public class ConquistadorEspecialidad
     #region [ Propiedades ]
     [Column(TypeName = "int")]
     public int ConqId { get; set; }
+    [Column(TypeName = "int")]
+    public int CateId { get; set; }
     [Column(TypeName = "int")]
     public int EspeId { get; set; }
     [Column(TypeName = "bit")]

@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using Core.Entities;
+﻿using Core.Entities;
 
 namespace Core.Interfaces;
 

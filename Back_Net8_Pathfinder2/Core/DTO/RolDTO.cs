@@ -14,7 +14,7 @@ public class RolDTO
         rol.RoleNombre = RoleNombre;
         rol.RoleDescripcion = RoleDescripcion;
     }
-    
+
     public void CopyFrom(ref Rol rol)
     {
         RoleId = rol.RoleId;

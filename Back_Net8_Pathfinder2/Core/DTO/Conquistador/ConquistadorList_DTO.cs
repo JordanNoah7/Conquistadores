@@ -1,6 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Core.DTO;
+﻿namespace Core.DTO;
 
 public class ConquistadorList_DTO
 {

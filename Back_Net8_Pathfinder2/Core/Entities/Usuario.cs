@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities;
@@ -19,7 +18,8 @@ public class Usuario
 
     #region [ Relaciones ]
     public ICollection<Sesion> UsuaSesiones { get; set; }
-    public Persona UsuaPersona { get; set; }
+    public Conquistador UsuaConquistador { get; set; }
+    public Tutor UsuaTutor { get; set; }
     public ICollection<UsuarioRol> UsuaRoles { get; set; }
     #endregion
 

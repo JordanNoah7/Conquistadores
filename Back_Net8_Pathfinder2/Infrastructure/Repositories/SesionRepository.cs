@@ -1,5 +1,4 @@
-﻿using Core.DTO;
-using Core.Entities;
+﻿using Core.Entities;
 using Core.Interfaces;
 using Dapper;
 using Infrastructure.Data;

@@ -13,7 +13,7 @@ public class ParametroRepository : IParametroRepository
     {
         _dbContext = dbContext;
     }
-    
+
     public async Task<Parametro> GetByNameAsync(string name)
     {
         try

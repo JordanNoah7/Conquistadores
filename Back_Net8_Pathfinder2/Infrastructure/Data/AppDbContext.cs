@@ -134,12 +134,90 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             .HasDefaultValueSql("GETDATE()");
         #endregion
 
-        #region [ ForeigKeys ]
-
+        #region [ PrimaryKeys ]
         #region [ ActividadConquistador ]
         modelBuilder.Entity<ActividadConquistador>()
             .HasKey(ac => new { ac.ActiId, ac.ConqId });
+        #endregion
 
+        #region [ Asistencia ]
+        modelBuilder.Entity<Asistencia>()
+            .HasKey(a => new { a.ConqId, a.AsisId });
+        #endregion
+
+        #region [ ClaseConquistador ]
+        modelBuilder.Entity<ClaseConquistador>()
+            .HasKey(a => new { a.ConqId, a.ClasId });
+        #endregion
+
+        #region [ ConquistadorEspecialidad ]
+        modelBuilder.Entity<ConquistadorEspecialidad>()
+            .HasKey(e => new { e.ConqId, e.EspeId });
+        #endregion
+
+        #region [ ConquistadorItemCuadernillo ]
+        modelBuilder.Entity<ConquistadorItemCuadernillo>()
+            .HasKey(e => new { e.ConqId, e.ClasId, e.ItcuId });
+        #endregion
+
+        #region [ Cronograma ]
+        modelBuilder.Entity<Cronograma>()
+            .HasKey(e => new { e.ClasId, e.ItcuId, e.CronAno });
+        #endregion
+
+        #region [ CuentaCorriente ]
+        modelBuilder.Entity<CuentaCorriente>()
+            .HasKey(cc => new { cc.ConqId, cc.CucoId });
+        #endregion
+
+        #region [ Especialidad ]
+        modelBuilder.Entity<Especialidad>()
+            .HasKey(e => new { e.CateId, e.EspeId });
+        #endregion
+
+        #region [ FichaMedica ]
+        modelBuilder.Entity<FichaMedica>()
+            .HasKey(e => new { e.ConqId, e.FimeId, e.FimeAnio });
+        #endregion
+
+        #region [ Inscripcion ]
+        modelBuilder.Entity<Inscripcion>()
+            .HasKey(i => new { i.ConqId, i.InscAnio });
+        #endregion
+
+        #region [ ItemCuadernillo ]
+        modelBuilder.Entity<ItemCuadernillo>()
+            .HasKey(i => new { i.ClasId, i.ItcuId });
+        #endregion
+
+        #region [ Sesion ]
+        modelBuilder.Entity<Sesion>()
+            .HasKey(s => new { s.UsuaId, s.SesiId });
+        #endregion
+
+        #region [ Tipo ]
+        modelBuilder.Entity<Tipo>()
+            .HasKey(t => new { t.TipoTabla, t.TipoId });
+        #endregion
+
+        #region [ TutorConquistador ]
+        modelBuilder.Entity<TutorConquistador>()
+            .HasKey(tc => new { tc.TutoId, tc.ConqId });
+        #endregion
+
+        #region [ UnidadConquistador ]
+        modelBuilder.Entity<UnidadConquistador>()
+            .HasKey(uc => new { uc.UnidId, uc.ConqId, uc.UncoAno });
+        #endregion
+
+        #region [ UsuarioRol ]
+        modelBuilder.Entity<UsuarioRol>()
+            .HasKey(ur => new { ur.UsuaId, ur.RoleId });
+        #endregion
+        #endregion
+
+        #region [ ForeigKeys ]
+        #region [ ActividadConquistador ]
         modelBuilder.Entity<ActividadConquistador>()
             .HasOne(ac => ac.AccoActividad)
             .WithMany(a => a.ActiParticipantes)
@@ -158,18 +236,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         #region [ Asistencia ]
         modelBuilder.Entity<Asistencia>()
-            .HasKey(a => new { a.ConqId, a.AsisId });
-
-        modelBuilder.Entity<Asistencia>()
             .HasOne(a => a.AsisConquistador)
             .WithMany(c => c.ConqAsistencias)
             .HasForeignKey(a => a.ConqId);
         #endregion
 
         #region [ ClaseConquistador ]
-        modelBuilder.Entity<ClaseConquistador>()
-            .HasKey(a => new { a.ConqId, a.ClasId });
-
         modelBuilder.Entity<ClaseConquistador>()
             .HasOne(cc => cc.ClcoClase)
             .WithMany(c => c.ClasConquistadores)
@@ -183,9 +255,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         #region [ ConquistadorEspecialidad ]
         modelBuilder.Entity<ConquistadorEspecialidad>()
-            .HasKey(e => new { e.ConqId, e.EspeId });
-
-        modelBuilder.Entity<ConquistadorEspecialidad>()
             .HasOne(ce => ce.CoesConquistador)
             .WithMany(c => c.ConqEspecialidades)
             .HasForeignKey(ce => ce.ConqId);
@@ -193,13 +262,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         modelBuilder.Entity<ConquistadorEspecialidad>()
             .HasOne(ce => ce.CoesEspecialidad)
             .WithMany(e => e.EspeConquistadores)
-            .HasForeignKey(ce => ce.EspeId);
+            .HasForeignKey(ce => new { ce.CateId, ce.EspeId });
         #endregion
 
         #region [ ConquistadorItemCuadernillo ]
-        modelBuilder.Entity<ConquistadorItemCuadernillo>()
-            .HasKey(e => new { e.ConqId, e.ClasId, e.ItcuId });
-
         modelBuilder.Entity<ConquistadorItemCuadernillo>()
             .HasOne(cic => cic.CoicConquistador)
             .WithMany(c => c.ConqItemsCuadernillo)
@@ -213,18 +279,19 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         #region [ Cronograma ]
         modelBuilder.Entity<Cronograma>()
-            .HasKey(e => new { e.ClasId, e.ItcuId, e.CronAno });
-
-        modelBuilder.Entity<Cronograma>()
             .HasOne(c => c.CronItemCuadernillo)
             .WithMany(ic => ic.ItcuCronogramas)
             .HasForeignKey(c => new { c.ClasId, c.ItcuId });
         #endregion
 
-        #region [ Especialidad ]
-        modelBuilder.Entity<Especialidad>()
-            .HasKey(e => new { e.CateId, e.EspeId });
+        #region [ CuentaCorriente ]
+        modelBuilder.Entity<CuentaCorriente>()
+            .HasOne(cc => cc.CucoConquistador)
+            .WithMany(c => c.ConqCuentaCorriente)
+            .HasForeignKey(cc => new { cc.ConqId });
+        #endregion
 
+        #region [ Especialidad ]
         modelBuilder.Entity<Especialidad>()
             .HasOne(e => e.EspeCategoria)
             .WithMany(c => c.CateEspecialidades)
@@ -233,18 +300,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         #region [ FichaMedica ]
         modelBuilder.Entity<FichaMedica>()
-            .HasKey(e => new { e.ConqId, e.FimeId, e.FimeAnio });
-
-        modelBuilder.Entity<FichaMedica>()
             .HasOne(fm => fm.FimeConquistador)
             .WithMany(c => c.ConqFichasMedicas)
             .HasForeignKey(e => e.ConqId);
         #endregion
 
         #region [ Inscripcion ]
-        modelBuilder.Entity<Inscripcion>()
-            .HasKey(i => new { i.ConqId, i.InscAnio });
-
         modelBuilder.Entity<Inscripcion>()
             .HasOne(i => i.InscConquistador)
             .WithMany(c => c.ConqInscripciones)
@@ -253,9 +314,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         #region [ ItemCuadernillo ]
         modelBuilder.Entity<ItemCuadernillo>()
-            .HasKey(i => new { i.ClasId, i.ItcuId });
-
-        modelBuilder.Entity<ItemCuadernillo>()
             .HasOne(ic => ic.ItcuClase)
             .WithMany(c => c.ClasItemsCuadernillo)
             .HasForeignKey(ic => ic.ClasId);
@@ -263,32 +321,23 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         #region [ Sesion ]
         modelBuilder.Entity<Sesion>()
-            .HasKey(s => new { s.UsuaId, s.SesiId });
-
-        modelBuilder.Entity<Sesion>()
             .HasOne(s => s.SesiUsuario)
             .WithMany(u => u.UsuaSesiones)
             .HasForeignKey(s => s.UsuaId);
         #endregion
 
-        #region [ Tipo ]
-        modelBuilder.Entity<Tipo>()
-            .HasKey(t => new { t.TipoTabla, t.TipoId });
-        #endregion
-
         #region [ TutorConquistador ]
-        modelBuilder.Entity<TutorConquistador>()
-            .HasKey(tc => new { tc.TutoId, tc.ConqId });
-
         modelBuilder.Entity<TutorConquistador>()
             .HasOne(tc => tc.TucoTutor)
             .WithMany(t => t.TutoConquistadores)
-            .HasForeignKey(tc => tc.TutoId);
+            .HasForeignKey(tc => tc.TutoId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<TutorConquistador>()
             .HasOne(tc => tc.TucoConquistador)
             .WithMany(c => c.ConqTutores)
-            .HasForeignKey(tc => tc.ConqId);
+            .HasForeignKey(tc => tc.ConqId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<TutorConquistador>()
             .HasOne(tc => tc.TucoTipoParentesco)
@@ -297,9 +346,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         #endregion
 
         #region [ UnidadConquistador ]
-        modelBuilder.Entity<UnidadConquistador>()
-            .HasKey(uc => new { uc.UnidId, uc.ConqId, uc.UncoAno });
-
         modelBuilder.Entity<UnidadConquistador>()
             .HasOne(uc => uc.UncoUnidad)
             .WithMany(u => u.UnidConquistadores)
@@ -313,15 +359,17 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         #region [ Usuario ]
         modelBuilder.Entity<Usuario>()
-            .HasOne(u => u.UsuaPersona)
+            .HasOne(u => u.UsuaConquistador)
             .WithOne(p => p.PersUsuario)
-            .HasForeignKey<Persona>(c => c.UsuaId);
+            .HasForeignKey<Conquistador>(c => c.UsuaId);
+
+        modelBuilder.Entity<Usuario>()
+            .HasOne(u => u.UsuaTutor)
+            .WithOne(p => p.PersUsuario)
+            .HasForeignKey<Tutor>(c => c.UsuaId);
         #endregion
 
         #region [ UsuarioRol ]
-        modelBuilder.Entity<UsuarioRol>()
-            .HasKey(ur => new { ur.UsuaId, ur.RoleId });
-
         modelBuilder.Entity<UsuarioRol>()
             .HasOne(ru => ru.UsroUsuario)
             .WithMany(u => u.UsuaRoles)

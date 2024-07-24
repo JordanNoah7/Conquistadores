@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using Core.Entities;
-using Core.Interfaces;
+﻿using Core.Entities;
 
 namespace Core.Services;
 

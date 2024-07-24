@@ -19,31 +19,31 @@ public class TutorDTO
     public SesionDTO Sesion { get; set; }
     public ICollection<ConquistadorDTO> TutoConquistadores { get; set; }
 
-    //public void CopyTo(ref Tutor tutor)
-    //{
-    //    tutor.TutoId = TutoId;
-    //    tutor.TutoDni = TutoDni;
-    //    tutor.TutoNombres = TutoNombres;
-    //    tutor.TutoApellidoPaterno = TutoApellidoPaterno;
-    //    tutor.TutoApellidoMaterno = TutoApellidoMaterno;
-    //    tutor.TutoFechaNacimiento = TutoFechaNacimiento;
-    //    tutor.TutoCorreoPersonal = TutoCorreoPersonal;
-    //    tutor.TutoCorreoCorporativo = TutoCorreoCorporativo;
-    //    tutor.TutoCelular = TutoCelular;
-    //    tutor.TutoTelefono = TutoTelefono;
-    //}
+    public void CopyTo(ref Tutor tutor)
+    {
+        tutor.PersId = TutoId;
+        tutor.PersDni = TutoDni;
+        tutor.PersNombres = TutoNombres;
+        tutor.PersApellidoPaterno = TutoApellidoPaterno;
+        tutor.PersApellidoMaterno = TutoApellidoMaterno;
+        tutor.PersFechaNacimiento = TutoFechaNacimiento;
+        tutor.PersCorreoPersonal = TutoCorreoPersonal;
+        tutor.PersCorreoCorporativo = TutoCorreoCorporativo;
+        tutor.PersCelular = TutoCelular;
+        tutor.PersTelefono = TutoTelefono;
+    }
 
-    //public void CopyFrom(ref Tutor tutor)
-    //{
-    //    TutoId = tutor.TutoId;
-    //    TutoDni = tutor.TutoDni;
-    //    TutoNombres = tutor.TutoNombres;
-    //    TutoApellidoPaterno = tutor.TutoApellidoPaterno;
-    //    TutoApellidoMaterno = tutor.TutoApellidoMaterno;
-    //    TutoFechaNacimiento = tutor.TutoFechaNacimiento;
-    //    TutoCorreoPersonal = tutor.TutoCorreoPersonal;
-    //    TutoCorreoCorporativo = tutor.TutoCorreoCorporativo;
-    //    TutoCelular = tutor.TutoCelular;
-    //    TutoTelefono = tutor.TutoTelefono;
-    //}
+    public void CopyFrom(ref Tutor tutor)
+    {
+        TutoId = tutor.PersId;
+        TutoDni = tutor.PersDni;
+        TutoNombres = tutor.PersNombres;
+        TutoApellidoPaterno = tutor.PersApellidoPaterno;
+        TutoApellidoMaterno = tutor.PersApellidoMaterno;
+        TutoFechaNacimiento = tutor.PersFechaNacimiento;
+        TutoCorreoPersonal = tutor.PersCorreoPersonal;
+        TutoCorreoCorporativo = tutor.PersCorreoCorporativo;
+        TutoCelular = tutor.PersCelular;
+        TutoTelefono = tutor.PersTelefono;
+    }
 }

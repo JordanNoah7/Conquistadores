@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Org.BouncyCastle.Bcpg.OpenPgp;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities;
 
@@ -24,6 +21,7 @@ public class Conquistador : Persona
     public ICollection<ClaseConquistador> ConqClases { get; set; }
     public ICollection<ConquistadorEspecialidad> ConqEspecialidades { get; set; }
     public ICollection<ConquistadorItemCuadernillo> ConqItemsCuadernillo { get; set; }
+    public ICollection<CuentaCorriente> ConqCuentaCorriente {  get; set; }
     public ICollection<FichaMedica> ConqFichasMedicas { get; set; }
     public ICollection<Inscripcion> ConqInscripciones { get; set; }
     public ICollection<TutorConquistador> ConqTutores { get; set; }

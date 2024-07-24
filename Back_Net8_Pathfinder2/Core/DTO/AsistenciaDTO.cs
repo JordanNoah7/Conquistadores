@@ -12,6 +12,6 @@ public class AsistenciaDTO
     public byte AsisRequerimiento { get; set; }
     public byte AsisTotal { get; set; }
     public float AsisMonto { get; set; }
-    
+
     public ConquistadorDTO AsisConquistador { get; set; }
 }

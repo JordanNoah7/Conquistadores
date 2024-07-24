@@ -1,8 +1,6 @@
-﻿using System.Net;
-using Core.Entities;
+﻿using Core.Entities;
 using Core.Interfaces;
-using MailKit.Net.Smtp;
-using MimeKit;
+using System.Net;
 using System.Net.Mail;
 using SmtpClient = System.Net.Mail.SmtpClient;
 
@@ -16,7 +14,7 @@ public class EmailService : IEmailService
     {
         _parametroRepository = parametroRepository;
     }
-    
+
     public void SendMail(string to, string subject, string body, string name)
     {
         Parametro email = _parametroRepository.GetByNameAsync("Email").Result;
@@ -38,7 +36,7 @@ public class EmailService : IEmailService
             Body = body,
             IsBodyHtml = true,
         };
-        
+
         mailMessage.To.Add(to);
         smtpClient.Send(mailMessage);
     }

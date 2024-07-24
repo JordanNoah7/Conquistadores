@@ -1,10 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using System.Security.Cryptography;
-using System.Text;
-using Core.DTO;
+﻿using Core.DTO;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.ObjectModel;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace API;
 
@@ -99,7 +99,7 @@ public class RestService : ControllerBase
             }
 
             ObservableCollection<ConquistadorList_DTO> conquistadores = new ObservableCollection<ConquistadorList_DTO>(await _service.GetConquistadoresAsync());
-            if(conquistadores != null && conquistadores.Count > 0)
+            if (conquistadores != null && conquistadores.Count > 0)
             {
                 return Ok(conquistadores);
             }

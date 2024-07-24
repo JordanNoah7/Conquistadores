@@ -13,7 +13,7 @@ public class TutorRepository : ITutorRepository
     {
         _dbContext = dbContext;
     }
-    
+
     public async Task<Tutor> GetByUsuarioAsync(int id)
     {
         try

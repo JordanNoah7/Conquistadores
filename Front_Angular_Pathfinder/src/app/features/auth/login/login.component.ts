@@ -49,12 +49,9 @@ export class LoginComponent implements OnInit {
     private ip: string = '';
 
     constructor(
-        public routerService: RouterService,
         private userService: UserService,
-        private route: ActivatedRoute,
         private notificationService: NotificationService,
         private recaptchaV3Service: ReCaptchaV3Service,
-        private http: HttpClient
     ) {
     }
 
@@ -82,10 +79,7 @@ export class LoginComponent implements OnInit {
     private async validateForm() {
         if (this.form.valid) {
             setTimeout(async () => {
-                let response = await this.userService.signIn(
-                    (<any>this.username).value,
-                    (<any>this.password).value,
-                );
+                let response = await this.userService.signIn((<any>this.username).value, (<any>this.password).value);
                 if (response) {
                     this.ModalChangePassword?.show();
                 }

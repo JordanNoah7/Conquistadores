@@ -1,9 +1,9 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-using Core.DTO;
+﻿using Core.DTO;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace API;
 
@@ -41,57 +41,56 @@ public class RestServiceAuth : ControllerBase
     {
         try
         {
-            //string credenciales = DecryptString(request.UsuaUsuario);
-            //string username = credenciales.Split('|')[0];
-            //string password = credenciales.Split('|')[1];
-            //Usuario usuario = await _service.GetUserByUsernameAsync(username);
-            //if (usuario == null)
-            //{
-            //    return NotFound("Usuario o contraseña incorrectos");
-            //}
+            string credenciales = DecryptString(request.UsuaUsuario);
+            string username = credenciales.Split('|')[0];
+            string password = credenciales.Split('|')[1];
+            Usuario usuario = await _service.GetUserByUsernameAsync(username);
+            if (usuario == null)
+            {
+                return NotFound("Usuario o contraseña incorrectos");
+            }
 
-            //string pass = EncryptMD5($"{username}|{password}|{username}");
-            //if (!pass.Equals(usuario.UsuaContrasenia))
-            //{
-            //    return NotFound("Usuario o contraseña incorrectos");
-            //}
+            string pass = EncryptMD5($"{username}|{password}|{username}");
+            if (!pass.Equals(usuario.UsuaContrasenia))
+            {
+                return NotFound("Usuario o contraseña incorrectos");
+            }
 
-            //usuario.UsuaRoles = await _service.GetRolesByUserAsync(usuario.UsuaId);
-            //UsuarioDTO usuarioDto = new UsuarioDTO();
-            //usuarioDto.CopyFrom(ref usuario);
-            //usuarioDto.UsuaRoles = new List<RolDTO>();
-            //foreach (UsuarioRol rolUsuario in usuario.UsuaRoles)
-            //{
-            //    RolDTO rolDto = new RolDTO();
-            //    var rol = rolUsuario.RousRol;
-            //    rolDto.CopyFrom(ref rol);
-            //    usuarioDto.UsuaRoles.Add(rolDto);
-            //}
+            usuario.UsuaRoles = await _service.GetRolesByUserAsync(usuario.UsuaId);
+            UsuarioDTO usuarioDto = new UsuarioDTO();
+            usuarioDto.CopyFrom(ref usuario);
+            usuarioDto.UsuaRoles = new List<RolDTO>();
+            foreach (UsuarioRol rolUsuario in usuario.UsuaRoles)
+            {
+                RolDTO rolDto = new RolDTO();
+                var rol = rolUsuario.UsroRol;
+                rolDto.CopyFrom(ref rol);
+                usuarioDto.UsuaRoles.Add(rolDto);
+            }
 
-            //SesionDTO sesionDto = new SesionDTO()
-            //{
-            //    SesiUsuario = usuarioDto,
-            //    SesiFecha = DateTime.Now,
-            //    SesiTiempo = Convert.ToUInt16((await _service.GetParametroByNameAsync("SessionTimeMinutes")).ParaValor),
-            //};
-            //await _service.CreateSesionAsync(sesionDto, request.AudiHost);
-            //Conquistador conquistador = await _service.GetConquistadorByUsuarioAsync(usuario.UsuaId);
-            //if (conquistador != null)
-            //{
-            //    ConquistadorDTO conquistadorDto = new ConquistadorDTO();
-            //    conquistadorDto.CopyFrom(ref conquistador);
-            //    conquistadorDto.Usuario = usuarioDto;
-            //    conquistadorDto.Sesion = sesionDto;
-            //    return Ok(conquistadorDto);
-            //}
+            SesionDTO sesionDto = new SesionDTO()
+            {
+                SesiUsuario = usuarioDto,
+                SesiFecha = DateTime.Now,
+                SesiTiempo = Convert.ToUInt16((await _service.GetParametroByNameAsync("SessionTimeMinutes")).ParaValor),
+            };
+            await _service.CreateSesionAsync(sesionDto, request.AudiHost);
+            Conquistador conquistador = await _service.GetConquistadorByUsuarioAsync(usuario.UsuaId);
+            if (conquistador != null)
+            {
+                ConquistadorDTO conquistadorDto = new ConquistadorDTO();
+                conquistadorDto.CopyFrom(ref conquistador);
+                conquistadorDto.Usuario = usuarioDto;
+                conquistadorDto.Sesion = sesionDto;
+                return Ok(conquistadorDto);
+            }
 
-            //Tutor tutor = await _service.GetTutorByUsuarioAsync(usuario.UsuaId);
-            //TutorDTO tutorDto = new TutorDTO();
-            //tutorDto.CopyFrom(ref tutor);
-            //tutorDto.Usuario = usuarioDto;
-            //tutorDto.Sesion = sesionDto;
-            //return Ok(tutorDto);
-            return Ok();
+            Tutor tutor = await _service.GetTutorByUsuarioAsync(usuario.UsuaId);
+            TutorDTO tutorDto = new TutorDTO();
+            tutorDto.CopyFrom(ref tutor);
+            tutorDto.Usuario = usuarioDto;
+            tutorDto.Sesion = sesionDto;
+            return Ok(tutorDto);
         }
         catch
         {

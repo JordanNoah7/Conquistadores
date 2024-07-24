@@ -1,106 +1,101 @@
 <form id="login-form" class="smart-form client-form" [formGroup]="form" (keyup.enter)="login()">
-   <header>
-      Iniciar sesión
-   </header>
-   <fieldset>
-      <section>
-         <label class="label">Usuario</label>
-         <label class="input"> <i class="icon-append fa fa-user"></i>
-            <input type="text" name="username" placeholder="Ingresa tu nombre de usuario" formControlName="username"
-                   autofocus>
-            <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>Por favor ingrese un nombre de
-               Usuario</b>
-         </label>
-      </section>
-      <section>
-         <label class="label">Contraseña</label>
-         <label class="input"> <i class="icon-append" [ngClass]="this.showPassword ? 'fa fa-lock' : 'fa fa-eye'"
-                                  (click)="this.showPassword = !this.showPassword"></i>
-            <input [type]="this.showPassword ? 'text' : 'password'" name="password" placeholder="Ingresa tu contraseña"
-                   formControlName="password">
-            <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i>Por favor Ingrese una
-               contraseña</b>
-         </label>
-         <div class="note">
-            <a routerLink="/auth/forgot">¿Olvidó su contraseña?</a>
-         </div>
-      </section>
-   </fieldset>
-   <footer>
-      <button type="button" class="btn btn-primary custombutton" (click)="login()" [disabled]="this.loading">
-         <i [ngClass]="this.loading ? 'fa fa-spinner fa-spin' : 'fa fa-sign-in'"></i>
-         <span *ngIf="!this.loading">Autenticar</span>
-         <span *ngIf="this.loading">Autenticando</span>
-      </button>
-   </footer>
+    <header>
+        Iniciar sesión
+    </header>
+    <fieldset>
+        <section>
+            <label class="label">Usuario</label>
+            <label class="input"> <i class="icon-append fa fa-user"></i>
+                <input type="text" name="username" placeholder="Ingresa tu nombre de usuario" formControlName="username" autofocus>
+                <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>Por favor ingrese un nombre de
+                    Usuario</b>
+            </label>
+        </section>
+        <section>
+            <label class="label">Contraseña</label>
+            <label class="input"> <i class="icon-append" [ngClass]="this.showPassword ? 'fa fa-lock' : 'fa fa-eye'" (click)="this.showPassword = !this.showPassword"></i>
+                <input [type]="this.showPassword ? 'text' : 'password'" name="password" placeholder="Ingresa tu contraseña" formControlName="password">
+                <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i>Por favor Ingrese una
+                    contraseña</b>
+            </label>
+            <div class="note">
+                <a routerLink="/auth/forgot">¿Olvidó su contraseña?</a>
+            </div>
+        </section>
+    </fieldset>
+    <footer>
+        <button type="button" class="btn btn-primary custombutton" (click)="login()" [disabled]="this.loading">
+            <i [ngClass]="this.loading ? 'fa fa-spinner fa-spin' : 'fa fa-sign-in'"></i>
+            <span *ngIf="!this.loading">Autenticar</span>
+            <span *ngIf="this.loading">Autenticando</span>
+        </button>
+    </footer>
 </form>
 
 <!--ModalChangePassword-->
-<div bsModal #ModalChangePassword="bs-modal" class="modal fade" tabindex="-1" role="dialog"
-     aria-labelledby="myLargeModalLabel" aria-hidden="true">
-   <div class="modal-dialog" style="width: 50%">
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" (click)="ModalChangePassword?.hide()" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-            <h3 class="modal-title">
-               <strong>Cambiar contrase&ntilde;a</strong>
-            </h3>
-         </div>
-         <div class="modal-body">
-            <form [formGroup]="ChangePasswordForm" class="smart-form" (ngSubmit)="ChangePassword()">
-               <div class="row">
-                  <section class="col col-lg-12">
-                     <label class="label">Contrase&ntilde;a nueva</label>
+<div bsModal #ModalChangePassword="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 50%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="ModalChangePassword?.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title">
+                    <strong>Cambiar contrase&ntilde;a</strong>
+                </h3>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="ChangePasswordForm" class="smart-form" (ngSubmit)="ChangePassword()">
+                    <div class="row">
+                        <section class="col col-lg-12">
+                            <label class="label">Contrase&ntilde;a nueva</label>
 
 
-                     <label class="input" [ngClass]="this.newPassword?.errors &&
+                            <label class="input" [ngClass]="this.newPassword?.errors &&
                                                      (this.newPassword?.touched ||
                                                       this.newPassword?.dirty)
                                                      ? 'has-error' : ''">
-                        <i class="icon-append" [ngClass]="showNewPassword ? 'fa fa-lock' : 'fa fa-eye'" (click)="showNewPassword = !showNewPassword"></i>
-                        <input [type]="showNewPassword ? 'text' : 'password'" formControlName="newPassword" name="newPassword"/>
-                        <div *ngIf="this.newPassword?.invalid &&
+                                <i class="icon-append" [ngClass]="showNewPassword ? 'fa fa-lock' : 'fa fa-eye'" (click)="showNewPassword = !showNewPassword"></i>
+                                <input [type]="showNewPassword ? 'text' : 'password'" formControlName="newPassword" name="newPassword" />
+                                <div *ngIf="this.newPassword?.invalid &&
                                     (this.newPassword?.touched ||
                                      this.newPassword?.dirty)" class="note note-error">
-                           Debe ingresar una contrase&ntilde;a
-                        </div>
-                     </label>
-                  </section>
-               </div>
+                                    Debe ingresar una contrase&ntilde;a
+                                </div>
+                            </label>
+                        </section>
+                    </div>
 
-               <div class="row">
-                  <section class="col col-lg-12">
-                     <label class="label">Confirmar la nueva contrase&ntilde;a</label>
-                     <label class="input" [ngClass]="this.reNewPassword?.errors &&
+                    <div class="row">
+                        <section class="col col-lg-12">
+                            <label class="label">Confirmar la nueva contrase&ntilde;a</label>
+                            <label class="input" [ngClass]="this.reNewPassword?.errors &&
                                                      (this.reNewPassword?.touched ||
                                                       this.reNewPassword?.dirty)
                                                      ? 'has-error' : ''">
-                        <i class="icon-append" [ngClass]="showReNewPassword ? 'fa fa-lock' : 'fa fa-eye'" (click)="showReNewPassword = !showReNewPassword"></i>
-                        <input [type]="showReNewPassword ? 'text' : 'password'" formControlName="reNewPassword" name="reNewPassword"/>
-                        <div *ngIf="this.reNewPassword?.invalid &&
+                                <i class="icon-append" [ngClass]="showReNewPassword ? 'fa fa-lock' : 'fa fa-eye'" (click)="showReNewPassword = !showReNewPassword"></i>
+                                <input [type]="showReNewPassword ? 'text' : 'password'" formControlName="reNewPassword" name="reNewPassword" />
+                                <div *ngIf="this.reNewPassword?.invalid &&
                                     (this.reNewPassword?.touched ||
                                      this.reNewPassword?.dirty)" class="note note-error">
-                           Debe ingresar la confirmaci&oacute;n de la contrase&ntilde;a
-                        </div>
-                     </label>
-                  </section>
-               </div>
-               <footer>
-                  <button type="button" class="btn btn-danger custombutton" (click)="ModalChangePassword?.hide()"
-                          [disabled]="this.isChanging">
-                     Cancelar
-                  </button>
-                  <button type="submit" class="btn btn-success custombutton" [disabled]="this.isChanging">
-                     <i [ngClass]="this.isChanging ? 'fa fa-spinner fa-spin' : 'fa fa-floppy-o'"></i>{{ " " }}
-                     <span *ngIf="!this.isChanging" class="">Cambiar la contrase&ntilde;a</span>
-                     <span *ngIf="this.isChanging" class="">Cambiando la contrase&ntilde;a</span>
-                  </button>
-               </footer>
-            </form>
-         </div>
-      </div>
-   </div>
+                                    Debe ingresar la confirmaci&oacute;n de la contrase&ntilde;a
+                                </div>
+                            </label>
+                        </section>
+                    </div>
+                    <footer>
+                        <button type="button" class="btn btn-danger custombutton" (click)="ModalChangePassword?.hide()" [disabled]="this.isChanging">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-success custombutton" [disabled]="this.isChanging">
+                            <i [ngClass]="this.isChanging ? 'fa fa-spinner fa-spin' : 'fa fa-floppy-o'"></i>{{ " " }}
+                            <span *ngIf="!this.isChanging" class="">Cambiar la contrase&ntilde;a</span>
+                            <span *ngIf="this.isChanging" class="">Cambiando la contrase&ntilde;a</span>
+                        </button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <!--END ModalChangePassword-->
