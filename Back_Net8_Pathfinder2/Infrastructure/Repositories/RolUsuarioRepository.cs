@@ -14,16 +14,13 @@ public class RolUsuarioRepository : IRolUsuarioRepository
         _dbContext = dbContext;
     }
 
-    public async Task<List<UsuarioRol>> GetByUserAsync(int id)
+    public async Task<ICollection<UsuarioRol>> GetByUserAsync(int id)
     {
         try
         {
-            //var rolesUsuario = await _dbContext.UsuarioRoles
-            //    .Where(ru => ru.UsuaId == id)
-            //    .Include(ru => ru.RousRol)
-            //    .ToListAsync();
             var rolesUsuario = await _dbContext.UsuarioRoles
                 .Where(ru => ru.UsuaId == id)
+                .Include(ru => ru.UsroRol)
                 .ToListAsync();
             return rolesUsuario;
         }

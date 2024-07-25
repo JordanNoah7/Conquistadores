@@ -4,6 +4,7 @@ import { CoreService } from '../core.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { SessionService } from '../session.service';
 
 @Injectable()
 export class GeneralService {
@@ -13,7 +14,8 @@ export class GeneralService {
     constructor(
         private core: CoreService,
         private http: HttpClient,
-        private router: Router
+        private router: Router,
+        private sessionService: SessionService
     ) {
         this.url = environment.appsettings.http['/api'].target;
         if (!(this.url.slice(this.url.length - 1) == '/')) {
@@ -21,11 +23,30 @@ export class GeneralService {
         }
     }
 
-    public CallService = (payload: any, method: string) => new Promise<any>((resolve) =>
-        this.http.post<any>((this.url + method), payload, { headers: this.core.getDefaultOptions() })
-            .subscribe(
-                data => resolve(data),
-                err => resolve(null)
-            )
-    )
+    connectBackend(method: string, data: any): Observable<any> {
+        return this.http.post<any>((this.url + method), data, { headers: this.core.getDefaultOptions(), observe: 'response' }).pipe(
+            map((response: HttpResponse<any>) => {
+                if (response.status === 200) {
+                    return response.body;
+                }
+                throw new Error(`Unexpected response status: ${response.status}`);
+            }),
+            tap(response => {
+                if (response.TiempoSesion > 0) {
+                    this.sessionService.setMinutosDisponibles(response.TiempoSesion);
+                }
+            }),
+            catchError((error: HttpErrorResponse) => {
+                console.log(error)
+                if (error.status === 404) {
+                    console.error(error)
+                } else if (error.status === 500) {
+                    console.error(error);
+                } else if (error) {
+                    console.error('Error:', error.statusText);
+                }
+                return throwError(() => error.error.error);
+            })
+        );
+    }
 }

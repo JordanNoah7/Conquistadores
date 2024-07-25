@@ -12,17 +12,14 @@ namespace API;
 public class RestServiceAuth : ControllerBase
 {
     #region [ Variables ]
-
     private IConfiguration _configuration;
     private readonly IService _service;
     private readonly IEmailService _emailService;
     private readonly byte[] key;
     private readonly byte[] iv;
-
     #endregion
 
     #region [ Constructor ]
-
     public RestServiceAuth(IConfiguration configuration, IService service, IEmailService emailService)
     {
         _configuration = configuration;
@@ -31,11 +28,9 @@ public class RestServiceAuth : ControllerBase
         key = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("key")!);
         iv = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("iv")!);
     }
-
     #endregion
 
     #region [ Endpoints ]
-
     [HttpPost("ValidarUsuario")]
     public async Task<IActionResult> ValidarUsuario([FromBody] Request request)
     {
@@ -104,43 +99,43 @@ public class RestServiceAuth : ControllerBase
         ResponseAuth responseAuth = new ResponseAuth();
         try
         {
-            //string username = DecryptString(request.UsuaUsuario);
-            //Usuario usuario = await _service.GetUserByUsernameAsync(username);
-            //if (usuario == null)
-            //{
-            //    return NotFound("Si su usuario es correcto, recibirá un correo electrónico con su nueva contraseña.");
-            //}
+            string username = DecryptString(request.UsuaUsuario);
+            Usuario usuario = await _service.GetUserByUsernameAsync(username);
+            if (usuario == null)
+            {
+                return NotFound("Si su usuario es correcto, recibirá un correo electrónico con su nueva contraseña.");
+            }
 
-            //string newPassword = GenerateRandomString();
-            //string pass = EncryptMD5($"{username}|{newPassword}|{username}");
-            //usuario.UsuaContrasenia = pass;
-            //usuario.UsuaCambiarContrasenia = true;
-            //usuario.AudiUserMod = "";
-            //usuario.AudiHostMod = request.AudiHost;
-            //await _service.UpdateUsuarioAsync(usuario);
-            //string name, email;
-            //Conquistador conquistador = await _service.GetConquistadorByUsuarioAsync(usuario.UsuaId);
-            //if (conquistador == null)
-            //{
-            //    Tutor tutor = await _service.GetTutorByUsuarioAsync(usuario.UsuaId);
-            //    name = tutor.TutoNombres;
-            //    email = tutor.TutoCorreoPersonal;
-            //}
-            //else
-            //{
-            //    name = conquistador.ConqNombres;
-            //    email = conquistador.ConqCorreoPersonal;   
-            //}
-            //string body = GetBodyMail(name, newPassword);
-            //if (!string.IsNullOrEmpty(email))
-            //{
-            //    _emailService.SendMail(email, "Nueva contraseña", body, name);   
-            //}
-            //else
-            //{
-            //    return NotFound("Recibirá un correo electrónico con su nueva contraseña en la dirección de correo asociada a su cuenta.");
-            //}
-            //responseAuth.Mensaje = "Le hemos enviado un correo electrónico con su nueva contraseña. Deberá cambiarla la próxima vez que inicie sesión.";
+            string newPassword = GenerateRandomString();
+            string pass = EncryptMD5($"{username}|{newPassword}|{username}");
+            usuario.UsuaContrasenia = pass;
+            usuario.UsuaCambiarContrasenia = true;
+            usuario.AudiUserMod = "";
+            usuario.AudiHostMod = request.AudiHost;
+            await _service.UpdateUsuarioAsync(usuario);
+            string name, email;
+            Conquistador conquistador = await _service.GetConquistadorByUsuarioAsync(usuario.UsuaId);
+            if (conquistador == null)
+            {
+                Tutor tutor = await _service.GetTutorByUsuarioAsync(usuario.UsuaId);
+                name = tutor.PersNombres;
+                email = tutor.PersCorreoPersonal;
+            }
+            else
+            {
+                name = conquistador.PersNombres;
+                email = conquistador.PersCorreoPersonal;
+            }
+            string body = GetBodyMail(name, newPassword);
+            if (!string.IsNullOrEmpty(email))
+            {
+                _emailService.SendMail(email, "Nueva contraseña", body, name);
+            }
+            else
+            {
+                return NotFound("Recibirá un correo electrónico con su nueva contraseña en la dirección de correo asociada a su cuenta.");
+            }
+            responseAuth.Mensaje = "Le hemos enviado un correo electrónico con su nueva contraseña. Deberá cambiarla la próxima vez que inicie sesión.";
             return Ok(responseAuth);
         }
         catch
@@ -197,11 +192,9 @@ public class RestServiceAuth : ControllerBase
     //    // Lógica para manejar la actualización del item con id y nombre de la query string
     //    return Ok(new { Id = id, Name = name, Updated = request });
     //}
-
     #endregion
 
     #region [ Privados ]
-
     private string EncryptMD5(string pass)
     {
         try
@@ -286,6 +279,5 @@ public class RestServiceAuth : ControllerBase
             throw;
         }
     }
-
     #endregion
 }

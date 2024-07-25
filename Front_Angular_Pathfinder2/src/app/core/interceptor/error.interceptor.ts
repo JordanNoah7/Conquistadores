@@ -7,10 +7,13 @@ import {
 } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { SessionService } from "../service/session.service";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor() { }
+    constructor(
+        private sessionService: SessionService
+    ) { }
 
     intercept(
         request: HttpRequest<any>,
@@ -20,9 +23,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             catchError((err) => {
                 console.log(err);
                 if (err.status === 401) {
-                    // auto logout if 401 response returned from api
-                    //   this.authenticationService.logout();
-                    location.reload();
+                    this.sessionService.logout();
                 }
                 return throwError(() => err);
             })

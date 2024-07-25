@@ -6,7 +6,7 @@
                 <div class="row auth-main">
                     <div class="col-sm-6 px-0 d-none d-md-block">
                         <carousel>
-                            <slide *ngFor="let slide of slides; let index=index" class="carousel-dark">
+                            <slide *ngFor="let slide of slides; let index=index" class="carousel-ligth">
                                 <img [src]="slide.image" alt="image slide" class="d-block w-100 rounded-start" style="max-height: 90vh;display: block; width: 100%;">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>{{slide.title}}</h5>
@@ -37,7 +37,7 @@
                                         <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                                             <mat-form-field class="example-full-width" appearance="outline">
                                                 <mat-label>Contrase&ntilde;a</mat-label>
-                                                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                                                <input matInput [type]="hide ? 'text' : 'password'" formControlName="password">
                                                 <a style="margin-left: -35px;" class="show-pwd-icon" href="#" onClick="return false;" matSuffix (click)="hide = !hide"
                                                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                                                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -48,12 +48,14 @@
                                             </mat-form-field>
                                         </div>
                                     </div>
+                                    <div class="mb-5 w-full p-t-25 text-center">
+                                        <a class="txt1" routerLink="/authentication/forgot-password">¿Olvidaste tu contrase&ntilde;a?</a>
+                                    </div>
                                     <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
                                     <div class="container-auth-form-btn">
                                         <div style="text-align:center">
                                             <button mat-raised-button color="primary" [class.auth-spinner]="loading" [disabled]="loading" class="auth-form-btn" [disabled]="!authForm.valid "
                                                 type="submit">
-                                                <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
                                                 Autenticar
                                             </button>
                                         </div>

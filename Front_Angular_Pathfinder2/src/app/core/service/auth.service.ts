@@ -5,7 +5,7 @@ import { SessionService } from "./session.service";
 import { EncryptService } from './encrypt.service';
 import { IpClientService } from './ipclient.service';
 import { GeneralUserService } from './api/general-user.service';
-import { map, Observable, tap } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -55,5 +55,22 @@ export class AuthService {
                 }
             }),
         );
+    }
+
+    public SendMail(payload: Request): Observable<any> {
+        return this.api.connectBackend("EnviarCorreo", payload).pipe(
+            map(response => {
+                if (response) {
+                    return response;
+                }
+                return null;
+            }),
+            tap(response => {
+                return response;
+            }),
+            catchError((error: any) => {
+                return throwError(() => error);
+            })
+        )
     }
 }

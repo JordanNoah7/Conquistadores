@@ -5,6 +5,8 @@ import { Component, OnInit } from "@angular/core";
 import { ReCaptchaV3Service } from "ng-recaptcha";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
 import { UntypedFormBuilder, Validators } from "@angular/forms";
+import { MatDialog } from '@angular/material/dialog';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @Component({
     selector: "app-signin",
@@ -19,7 +21,7 @@ export class SigninComponent
     implements OnInit {
     loading = false;
     error = "";
-    hide = true;
+    hide = false;
     tokenCaptcha: any;
     slides = [
         { image: './assets/images/login/img-auth-2.jpg', text: 'Diviertete y aventurate con las salidas y caminatas.', title: 'Salidas y caminatas' },
@@ -34,7 +36,8 @@ export class SigninComponent
     constructor(
         private formBuilder: UntypedFormBuilder,
         private authService: AuthService,
-        private recaptchaV3Service: ReCaptchaV3Service
+        private recaptchaV3Service: ReCaptchaV3Service,
+        private dialogModel: MatDialog,
     ) {
         super();
     }
@@ -81,8 +84,11 @@ export class SigninComponent
         } else {
             await this.authService.Login(this.f.username.value, this.f.password.value, this.tokenCaptcha).subscribe({
                 next: (value: any) => {
-                    if (value) {
-                        //TODO: Implementar la recuperacion de contraseña con el modal
+                    if (value.Usuario.UsuaCambiarContrasenia) {
+                        const dialogRef = this.dialogModel.open(ChangePasswordComponent, {
+                            width: "640px",
+                            disableClose: true,
+                        });
                     }
                 },
                 error: (error: any) => {

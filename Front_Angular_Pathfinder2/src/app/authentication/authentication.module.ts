@@ -14,12 +14,14 @@ import { MatButtonModule } from "@angular/material/button";
 import { CarouselModule } from "ngx-bootstrap/carousel";
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from "ng-recaptcha";
 import { environment } from 'src/environments/environment';
+import { ChangePasswordComponent } from "./signin/change-password/change-password.component";
 @NgModule({
     declarations: [
         Page500Component,
         Page404Component,
         SigninComponent,
         ForgotPasswordComponent,
+        ChangePasswordComponent
     ],
     imports: [
         CommonModule,

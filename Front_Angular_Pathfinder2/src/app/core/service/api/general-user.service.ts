@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { SessionService } from '../session.service';
 import { ItemRequest } from '../../models/ItemRequest';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class GeneralUserService {
@@ -45,15 +46,7 @@ export class GeneralUserService {
                 }
             }),
             catchError((error: HttpErrorResponse) => {
-                console.log(error)
-                if (error.status === 404) {
-                    console.error(error)
-                } else if (error.status === 500) {
-                    console.error(error);
-                } else if (error) {
-                    console.error('Error:', error.statusText);
-                }
-                return throwError(() => error.error.error);
+                return throwError(() => error.error);
             })
         );
     }
