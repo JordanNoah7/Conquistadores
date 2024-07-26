@@ -223,8 +223,9 @@ export class SessionService {
         const session = Object.freeze({
             token: {
                 UsuaId: data.Usuario.UsuaId,
-                EntiId: data.ConqId ? data.ConqId : data.TutoId,
-                UsuaNombre: data.ConqId ? data.ConqNombres + ' ' + data.ConqApellidoPaterno + ' ' + data.ConqApellidoMaterno : data.TutoNombres + ' ' + data.TutoApellidoPaterno + ' ' + data.TutoApellidoMaterno
+                PersId: data.PersId ? data.PersId : data.TutoId,
+                UsuaNombre: data.PersId ? data.PersNombres + ' ' + data.PersApellidoPaterno + ' ' + data.PersApellidoMaterno : data.TutoNombres + ' ' + data.TutoApellidoPaterno + ' ' + data.TutoApellidoMaterno,
+                PersSexo: data.PersSexo
             },
             menu: (() => {
                 return data.Usuario.UsuaRoles;
@@ -232,7 +233,7 @@ export class SessionService {
             user: {
                 UsuaUsuario: data.Usuario.UsuaUsuario,
                 UsuaId: data.Usuario.UsuaId,
-                EntiDni: data.ConqId ? data.ConqDni : data.TutoDni
+                PersDni: data.PersId ? data.PersDni : data.TutoDni
             },
             PassForce: data.PassForce
         });

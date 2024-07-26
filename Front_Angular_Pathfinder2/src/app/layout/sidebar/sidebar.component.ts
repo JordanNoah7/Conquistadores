@@ -1,10 +1,9 @@
 import { Router, NavigationEnd } from "@angular/router";
 import { DOCUMENT } from "@angular/common";
-import { Component, Inject, ElementRef, OnInit, Renderer2, HostListener, OnDestroy, } from "@angular/core";
+import { Component, Inject, ElementRef, OnInit, Renderer2, HostListener, OnDestroy } from "@angular/core";
 import { AuthService } from "src/app/core/service/auth.service";
 import { SessionService } from "src/app/core/service/session.service";
-import { MatDialog } from "@angular/material/dialog";
-
+import { ROUTES } from "./sidebar-items";
 @Component({
     selector: "app-sidebar",
     templateUrl: "./sidebar.component.html",
@@ -22,29 +21,18 @@ export class SidebarComponent implements OnInit, OnDestroy {
     headerHeight = 60;
     currentRoute: string;
     routerObj = null;
-    public menuList: any[];
-
-    public REP: boolean = false;
-    public LOGIS: boolean = false;
-    public SERV: boolean = false;
-    public COMB: boolean = false;
-    public RRHH: boolean = false;
-    public NSTOCK: boolean = false;
-    public DFLOTA: boolean = false;
 
     constructor(
         @Inject(DOCUMENT) private document: Document,
         private renderer: Renderer2,
         public elementRef: ElementRef,
         private authService: AuthService,
-        private router: Router,
         private sessionService: SessionService,
-        private dialogModel: MatDialog
+        private router: Router
     ) {
         const body = this.elementRef.nativeElement.closest("body");
         this.routerObj = this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
-                // close sidebar on mobile screen after menu select
                 this.renderer.removeClass(this.document.body, "overlay-open");
             }
         });
@@ -74,61 +62,35 @@ export class SidebarComponent implements OnInit, OnDestroy {
         }
     }
     ngOnInit() {
-        this.loadMenuClassic();
-
-        let nomuser = this.sessionService.getCurrentSession();
-        this.userFullName = nomuser.user.USER_Nombre;
-
+        const session = this.sessionService.getCurrentSession();
+        console.log(session);
+        let roles = "";
+        if (session) {
+            session.menu.map(r => {
+                roles += r.RoleNombre + "|";
+            })
+            const userRole = roles;
+            console.log(userRole)
+            this.userFullName = session.token.UsuaNombre;
+            this.userImg = session.token.PersSexo == 'M' ? 'assets/images/Conquistador.png' : 'assets/images/Conquistadora.png';
+            debugger;
+            this.sidebarItems = ROUTES.filter(
+                (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf("All") !== -1
+            );
+            //TODO: Terminar de cargar la sidebar
+            // if (userRole === Role.Admin) {
+            //     this.userType = Role.Admin;
+            // } else if (userRole === Role.Patient) {
+            //     this.userType = Role.Patient;
+            // } else if (userRole === Role.Doctor) {
+            //     this.userType = Role.Doctor;
+            // } else {
+            //     this.userType = Role.Admin;
+            // }
+        }
         this.initLeftSidebar();
         this.bodyTag = this.document.body;
     }
-
-
-    loadMenu() {
-        const OPCI_Estado = "";
-        const data = this.sessionService.getCurrentSession();
-        if (data.menu.length !== 0) {
-
-            this.menuList = data.menu.filter(
-                (x) => { return x.OPCI_Estado.toLowerCase().indexOf("A".toLowerCase()) !== -1 });
-
-        }
-    }
-
-    loadMenuClassic() {
-        const session = this.sessionService.getCurrentSession();
-        let opciones: any = [];
-        opciones = session.menu;
-
-        let item = opciones.findIndex((obj: any) => obj.OPCI_Menu == 'REP');
-        if (item >= 0)
-            this.REP = opciones[item].OPCI_Estado == 'A' ? true : false;
-
-        item = opciones.findIndex((obj: any) => obj.OPCI_Menu == 'LOGIS');
-        if (item >= 0)
-            this.LOGIS = opciones[item].OPCI_Estado == 'A' ? true : false;
-
-        item = opciones.findIndex((obj: any) => obj.OPCI_Menu == 'SERV');
-        if (item >= 0)
-            this.SERV = opciones[item].OPCI_Estado == 'A' ? true : false;
-
-        item = opciones.findIndex((obj: any) => obj.OPCI_Menu == 'COMB');
-        if (item >= 0)
-            this.COMB = opciones[item].OPCI_Estado == 'A' ? true : false;
-
-        item = opciones.findIndex((obj: any) => obj.OPCI_Menu == 'RRHH');
-        if (item >= 0)
-            this.RRHH = opciones[item].OPCI_Estado == 'A' ? true : false;
-
-        item = opciones.findIndex((obj: any) => obj.OPCI_Menu == 'NSTOCK');
-        if (item >= 0)
-            this.NSTOCK = opciones[item].OPCI_Estado == 'A' ? true : false;
-
-        item = opciones.findIndex((obj: any) => obj.OPCI_Menu == 'DFLOTA');
-        if (item >= 0)
-            this.DFLOTA = opciones[item].OPCI_Estado == 'A' ? true : false;
-    }
-
     ngOnDestroy() {
         this.routerObj.unsubscribe();
     }
@@ -170,27 +132,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
     logout() {
         // this.authService.logout().subscribe((res) => {
-        //   if (!res.success) {
-        //     this.router.navigate(["/authentication/signin"]);
-        //   }
+        //     if (!res.success) {
+        //         this.router.navigate(["/authentication/signin"]);
+        //     }
         // });
-    }
-
-    Redireccionar(OPCION: string) {
-        this.router.navigate(['admin/reportes/grafico-reporte', OPCION]);
-        //this.isActive(this.currentRoute);
-    }
-
-
-    isActive(ruta: any): boolean {
-        this.router.events.subscribe((event: any) => {
-            event instanceof NavigationEnd;
-            this.currentRoute = event.url;
-        });
-        let activo = false;
-        if (this.currentRoute == ruta) {
-            activo = true;
-        }
-        return activo;
     }
 }

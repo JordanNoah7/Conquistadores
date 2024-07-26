@@ -25,10 +25,9 @@ export class AuthService {
         this.ip = await this.address.GetIp();
     }
 
-    public Login(username: string, password: string, captcha: any): Observable<any> {
+    public Login(username: string, password: string): Observable<any> {
         this.GetIp();
         const credentials = `${username}|${password}`;
-        debugger;
         const payload: Request = {
             UsuaUsuario: this.encrypt.encryptAuth(credentials),
             AudiHost: this.ip,
@@ -67,6 +66,25 @@ export class AuthService {
             }),
             tap(response => {
                 return response;
+            }),
+            catchError((error: any) => {
+                return throwError(() => error);
+            })
+        )
+    }
+
+    public ChangePassword(username: string, password: string): Observable<any> {
+        const credential = `${username}|${password}`;
+        const payload: Request = {
+            UsuaUsuario: this.encrypt.encryptAuth(credential),
+            AudiHost: ""
+        }
+        return this.api.connectBackend("CambiarContrasena", payload).pipe(
+            map(response => {
+                if (response) {
+                    return response;
+                }
+                return null;
             }),
             catchError((error: any) => {
                 return throwError(() => error);

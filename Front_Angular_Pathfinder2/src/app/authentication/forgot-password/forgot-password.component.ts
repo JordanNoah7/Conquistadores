@@ -56,7 +56,6 @@ export class ForgotPasswordComponent implements OnInit {
                     }
                     await this.authService.SendMail(payload).subscribe({
                         next: (value: any) => {
-                            debugger;
                             if (value.Mensaje) {
                                 Swal.fire({
                                     icon: "success",
@@ -66,7 +65,6 @@ export class ForgotPasswordComponent implements OnInit {
                             }
                         },
                         error: (value: any) => {
-                            debugger;
                             Swal.fire({
                                 icon: "success",
                                 title: value,
@@ -75,7 +73,6 @@ export class ForgotPasswordComponent implements OnInit {
                             this.router.navigate(["/authentication/signin"]);
                         },
                         complete: () => {
-                            debugger;
                             this.router.navigate(["/authentication/signin"]);
                         }
                     })

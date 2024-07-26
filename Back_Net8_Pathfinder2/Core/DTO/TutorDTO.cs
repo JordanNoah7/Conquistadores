@@ -4,16 +4,16 @@ namespace Core.DTO;
 
 public class TutorDTO
 {
-    public int TutoId { get; set; }
-    public string TutoDni { get; set; }
-    public string TutoNombres { get; set; }
-    public string TutoApellidoPaterno { get; set; }
-    public string TutoApellidoMaterno { get; set; }
-    public DateTime TutoFechaNacimiento { get; set; }
-    public string TutoCorreoPersonal { get; set; }
-    public string? TutoCorreoCorporativo { get; set; }
-    public string TutoCelular { get; set; }
-    public string? TutoTelefono { get; set; }
+    public int PersId { get; set; }
+    public string PersDni { get; set; }
+    public string PersNombres { get; set; }
+    public string PersApellidoPaterno { get; set; }
+    public string PersApellidoMaterno { get; set; }
+    public DateTime PersFechaNacimiento { get; set; }
+    public string PersCorreoPersonal { get; set; }
+    public string? PersCorreoCorporativo { get; set; }
+    public string PersCelular { get; set; }
+    public string? PersTelefono { get; set; }
 
     public UsuarioDTO Usuario { get; set; }
     public SesionDTO Sesion { get; set; }
@@ -21,29 +21,29 @@ public class TutorDTO
 
     public void CopyTo(ref Tutor tutor)
     {
-        tutor.PersId = TutoId;
-        tutor.PersDni = TutoDni;
-        tutor.PersNombres = TutoNombres;
-        tutor.PersApellidoPaterno = TutoApellidoPaterno;
-        tutor.PersApellidoMaterno = TutoApellidoMaterno;
-        tutor.PersFechaNacimiento = TutoFechaNacimiento;
-        tutor.PersCorreoPersonal = TutoCorreoPersonal;
-        tutor.PersCorreoCorporativo = TutoCorreoCorporativo;
-        tutor.PersCelular = TutoCelular;
-        tutor.PersTelefono = TutoTelefono;
+        tutor.PersId = PersId;
+        tutor.PersDni = PersDni;
+        tutor.PersNombres = PersNombres;
+        tutor.PersApellidoPaterno = PersApellidoPaterno;
+        tutor.PersApellidoMaterno = PersApellidoMaterno;
+        tutor.PersFechaNacimiento = PersFechaNacimiento;
+        tutor.PersCorreoPersonal = PersCorreoPersonal;
+        tutor.PersCorreoCorporativo = PersCorreoCorporativo;
+        tutor.PersCelular = PersCelular;
+        tutor.PersTelefono = PersTelefono;
     }
 
     public void CopyFrom(ref Tutor tutor)
     {
-        TutoId = tutor.PersId;
-        TutoDni = tutor.PersDni;
-        TutoNombres = tutor.PersNombres;
-        TutoApellidoPaterno = tutor.PersApellidoPaterno;
-        TutoApellidoMaterno = tutor.PersApellidoMaterno;
-        TutoFechaNacimiento = tutor.PersFechaNacimiento;
-        TutoCorreoPersonal = tutor.PersCorreoPersonal;
-        TutoCorreoCorporativo = tutor.PersCorreoCorporativo;
-        TutoCelular = tutor.PersCelular;
-        TutoTelefono = tutor.PersTelefono;
+        PersId = tutor.PersId;
+        PersDni = tutor.PersDni;
+        PersNombres = tutor.PersNombres;
+        PersApellidoPaterno = tutor.PersApellidoPaterno;
+        PersApellidoMaterno = tutor.PersApellidoMaterno;
+        PersFechaNacimiento = tutor.PersFechaNacimiento;
+        PersCorreoPersonal = tutor.PersCorreoPersonal;
+        PersCorreoCorporativo = tutor.PersCorreoCorporativo;
+        PersCelular = tutor.PersCelular;
+        PersTelefono = tutor.PersTelefono;
     }
 }

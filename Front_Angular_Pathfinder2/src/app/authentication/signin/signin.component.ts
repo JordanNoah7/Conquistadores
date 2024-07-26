@@ -82,9 +82,10 @@ export class SigninComponent
             });
             this.loading = false;
         } else {
-            await this.authService.Login(this.f.username.value, this.f.password.value, this.tokenCaptcha).subscribe({
+            await this.authService.Login(this.f.username.value, this.f.password.value).subscribe({
                 next: (value: any) => {
                     if (value.Usuario.UsuaCambiarContrasenia) {
+                        localStorage.setItem("user", this.f.username.value);
                         const dialogRef = this.dialogModel.open(ChangePasswordComponent, {
                             width: "640px",
                             disableClose: true,
