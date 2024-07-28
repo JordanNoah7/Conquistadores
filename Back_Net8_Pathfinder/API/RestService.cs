@@ -1,16 +1,19 @@
-﻿using System.Collections.ObjectModel;
-using System.Security.Cryptography;
-using System.Text;
-using Core.DTO;
+﻿using Core.DTO;
 using Core.Entities;
 using Core.Interfaces;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Collections.ObjectModel;
+using System.Security.Cryptography;
+using System.Text;
+using System.Data;
 
 namespace API;
 
 [ApiController]
 [Route("[Controller]")]
-public class RestService : ControllerBase
+public partial class RestService : ControllerBase
 {
     #region [ Variables ]
     private IConfiguration _configuration;
@@ -32,12 +35,13 @@ public class RestService : ControllerBase
     #endregion
 
     #region [ Endpoints ]
-    [HttpPost("ObtenerConquistador")]
-    public async Task<IActionResult> ObtenerConquistador([FromBody] Request request)
+    [HttpGet("ObtenerConquistador")]
+    public async Task<IActionResult> ObtenerConquistador([FromHeader] string requestStr)
     {
         try
         {
-            if(!await ValidarSesion(request.UsuaId))
+            Request request = JsonConvert.DeserializeObject<Request>(requestStr)!;
+            if (!await ValidarSesion(request.UsuaId))
             {
                 return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
             }
@@ -50,29 +54,31 @@ public class RestService : ControllerBase
             ConquistadorDTO conquistadorDTO = new ConquistadorDTO();
             conquistadorDTO.CopyFrom(ref conquistador);
 
-            if (conquistador.ClasId != null && conquistador.ClasId != 0)
+            Clase clase = await _service.GetCurrentClaseAsync(conquistador.PersId);
+            if (clase != null)
             {
-                conquistador.ConqClase = await _service.GetClaseByIdAsync(conquistador.ClasId.Value);
                 ClaseDTO claseDTO = new ClaseDTO();
-                var clase = conquistador.ConqClase;
                 claseDTO.CopyFrom(ref clase);
+                conquistadorDTO.ConqClase = claseDTO;
             }
 
-            if (conquistador.UnidId != null && conquistador.UnidId != 0)
+            Unidad unidad = await _service.GetCurrentUnidadAsync(conquistador.PersId);
+            if (unidad != null)
             {
                 UnidadDTO unidadDTO = new UnidadDTO();
-                var unidad = conquistador.ConqUnidad;
-                unidadDTO.CopyFrom(ref unidad!);
+                unidadDTO.CopyFrom(ref unidad);
+                conquistadorDTO.ConqUnidad = unidadDTO;
             }
 
-            if (conquistador.ConqEspecialidades != null)
+            ICollection<Especialidad> especialidades = await _service.GetEspecialidadesByConqIdAsync(conquistador.PersId);
+            if (especialidades != null)
             {
                 conquistadorDTO.ConqEspecialidades = new List<EspecialidadDTO>();
-                foreach (ConquistadorEspecialidad conqes in conquistador.ConqEspecialidades)
+                foreach (Especialidad especialidad in especialidades)
                 {
-                    var especialidad = conqes.CoesEspecialidad;
+                    var esp = especialidad;
                     EspecialidadDTO especialidadDTO = new EspecialidadDTO();
-                    especialidadDTO.CopyFrom(ref especialidad);
+                    especialidadDTO.CopyFrom(ref esp);
                     conquistadorDTO.ConqEspecialidades.Add(especialidadDTO);
                 }
             }
@@ -87,18 +93,53 @@ public class RestService : ControllerBase
         }
     }
 
-    [HttpPost("ObtenerConquistadores")]
-    public async Task<IActionResult> ObtenerConquistadores([FromBody] Request request)
+    [HttpGet("ObtenerConquistadores")]
+    public async Task<IActionResult> ObtenerConquistadores([FromHeader] string requestStr, [FromBody] Filters filtros)
     {
         try
         {
+            Request request = JsonConvert.DeserializeObject<Request>(requestStr)!;
             if (!await ValidarSesion(request.UsuaId))
             {
                 return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
             }
 
-            ObservableCollection<ConquistadorList_DTO> conquistadores = new ObservableCollection<ConquistadorList_DTO>(await _service.GetConquistadoresAsync());
-            if(conquistadores != null && conquistadores.Count > 0)
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@ConqDni", filtros.Dni, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@ConqNombres", filtros.Nombres, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@ConqApellidos", filtros.Apellidos, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@CondEdad", filtros.Edad, DbType.Int32, ParameterDirection.Input);
+            ObservableCollection<ConquistadorList_DTO> conquistadores = new ObservableCollection<ConquistadorList_DTO>(await _service.GetConquistadoresAsync("ConqSS_GetAll", parameters));
+            if (conquistadores != null && conquistadores.Count > 0)
+            {
+                return Ok(conquistadores);
+            }
+            else
+            {
+                return NotFound("No se encontrarón conquistadores registrados.");
+            }
+        }
+        catch
+        {
+            return BadRequest("Error al validar credenciales");
+        }
+    }
+
+    [HttpGet("ObtenerHijos")]
+    public async Task<IActionResult> ObtenerHijos([FromHeader] string requestStr)
+    {
+        try
+        {
+            Request request = JsonConvert.DeserializeObject<Request>(requestStr)!;
+            if (!await ValidarSesion(request.UsuaId))
+            {
+                return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
+            }
+
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@TutoId", request.UsuaId, DbType.Int32, ParameterDirection.Input);
+            ObservableCollection<ConquistadorList_DTO> conquistadores = new ObservableCollection<ConquistadorList_DTO>(await _service.GetConquistadoresAsync("ConqSS_GetAll", parameters));
+            if (conquistadores != null && conquistadores.Count > 0)
             {
                 return Ok(conquistadores);
             }

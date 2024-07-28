@@ -1,6 +1,4 @@
 ﻿using Core.Entities;
-using System.Reflection;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace Core.DTO;
 
@@ -9,7 +7,8 @@ public class EspecialidadDTO
     public int EspeId { get; set; }
     public string EspeNombre { get; set; }
     public string EspeDescripcion { get; set; }
-    public string EspeCategoria { get; set; }
+    public int CateId { get; set; }
+    public string EspeImagen { get; set; }
     public ICollection<ConquistadorDTO> EspeConquistadores { get; set; }
 
     public void CopyTo(ref Especialidad especialidad)
@@ -17,6 +16,8 @@ public class EspecialidadDTO
         especialidad.EspeId = EspeId;
         especialidad.EspeNombre = EspeNombre;
         especialidad.EspeDescripcion = EspeDescripcion;
+        especialidad.CateId = CateId;
+        especialidad.EspeImagen = EspeImagen;
     }
 
     public void CopyFrom(ref Especialidad especialidad)
@@ -24,6 +25,7 @@ public class EspecialidadDTO
         EspeId = especialidad.EspeId;
         EspeNombre = especialidad.EspeNombre;
         EspeDescripcion = especialidad.EspeDescripcion;
-        EspeCategoria = especialidad.EspeCategoria.CateNombre;
+        CateId = especialidad.CateId;
+        EspeImagen = especialidad.EspeImagen;
     }
 }

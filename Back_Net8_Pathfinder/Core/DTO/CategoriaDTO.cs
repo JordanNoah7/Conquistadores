@@ -1,4 +1,6 @@
-﻿namespace Core.DTO;
+﻿using Core.Entities;
+
+namespace Core.DTO;
 
 public class CategoriaDTO
 {
@@ -7,4 +9,12 @@ public class CategoriaDTO
     public string CateDescripcion { get; set; }
     public string CateColor { get; set; }
     public ICollection<EspecialidadDTO> CateEspecialidades { get; set; }
+
+    public void CopyFrom(Categoria categoria)
+    {
+        CateId = categoria.CateId;
+        CateNombre = categoria.CateNombre;
+        CateDescripcion = categoria.CateDescripcion;
+        CateColor = categoria.CateColor;
+    }
 }

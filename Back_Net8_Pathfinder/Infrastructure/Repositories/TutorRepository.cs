@@ -13,12 +13,12 @@ public class TutorRepository : ITutorRepository
     {
         _dbContext = dbContext;
     }
-    
+
     public async Task<Tutor> GetByUsuarioAsync(int id)
     {
         try
         {
-            return await _dbContext.Tutores.FirstOrDefaultAsync(c => c.TutoUsuario.UsuaId == id);
+            return await _dbContext.Tutores.FirstOrDefaultAsync(c => c.UsuaId == id)!;
         }
         catch (Exception e)
         {

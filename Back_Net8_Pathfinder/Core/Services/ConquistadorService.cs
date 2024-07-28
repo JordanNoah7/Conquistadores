@@ -1,6 +1,6 @@
 ﻿using Core.DTO;
 using Core.Entities;
-using Core.Interfaces;
+using Dapper;
 
 namespace Core.Services;
 
@@ -19,11 +19,11 @@ public partial class Service
         }
     }
 
-    public async Task<ICollection<ConquistadorList_DTO>> GetConquistadoresAsync()
+    public async Task<ICollection<ConquistadorList_DTO>> GetConquistadoresAsync(string sp, DynamicParameters parameters)
     {
         try
         {
-            return await _conquistadorRepository.GetAllAsync();
+            return await _conquistadorRepository.GetAllAsync(sp, parameters);
         }
         catch (Exception e)
         {

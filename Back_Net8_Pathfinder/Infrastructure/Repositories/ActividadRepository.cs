@@ -12,7 +12,7 @@ public class ActividadRepository : IActividadRepository
     {
         _dbContext = dbContext;
     }
-    
+
     public async Task<Actividad> GetByIdAsync(int id)
     {
         try

@@ -84,20 +84,31 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.ActividadConquistador", b =>
                 {
-                    b.Property<int>("AccoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AccoId"));
-
                     b.Property<int>("ActiId")
                         .HasColumnType("int");
 
                     b.Property<int>("ConqId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("AccoAutorizado")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("AccoDetalles")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("AccoFechaAutorizado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("AccoSaludPerfecta")
+                        .HasColumnType("bit");
+
                     b.Property<int>("AccoTipoParticipacionId")
                         .HasColumnType("int");
+
+                    b.Property<string>("AccoTipoParticipacionTabla")
+                        .IsRequired()
+                        .HasColumnType("nchar(3)");
 
                     b.Property<DateTime>("AudiFechCrea")
                         .ValueGeneratedOnAdd()
@@ -121,13 +132,11 @@ namespace Infrastructure.Migrations
                     b.Property<string>("AudiUserMod")
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("AccoId", "ActiId", "ConqId");
-
-                    b.HasIndex("AccoTipoParticipacionId");
-
-                    b.HasIndex("ActiId");
+                    b.HasKey("ActiId", "ConqId");
 
                     b.HasIndex("ConqId");
+
+                    b.HasIndex("AccoTipoParticipacionTabla", "AccoTipoParticipacionId");
 
                     b.ToTable("ActividadConquistadores");
                 });
@@ -230,11 +239,11 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("CateDescripcion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("CateNombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("CateId");
 
@@ -275,22 +284,26 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<string>("ClasImagen")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("ClasNombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ClasId");
 
                     b.ToTable("Clases");
                 });
 
-            modelBuilder.Entity("Core.Entities.Conquistador", b =>
+            modelBuilder.Entity("Core.Entities.ClaseConquistador", b =>
                 {
                     b.Property<int>("ConqId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ConqId"));
+                    b.Property<int>("ClasId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("AudiFechCrea")
                         .ValueGeneratedOnAdd()
@@ -314,60 +327,128 @@ namespace Infrastructure.Migrations
                     b.Property<string>("AudiUserMod")
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int?>("ClasId")
+                    b.Property<bool?>("ClcoAprobado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ClcoFechaAprobado")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("ClcoTipoCargoClaseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ConqApellidoMaterno")
+                    b.Property<string>("ClcoTipoCargoClaseTabla")
+                        .IsRequired()
+                        .HasColumnType("nchar(3)");
+
+                    b.HasKey("ConqId", "ClasId");
+
+                    b.HasIndex("ClasId");
+
+                    b.ToTable("ClaseConquistadores");
+                });
+
+            modelBuilder.Entity("Core.Entities.Conquistador", b =>
+                {
+                    b.Property<int>("PersId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersId"));
+
+                    b.Property<DateTime>("AudiFechCrea")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("ConqApellidoPaterno")
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("ConqCelular")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(18)");
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("ConqCorreoCorporativo")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("ConqCorreoPersonal")
+                    b.Property<string>("ConqCurso")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(25)");
 
-                    b.Property<string>("ConqDni")
+                    b.Property<string>("ConqEscuela")
                         .IsRequired()
-                        .HasColumnType("nchar(8)");
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<DateTime?>("ConqFechaInvestidura")
                         .HasColumnType("datetime");
 
-                    b.Property<DateTime>("ConqFechaNacimiento")
-                        .HasColumnType("datetime");
+                    b.Property<string>("ConqTurno")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)");
 
-                    b.Property<string>("ConqNombres")
+                    b.Property<string>("PersApellidoMaterno")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("PersApellidoPaterno")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("PersCelular")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(18)");
+
+                    b.Property<string>("PersCiudad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("PersCorreoCorporativo")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PersCorreoPersonal")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("ConqSexo")
+                    b.Property<string>("PersDireccionCasa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("PersDni")
+                        .IsRequired()
+                        .HasColumnType("nchar(8)");
+
+                    b.Property<DateTime>("PersFechaNacimiento")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("PersNacionalidad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("PersNombres")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PersRegion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("PersSexo")
                         .IsRequired()
                         .HasColumnType("char(1)");
 
-                    b.Property<string>("ConqTelefono")
+                    b.Property<string>("PersTelefono")
                         .HasColumnType("nvarchar(18)");
-
-                    b.Property<int?>("UnidId")
-                        .HasColumnType("int");
 
                     b.Property<int>("UsuaId")
                         .HasColumnType("int");
 
-                    b.HasKey("ConqId");
-
-                    b.HasIndex("ClasId");
-
-                    b.HasIndex("UnidId");
+                    b.HasKey("PersId");
 
                     b.HasIndex("UsuaId")
                         .IsUnique();
@@ -377,12 +458,6 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.ConquistadorEspecialidad", b =>
                 {
-                    b.Property<int>("CoesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CoesId"));
-
                     b.Property<int>("ConqId")
                         .HasColumnType("int");
 
@@ -411,22 +486,36 @@ namespace Infrastructure.Migrations
                     b.Property<string>("AudiUserMod")
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("CoesId", "ConqId", "EspeId");
+                    b.Property<int>("CateId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("ConqId");
+                    b.Property<bool>("CoesCompleto")
+                        .HasColumnType("bit");
 
-                    b.HasIndex("EspeId");
+                    b.Property<DateTime>("CoesFechaCompleto")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CoesFirma")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ConqId", "EspeId");
+
+                    b.HasIndex("CateId", "EspeId");
 
                     b.ToTable("ConquistadorEspecialidades");
                 });
 
             modelBuilder.Entity("Core.Entities.ConquistadorItemCuadernillo", b =>
                 {
-                    b.Property<int>("CoicId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("ConqId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CoicId"));
+                    b.Property<int>("ClasId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ItcuId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("AudiFechCrea")
                         .ValueGeneratedOnAdd()
@@ -450,31 +539,33 @@ namespace Infrastructure.Migrations
                     b.Property<string>("AudiUserMod")
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<bool>("CoicEstaCompleto")
+                    b.Property<bool>("CoicCompleto")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ConqId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CoicFechaCompleto")
+                        .HasColumnType("datetime");
 
-                    b.Property<int?>("ItcuId")
-                        .HasColumnType("int");
+                    b.Property<string>("CoicFirma")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("CoicId");
+                    b.HasKey("ConqId", "ClasId", "ItcuId");
 
-                    b.HasIndex("ConqId");
-
-                    b.HasIndex("ItcuId");
+                    b.HasIndex("ClasId", "ItcuId");
 
                     b.ToTable("ConquistadorItemsCuadernillo");
                 });
 
             modelBuilder.Entity("Core.Entities.Cronograma", b =>
                 {
-                    b.Property<int>("CronId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("ClasId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CronId"));
+                    b.Property<int>("ItcuId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CronAno")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("AudiFechCrea")
                         .ValueGeneratedOnAdd()
@@ -507,23 +598,60 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("CronFechaInicio")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("ItcuId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CronId");
-
-                    b.HasIndex("ItcuId");
+                    b.HasKey("ClasId", "ItcuId", "CronAno");
 
                     b.ToTable("Cronogramas");
                 });
 
-            modelBuilder.Entity("Core.Entities.Especialidad", b =>
+            modelBuilder.Entity("Core.Entities.CuentaCorriente", b =>
                 {
-                    b.Property<int>("EspeId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("ConqId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EspeId"));
+                    b.Property<int>("CucoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("AudiFechCrea")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("CucoFecha")
+                        .HasColumnType("datetime");
+
+                    b.Property<decimal>("CucoMontoDepositado")
+                        .HasColumnType("decimal(9,3)");
+
+                    b.Property<decimal>("CucoMontoRetirado")
+                        .HasColumnType("decimal(9,3)");
+
+                    b.HasKey("ConqId", "CucoId");
+
+                    b.ToTable("CuentaCorriente");
+                });
+
+            modelBuilder.Entity("Core.Entities.Especialidad", b =>
+                {
+                    b.Property<int>("CateId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EspeId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("AudiFechCrea")
                         .ValueGeneratedOnAdd()
@@ -547,22 +675,75 @@ namespace Infrastructure.Migrations
                     b.Property<string>("AudiUserMod")
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("CateId")
-                        .HasColumnType("int");
-
                     b.Property<string>("EspeDescripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("EspeImagen")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("EspeNombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("EspeId");
-
-                    b.HasIndex("CateId");
+                    b.HasKey("CateId", "EspeId");
 
                     b.ToTable("Especialidades");
+                });
+
+            modelBuilder.Entity("Core.Entities.FichaMedica", b =>
+                {
+                    b.Property<int>("ConqId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FimeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FimeAnio")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("AudiFechCrea")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("FimeAlergias")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FimeEnfermedades")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FimeSangreRH")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(5)");
+
+                    b.Property<string>("FimeVacunas")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ConqId", "FimeId", "FimeAnio");
+
+                    b.ToTable("FichasMedicas");
                 });
 
             modelBuilder.Entity("Core.Entities.Inscripcion", b =>
@@ -570,7 +751,7 @@ namespace Infrastructure.Migrations
                     b.Property<int>("ConqId")
                         .HasColumnType("int");
 
-                    b.Property<int>("InscId")
+                    b.Property<int>("InscAnio")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("AudiFechCrea")
@@ -594,6 +775,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("AudiUserMod")
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool>("InscCompleto")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("InscFecha")
                         .HasColumnType("datetime");
@@ -601,18 +785,18 @@ namespace Infrastructure.Migrations
                     b.Property<decimal>("InscMonto")
                         .HasColumnType("decimal(9, 3)");
 
-                    b.HasKey("ConqId", "InscId");
+                    b.HasKey("ConqId", "InscAnio");
 
                     b.ToTable("Inscripciones");
                 });
 
             modelBuilder.Entity("Core.Entities.ItemCuadernillo", b =>
                 {
-                    b.Property<int>("ItcuId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("ClasId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItcuId"));
+                    b.Property<int>("ItcuId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("AudiFechCrea")
                         .ValueGeneratedOnAdd()
@@ -636,16 +820,11 @@ namespace Infrastructure.Migrations
                     b.Property<string>("AudiUserMod")
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("ClasId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ItcuDescripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ItcuId");
-
-                    b.HasIndex("ClasId");
+                    b.HasKey("ClasId", "ItcuId");
 
                     b.ToTable("ItemsCuadernillo");
                 });
@@ -736,51 +915,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("Core.Entities.RolUsuario", b =>
-                {
-                    b.Property<int>("RousId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RousId"));
-
-                    b.Property<int>("UsuaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("AudiFechCrea")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("GETDATE()");
-
-                    b.Property<DateTime?>("AudiFechMod")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("AudiHostCrea")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("AudiHostMod")
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("AudiUserCrea")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("AudiUserMod")
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("RousId", "UsuaId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.HasIndex("UsuaId");
-
-                    b.ToTable("RolesUsuario");
-                });
-
             modelBuilder.Entity("Core.Entities.Sesion", b =>
                 {
                     b.Property<int>("UsuaId")
@@ -812,11 +946,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Tipo", b =>
                 {
-                    b.Property<int>("TipoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("TipoTabla")
+                        .HasColumnType("nchar(3)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TipoId"));
+                    b.Property<int>("TipoId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("AudiFechCrea")
                         .ValueGeneratedOnAdd()
@@ -847,22 +981,18 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("TipoEstaActivo")
                         .HasColumnType("bit");
 
-                    b.Property<string>("TipoTabla")
-                        .IsRequired()
-                        .HasColumnType("char(3)");
-
-                    b.HasKey("TipoId");
+                    b.HasKey("TipoTabla", "TipoId");
 
                     b.ToTable("Tipos");
                 });
 
             modelBuilder.Entity("Core.Entities.Tutor", b =>
                 {
-                    b.Property<int>("TutoId")
+                    b.Property<int>("PersId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TutoId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersId"));
 
                     b.Property<DateTime>("AudiFechCrea")
                         .ValueGeneratedOnAdd()
@@ -886,43 +1016,71 @@ namespace Infrastructure.Migrations
                     b.Property<string>("AudiUserMod")
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("TutoApellidoMaterno")
+                    b.Property<string>("PersApellidoMaterno")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("TutoApellidoPaterno")
+                    b.Property<string>("PersApellidoPaterno")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("TutoCelular")
+                    b.Property<string>("PersCelular")
                         .IsRequired()
                         .HasColumnType("nvarchar(18)");
 
-                    b.Property<string>("TutoCorreoCorporativo")
+                    b.Property<string>("PersCiudad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("PersCorreoCorporativo")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("TutoCorreoPersonal")
+                    b.Property<string>("PersCorreoPersonal")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("TutoDni")
+                    b.Property<string>("PersDireccionCasa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("PersDni")
                         .IsRequired()
                         .HasColumnType("nchar(8)");
 
-                    b.Property<DateTime>("TutoFechaNacimiento")
+                    b.Property<DateTime>("PersFechaNacimiento")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("TutoNombres")
+                    b.Property<string>("PersNacionalidad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("PersNombres")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("TutoTelefono")
+                    b.Property<string>("PersRegion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("PersSexo")
+                        .IsRequired()
+                        .HasColumnType("char(1)");
+
+                    b.Property<string>("PersTelefono")
+                        .HasColumnType("nvarchar(18)");
+
+                    b.Property<string>("TutoCentroTrabajo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(18)");
+
+                    b.Property<string>("TutoDireccionTrabajo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(18)");
 
                     b.Property<int>("UsuaId")
                         .HasColumnType("int");
 
-                    b.HasKey("TutoId");
+                    b.HasKey("PersId");
 
                     b.HasIndex("UsuaId")
                         .IsUnique();
@@ -932,12 +1090,6 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.TutorConquistador", b =>
                 {
-                    b.Property<int>("TucoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TucoId"));
-
                     b.Property<int>("TutoId")
                         .HasColumnType("int");
 
@@ -966,16 +1118,18 @@ namespace Infrastructure.Migrations
                     b.Property<string>("AudiUserMod")
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("TucoParentescoId")
+                    b.Property<int>("TucoTipoParentescoId")
                         .HasColumnType("int");
 
-                    b.HasKey("TucoId", "TutoId", "ConqId");
+                    b.Property<string>("TucoTipoParentescoTabla")
+                        .IsRequired()
+                        .HasColumnType("nchar(3)");
+
+                    b.HasKey("TutoId", "ConqId");
 
                     b.HasIndex("ConqId");
 
-                    b.HasIndex("TucoParentescoId");
-
-                    b.HasIndex("TutoId");
+                    b.HasIndex("TucoTipoParentescoTabla", "TucoTipoParentescoId");
 
                     b.ToTable("TutorConquistadores");
                 });
@@ -1012,23 +1166,74 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("UnidDescripcion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UnidGritoGuerra")
                         .IsRequired()
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UnidImagen")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("UnidLema")
                         .IsRequired()
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UnidNombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("UnidId");
 
                     b.ToTable("Unidades");
+                });
+
+            modelBuilder.Entity("Core.Entities.UnidadConquistador", b =>
+                {
+                    b.Property<int>("UnidId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ConqId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UncoAno")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("AudiFechCrea")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("UncoCargoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UncoCargoTabla")
+                        .IsRequired()
+                        .HasColumnType("nchar(3)");
+
+                    b.HasKey("UnidId", "ConqId", "UncoAno");
+
+                    b.HasIndex("ConqId");
+
+                    b.ToTable("UnidadConquistadores");
                 });
 
             modelBuilder.Entity("Core.Entities.Usuario", b =>
@@ -1077,14 +1282,45 @@ namespace Infrastructure.Migrations
                     b.ToTable("Usuarios");
                 });
 
+            modelBuilder.Entity("Core.Entities.UsuarioRol", b =>
+                {
+                    b.Property<int>("UsuaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("AudiFechCrea")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateTime?>("AudiFechMod")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AudiHostCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiHostMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserCrea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AudiUserMod")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("UsuaId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UsuarioRoles");
+                });
+
             modelBuilder.Entity("Core.Entities.ActividadConquistador", b =>
                 {
-                    b.HasOne("Core.Entities.Tipo", "AccoTipoParticipacion")
-                        .WithMany("TipoParticipaciones")
-                        .HasForeignKey("AccoTipoParticipacionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Core.Entities.Actividad", "AccoActividad")
                         .WithMany("ActiParticipantes")
                         .HasForeignKey("ActiId")
@@ -1094,6 +1330,12 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Conquistador", "AccoConquistador")
                         .WithMany("ConqActividades")
                         .HasForeignKey("ConqId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Tipo", "AccoTipoParticipacion")
+                        .WithMany("TipoActividades")
+                        .HasForeignKey("AccoTipoParticipacionTabla", "AccoTipoParticipacionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1115,27 +1357,34 @@ namespace Infrastructure.Migrations
                     b.Navigation("AsisConquistador");
                 });
 
+            modelBuilder.Entity("Core.Entities.ClaseConquistador", b =>
+                {
+                    b.HasOne("Core.Entities.Clase", "ClcoClase")
+                        .WithMany("ClasConquistadores")
+                        .HasForeignKey("ClasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Conquistador", "ClcoConquistador")
+                        .WithMany("ConqClases")
+                        .HasForeignKey("ConqId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ClcoClase");
+
+                    b.Navigation("ClcoConquistador");
+                });
+
             modelBuilder.Entity("Core.Entities.Conquistador", b =>
                 {
-                    b.HasOne("Core.Entities.Clase", "ConqClase")
-                        .WithMany("ClasConquistadores")
-                        .HasForeignKey("ClasId");
-
-                    b.HasOne("Core.Entities.Unidad", "ConqUnidad")
-                        .WithMany("UnidConquistadores")
-                        .HasForeignKey("UnidId");
-
-                    b.HasOne("Core.Entities.Usuario", "ConqUsuario")
+                    b.HasOne("Core.Entities.Usuario", "PersUsuario")
                         .WithOne("UsuaConquistador")
                         .HasForeignKey("Core.Entities.Conquistador", "UsuaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ConqClase");
-
-                    b.Navigation("ConqUnidad");
-
-                    b.Navigation("ConqUsuario");
+                    b.Navigation("PersUsuario");
                 });
 
             modelBuilder.Entity("Core.Entities.ConquistadorEspecialidad", b =>
@@ -1148,7 +1397,7 @@ namespace Infrastructure.Migrations
 
                     b.HasOne("Core.Entities.Especialidad", "CoesEspecialidad")
                         .WithMany("EspeConquistadores")
-                        .HasForeignKey("EspeId")
+                        .HasForeignKey("CateId", "EspeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1162,12 +1411,14 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Conquistador", "CoicConquistador")
                         .WithMany("ConqItemsCuadernillo")
                         .HasForeignKey("ConqId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Core.Entities.ItemCuadernillo", "CoicItemCuadernillo")
                         .WithMany("ItcuConquistadores")
-                        .HasForeignKey("ItcuId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .HasForeignKey("ClasId", "ItcuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("CoicConquistador");
 
@@ -1176,13 +1427,24 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Cronograma", b =>
                 {
-                    b.HasOne("Core.Entities.ItemCuadernillo", "CronItem")
+                    b.HasOne("Core.Entities.ItemCuadernillo", "CronItemCuadernillo")
                         .WithMany("ItcuCronogramas")
-                        .HasForeignKey("ItcuId")
+                        .HasForeignKey("ClasId", "ItcuId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CronItem");
+                    b.Navigation("CronItemCuadernillo");
+                });
+
+            modelBuilder.Entity("Core.Entities.CuentaCorriente", b =>
+                {
+                    b.HasOne("Core.Entities.Conquistador", "CucoConquistador")
+                        .WithMany("ConqCuentaCorriente")
+                        .HasForeignKey("ConqId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CucoConquistador");
                 });
 
             modelBuilder.Entity("Core.Entities.Especialidad", b =>
@@ -1194,6 +1456,17 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("EspeCategoria");
+                });
+
+            modelBuilder.Entity("Core.Entities.FichaMedica", b =>
+                {
+                    b.HasOne("Core.Entities.Conquistador", "FimeConquistador")
+                        .WithMany("ConqFichasMedicas")
+                        .HasForeignKey("ConqId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FimeConquistador");
                 });
 
             modelBuilder.Entity("Core.Entities.Inscripcion", b =>
@@ -1218,25 +1491,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("ItcuClase");
                 });
 
-            modelBuilder.Entity("Core.Entities.RolUsuario", b =>
-                {
-                    b.HasOne("Core.Entities.Rol", "RousRol")
-                        .WithMany("RoleUsuarios")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Core.Entities.Usuario", "RousUsuario")
-                        .WithMany("UsuaRoles")
-                        .HasForeignKey("UsuaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RousRol");
-
-                    b.Navigation("RousUsuario");
-                });
-
             modelBuilder.Entity("Core.Entities.Sesion", b =>
                 {
                     b.HasOne("Core.Entities.Usuario", "SesiUsuario")
@@ -1250,13 +1504,13 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Tutor", b =>
                 {
-                    b.HasOne("Core.Entities.Usuario", "TutoUsuario")
+                    b.HasOne("Core.Entities.Usuario", "PersUsuario")
                         .WithOne("UsuaTutor")
                         .HasForeignKey("Core.Entities.Tutor", "UsuaId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("TutoUsuario");
+                    b.Navigation("PersUsuario");
                 });
 
             modelBuilder.Entity("Core.Entities.TutorConquistador", b =>
@@ -1264,26 +1518,64 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Conquistador", "TucoConquistador")
                         .WithMany("ConqTutores")
                         .HasForeignKey("ConqId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Core.Entities.Tipo", "TucoParentesco")
-                        .WithMany("TipoParentescos")
-                        .HasForeignKey("TucoParentescoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Core.Entities.Tutor", "TucoTutor")
                         .WithMany("TutoConquistadores")
                         .HasForeignKey("TutoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Tipo", "TucoTipoParentesco")
+                        .WithMany("TipoParentescos")
+                        .HasForeignKey("TucoTipoParentescoTabla", "TucoTipoParentescoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("TucoConquistador");
 
-                    b.Navigation("TucoParentesco");
+                    b.Navigation("TucoTipoParentesco");
 
                     b.Navigation("TucoTutor");
+                });
+
+            modelBuilder.Entity("Core.Entities.UnidadConquistador", b =>
+                {
+                    b.HasOne("Core.Entities.Conquistador", "UncoConquistador")
+                        .WithMany("ConqUnidades")
+                        .HasForeignKey("ConqId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Unidad", "UncoUnidad")
+                        .WithMany("UnidConquistadores")
+                        .HasForeignKey("UnidId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UncoConquistador");
+
+                    b.Navigation("UncoUnidad");
+                });
+
+            modelBuilder.Entity("Core.Entities.UsuarioRol", b =>
+                {
+                    b.HasOne("Core.Entities.Rol", "UsroRol")
+                        .WithMany("RoleUsuarios")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Usuario", "UsroUsuario")
+                        .WithMany("UsuaRoles")
+                        .HasForeignKey("UsuaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UsroRol");
+
+                    b.Navigation("UsroUsuario");
                 });
 
             modelBuilder.Entity("Core.Entities.Actividad", b =>
@@ -1309,13 +1601,21 @@ namespace Infrastructure.Migrations
 
                     b.Navigation("ConqAsistencias");
 
+                    b.Navigation("ConqClases");
+
+                    b.Navigation("ConqCuentaCorriente");
+
                     b.Navigation("ConqEspecialidades");
+
+                    b.Navigation("ConqFichasMedicas");
 
                     b.Navigation("ConqInscripciones");
 
                     b.Navigation("ConqItemsCuadernillo");
 
                     b.Navigation("ConqTutores");
+
+                    b.Navigation("ConqUnidades");
                 });
 
             modelBuilder.Entity("Core.Entities.Especialidad", b =>
@@ -1337,9 +1637,9 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Tipo", b =>
                 {
-                    b.Navigation("TipoParentescos");
+                    b.Navigation("TipoActividades");
 
-                    b.Navigation("TipoParticipaciones");
+                    b.Navigation("TipoParentescos");
                 });
 
             modelBuilder.Entity("Core.Entities.Tutor", b =>

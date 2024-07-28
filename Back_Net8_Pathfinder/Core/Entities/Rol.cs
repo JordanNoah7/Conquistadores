@@ -1,29 +1,28 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities;
 
 public class Rol
 {
+    #region [ Propiedades ]
     [Key]
     public int RoleId { get; set; }
-    [Required]
     [Column(TypeName = "nvarchar(30)")]
     public string RoleNombre { get; set; }
-    [Required]
     [Column(TypeName = "nvarchar(250)")]
     public string RoleDescripcion { get; set; }
-    
-    public ICollection<RolUsuario> RoleUsuarios { get; set; }
-    
-    [Required]
+    #endregion
+
+    #region [ Relaciones ]
+    public ICollection<UsuarioRol> RoleUsuarios { get; set; }
+    #endregion
+
+    #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiUserCrea { get; set; }
-    [Required]
     [Column(TypeName = "datetime")]
     public DateTime AudiFechCrea { get; set; }
-    [Required]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiHostCrea { get; set; }
     [Column(TypeName = "nvarchar(20)")]
@@ -32,4 +31,5 @@ public class Rol
     public DateTime? AudiFechMod { get; set; }
     [Column(TypeName = "nvarchar(20)")]
     public string? AudiHostMod { get; set; }
+    #endregion
 }

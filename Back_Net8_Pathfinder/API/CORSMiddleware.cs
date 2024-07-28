@@ -13,7 +13,7 @@ public class CORSMiddleware
     {
         context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
         context.Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST");
-        context.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Accept");
+        context.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Accept, requestStr");
         context.Response.Headers.Add("Access-Control-Max-Age", "1728000");
 
         if (context.Request.Method == "OPTIONS")

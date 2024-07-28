@@ -4,7 +4,7 @@ namespace Core.Services;
 
 public partial class Service
 {
-    public async Task<List<RolUsuario>> GetRolesByUserAsync(int id)
+    public async Task<ICollection<UsuarioRol>> GetRolesByUserAsync(int id)
     {
         try
         {

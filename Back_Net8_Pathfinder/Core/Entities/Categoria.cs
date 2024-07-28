@@ -1,32 +1,30 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities;
 
 public class Categoria
 {
+    #region [ Propiedades ]
     [Key]
     public int CateId { get; set; }
-    [Required]
-    [Column(TypeName = "nvarchar(25)")]
+    [Column(TypeName = "nvarchar(50)")]
     public string CateNombre { get; set; }
-    [Required]
-    [Column(TypeName = "nvarchar(250)")]
+    [Column(TypeName = "nvarchar(500)")]
     public string CateDescripcion { get; set; }
-    [Required]
     [Column(TypeName = "nvarchar(10)")]
     public string CateColor { get; set; }
-    [Required]
+    #endregion
+
+    #region [ Relaciones ]
     public ICollection<Especialidad> CateEspecialidades { get; set; }
-    
-    [Required]
+    #endregion
+
+    #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiUserCrea { get; set; }
-    [Required]
     [Column(TypeName = "datetime")]
     public DateTime AudiFechCrea { get; set; }
-    [Required]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiHostCrea { get; set; }
     [Column(TypeName = "nvarchar(20)")]
@@ -35,4 +33,5 @@ public class Categoria
     public DateTime? AudiFechMod { get; set; }
     [Column(TypeName = "nvarchar(20)")]
     public string? AudiHostMod { get; set; }
+    #endregion
 }

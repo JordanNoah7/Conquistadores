@@ -1,0 +1,171 @@
+<section class="content">
+    <div class="content-block">
+        <div class="block-header">
+            <app-breadcrumb [title]="'Dashboad'" [items]="[]" [active_item]="'Dashboad'"></app-breadcrumb>
+        </div>
+        <div class="row">
+            <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card card-statistic-2">
+                    <div class="clearfix" style="text-align: center; padding: 25px;">
+                        <img src="assets/images/Conquistador.png" alt="Foto de perfil" height="300">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card card-statistic-2">
+                    <div class="clearfix" style="padding: 25px;">
+                        <h2>
+                            <i class="material-icons align-middle">face</i>
+                            {{conquistador?.PersNombres + ' ' + conquistador?.PersApellidoPaterno + ' ' + conquistador?.PersApellidoMaterno}}
+                        </h2>
+                        <h3>
+                            <i class="material-icons align-middle">badge</i>
+                            {{conquistador?.PersDni}}
+                        </h3>
+                        <h3>
+                            <i class="material-icons align-middle">celebration</i>
+                            {{birthdate}}
+                        </h3>
+                        <h3>
+                            <i class="material-icons align-middle">call</i>
+                            {{conquistador?.PersCelular + ' | ' + conquistador?.PersTelefono}}
+                        </h3>
+                        <h3>
+                            <i class="material-icons align-middle">mail</i>
+                            {{conquistador?.PersCorreoPersonal}}
+                        </h3>
+                        <h3>
+                            <i class="material-icons align-middle">savings</i>
+                            s/ {{70}}
+                        </h3>
+                        <h3>
+                            <i class="material-icons align-middle">timeline</i>
+                            {{100}}
+                        </h3>
+                        <h3>
+                            <i class="material-icons align-middle">event</i>
+                            09/07/2024
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card card-statistic-2">
+                    <div class="clearfix" style="text-align: center; padding: 25px;">
+                        <div *ngIf="conquistador?.ConqUnidad">
+                            <img [src]="'assets/images/' + conquistador?.ConqUnidad.UnidImagen" alt="Unidad" height="225">
+                            <h3>{{conquistador?.ConqUnidad.UnidNombre}}</h3>
+                        </div>
+                        <div *ngIf="!conquistador?.ConqUnidad">
+                            <h4>A&uacute;n no est&aacute; asignado a una unidad</h4>
+                        </div>
+                        <p>UNIDAD</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card card-statistic-2">
+                    <div class="clearfix" style="text-align: center; padding: 25px">
+                        <div *ngIf="conquistador?.ConqClase">
+                            <img [src]="'assets/images/' + conquistador?.ConqClase.ClasImagen" alt="Foto de perfil" height="225">
+                            <h3>{{conquistador?.ConqClase.ClasNombre}}</h3>
+                        </div>
+                        <div *ngIf="!conquistador?.ConqClase">
+                            <h4>A&uacute;n no est&aacute; asignado a una clase</h4>
+                        </div>
+                        <p>CLASE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Avance del Cuadernillo
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="progress" *ngIf="true">
+                            <div class="progress-bar" role="progressbar" [style]="'width: 60%;'">60%</div>
+                        </div>
+                        <div style="text-align: center;" *ngIf="!true">
+                            <h4>A&uacute;n no tiene avance de cuadernillo</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Especialidades</h2>
+                    </div>
+                    <div class="body">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6" *ngFor="let categoria of categorias">
+                                <div class="card" [style]="'background-color: ' + categoria.CateColor">
+                                    <div class="header">{{categoria.CateNombre}}</div>
+                                    <div class="body">
+                                        <div style="text-align: center;" *ngIf="categoria.CateEspecialidades.length === 0">
+                                            <h4>A&uacute;n no tiene obleas de {{categoria.CateNombre}}</h4>
+                                        </div>
+                                        <div class="row" *ngIf="categoria.CateEspecialidades.length > 0">
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 oblea" *ngFor="let especialidad of categoria.CateEspecialidades">
+                                                <img [src]="'assets/images/especialidades' + especialidad.EspeImagen" [alt]="especialidad.EspeNombre" height="100">
+                                                <span>{{especialidad.EspeNombre}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Conquistadores dependientes</h2>
+                    </div>
+                    <div class="tableBody">
+                        <div class="table-responsive">
+                            <table class="table table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>DNI</th>
+                                        <th>Conquistador</th>
+                                        <th>Unidad</th>
+                                        <th>Clase</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="table-img">
+                                            <img src="assets/images/Conquistador.png" alt="">
+                                        </td>
+                                        <td>70685341</td>
+                                        <td>John Jordan Quispe Supo</td>
+                                        <td>Halcones</td>
+                                        <td>Guia Mayor</td>
+                                        <td>
+                                            <button mat-icon-button class="tbl-action-btn">
+                                                <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

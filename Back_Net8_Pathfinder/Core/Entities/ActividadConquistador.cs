@@ -1,29 +1,46 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities;
 
 public class ActividadConquistador
 {
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int AccoId { get; set; }
+    #region [ Propiedades ]
+    [Column(TypeName = "int")]
     public int ActiId { get; set; }
-    public Actividad AccoActividad { get; set; }
+    [Column(TypeName = "int")]
     public int ConqId { get; set; }
-    public Conquistador AccoConquistador { get; set; }
+    [Column(TypeName = "nchar(3)")]
+    public string AccoTipoParticipacionTabla { get; set; }
+    [Column(TypeName = "int")]
     public int AccoTipoParticipacionId { get; set; }
+    [Column(TypeName = "bit")]
+    public bool AccoAutorizado { get; set; }
+    [Column(TypeName = "bit")]
+    public bool AccoSaludPerfecta { get; set; }
+    [Column(TypeName = "nvarchar(max)")]
+    public string AccoDetalles { get; set; }
+    [Column(TypeName = "datetime")]
+    public DateTime AccoFechaAutorizado { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public Actividad AccoActividad { get; set; }
+    public Conquistador AccoConquistador { get; set; }
     public Tipo AccoTipoParticipacion { get; set; }
-    
-    [Required]
+    #endregion
+
+    #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiUserCrea { get; set; }
-    [Required]
     [Column(TypeName = "datetime")]
     public DateTime AudiFechCrea { get; set; }
-    [Required]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiHostCrea { get; set; }
-    [Column(TypeName = "nvarchar(20)")] public string? AudiUserMod { get; set; }
-    [Column(TypeName = "datetime")] public DateTime? AudiFechMod { get; set; }
-    [Column(TypeName = "nvarchar(20)")] public string? AudiHostMod { get; set; }
+    [Column(TypeName = "nvarchar(20)")]
+    public string? AudiUserMod { get; set; }
+    [Column(TypeName = "datetime")]
+    public DateTime? AudiFechMod { get; set; }
+    [Column(TypeName = "nvarchar(20)")]
+    public string? AudiHostMod { get; set; }
+    #endregion
 }

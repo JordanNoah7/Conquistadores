@@ -1,32 +1,33 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities;
 
 public class Cronograma
 {
-    [Key]
-    public int CronId { get; set; }
-    [Column(TypeName = "bit")]
-    public bool CronEstaHecho { get; set; }
-    [Required]
-    [Column(TypeName = "datetime")]
-    public DateTime CronFechaInicio { get; set; }
-    [Required]
-    [Column(TypeName = "datetime")]
-    public DateTime CronFechaFin { get; set; }
-    
+    #region [ Propiedades ]
+    [Column(TypeName = "int")]
+    public int ClasId { get; set; }
     [Column(TypeName = "int")]
     public int ItcuId { get; set; }
-    public ItemCuadernillo CronItem { get; set; }
-    
-    [Required]
+    [Column(TypeName = "int")]
+    public int CronAno { get; set; }
+    [Column(TypeName = "bit")]
+    public bool CronEstaHecho { get; set; }
+    [Column(TypeName = "datetime")]
+    public DateTime CronFechaInicio { get; set; }
+    [Column(TypeName = "datetime")]
+    public DateTime CronFechaFin { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public ItemCuadernillo CronItemCuadernillo { get; set; }
+    #endregion
+
+    #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiUserCrea { get; set; }
-    [Required]
     [Column(TypeName = "datetime")]
     public DateTime AudiFechCrea { get; set; }
-    [Required]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiHostCrea { get; set; }
     [Column(TypeName = "nvarchar(20)")]
@@ -35,4 +36,5 @@ public class Cronograma
     public DateTime? AudiFechMod { get; set; }
     [Column(TypeName = "nvarchar(20)")]
     public string? AudiHostMod { get; set; }
+    #endregion
 }

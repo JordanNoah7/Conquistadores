@@ -1,30 +1,29 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities;
 
 public class ItemCuadernillo
 {
-    [Key]
-    public int ItcuId { get; set; }
-    [Required]
-    [Column(TypeName = "nvarchar(max)")]
-    public string ItcuDescripcion { get; set; }
-    
+    #region [ Propiedades ]
     [Column(TypeName = "int")]
     public int ClasId { get; set; }
-    public Clase ItcuClase { get; set; }
-    public ICollection<Cronograma> ItcuCronogramas { get; set; }
+    [Column(TypeName = "int")]
+    public int ItcuId { get; set; }
+    [Column(TypeName = "nvarchar(max)")]
+    public string ItcuDescripcion { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
     public ICollection<ConquistadorItemCuadernillo> ItcuConquistadores { get; set; }
-    
-    [Required]
+    public ICollection<Cronograma> ItcuCronogramas { get; set; }
+    public Clase ItcuClase { get; set; }
+    #endregion
+
+    #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiUserCrea { get; set; }
-    [Required]
     [Column(TypeName = "datetime")]
     public DateTime AudiFechCrea { get; set; }
-    [Required]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiHostCrea { get; set; }
     [Column(TypeName = "nvarchar(20)")]
@@ -33,4 +32,5 @@ public class ItemCuadernillo
     public DateTime? AudiFechMod { get; set; }
     [Column(TypeName = "nvarchar(20)")]
     public string? AudiHostMod { get; set; }
+    #endregion
 }

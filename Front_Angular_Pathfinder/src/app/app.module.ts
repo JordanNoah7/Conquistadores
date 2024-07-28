@@ -1,43 +1,57 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy, PathLocationStrategy, registerLocaleData, DatePipe } from '@angular/common'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { NgModule } from "@angular/core";
+import { CoreModule } from "./core/core.module";
+import { SharedModule } from "./shared/shared.module";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { HeaderComponent } from "./layout/header/header.component";
+import { PageLoaderComponent } from "./layout/page-loader/page-loader.component";
+import { SidebarComponent } from "./layout/sidebar/sidebar.component";
+import { AuthLayoutComponent } from "./layout/app-layout/auth-layout/auth-layout.component";
+import { MainLayoutComponent } from "./layout/app-layout/main-layout/main-layout.component";
+import { ErrorInterceptor } from "./core/interceptor/error.interceptor";
+import { JwtInterceptor } from "./core/interceptor/jwt.interceptor";
+import { LocationStrategy, HashLocationStrategy } from "@angular/common";
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { ClickOutsideModule } from "ng-click-outside";
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
 
-import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
-import { I18nModule } from './shared/i18n/i18n.module';
-
-import localeEsPE from '@angular/common/locales/es-PE';
-
-import { ImageViewerModule } from 'ngx-image-viewer';
-
-registerLocaleData(localeEsPE);
+export function createTranslateLoader(http: HttpClient): any {
+    return new TranslateHttpLoader(http, "assets/i18n/", ".json");
+}
 
 @NgModule({
     declarations: [
         AppComponent,
+        HeaderComponent,
+        PageLoaderComponent,
+        SidebarComponent,
+        AuthLayoutComponent,
+        MainLayoutComponent,
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [AppComponent], imports: [BrowserModule,
         BrowserAnimationsModule,
-        ModalModule.forRoot(),
-        ImageViewerModule.forRoot(),
         AppRoutingModule,
+        // PerfectScrollbarModule,
+        ClickOutsideModule,
+        LoadingBarRouterModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient],
+            },
+        }),
+        // core & shared
         CoreModule,
-        SharedModule,
-        I18nModule,
-    ],
-    providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        { provide: LOCALE_ID, useValue: 'es-PE' },
-        DatePipe
-    ],
-    bootstrap: [AppComponent],
-    exports: [
-        AppComponent
-    ]
+        SharedModule], providers: [
+            { provide: LocationStrategy, useClass: HashLocationStrategy },
+            { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+            { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+            provideHttpClient(withInterceptorsFromDi()),
+        ]
 })
 export class AppModule { }

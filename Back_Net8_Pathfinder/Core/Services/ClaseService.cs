@@ -1,6 +1,4 @@
-﻿using Core.DTO;
-using Core.Entities;
-using Core.Interfaces;
+﻿using Core.Entities;
 
 namespace Core.Services;
 
@@ -11,6 +9,19 @@ public partial class Service
         try
         {
             return await _claseRepository.GetByIdAsync(id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<Clase> GetCurrentClaseAsync(int id)
+    {
+        try
+        {
+            return await _claseRepository.GetCurrentAsync(id);
         }
         catch (Exception e)
         {

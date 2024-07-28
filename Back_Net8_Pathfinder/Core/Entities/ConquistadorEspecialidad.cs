@@ -1,27 +1,41 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities;
 
 public class ConquistadorEspecialidad
 {
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int CoesId { get; set; }
+    #region [ Propiedades ]
+    [Column(TypeName = "int")]
     public int ConqId { get; set; }
-    public Conquistador CoesConquistador { get; set; }
+    [Column(TypeName = "int")]
+    public int CateId { get; set; }
+    [Column(TypeName = "int")]
     public int EspeId { get; set; }
+    [Column(TypeName = "bit")]
+    public bool CoesCompleto { get; set; }
+    [Column(TypeName = "datetime")]
+    public DateTime CoesFechaCompleto { get; set; }
+    [Column(TypeName = "nvarchar(50)")]
+    public bool CoesFirma { get; set; }
+    #endregion
+
+    #region [ Relaciones ]
+    public Conquistador CoesConquistador { get; set; }
     public Especialidad CoesEspecialidad { get; set; }
-    
-    [Required]
+    #endregion
+
+    #region [ Auditoria ]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiUserCrea { get; set; }
-    [Required]
     [Column(TypeName = "datetime")]
     public DateTime AudiFechCrea { get; set; }
-    [Required]
     [Column(TypeName = "nvarchar(20)")]
     public string AudiHostCrea { get; set; }
-    [Column(TypeName = "nvarchar(20)")] public string? AudiUserMod { get; set; }
-    [Column(TypeName = "datetime")] public DateTime? AudiFechMod { get; set; }
-    [Column(TypeName = "nvarchar(20)")] public string? AudiHostMod { get; set; }
+    [Column(TypeName = "nvarchar(20)")]
+    public string? AudiUserMod { get; set; }
+    [Column(TypeName = "datetime")]
+    public DateTime? AudiFechMod { get; set; }
+    [Column(TypeName = "nvarchar(20)")]
+    public string? AudiHostMod { get; set; }
+    #endregion
 }

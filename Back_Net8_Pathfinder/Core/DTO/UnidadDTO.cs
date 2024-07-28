@@ -9,7 +9,8 @@ public class UnidadDTO
     public string UnidLema { get; set; }
     public string UnidGritoGuerra { get; set; }
     public string UnidDescripcion { get; set; }
-    
+    public string UnidImagen { get; set; }
+
     public ICollection<ConquistadorDTO> UnidConquistadores { get; set; }
 
     public void CopyTo(ref Unidad unidad)
@@ -19,6 +20,7 @@ public class UnidadDTO
         unidad.UnidLema = UnidLema;
         unidad.UnidGritoGuerra = UnidGritoGuerra;
         unidad.UnidDescripcion = UnidDescripcion;
+        unidad.UnidImagen = UnidImagen;
     }
 
     public void CopyFrom(ref Unidad unidad)
@@ -28,5 +30,6 @@ public class UnidadDTO
         UnidLema = unidad.UnidLema;
         UnidGritoGuerra = unidad.UnidGritoGuerra;
         UnidDescripcion = unidad.UnidDescripcion;
+        UnidImagen = unidad.UnidImagen;
     }
 }

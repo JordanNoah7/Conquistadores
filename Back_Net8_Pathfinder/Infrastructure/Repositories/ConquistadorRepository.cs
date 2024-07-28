@@ -6,6 +6,7 @@ using Infrastructure.Data;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Data;
 
 namespace Infrastructure.Repositories;
 
@@ -26,7 +27,7 @@ public class ConquistadorRepository : IConquistadorRepository
     {
         try
         {
-            return await _dbContext.Conquistadores.FirstOrDefaultAsync(c => c.ConqUsuario.UsuaId == id);
+            return await _dbContext.Conquistadores.FirstOrDefaultAsync(c => c.UsuaId == id)!;
         }
         catch (Exception e)
         {
@@ -35,7 +36,7 @@ public class ConquistadorRepository : IConquistadorRepository
         }
     }
 
-    public async Task<ICollection<ConquistadorList_DTO>> GetAllAsync()
+    public async Task<ICollection<ConquistadorList_DTO>> GetAllAsync(string sp, DynamicParameters parameters)
     {
         try
         {
@@ -44,7 +45,7 @@ public class ConquistadorRepository : IConquistadorRepository
                 try
                 {
                     await cnx.OpenAsync();
-                    return (await cnx.QueryAsync<ConquistadorList_DTO>("ConqSS_GetAll", null, commandType: System.Data.CommandType.StoredProcedure)).ToList();
+                    return (await cnx.QueryAsync<ConquistadorList_DTO>(sp, parameters, commandType: CommandType.StoredProcedure)).ToList();
                 }
                 catch { throw; }
                 finally { await cnx.CloseAsync(); }

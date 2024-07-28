@@ -1,9 +1,10 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-using Core.DTO;
+﻿using Core.DTO;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace API;
 
@@ -12,17 +13,14 @@ namespace API;
 public class RestServiceAuth : ControllerBase
 {
     #region [ Variables ]
-
     private IConfiguration _configuration;
     private readonly IService _service;
     private readonly IEmailService _emailService;
     private readonly byte[] key;
     private readonly byte[] iv;
-
     #endregion
 
     #region [ Constructor ]
-
     public RestServiceAuth(IConfiguration configuration, IService service, IEmailService emailService)
     {
         _configuration = configuration;
@@ -31,17 +29,15 @@ public class RestServiceAuth : ControllerBase
         key = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("key")!);
         iv = Encoding.UTF8.GetBytes(_configuration.GetConnectionString("iv")!);
     }
-
     #endregion
 
     #region [ Endpoints ]
-
     [HttpPost("ValidarUsuario")]
     public async Task<IActionResult> ValidarUsuario([FromBody] Request request)
     {
         try
         {
-            string credenciales = DecryptString(request.UsuaUsuario);
+            string credenciales = DecryptString(request.UsuaUsuario!);
             string username = credenciales.Split('|')[0];
             string password = credenciales.Split('|')[1];
             Usuario usuario = await _service.GetUserByUsernameAsync(username);
@@ -60,10 +56,10 @@ public class RestServiceAuth : ControllerBase
             UsuarioDTO usuarioDto = new UsuarioDTO();
             usuarioDto.CopyFrom(ref usuario);
             usuarioDto.UsuaRoles = new List<RolDTO>();
-            foreach (RolUsuario rolUsuario in usuario.UsuaRoles)
+            foreach (UsuarioRol rolUsuario in usuario.UsuaRoles)
             {
                 RolDTO rolDto = new RolDTO();
-                var rol = rolUsuario.RousRol;
+                var rol = rolUsuario.UsroRol;
                 rolDto.CopyFrom(ref rol);
                 usuarioDto.UsuaRoles.Add(rolDto);
             }
@@ -123,18 +119,18 @@ public class RestServiceAuth : ControllerBase
             if (conquistador == null)
             {
                 Tutor tutor = await _service.GetTutorByUsuarioAsync(usuario.UsuaId);
-                name = tutor.TutoNombres;
-                email = tutor.TutoCorreoPersonal;
+                name = tutor.PersNombres;
+                email = tutor.PersCorreoPersonal;
             }
             else
             {
-                name = conquistador.ConqNombres;
-                email = conquistador.ConqCorreoPersonal;   
+                name = conquistador.PersNombres;
+                email = conquistador.PersCorreoPersonal;
             }
             string body = GetBodyMail(name, newPassword);
             if (!string.IsNullOrEmpty(email))
             {
-                _emailService.SendMail(email, "Nueva contraseña", body, name);   
+                _emailService.SendMail(email, "Nueva contraseña", body, name);
             }
             else
             {
@@ -171,37 +167,9 @@ public class RestServiceAuth : ControllerBase
             return BadRequest("Error al cambiar la contraseña.");
         }
     }
-
-    //[HttpGet("PruebaGet/{id}")]
-    //public async Task<IActionResult> PruebaGet(int id, [FromQuery] string nombre)
-    //{
-    //    try
-    //    {
-    //        return Ok("_usuarioDto");
-    //    }
-    //    catch (Exception e)
-    //    {
-    //        Console.WriteLine(e);
-    //        throw;
-    //    }
-    //}
-
-    //[HttpPut("{id}")]
-    //public async Task<IActionResult> UpdateItem(int id, [FromQuery] string name, [FromBody] UsuarioDTO request)
-    //{
-    //    if (request == null)
-    //    {
-    //        return BadRequest("Invalid request body");
-    //    }
-
-    //    // Lógica para manejar la actualización del item con id y nombre de la query string
-    //    return Ok(new { Id = id, Name = name, Updated = request });
-    //}
-
     #endregion
 
     #region [ Privados ]
-
     private string EncryptMD5(string pass)
     {
         try
@@ -286,6 +254,5 @@ public class RestServiceAuth : ControllerBase
             throw;
         }
     }
-
     #endregion
 }

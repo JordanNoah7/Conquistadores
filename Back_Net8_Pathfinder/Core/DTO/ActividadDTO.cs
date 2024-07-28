@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using Core.Entities;
-
-namespace Core.DTO;
+﻿namespace Core.DTO;
 
 public class ActividadDTO
 {
@@ -13,6 +10,6 @@ public class ActividadDTO
     public float ActiCosto { get; set; }
     public DateTime ActiFechaInicio { get; set; }
     public DateTime ActiFechaFin { get; set; }
-    
+
     public ICollection<ConquistadorDTO> ActiParticipantes { get; set; }
 }

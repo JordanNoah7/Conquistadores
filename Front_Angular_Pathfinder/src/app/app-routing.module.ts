@@ -1,44 +1,79 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './core/guards/auth.guard';
-import { AuthLayoutComponent } from './shared/layout/app-layouts/auth-layout.component';
-import { MainLayoutComponent } from './shared/layout/app-layouts/main-layout.component';
-
+import { Routes, RouterModule } from '@angular/router';
+import { Page404Component } from './authentication/page404/page404.component';
+import { AuthGuard } from './core/guard/auth.guard';
+import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout.component';
+import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout.component';
 const routes: Routes = [
     {
         path: '',
         component: MainLayoutComponent,
+        data: {
+            title: 'Main',
+        },
         canActivate: [AuthGuard],
         children: [
+            { path: '', redirectTo: '/authentication/signin', pathMatch: 'full' },
             {
-                path: '',
-                loadChildren: () => import('src/app/features/dashboard/dashboard.module').then((m) => m.DashboardModule)
+                path: 'dashboard',
+                canActivate: [AuthGuard],
+                data: {
+                    title: 'Inicio',
+                },
+                loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
             },
             {
-                path: 'maestros',
-                loadChildren: () => import('src/app/features/maestros/maestros.module').then((m) => m.MaestrosModule)
-            }
+                path: 'admin',
+                canActivate: [AuthGuard],
+                data: {
+                    title: 'Admin',
+                },
+                loadChildren: () =>
+                    import('./admin/admin.module').then((m) => m.AdminModule),
+            },
+            {
+                path: 'extra-pages',
+                canActivate: [AuthGuard],
+                data: {
+                    title: 'Extra Pages',
+                },
+                loadChildren: () =>
+                    import('./extra-pages/extra-pages.module').then(
+                        (m) => m.ExtraPagesModule
+                    ),
+            },
+            {
+                path: 'multilevel',
+                canActivate: [AuthGuard],
+                data: {
+                    title: 'Multinivel',
+                },
+                loadChildren: () =>
+                    import('./multilevel/multilevel.module').then(
+                        (m) => m.MultilevelModule
+                    ),
+            },
         ],
     },
     {
-        path: 'auth',
+        path: 'authentication',
         component: AuthLayoutComponent,
-        loadChildren: () => import('src/app/features/auth/auth.module').then((m) => m.AuthModule),
+        data: {
+            title: 'Authentication',
+        },
+        loadChildren: () =>
+            import('./authentication/authentication.module').then(
+                (m) => m.AuthenticationModule
+            ),
     },
     {
-        path: 'loading',
-        loadChildren: () => import('src/app/features/loader/loader.module').then((m) => m.LoaderModule),
+        path: '**', component: Page404Component, data: {
+            title: 'Page not found',
+        },
     },
-    {
-        path: 'error',
-        loadChildren: () => import('src/app/features/error/error.module').then((m) => m.ErrorModule),
-    },
-    { path: '**', redirectTo: 'auth' },
 ];
-
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, {})],
     exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }

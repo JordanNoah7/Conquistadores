@@ -1,6 +1,0 @@
-@API = http://localhost:5139
-
-GET {{API}}/weatherforecast/
-Accept: application/json
-
-###

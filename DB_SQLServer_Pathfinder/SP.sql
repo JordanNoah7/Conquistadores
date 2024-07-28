@@ -11,27 +11,43 @@ GO
 -- Autor - Fecha - Descripción :
 -------------------------------------------------------------------------------
 CREATE PROCEDURE dbo.ConqSS_GetAll
-	@ConqDni VARCHAR(16)
-  , @ConqNombres VARCHAR(100)
-  , @ConqApellidos VARCHAR(80)
-  , @CondEdad INT
+	@ConqDni VARCHAR(16) = NULL
+  , @ConqNombres VARCHAR(100) = NULL
+  , @ConqApellidos VARCHAR(80) = NULL
+  , @CondEdad INT = NULL
+  , @TutoId INT = NULL
 AS
 BEGIN
 
-	SELECT ConqId
-         , ConqDni
-         , ConqNombres
-		 , ConqApellidoPaterno
-		 , ConqApellidoMaterno
-		 , DATEDIFF(YEAR, ConqFechaNacimiento, GETDATE()) AS ConqEdad
-		 , ConqCelular + ' | ' + ConqTelefono AS ConqMovil
-		 , ConqCorreoPersonal + ' | ' + ConqCorreoCorporativo AS ConqCorreos
-	  FROM Conquistadores
-     WHERE ConqDni LIKE (ISNULL(@ConqDni, '') + '%')
-       AND ConqNombres LIKE ('%' + ISNULL(@ConqNombres, '') + '%')
-       AND (ConqApellidoPaterno LIKE ('%' + ISNULL(@ConqApellidos, '') + '%')
-            OR ConqApellidoMaterno LIKE ('%' + ISNULL(@ConqApellidos, '') + '%'))
-       AND DATEDIFF(YEAR, ConqFechaNacimiento, GETDATE()) = ISNULL(@CondEdad, DATEDIFF(YEAR, ConqFechaNacimiento, GETDATE()))
+    DECLARE @UsuaId INT = @TutoId
+    SET @TutoId = (SELECT TUTO.PersId
+                     FROM Tutores AS TUTO
+                    WHERE UsuaId = @UsuaId)
+
+	SELECT CONQ.PersId AS ConqId
+         , CONQ.PersDni AS ConqDni
+         , CONQ.PersNombres AS ConqNombres
+		 , CONQ.PersApellidoPaterno AS ConqApellidoPaterno
+		 , CONQ.PersApellidoMaterno AS ConqApellidoMaterno
+		 , DATEDIFF(YEAR, CONQ.PersFechaNacimiento, GETDATE()) AS ConqEdad
+		 , CONQ.PersCelular + ' | ' + CONQ.PersTelefono AS ConqMovil
+		 , CONQ.PersCorreoPersonal + ' | ' + CONQ.PersCorreoCorporativo AS ConqCorreos
+         , ISNULL(CLAS.ClasNombre, '') AS ClasNombre
+         , ISNULL(UNID.UnidNombre, '') AS UnidNombre
+	  FROM Conquistadores AS CONQ
+ LEFT JOIN TutorConquistadores AS TUCO ON TUCO.ConqId = CONQ.PersId
+ LEFT JOIN ClaseConquistadores AS CLCO ON CONQ.PersId = CLCO.ConqId
+                                      AND YEAR(CLCO.AudiFechCrea) = YEAR(GETDATE())
+ LEFT JOIN Clases AS CLAS ON CLCO.ClasId = CLAS.ClasId
+ LEFT JOIN UnidadConquistadores AS UNCO ON UNCO.ConqId = CONQ.PersId
+                                       AND YEAR(UNCO.AudiFechCrea) = YEAR(GETDATE())
+ LEFT JOIN Unidades AS UNID ON UNCO.UnidId = UNID.UnidId
+     WHERE PersDni LIKE (ISNULL(@ConqDni, '') + '%')
+       AND PersNombres LIKE ('%' + ISNULL(@ConqNombres, '') + '%')
+       AND (PersApellidoPaterno LIKE ('%' + ISNULL(@ConqApellidos, '') + '%')
+            OR PersApellidoMaterno LIKE ('%' + ISNULL(@ConqApellidos, '') + '%'))
+       AND DATEDIFF(YEAR, PersFechaNacimiento, GETDATE()) = ISNULL(@CondEdad, DATEDIFF(YEAR, PersFechaNacimiento, GETDATE()))
+       AND ISNULL(TUCO.TutoId, '') = ISNULL(@TutoId, ISNULL(TUCO.TutoId, ''))
 
 END
 GO
