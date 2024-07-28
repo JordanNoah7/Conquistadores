@@ -11,11 +11,11 @@ GO
 -- Autor - Fecha - Descripción :
 -------------------------------------------------------------------------------
 CREATE PROCEDURE dbo.ConqSS_GetAll
-	@ConqDni VARCHAR(16) = NULL
-  , @ConqNombres VARCHAR(100) = NULL
-  , @ConqApellidos VARCHAR(80) = NULL
-  , @CondEdad INT = NULL
-  , @TutoId INT = NULL
+	@ConqDni VARCHAR(16)
+  , @ConqNombres VARCHAR(100)
+  , @ConqApellidos VARCHAR(80)
+  , @CondEdad INT
+  , @TutoId INT
 AS
 BEGIN
 
@@ -32,8 +32,8 @@ BEGIN
 		 , DATEDIFF(YEAR, CONQ.PersFechaNacimiento, GETDATE()) AS ConqEdad
 		 , CONQ.PersCelular + ' | ' + CONQ.PersTelefono AS ConqMovil
 		 , CONQ.PersCorreoPersonal + ' | ' + CONQ.PersCorreoCorporativo AS ConqCorreos
-         , ISNULL(CLAS.ClasNombre, '') AS ClasNombre
-         , ISNULL(UNID.UnidNombre, '') AS UnidNombre
+         , ISNULL(CLAS.ClasNombre, '') AS ConqClase
+         , ISNULL(UNID.UnidNombre, '') AS ConqUnidad
 	  FROM Conquistadores AS CONQ
  LEFT JOIN TutorConquistadores AS TUCO ON TUCO.ConqId = CONQ.PersId
  LEFT JOIN ClaseConquistadores AS CLCO ON CONQ.PersId = CLCO.ConqId
@@ -86,5 +86,87 @@ BEGIN
                   ORDER BY AudiFechCrea DESC
                 END
         END
+END
+GO
+-------------------------------------------------------------------------------
+IF OBJECT_ID(N'dbo.ConqSS_GetAllTutor', N'P') IS NOT NULL
+    BEGIN
+        DROP PROCEDURE dbo.ConqSS_GetAllTutor
+    END
+GO
+-------------------------------------------------------------------------------
+-- Autor - Fecha - Descripción : Jordan - 08/07/2024 - Procedimiento para seleccionar los conquistadores para la LView
+-- Autor - Fecha - Descripción :
+-------------------------------------------------------------------------------
+CREATE PROCEDURE dbo.ConqSS_GetAllTutor
+	@UsuaId INT
+AS
+BEGIN
+
+    DECLARE @TutoId INT = (SELECT TUTO.PersId
+                             FROM Tutores AS TUTO
+                            WHERE UsuaId = @UsuaId)
+
+	SELECT CONQ.PersId AS ConqId
+         , CONQ.PersDni AS ConqDni
+         , CONQ.PersNombres AS ConqNombres
+		 , CONQ.PersApellidoPaterno AS ConqApellidoPaterno
+		 , CONQ.PersApellidoMaterno AS ConqApellidoMaterno
+		 , DATEDIFF(YEAR, CONQ.PersFechaNacimiento, GETDATE()) AS ConqEdad
+		 , CONQ.PersCelular + ' | ' + CONQ.PersTelefono AS ConqMovil
+		 , CONQ.PersCorreoPersonal + ' | ' + CONQ.PersCorreoCorporativo AS ConqCorreos
+         , ISNULL(CLAS.ClasNombre, '') AS ConqClase
+         , ISNULL(UNID.UnidNombre, '') AS ConqUnidad
+	  FROM Conquistadores AS CONQ
+ LEFT JOIN TutorConquistadores AS TUCO ON TUCO.ConqId = CONQ.PersId
+ LEFT JOIN ClaseConquistadores AS CLCO ON CONQ.PersId = CLCO.ConqId
+                                      AND YEAR(CLCO.AudiFechCrea) = YEAR(GETDATE())
+ LEFT JOIN Clases AS CLAS ON CLCO.ClasId = CLAS.ClasId
+ LEFT JOIN UnidadConquistadores AS UNCO ON UNCO.ConqId = CONQ.PersId
+                                       AND YEAR(UNCO.AudiFechCrea) = YEAR(GETDATE())
+ LEFT JOIN Unidades AS UNID ON UNCO.UnidId = UNID.UnidId
+     WHERE TUCO.TutoId = ISNULL(@TutoId, TUCO.TutoId)
+
+END
+GO
+-------------------------------------------------------------------------------
+IF OBJECT_ID(N'dbo.ConqSS_GetAllTutor', N'P') IS NOT NULL
+    BEGIN
+        DROP PROCEDURE dbo.ConqSS_GetAllTutor
+    END
+GO
+-------------------------------------------------------------------------------
+-- Autor - Fecha - Descripción : Jordan - 08/07/2024 - Procedimiento para seleccionar los conquistadores para la LView
+-- Autor - Fecha - Descripción :
+-------------------------------------------------------------------------------
+CREATE PROCEDURE dbo.ConqSS_Avance
+	@UsuaId INT
+AS
+BEGIN
+
+    DECLARE @TutoId INT = (SELECT TUTO.PersId
+                             FROM Tutores AS TUTO
+                            WHERE UsuaId = @UsuaId)
+
+	SELECT CONQ.PersId AS ConqId
+         , CONQ.PersDni AS ConqDni
+         , CONQ.PersNombres AS ConqNombres
+		 , CONQ.PersApellidoPaterno AS ConqApellidoPaterno
+		 , CONQ.PersApellidoMaterno AS ConqApellidoMaterno
+		 , DATEDIFF(YEAR, CONQ.PersFechaNacimiento, GETDATE()) AS ConqEdad
+		 , CONQ.PersCelular + ' | ' + CONQ.PersTelefono AS ConqMovil
+		 , CONQ.PersCorreoPersonal + ' | ' + CONQ.PersCorreoCorporativo AS ConqCorreos
+         , ISNULL(CLAS.ClasNombre, '') AS ConqClase
+         , ISNULL(UNID.UnidNombre, '') AS ConqUnidad
+	  FROM Conquistadores AS CONQ
+ LEFT JOIN TutorConquistadores AS TUCO ON TUCO.ConqId = CONQ.PersId
+ LEFT JOIN ClaseConquistadores AS CLCO ON CONQ.PersId = CLCO.ConqId
+                                      AND YEAR(CLCO.AudiFechCrea) = YEAR(GETDATE())
+ LEFT JOIN Clases AS CLAS ON CLCO.ClasId = CLAS.ClasId
+ LEFT JOIN UnidadConquistadores AS UNCO ON UNCO.ConqId = CONQ.PersId
+                                       AND YEAR(UNCO.AudiFechCrea) = YEAR(GETDATE())
+ LEFT JOIN Unidades AS UNID ON UNCO.UnidId = UNID.UnidId
+     WHERE TUCO.TutoId = ISNULL(@TutoId, TUCO.TutoId)
+
 END
 GO

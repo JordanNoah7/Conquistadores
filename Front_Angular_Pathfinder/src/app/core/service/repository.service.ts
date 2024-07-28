@@ -30,6 +30,17 @@ export class RepositoryService {
         );
     }
 
+    public GetHijos(): Observable<any> {
+        return this.requestService.connectBackendGet("ObtenerHijos").pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        );
+    }
+
     // *Categorias
     public GetCategorias(): Observable<any> {
         return this.requestService.connectBackendGet("ObtenerCategorias").pipe(

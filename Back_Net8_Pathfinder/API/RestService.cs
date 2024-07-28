@@ -137,8 +137,8 @@ public partial class RestService : ControllerBase
             }
 
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@TutoId", request.UsuaId, DbType.Int32, ParameterDirection.Input);
-            ObservableCollection<ConquistadorList_DTO> conquistadores = new ObservableCollection<ConquistadorList_DTO>(await _service.GetConquistadoresAsync("ConqSS_GetAll", parameters));
+            parameters.Add("@UsuaId", request.UsuaId, DbType.Int32, ParameterDirection.Input);
+            ObservableCollection<ConquistadorList_DTO> conquistadores = new ObservableCollection<ConquistadorList_DTO>(await _service.GetConquistadoresAsync("ConqSS_GetAllTutor", parameters));
             if (conquistadores != null && conquistadores.Count > 0)
             {
                 return Ok(conquistadores);

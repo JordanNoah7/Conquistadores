@@ -4,6 +4,8 @@ import { formatDate, registerLocaleData } from "@angular/common";
 import Swal from "sweetalert2";
 import localeEs from '@angular/common/locales/es';
 import { Categoria } from "../core/models/Categoria";
+import { SessionService } from "../core/service/session.service";
+import { ConquistadorList } from "../core/models/ConquistadorList";
 registerLocaleData(localeEs, 'es');
 @Component({
     selector: "app-main",
@@ -14,9 +16,11 @@ export class DashboardComponent implements OnInit {
     conquistador: any;
     birthdate: any;
     categorias: Categoria[];
+    hijos: ConquistadorList[] = [];
 
     constructor(
-        private repositoryService: RepositoryService
+        private repositoryService: RepositoryService,
+        private sessionService: SessionService
     ) { }
 
     ngOnInit() {
@@ -26,14 +30,12 @@ export class DashboardComponent implements OnInit {
     async LoadView() {
         await this.repositoryService.GetCategorias().subscribe({
             next: (value: any) => {
-                console.log(value)
                 this.categorias = value;
             },
         });
 
         await this.repositoryService.GetConquistador().subscribe({
             next: (value: any) => {
-                console.log(value);
                 this.conquistador = value;
                 this.birthdate = formatDate(this.conquistador!.PersFechaNacimiento, 'dd MMMM yyyy', 'es');
                 this.birthdate = this.birthdate.replace(/ /g, " de ");
@@ -49,6 +51,16 @@ export class DashboardComponent implements OnInit {
                     timer: 3000
                 })
             }
-        })
+        });
+
+        const session = this.sessionService.getCurrentSession();
+        const padre = session.menu.filter(r => r.RoleNombre === 'Apoderado')
+        if (padre.length > 0) {
+            await this.repositoryService.GetHijos().subscribe({
+                next: (value: any) => {
+                    this.hijos = value;
+                },
+            });
+        }
     }
 }
