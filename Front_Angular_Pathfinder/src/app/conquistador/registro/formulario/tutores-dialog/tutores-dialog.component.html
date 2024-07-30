@@ -1,0 +1,67 @@
+<div class="addContainer">
+    <div class="modalHeader">
+        <div class="editRowModal">
+            <div class="modalHeader clearfix">
+                <div class="modal-about">
+                    <div class="font-weight-bold p-t-5 msl-3 font-17">Padres</div>
+                </div>
+            </div>
+        </div>
+        <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                <div class="table-responsive">
+                    <div class="materialTableHeader">
+                        <div class="row">
+                            <div class="col-8">
+                                <ul class="header-buttons-left ms-0">
+                                    <li class="dropdown m-l-20">
+                                        <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                                        <input placeholder="Buscar" type="text" #filter class="browser-default search-field" aria-label="Search box">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell" #exporter="matTableExporter">
+                        <ng-container matColumnDef="id">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+                            <mat-cell *matCellDef="let row">{{row.PersId}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="dni">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>DNI</mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.PersDni}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="tutor">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Nombres y apellidos</mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.PersNombres + ' ' + row.PersApellidoPaterno + ' ' + row.PersApellidoMaterno}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="actions">
+                            <mat-header-cell class="pr-0" *matHeaderCellDef>Seleccionar</mat-header-cell>
+                            <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
+                                <button mat-icon-button (click)="$event.stopPropagation()" (click)="editCall(row)" class="tbl-action-btn">
+                                    <app-feather-icons [icon]="'check circle'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                                </button>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                    <div *ngIf="tutoresDataBase.isTblLoading" class="tbl-spinner">
+                        <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                        </mat-progress-spinner>
+                    </div>
+                    <div *ngIf="!tutoresDataBase.isTblLoading" class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+                        No results
+                    </div>
+                    <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,8 +4,21 @@ namespace Core.Services;
 
 public partial class Service
 {
-    public Task<Tutor> GetTutorByUsuarioAsync(int id)
+    public async Task<Tutor> GetTutorByUsuarioAsync(int id)
     {
-        return _tutorRepository.GetByUsuarioAsync(id);
+        try
+        {
+            return await _tutorRepository.GetByUsuarioAsync(id);
+        }
+        catch { throw; }
+    }
+
+    public async Task<ICollection<Tutor>> GetAllTutoresByApellidos(string PersApellidoPaterno1, string PersApellidoPaterno2)
+    {
+        try
+        {
+            return await _tutorRepository.GetAllByApellidos(PersApellidoPaterno1, PersApellidoPaterno2);
+        }
+        catch { throw; }
     }
 }

@@ -43,14 +43,6 @@ export class DashboardComponent implements OnInit {
                     c.CateEspecialidades = this.conquistador.ConqEspecialidades.filter(ce => ce.CateId === c.CateId);
                 });
             },
-            error: (error: any) => {
-                Swal.fire({
-                    title: 'Error al cargar el dashboard',
-                    text: error,
-                    icon: 'error',
-                    timer: 3000
-                })
-            }
         });
 
         const session = this.sessionService.getCurrentSession();

@@ -1,4 +1,4 @@
-export interface ConquistadorList{
+export class ConquistadorList{
     ConqId: number;
     ConqDni: string;
     ConqNombres: string;

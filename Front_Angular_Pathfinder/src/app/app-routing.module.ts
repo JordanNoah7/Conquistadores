@@ -23,35 +23,12 @@ const routes: Routes = [
                 loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
             },
             {
-                path: 'admin',
+                path: 'conquistador',
                 canActivate: [AuthGuard],
                 data: {
-                    title: 'Admin',
+                    title: 'Conquistador',
                 },
-                loadChildren: () =>
-                    import('./admin/admin.module').then((m) => m.AdminModule),
-            },
-            {
-                path: 'extra-pages',
-                canActivate: [AuthGuard],
-                data: {
-                    title: 'Extra Pages',
-                },
-                loadChildren: () =>
-                    import('./extra-pages/extra-pages.module').then(
-                        (m) => m.ExtraPagesModule
-                    ),
-            },
-            {
-                path: 'multilevel',
-                canActivate: [AuthGuard],
-                data: {
-                    title: 'Multinivel',
-                },
-                loadChildren: () =>
-                    import('./multilevel/multilevel.module').then(
-                        (m) => m.MultilevelModule
-                    ),
+                loadChildren: () => import('./conquistador/conquistador.module').then((m) => m.ConquistadorModule),
             },
         ],
     },

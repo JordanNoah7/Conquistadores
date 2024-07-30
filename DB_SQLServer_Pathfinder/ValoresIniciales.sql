@@ -6,13 +6,17 @@ DBCC CHECKIDENT (Conquistadores, RESEED, 1)
 DBCC CHECKIDENT (Tutores, RESEED, 1)
 DBCC CHECKIDENT (Categorias, RESEED, 1)
 DBCC CHECKIDENT (Unidades, RESEED, 1)
+DBCC CHECKIDENT (Clases, RESEED, 1)
 INSERT INTO Tipos
 (TipoTabla, TipoId, TipoDescripcion, TipoEstaActivo, AudiUserCrea, AudiFechCrea, AudiHostCrea)
 VALUES
+('CLA'    , 2     , 'Conquistador' , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
+('CLA'    , 1     , 'Instructor'   , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
 ('UND'    , 1     , 'Consejero'    , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
 ('UND'    , 2     , 'Capellan'     , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
 ('UND'    , 3     , 'Secretario'   , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
-('UND'    , 4     , 'Tesorero'     , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS')
+('UND'    , 4     , 'Tesorero'     , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
+('PAR'    , 1     , 'Padre'        , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS')
 GO
 INSERT INTO Parametros (ParaNombre, ParaValor, AudiUserCrea, AudiHostCrea)
 VALUES ('SessionTimeMinutes', '240', 'SISTEMAS', 'J-PC'),
@@ -95,10 +99,13 @@ VALUES ('Administrador', 'Administrador del sistema', 'SISTEMAS', 'J-PC'),
        ('Apoderado', 'Apoderado de un conquistador', 'SISTEMAS', 'J-PC'),
        ('Conquistador', 'Conquistador', 'SISTEMAS', 'J-PC')
 GO
-INSERT INTO UsuarioRoles(RoleId, UsuaId, AudiUserCrea, AudiHostCrea)
-VALUES (1, 1, 'SISTEMAS', 'J-PC'),
-       (2, 1, 'SISTEMAS', 'J-PC'),
-       (3, 1, 'SISTEMAS', 'J-PC')
+INSERT INTO UsuarioRoles
+(RoleId, UsuaId, AudiUserCrea, AudiHostCrea)
+VALUES 
+(1     , 1     , 'SISTEMAS'  , 'J-PC'),
+(2     , 1     , 'SISTEMAS'  , 'J-PC'),
+(3     , 1     , 'SISTEMAS'  , 'J-PC'),
+(2     , 5     , 'SISTEMAS'  , 'J-PC')
 GO
 INSERT INTO Conquistadores
 ( PersDni			              , PersNombres		               , PersApellidoPaterno, PersApellidoMaterno, PersFechaNacimiento, UsuaId
@@ -141,8 +148,36 @@ INSERT INTO Unidades
 VALUES
 ('Halcones', 'Volamos Alto, Vencemos Juntos', '¡Halcones! ¡Altos volamos, unidos ganamos!', 'Unidad de varones', 'halcones.png', 'SISTEMAS'  , GETDATE()   , 'SISTEMAS')
 GO
+INSERT INTO Clases
+(ClasNombre                       , ClasDescripcion            , ClasImagen                      , AudiUserCrea, AudiFechCrea, AudiHostCrea)
+VALUES
+('Amigo'                          , 'Clase regular de 10 años' , 'amigo.png'                     , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Amigo de la naturaleza'         , 'Clase avanzada de 10 años', 'amigo_naturaleza.png'          , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Compañero'                      , 'Clase regular de 11 años' , 'compañero.png'                 , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Compañero de excursionismo'     , 'Clase avanzada de 11 años', 'compañero_excursionismo.png'   , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Explorador'                     , 'Clase regular de 12 años' , 'explorador.png'                , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Explorador de campo y de bosque', 'Clase avanzada de 12 años', 'explorador_campo_bosque.png'   , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Pionero'                        , 'Clase regular de 13 años' , 'pionero.png'                   , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Pionero de nuevas fronteras'    , 'Clase avanzada de 13 años', 'pionero_nuevas_fronteras.png'  , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Excursionista'                  , 'Clase regular de 14 años' , 'excursionista.png'             , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Excursionista en el bosque'     , 'Clase avanzada de 14 años', 'excursionista_bosque.png'      , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Guia'                           , 'Clase regular de 15 años' , 'guia.png'                      , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Guia de exploracion'            , 'Clase avanzada de 15 años', 'guia_exploracion.png'          , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Guia mayor'                     , 'Clase de liderazgo 1'     , 'guia_mayor.png'                , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Guia mayor master'              , 'Clase de liderazgo 2'     , 'guia_mayor_master.png'         , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Guia mayor master avanzado'     , 'Clase de liderazgo 3'     , 'guia_mayor_master_avanzado.png', 'SYSTEM'    , GETDATE()   , 'localhost')
+GO
 INSERT INTO UnidadConquistadores
 (UnidId, ConqId, UncoAno, UncoCargoTabla, UncoCargoId, AudiUserCrea, AudiFechCrea, AudiHostCrea)
 VALUES
 (1     , 1     , 2024   , 'UND'         , 1          , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS')
 GO
+INSERT INTO TutorConquistadores
+(TutoId, ConqId, TucoTipoParentescoTabla, TucoTipoParentescoId, AudiUserCrea, AudiFechCrea, AudiHostCrea)
+VALUES
+(1     , 1     , 'PAR'                  , 1                   , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS')
+GO
+INSERT INTO ClaseConquistadores
+(ClasId, ConqId, ClcoTipoCargoClaseTabla, ClcoTipoCargoClaseId, ClcoAprobado, AudiUserCrea, AudiFechCrea, AudiHostCrea)
+VALUES
+(11    , 1     , 'CLA'                  , 2                   , 0           , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS')

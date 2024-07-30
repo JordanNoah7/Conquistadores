@@ -8,4 +8,5 @@ public interface IConquistadorRepository
 {
     Task<Conquistador> GetByUsuarioAsync(int id);
     Task<ICollection<ConquistadorList_DTO>> GetAllAsync(string sp, DynamicParameters parameters);
+    Task<bool> Insert(Conquistador conquistador);
 }

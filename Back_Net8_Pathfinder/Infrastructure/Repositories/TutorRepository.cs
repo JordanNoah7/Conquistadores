@@ -26,4 +26,17 @@ public class TutorRepository : ITutorRepository
             throw;
         }
     }
+
+    public async Task<ICollection<Tutor>> GetAllByApellidos(string PersApellidoPaterno1, string PersApellidoPaterno2)
+    {
+        try
+        {
+            var tutores = await _dbContext.Tutores
+                .Where(t => EF.Functions.Like(t.PersApellidoPaterno, "%" + PersApellidoPaterno1 + "%")
+                || EF.Functions.Like(t.PersApellidoPaterno, "%" + PersApellidoPaterno2 + "%"))
+                .ToListAsync();
+            return tutores;
+        }
+        catch { throw; }
+    }
 }

@@ -15,6 +15,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Conquistador> Conquistadores { get; set; }
     public DbSet<ConquistadorEspecialidad> ConquistadorEspecialidades { get; set; }
     public DbSet<ConquistadorItemCuadernillo> ConquistadorItemsCuadernillo { get; set; }
+    public DbSet<CuentaCorriente> CuentasCorrientes { get; set; }
     public DbSet<Cronograma> Cronogramas { get; set; }
     public DbSet<Especialidad> Especialidades { get; set; }
     public DbSet<FichaMedica> FichasMedicas { get; set; }

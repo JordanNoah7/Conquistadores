@@ -53,6 +53,8 @@ public partial class RestService : ControllerBase
             }
             ConquistadorDTO conquistadorDTO = new ConquistadorDTO();
             conquistadorDTO.CopyFrom(ref conquistador);
+            conquistadorDTO.ConqAhorros = await _service.GetAhorrosAsync(conquistadorDTO.PersId);
+            conquistadorDTO.ConqPuntos = await _service.GetPuntosAsync(conquistadorDTO.PersId);
 
             Clase clase = await _service.GetCurrentClaseAsync(conquistador.PersId);
             if (clase != null)
@@ -60,6 +62,7 @@ public partial class RestService : ControllerBase
                 ClaseDTO claseDTO = new ClaseDTO();
                 claseDTO.CopyFrom(ref clase);
                 conquistadorDTO.ConqClase = claseDTO;
+                conquistadorDTO.ConqAvance = await _service.GetAvanceConquistadorAsync(conquistadorDTO.PersId);
             }
 
             Unidad unidad = await _service.GetCurrentUnidadAsync(conquistador.PersId);
@@ -94,7 +97,7 @@ public partial class RestService : ControllerBase
     }
 
     [HttpGet("ObtenerConquistadores")]
-    public async Task<IActionResult> ObtenerConquistadores([FromHeader] string requestStr, [FromBody] Filters filtros)
+    public async Task<IActionResult> ObtenerConquistadores([FromHeader] string requestStr)
     {
         try
         {
@@ -105,10 +108,15 @@ public partial class RestService : ControllerBase
             }
 
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@ConqDni", filtros.Dni, DbType.Int32, ParameterDirection.Input);
-            parameters.Add("@ConqNombres", filtros.Nombres, DbType.Int32, ParameterDirection.Input);
-            parameters.Add("@ConqApellidos", filtros.Apellidos, DbType.Int32, ParameterDirection.Input);
-            parameters.Add("@CondEdad", filtros.Edad, DbType.Int32, ParameterDirection.Input);
+            //parameters.Add("@ConqDni", filtros.Dni, DbType.Int32, ParameterDirection.Input);
+            //parameters.Add("@ConqNombres", filtros.Nombres, DbType.Int32, ParameterDirection.Input);
+            //parameters.Add("@ConqApellidos", filtros.Apellidos, DbType.Int32, ParameterDirection.Input);
+            //parameters.Add("@CondEdad", filtros.Edad, DbType.Int32, ParameterDirection.Input);
+
+            parameters.Add("@ConqDni", null, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@ConqNombres", null, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@ConqApellidos", null, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@CondEdad", null, DbType.Int32, ParameterDirection.Input);
             ObservableCollection<ConquistadorList_DTO> conquistadores = new ObservableCollection<ConquistadorList_DTO>(await _service.GetConquistadoresAsync("ConqSS_GetAll", parameters));
             if (conquistadores != null && conquistadores.Count > 0)
             {

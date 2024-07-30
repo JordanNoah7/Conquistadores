@@ -19,6 +19,8 @@ public class FichaMedica
     public string FimeEnfermedades { get; set; }
     [Column(TypeName = "nvarchar(max)")]
     public string FimeAlergias { get; set; }
+    [Column(TypeName = "nvarchar(max)")]
+    public string FimeObservaciones { get; set; }
     #endregion
 
     #region [ Relaciones ]

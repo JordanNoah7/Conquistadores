@@ -24,6 +24,7 @@ export class GeneralService {
     connectBackendPost(method: string, data: any): Observable<any> {
         return this.http.post<any>((this.url + method), data, { headers: this.core.getDefaultOptions(), observe: 'response' }).pipe(
             map((response: HttpResponse<any>) => {
+                console.log(response)
                 if (response.status === 200) {
                     return response.body;
                 }

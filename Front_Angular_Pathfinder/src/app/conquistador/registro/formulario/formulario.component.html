@@ -1,0 +1,333 @@
+<section class="content">
+    <div class="content-block">
+        <div class="block-header">
+            <app-breadcrumb [title]="'Add Staffs'" [items]="['Staffs']" [active_item]="'Add Staffs'"></app-breadcrumb>
+        </div>
+        <form class="m-4" [formGroup]="conquistadorForm" (ngSubmit)="onSubmit()">
+            <div class="row clearfix">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2><strong> {{this.id > 0 ? 'Actualizar' : 'Nuevo'}} conquistador</strong></h2>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Nombres</mat-label>
+                                        <input matInput formControlName="PersNombres" required>
+                                        <mat-error *ngIf="conquistadorForm.get('PersNombres').hasError('required')">
+                                            El nombre es obligatorio
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Apellido paterno</mat-label>
+                                        <input matInput formControlName="PersApellidoPaterno" required>
+                                        <mat-error *ngIf="conquistadorForm.get('PersApellidoPaterno').hasError('required')">
+                                            El apellido paterno es obligatorio
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Apellido materno</mat-label>
+                                        <input matInput formControlName="PersApellidoMaterno" required>
+                                        <mat-error *ngIf="conquistadorForm.get('PersApellidoMaterno').hasError('required')">
+                                            El apellido materno es obligatorio
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Fecha de nacimiento</mat-label>
+                                        <input matInput [matDatepicker]="picker" formControlName="PersFechaNacimiento" required>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                        <mat-error *ngIf="conquistadorForm.get('PersFechaNacimiento').hasError('required')">
+                                            Selecciona una fecha de nacimiento
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>G&eacute;nero</mat-label>
+                                        <mat-select formControlName="PersSexo" required>
+                                            <mat-option [value]="'M'">
+                                                Masculino
+                                            </mat-option>
+                                            <mat-option [value]="'F'">
+                                                Femenino
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="conquistadorForm.get('PersSexo').hasError('required')">
+                                            El g&eacute;nero es obligatorio
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Nacionalidad</mat-label>
+                                        <mat-select formControlName="PersNacionalidad" required>
+                                            <mat-option [value]="'Peruana'"> Peruana </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="conquistadorForm.get('PersNacionalidad').hasError('required')">
+                                            La nacionalidad es obligatoria
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Direcci&oacute;n</mat-label>
+                                        <input matInput formControlName="PersDireccionCasa" required>
+                                        <mat-error *ngIf="conquistadorForm.get('PersDireccionCasa').hasError('required')">
+                                            La direcci&oacute;n es obligatoria
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Ciudad</mat-label>
+                                        <input matInput formControlName="PersCiudad" required>
+                                        <mat-error *ngIf="conquistadorForm.get('PersCiudad').hasError('required')">
+                                            La ciudad es obligatoria
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Provincia</mat-label>
+                                        <input matInput formControlName="PersRegion" required>
+                                        <mat-error *ngIf="conquistadorForm.get('PersRegion').hasError('required')">
+                                            La provincia es obligatoria
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Celular</mat-label>
+                                        <input matInput formControlName="PersCelular" type="number" required>
+                                        <mat-error *ngIf="conquistadorForm.get('PersCelular').hasError('required')">
+                                            El celular es obligatorio
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Tel&eacute;fono</mat-label>
+                                        <input matInput formControlName="PersTelefono" type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Correo principal</mat-label>
+                                        <input matInput formControlName="PersCorreoPersonal" required>
+                                        <mat-error *ngIf="conquistadorForm.get('PersCorreoPersonal').hasError('PersCorreoPersonal') && conquistadorForm.get('PersCorreoPersonal').touched">
+                                            Ingresa un correo v&aacute;lido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Correo secundario</mat-label>
+                                        <input matInput formControlName="PersCorreoCorporativo">
+                                        <mat-error *ngIf="conquistadorForm.get('PersCorreoCorporativo').hasError('PersCorreoCorporativo') && conquistadorForm.get('PersCorreoCorporativo').touched">
+                                            Ingresa un correo v&aacute;lido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Escuela</mat-label>
+                                        <input matInput formControlName="ConqEscuela" required>
+                                        <mat-error *ngIf="conquistadorForm.get('ConqEscuela').hasError('required')">
+                                            La escuela es obligatoria
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Curso</mat-label>
+                                        <input matInput formControlName="ConqCurso" required>
+                                        <mat-error *ngIf="conquistadorForm.get('ConqCurso').hasError('required')">
+                                            El curso es obligatorio
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Turno</mat-label>
+                                        <input matInput formControlName="ConqTurno" required>
+                                        <mat-error *ngIf="conquistadorForm.get('ConqTurno').hasError('required')">
+                                            El turno es obligatorio
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2><strong> Padres</strong></h2>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Padre</mat-label>
+                                        <input matInput formControlName="ConqPadre" readonly>
+                                        <a style="margin-left: -35px;" class="show-pwd-icon" href="#" matSuffix (click)="SearchPadres('M')">
+                                            <mat-icon>search</mat-icon>
+                                        </a>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Madre</mat-label>
+                                        <input matInput formControlName="ConqMadre" readonly>
+                                        <a style="margin-left: -35px;" class="show-pwd-icon" href="#" matSuffix (click)="SearchPadres('F')">
+                                            <mat-icon>search</mat-icon>
+                                        </a>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2><strong> Cuenta</strong></h2>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Usuario</mat-label>
+                                        <input matInput formControlName="ConqUsuario" required>
+                                        <mat-error *ngIf="conquistadorForm.get('ConqUsuario').hasError('required')">
+                                            El usuario es obligatorio
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Contrase&ntilde;a</mat-label>
+                                        <input matInput formControlName="ConqContrasenia" type="password" required>
+                                        <mat-error *ngIf="conquistadorForm.get('ConqContrasenia').hasError('required')">
+                                            La contrase&ntilde;a es requerida
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Confirmar contrase&ntilde;a</mat-label>
+                                        <input matInput formControlName="ConqReContrasenia" type="password" required>
+                                        <mat-error *ngIf="conquistadorForm.get('ConqReContrasenia').hasError('required')">
+                                            La confirmaci&oacute;n de la contrase&ntilde;a es requerida
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2><strong> Ficha m&eacute;dica</strong></h2>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                                <mat-label>Tipo de sangre y factor RH</mat-label>
+                                                <mat-select formControlName="FimeSangreRH">
+                                                    <mat-option [value]="'A+'">A+</mat-option>
+                                                    <mat-option [value]="'A-'">A-</mat-option>
+                                                    <mat-option [value]="'B+'">B+</mat-option>
+                                                    <mat-option [value]="'B-'">B-</mat-option>
+                                                    <mat-option [value]="'O+'">O+</mat-option>
+                                                    <mat-option [value]="'O-'">O-</mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="conquistadorForm.get('PersSexo').hasError('required')">
+                                                    El g&eacute;nero es obligatorio
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                                <mat-label>Observaciones</mat-label>
+                                                <textarea matInput formControlName="FimeObservaciones"></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                    <mat-label>Vacunas</mat-label>
+                                    &nbsp;<button (click)="addVacuna()" mat-mini-fab color="primary"><mat-icon>add</mat-icon></button>
+                                    <div class="form-group" *ngFor="let vacuna of vacunasList">
+                                        <mat-checkbox (click)="onChangeVacuna($event, vacuna.TipoId)" class="example-margin">{{vacuna.TipoDescripcion}}</mat-checkbox>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                    <mat-label>Enfermedades</mat-label>
+                                    &nbsp;<button (click)="addEnfermedad()" mat-mini-fab color="primary"><mat-icon>add</mat-icon></button>
+                                    <div class="form-group" *ngFor="let enfermedad of enfermedadesList">
+                                        <mat-checkbox (click)="onChangeEnfermedad($event, enfermedad.TipoId)" class="example-margin">{{enfermedad.TipoDescripcion}}</mat-checkbox>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                    <mat-label>Alergias</mat-label>
+                                    &nbsp;<button (click)="addAlergia()" mat-mini-fab color="primary"><mat-icon>add</mat-icon></button>
+                                    <div class="form-group" *ngFor="let alergia of alergiasList">
+                                        <mat-checkbox (click)="onChangeAlergia($event, alergia.TipoId)" class="example-margin">{{alergia.TipoDescripcion}}</mat-checkbox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                                    <button class="btn-space" [disabled]="!conquistadorForm.valid " mat-raised-button color="primary">{{this.id > 0 ? 'Actualizar' : 'Guardar'}}</button>
+                                    <button type="button" mat-button>Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

@@ -2,6 +2,7 @@
 
 public class ConquistadorList_DTO
 {
+    public bool selection { get; set; }
     public int ConqId { get; set; }
     public string ConqDni { get; set; }
     public string ConqNombres { get; set; }

@@ -15,7 +15,9 @@ public class ConquistadorDTO
     public string? PersCorreoCorporativo { get; set; }
     public string PersCelular { get; set; }
     public string? PersTelefono { get; set; }
-    public string ConqAvance { get; set; }
+    public decimal ConqAvance { get; set; }
+    public decimal ConqAhorros { get; set; }
+    public int ConqPuntos { get; set; }
     public string PersSexo { get; set; }
 
     public UsuarioDTO Usuario { get; set; }

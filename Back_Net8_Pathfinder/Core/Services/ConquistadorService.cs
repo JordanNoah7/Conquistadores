@@ -31,4 +31,17 @@ public partial class Service
             throw;
         }
     }
+
+    public async Task<bool> InsertConquistador(Conquistador conquistador)
+    {
+        try
+        {
+            return await _conquistadorRepository.Insert(conquistador);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

@@ -6,4 +6,5 @@ public class Filters
     public string? Nombres { get; set; }
     public string? Apellidos { get; set; }
     public string? Edad { get; set; }
+    public string? Tipo { get; set; }
 }

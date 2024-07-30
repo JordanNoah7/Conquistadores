@@ -642,7 +642,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("ConqId", "CucoId");
 
-                    b.ToTable("CuentaCorriente");
+                    b.ToTable("CuentasCorrientes");
                 });
 
             modelBuilder.Entity("Core.Entities.Especialidad", b =>
@@ -730,6 +730,10 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FimeEnfermedades")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FimeObservaciones")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
