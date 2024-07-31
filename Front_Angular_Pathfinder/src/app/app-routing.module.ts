@@ -30,6 +30,14 @@ const routes: Routes = [
                 },
                 loadChildren: () => import('./conquistador/conquistador.module').then((m) => m.ConquistadorModule),
             },
+            {
+                path: 'tutor',
+                canActivate: [AuthGuard],
+                data: {
+                    title: 'Tutor',
+                },
+                loadChildren: () => import('./tutor/tutor.module').then((m) => m.TutorModule),
+            },
         ],
     },
     {

@@ -83,7 +83,7 @@ public class RestServiceAuth : ControllerBase
 
             Tutor tutor = await _service.GetTutorByUsuarioAsync(usuario.UsuaId);
             TutorDTO tutorDto = new TutorDTO();
-            tutorDto.CopyFrom(ref tutor);
+            tutorDto.CopyFrom(tutor);
             tutorDto.Usuario = usuarioDto;
             tutorDto.Sesion = sesionDto;
             return Ok(tutorDto);

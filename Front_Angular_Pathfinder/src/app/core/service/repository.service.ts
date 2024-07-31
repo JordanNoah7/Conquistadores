@@ -74,8 +74,8 @@ export class RepositoryService {
     }
 
     // *Tutores
-    public GetTutores(payload: any): Observable<any> {
-        return this.requestService.connectBackendPost("ObtenerTutores", payload).pipe(
+    public GetTutores(): Observable<any> {
+        return this.requestService.connectBackendGet("ObtenerTutores").pipe(
             map(response => {
                 if (!!response) {
                     return response;
@@ -84,4 +84,6 @@ export class RepositoryService {
             })
         )
     }
+
+
 }

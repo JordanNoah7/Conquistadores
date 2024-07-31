@@ -12,6 +12,9 @@ import { RepositoryService } from "src/app/core/service/repository.service";
 import { ConquistadoresService } from "src/app/core/repositories/conquistador.service";
 import { ConquistadorDataSource } from "src/app/core/dataSource/ConquistadorList.datasource";
 import { Router } from "@angular/router";
+import { TutorDataSource } from "src/app/core/dataSource/Tutor.datasource";
+import { TutorService } from "src/app/core/repositories";
+import { Tutor } from "src/app/core/models";
 @Component({
     selector: "app-registro",
     templateUrl: "./registro.component.html",
@@ -22,17 +25,17 @@ export class RegistroComponent extends UnsubscribeOnDestroyAdapter implements On
         "select",
         "id",
         "dni",
-        "conquistador",
-        "unidad",
-        "clase",
+        "tutor",
+        "correos",
+        "moviles",
         "actions",
     ];
-    conquistadoresDataBase: ConquistadoresService | null;
-    dataSource: ConquistadorDataSource | null;
-    selection = new SelectionModel<ConquistadorList>(true, []);
+    tutorDataBase: TutorService | null;
+    dataSource: TutorDataSource | null;
+    selection = new SelectionModel<Tutor>(true, []);
     index: number;
     id: number;
-    conquistador: ConquistadorList | null;
+    tutor: Tutor | null;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: true }) sort: MatSort;
     @ViewChild("filter", { static: true }) filter: ElementRef;
@@ -41,8 +44,7 @@ export class RegistroComponent extends UnsubscribeOnDestroyAdapter implements On
         public httpClient: HttpClient,
         public dialog: MatDialog,
         public repositoryService: RepositoryService,
-        public conquistadorService: ConquistadoresService,
-        private snackBar: MatSnackBar,
+        public tutorService: TutorService,
         private router: Router,
     ) {
         super();
@@ -53,9 +55,9 @@ export class RegistroComponent extends UnsubscribeOnDestroyAdapter implements On
     }
 
     public loadData() {
-        this.conquistadoresDataBase = new ConquistadoresService(this.repositoryService);
-        this.dataSource = new ConquistadorDataSource(
-            this.conquistadoresDataBase,
+        this.tutorDataBase = new TutorService(this.repositoryService);
+        this.dataSource = new TutorDataSource(
+            this.tutorDataBase,
             this.paginator,
             this.sort
         );
@@ -90,13 +92,13 @@ export class RegistroComponent extends UnsubscribeOnDestroyAdapter implements On
     }
 
     addNew() {
-        this.router.navigate(['/conquistador/new']);
+        this.router.navigate(['/tutor/new']);
     }
 
     editCall(row) {
-        this.router.navigate(['/conquistador/edit',
+        this.router.navigate(['/tutor/edit',
             {
-                C: row.ConqId,
+                A: row.ConqId,
             },
         ]);
     }

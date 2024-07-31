@@ -15,9 +15,6 @@ export class TutorDataSource extends DataSource<Tutor> {
         public tutorService: TutorService,
         public paginator: MatPaginator,
         public _sort: MatSort,
-        private paterno1: string,
-        private paterno2: string,
-        private sexo: string,
     ) {
         super();
         this.filterChange.subscribe(() => (this.paginator.pageIndex = 0));
@@ -37,21 +34,23 @@ export class TutorDataSource extends DataSource<Tutor> {
             this.filterChange,
             this.paginator.page,
         ];
-        let filtros = new Filters();
-        filtros.Nombres = this.paterno1;
-        filtros.Apellidos = this.paterno2;
-        filtros.Tipo = this.sexo;
-        this.tutorService.getAllTutor(filtros);
+        this.tutorService.getAllTutor();
         return merge(...displayDataChanges).pipe(
             map(() => {
                 this.filteredData = this.tutorService.data
                     .slice()
                     .filter((tutor: Tutor) => {
                         const searchStr = (
+                            tutor.PersId +
                             tutor.PersDni +
                             tutor.PersNombres +
                             tutor.PersApellidoPaterno +
-                            tutor.PersApellidoMaterno
+                            tutor.PersApellidoMaterno +
+                            tutor.PersFechaNacimiento +
+                            tutor.PersCorreoPersonal +
+                            tutor.PersCorreoCorporativo +
+                            tutor.PersCelular +
+                            tutor.PersTelefono
                         ).toLowerCase();
                         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
                     });

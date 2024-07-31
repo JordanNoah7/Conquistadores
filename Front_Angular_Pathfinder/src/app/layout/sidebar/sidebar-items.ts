@@ -73,7 +73,7 @@ export const ROUTES: RouteInfo[] = [
         role: ["Director"],
         submenu: [
             {
-                path: "/apoderado/registro",
+                path: "/tutor/registro",
                 title: "Registrar",
                 iconType: "",
                 icon: "",

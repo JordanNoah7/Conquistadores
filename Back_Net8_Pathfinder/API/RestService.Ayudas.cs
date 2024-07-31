@@ -112,7 +112,7 @@ public partial class RestService
             {
                 var t = tutor;
                 TutorDTO td = new TutorDTO();
-                td.CopyFrom(ref t);
+                td.CopyFrom(t);
                 tutorDTOs.Add(td);
             }
             return Ok(tutorDTOs);

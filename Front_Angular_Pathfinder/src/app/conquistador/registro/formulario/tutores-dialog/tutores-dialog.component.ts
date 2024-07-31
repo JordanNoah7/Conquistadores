@@ -66,9 +66,6 @@ export class TutoresDialogComponent extends UnsubscribeOnDestroyAdapter implemen
             this.tutoresDataBase,
             this.paginator,
             this.sort,
-            this.paterno1,
-            this.paterno2,
-            this.sexo
         );
         this.subs.sink = fromEvent(this.filter.nativeElement, "keyup").subscribe(
             () => {

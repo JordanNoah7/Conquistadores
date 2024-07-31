@@ -1,3 +1,5 @@
+import { Usuario } from "./Usuario";
+
 export class Tutor{
     PersId: number;
     PersDni: string;
@@ -9,4 +11,5 @@ export class Tutor{
     PersCorreoCorporativo: string;
     PersCelular: string;
     PersTelefono: string;
+    Usuario: Usuario
 }

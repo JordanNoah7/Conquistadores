@@ -29,7 +29,7 @@ VALUES ('SessionTimeMinutes', '240', 'SISTEMAS', 'J-PC'),
          <head>
              <meta charset="UTF-8">
              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-             <title>Nueva Contraseña</title>
+             <title>Nueva Contraseï¿½a</title>
              <style>
                  body {
                      font-family: Arial, sans-serif;
@@ -70,18 +70,18 @@ VALUES ('SessionTimeMinutes', '240', 'SISTEMAS', 'J-PC'),
          <body>
              <div class="container">
                  <div class="header">
-                     <h2>Nueva Contraseña</h2>
+                     <h2>Nueva Contraseï¿½a</h2>
                  </div>
                  <div class="content">
                      <p>Estimado %%name%%,</p>
-                     <p>Le hemos asignado una nueva contraseña para su cuenta. A continuación, encontrará su nueva contraseña:</p>
+                     <p>Le hemos asignado una nueva contraseï¿½a para su cuenta. A continuaciï¿½n, encontrarï¿½ su nueva contraseï¿½a:</p>
                      <p><strong> %%newPassword%% </strong></p>
-                     <p>Por favor, cambie esta contraseña la próxima vez que inicie sesión.</p>
+                     <p>Por favor, cambie esta contraseï¿½a la prï¿½xima vez que inicie sesiï¿½n.</p>
                      <p>Gracias,</p>
                      <p>El Equipo de Soporte</p>
                  </div>
                  <div class="footer">
-                     <p>Este es un correo electrónico automático. Por favor, no responda a este mensaje.</p>
+                     <p>Este es un correo electrï¿½nico automï¿½tico. Por favor, no responda a este mensaje.</p>
                  </div>
              </div>
          </body>
@@ -105,7 +105,7 @@ VALUES
 (1     , 1     , 'SISTEMAS'  , 'J-PC'),
 (2     , 1     , 'SISTEMAS'  , 'J-PC'),
 (3     , 1     , 'SISTEMAS'  , 'J-PC'),
-(2     , 5     , 'SISTEMAS'  , 'J-PC')
+(5     , 2     , 'SISTEMAS'  , 'J-PC')
 GO
 INSERT INTO Conquistadores
 ( PersDni			              , PersNombres		               , PersApellidoPaterno, PersApellidoMaterno, PersFechaNacimiento, UsuaId
@@ -132,37 +132,37 @@ GO
 INSERT INTO Categorias
 (CateNombre                             , CateColor, AudiUserCrea, AudiFechCrea, AudiHostCrea, CateDescripcion)
 VALUES
-('ADRA'                                 , '#A8A5DA', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Las especialidades de ADRA (Agencia Adventista de Desarrollo y Recursos Asistenciales) están diseñadas para fomentar un espíritu de servicio y compasión. Estas especialidades enseñan a los jóvenes a involucrarse en actividades de asistencia y desarrollo comunitario, así como en la respuesta a desastres y emergencias. Los conquistadores aprenden sobre el trabajo humanitario, la gestión de recursos y la organización de proyectos de ayuda social.'),
-('Artes y habilidades manuales'         , '#A8E1FC', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Esta categoría incluye especialidades que desarrollan la creatividad y la destreza manual de los jóvenes. Abarca una amplia gama de actividades artísticas y artesanales, como la pintura, el dibujo, la escultura, la cerámica, el trabajo con madera, el tejido y otras manualidades. Estas especialidades fomentan la autoexpresión y la apreciación por el arte y la cultura.'),
-('Actividades agrícolas'                , '#C1925A', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Las especialidades agrícolas enseñan a los conquistadores sobre la agricultura sostenible, la jardinería, el cultivo de plantas y la cría de animales. Los jóvenes aprenden técnicas de cultivo, manejo del suelo, control de plagas y cosecha, así como la importancia de la agricultura en la seguridad alimentaria y el cuidado del medio ambiente.'),
-('Actividades misioneras y comunitarias', '#7aadda', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Estas especialidades están enfocadas en el servicio comunitario y la evangelización. Los conquistadores aprenden a participar en proyectos misioneros, actividades de voluntariado, distribución de literatura religiosa y organización de eventos comunitarios. Se enfatiza la importancia de ayudar a los demás y compartir su fe de manera práctica y significativa.'),
-('Actividades profesionales'            , '#f6846c', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Las especialidades profesionales introducen a los jóvenes en diversas profesiones y oficios. Estas especialidades pueden incluir temas como la mecánica, la carpintería, la electricidad, la fontanería, la cocina profesional, entre otros. Los conquistadores adquieren habilidades prácticas que pueden ser útiles en su vida cotidiana y futuras carreras.'),
-('Actividades recreativas'              , '#a7db89', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Esta categoría incluye especialidades que promueven la actividad física, el deporte y el entretenimiento saludable. Los conquistadores pueden aprender sobre deportes específicos, técnicas de campamento, orientación, supervivencia al aire libre y otras actividades recreativas. Estas especialidades fomentan el trabajo en equipo, la disciplina y un estilo de vida activo.'),
-('Ciencia y salud'                      , '#b394cf', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Las especialidades de ciencia y salud están diseñadas para aumentar el conocimiento de los jóvenes sobre el cuerpo humano, la salud, la nutrición y las ciencias naturales. Pueden incluir temas como la anatomía, la fisiología, la biología, la química y la física. Los conquistadores también aprenden sobre primeros auxilios, RCP, y prácticas de vida saludable.'),
-('Estudio de la naturaleza'             , '#bcbcbc', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Esta categoría abarca especialidades relacionadas con la exploración y el estudio del mundo natural. Los conquistadores aprenden sobre la flora, la fauna, la geología, la meteorología, la astronomía y la ecología. Estas especialidades fomentan la apreciación y el respeto por la naturaleza y promueven la conservación del medio ambiente.'),
-('Habilidades domésticas'               , '#fdcc06', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Las especialidades de habilidades domésticas enseñan a los jóvenes competencias esenciales para la vida diaria en el hogar. Incluyen temas como la cocina, la costura, el cuidado del hogar, la planificación del presupuesto, la jardinería doméstica y otras habilidades que contribuyen al bienestar personal y familiar.'),
-('Maestrías'                            , '#efefef', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Las maestrías son especialidades avanzadas que requieren un nivel más alto de conocimiento y habilidad. Están diseñadas para aquellos conquistadores que desean profundizar en un área específica y alcanzar un dominio notable. Las maestrías pueden abarcar cualquiera de las categorías anteriores y suelen involucrar proyectos más complejos y un mayor compromiso.')
+('ADRA'                                 , '#A8A5DA', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Las especialidades de ADRA (Agencia Adventista de Desarrollo y Recursos Asistenciales) estï¿½n diseï¿½adas para fomentar un espï¿½ritu de servicio y compasiï¿½n. Estas especialidades enseï¿½an a los jï¿½venes a involucrarse en actividades de asistencia y desarrollo comunitario, asï¿½ como en la respuesta a desastres y emergencias. Los conquistadores aprenden sobre el trabajo humanitario, la gestiï¿½n de recursos y la organizaciï¿½n de proyectos de ayuda social.'),
+('Artes y habilidades manuales'         , '#A8E1FC', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Esta categorï¿½a incluye especialidades que desarrollan la creatividad y la destreza manual de los jï¿½venes. Abarca una amplia gama de actividades artï¿½sticas y artesanales, como la pintura, el dibujo, la escultura, la cerï¿½mica, el trabajo con madera, el tejido y otras manualidades. Estas especialidades fomentan la autoexpresiï¿½n y la apreciaciï¿½n por el arte y la cultura.'),
+('Actividades agrï¿½colas'                , '#C1925A', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Las especialidades agrï¿½colas enseï¿½an a los conquistadores sobre la agricultura sostenible, la jardinerï¿½a, el cultivo de plantas y la crï¿½a de animales. Los jï¿½venes aprenden tï¿½cnicas de cultivo, manejo del suelo, control de plagas y cosecha, asï¿½ como la importancia de la agricultura en la seguridad alimentaria y el cuidado del medio ambiente.'),
+('Actividades misioneras y comunitarias', '#7aadda', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Estas especialidades estï¿½n enfocadas en el servicio comunitario y la evangelizaciï¿½n. Los conquistadores aprenden a participar en proyectos misioneros, actividades de voluntariado, distribuciï¿½n de literatura religiosa y organizaciï¿½n de eventos comunitarios. Se enfatiza la importancia de ayudar a los demï¿½s y compartir su fe de manera prï¿½ctica y significativa.'),
+('Actividades profesionales'            , '#f6846c', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Las especialidades profesionales introducen a los jï¿½venes en diversas profesiones y oficios. Estas especialidades pueden incluir temas como la mecï¿½nica, la carpinterï¿½a, la electricidad, la fontanerï¿½a, la cocina profesional, entre otros. Los conquistadores adquieren habilidades prï¿½cticas que pueden ser ï¿½tiles en su vida cotidiana y futuras carreras.'),
+('Actividades recreativas'              , '#a7db89', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Esta categorï¿½a incluye especialidades que promueven la actividad fï¿½sica, el deporte y el entretenimiento saludable. Los conquistadores pueden aprender sobre deportes especï¿½ficos, tï¿½cnicas de campamento, orientaciï¿½n, supervivencia al aire libre y otras actividades recreativas. Estas especialidades fomentan el trabajo en equipo, la disciplina y un estilo de vida activo.'),
+('Ciencia y salud'                      , '#b394cf', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Las especialidades de ciencia y salud estï¿½n diseï¿½adas para aumentar el conocimiento de los jï¿½venes sobre el cuerpo humano, la salud, la nutriciï¿½n y las ciencias naturales. Pueden incluir temas como la anatomï¿½a, la fisiologï¿½a, la biologï¿½a, la quï¿½mica y la fï¿½sica. Los conquistadores tambiï¿½n aprenden sobre primeros auxilios, RCP, y prï¿½cticas de vida saludable.'),
+('Estudio de la naturaleza'             , '#bcbcbc', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Esta categorï¿½a abarca especialidades relacionadas con la exploraciï¿½n y el estudio del mundo natural. Los conquistadores aprenden sobre la flora, la fauna, la geologï¿½a, la meteorologï¿½a, la astronomï¿½a y la ecologï¿½a. Estas especialidades fomentan la apreciaciï¿½n y el respeto por la naturaleza y promueven la conservaciï¿½n del medio ambiente.'),
+('Habilidades domï¿½sticas'               , '#fdcc06', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Las especialidades de habilidades domï¿½sticas enseï¿½an a los jï¿½venes competencias esenciales para la vida diaria en el hogar. Incluyen temas como la cocina, la costura, el cuidado del hogar, la planificaciï¿½n del presupuesto, la jardinerï¿½a domï¿½stica y otras habilidades que contribuyen al bienestar personal y familiar.'),
+('Maestrï¿½as'                            , '#efefef', 'SISTEMAS'  , GETDATE()   , 'JORDAN-PC' , 'Las maestrï¿½as son especialidades avanzadas que requieren un nivel mï¿½s alto de conocimiento y habilidad. Estï¿½n diseï¿½adas para aquellos conquistadores que desean profundizar en un ï¿½rea especï¿½fica y alcanzar un dominio notable. Las maestrï¿½as pueden abarcar cualquiera de las categorï¿½as anteriores y suelen involucrar proyectos mï¿½s complejos y un mayor compromiso.')
 GO
 INSERT INTO Unidades
 (UnidNombre, UnidLema                       , UnidGritoGuerra                             , UnidDescripcion    , UnidImagen, AudiUserCrea, AudiFechCrea, AudiHostCrea)
 VALUES
-('Halcones', 'Volamos Alto, Vencemos Juntos', '¡Halcones! ¡Altos volamos, unidos ganamos!', 'Unidad de varones', 'halcones.png', 'SISTEMAS'  , GETDATE()   , 'SISTEMAS')
+('Halcones', 'Volamos Alto, Vencemos Juntos', 'ï¿½Halcones! ï¿½Altos volamos, unidos ganamos!', 'Unidad de varones', 'halcones.png', 'SISTEMAS'  , GETDATE()   , 'SISTEMAS')
 GO
 INSERT INTO Clases
 (ClasNombre                       , ClasDescripcion            , ClasImagen                      , AudiUserCrea, AudiFechCrea, AudiHostCrea)
 VALUES
-('Amigo'                          , 'Clase regular de 10 años' , 'amigo.png'                     , 'SYSTEM'    , GETDATE()   , 'localhost'),
-('Amigo de la naturaleza'         , 'Clase avanzada de 10 años', 'amigo_naturaleza.png'          , 'SYSTEM'    , GETDATE()   , 'localhost'),
-('Compañero'                      , 'Clase regular de 11 años' , 'compañero.png'                 , 'SYSTEM'    , GETDATE()   , 'localhost'),
-('Compañero de excursionismo'     , 'Clase avanzada de 11 años', 'compañero_excursionismo.png'   , 'SYSTEM'    , GETDATE()   , 'localhost'),
-('Explorador'                     , 'Clase regular de 12 años' , 'explorador.png'                , 'SYSTEM'    , GETDATE()   , 'localhost'),
-('Explorador de campo y de bosque', 'Clase avanzada de 12 años', 'explorador_campo_bosque.png'   , 'SYSTEM'    , GETDATE()   , 'localhost'),
-('Pionero'                        , 'Clase regular de 13 años' , 'pionero.png'                   , 'SYSTEM'    , GETDATE()   , 'localhost'),
-('Pionero de nuevas fronteras'    , 'Clase avanzada de 13 años', 'pionero_nuevas_fronteras.png'  , 'SYSTEM'    , GETDATE()   , 'localhost'),
-('Excursionista'                  , 'Clase regular de 14 años' , 'excursionista.png'             , 'SYSTEM'    , GETDATE()   , 'localhost'),
-('Excursionista en el bosque'     , 'Clase avanzada de 14 años', 'excursionista_bosque.png'      , 'SYSTEM'    , GETDATE()   , 'localhost'),
-('Guia'                           , 'Clase regular de 15 años' , 'guia.png'                      , 'SYSTEM'    , GETDATE()   , 'localhost'),
-('Guia de exploracion'            , 'Clase avanzada de 15 años', 'guia_exploracion.png'          , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Amigo'                          , 'Clase regular de 10 aï¿½os' , 'amigo.png'                     , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Amigo de la naturaleza'         , 'Clase avanzada de 10 aï¿½os', 'amigo_naturaleza.png'          , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Compaï¿½ero'                      , 'Clase regular de 11 aï¿½os' , 'compaï¿½ero.png'                 , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Compaï¿½ero de excursionismo'     , 'Clase avanzada de 11 aï¿½os', 'compaï¿½ero_excursionismo.png'   , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Explorador'                     , 'Clase regular de 12 aï¿½os' , 'explorador.png'                , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Explorador de campo y de bosque', 'Clase avanzada de 12 aï¿½os', 'explorador_campo_bosque.png'   , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Pionero'                        , 'Clase regular de 13 aï¿½os' , 'pionero.png'                   , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Pionero de nuevas fronteras'    , 'Clase avanzada de 13 aï¿½os', 'pionero_nuevas_fronteras.png'  , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Excursionista'                  , 'Clase regular de 14 aï¿½os' , 'excursionista.png'             , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Excursionista en el bosque'     , 'Clase avanzada de 14 aï¿½os', 'excursionista_bosque.png'      , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Guia'                           , 'Clase regular de 15 aï¿½os' , 'guia.png'                      , 'SYSTEM'    , GETDATE()   , 'localhost'),
+('Guia de exploracion'            , 'Clase avanzada de 15 aï¿½os', 'guia_exploracion.png'          , 'SYSTEM'    , GETDATE()   , 'localhost'),
 ('Guia mayor'                     , 'Clase de liderazgo 1'     , 'guia_mayor.png'                , 'SYSTEM'    , GETDATE()   , 'localhost'),
 ('Guia mayor master'              , 'Clase de liderazgo 2'     , 'guia_mayor_master.png'         , 'SYSTEM'    , GETDATE()   , 'localhost'),
 ('Guia mayor master avanzado'     , 'Clase de liderazgo 3'     , 'guia_mayor_master_avanzado.png', 'SYSTEM'    , GETDATE()   , 'localhost')

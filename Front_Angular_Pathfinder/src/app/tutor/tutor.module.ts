@@ -22,12 +22,14 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTableExporterModule } from "mat-table-exporter";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { SharedModule } from "../shared/shared.module";
-import { ApoderadoRoutingModule } from "./apoderado-routing.module";
+import { TutorRoutingModule } from "./tutor-routing.module";
 import { RegistroComponent } from "./registro/registro.component";
+import { FormularioComponent } from "./registro/formulario/formulario.component"
 
 @NgModule({
     declarations: [
-        RegistroComponent
+        RegistroComponent,
+        FormularioComponent
     ],
     imports: [
         CommonModule,
@@ -55,7 +57,7 @@ import { RegistroComponent } from "./registro/registro.component";
         MatTableExporterModule,
         MatProgressSpinnerModule,
         SharedModule,
-        ApoderadoRoutingModule
+        TutorRoutingModule
     ],
 })
-export class ApoderadoModule { }
+export class TutorModule { }

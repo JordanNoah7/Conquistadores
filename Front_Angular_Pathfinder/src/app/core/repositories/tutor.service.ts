@@ -24,8 +24,8 @@ export class TutorService extends UnsubscribeOnDestroyAdapter {
         return this.dialogData;
     }
 
-    getAllTutor(payload: any): void {
-        this.repositoryService.GetTutores(payload).subscribe({
+    getAllTutor(): void {
+        this.repositoryService.GetTutores().subscribe({
             next: (value: any) => {
                 this.dataChange.next(value);
             },
