@@ -27,13 +27,23 @@ public class TutorRepository : ITutorRepository
         }
     }
 
-    public async Task<ICollection<Tutor>> GetAllByApellidos(string PersApellidoPaterno1, string PersApellidoPaterno2)
+    public async Task<ICollection<Tutor>> GetAllAsync()
+    {
+        try
+        {
+            return await _dbContext.Tutores.ToListAsync();
+        }
+        catch { throw; }
+    }
+
+    public async Task<ICollection<Tutor>> GetAllByApellidos(string PersApellidoPaterno1, string PersApellidoPaterno2, string PersSexo)
     {
         try
         {
             var tutores = await _dbContext.Tutores
                 .Where(t => EF.Functions.Like(t.PersApellidoPaterno, "%" + PersApellidoPaterno1 + "%")
-                || EF.Functions.Like(t.PersApellidoPaterno, "%" + PersApellidoPaterno2 + "%"))
+                || EF.Functions.Like(t.PersApellidoPaterno, "%" + PersApellidoPaterno2 + "%")
+                && t.PersSexo.Equals(PersSexo))
                 .ToListAsync();
             return tutores;
         }

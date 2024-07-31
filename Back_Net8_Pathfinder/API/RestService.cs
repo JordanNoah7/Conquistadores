@@ -161,6 +161,39 @@ public partial class RestService : ControllerBase
             return BadRequest("Error al validar credenciales");
         }
     }
+
+    [HttpGet("ObtenerTutores")]
+    public async Task<IActionResult> ObtenerTutores([FromHeader] string requestStr)
+    {
+        try
+        {
+            Request request = JsonConvert.DeserializeObject<Request>(requestStr)!;
+            if (!await ValidarSesion(request.UsuaId))
+            {
+                return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
+            }
+            ICollection<Tutor> tutores = await _service.GetAllTutoresAsync();
+            if (tutores != null && tutores.Count > 0)
+            {
+                ICollection<TutorDTO> tutors = new List<TutorDTO>();
+                foreach(Tutor tutor in tutores)
+                {
+                    TutorDTO t = new TutorDTO();
+                    t.CopyFrom(tutor);
+                    tutors.Add(t);
+                }
+                return Ok(tutors);
+            }
+            else
+            {
+                return NotFound("No se encontrarón apoderados registrados.");
+            }
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(ex);
+        }
+    }
     #endregion
 
     #region [ Privados ]

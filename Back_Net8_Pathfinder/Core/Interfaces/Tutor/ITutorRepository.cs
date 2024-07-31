@@ -5,5 +5,6 @@ namespace Core.Interfaces;
 public interface ITutorRepository
 {
     Task<Tutor> GetByUsuarioAsync(int id);
-    Task<ICollection<Tutor>> GetAllByApellidos(string PersApellidoPaterno1, string PersApellidoPaterno2);
+    Task<ICollection<Tutor>> GetAllAsync();
+    Task<ICollection<Tutor>> GetAllByApellidos(string PersApellidoPaterno1, string PersApellidoPaterno2, string PersSexo);
 }

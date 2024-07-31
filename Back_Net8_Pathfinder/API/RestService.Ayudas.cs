@@ -106,7 +106,7 @@ public partial class RestService
             {
                 return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
             }
-            ICollection<Tutor> tutores = await _service.GetAllTutoresByApellidos(filtros.Nombres!, filtros.Apellidos!);
+            ICollection<Tutor> tutores = await _service.GetAllTutoresByApellidos(filtros.Nombres!, filtros.Apellidos!, filtros.Tipo!);
             ICollection<TutorDTO> tutorDTOs = new List<TutorDTO>();
             foreach (var tutor in tutores)
             {

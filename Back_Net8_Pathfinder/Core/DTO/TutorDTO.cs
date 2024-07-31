@@ -33,7 +33,7 @@ public class TutorDTO
         tutor.PersTelefono = PersTelefono;
     }
 
-    public void CopyFrom(ref Tutor tutor)
+    public void CopyFrom(Tutor tutor)
     {
         PersId = tutor.PersId;
         PersDni = tutor.PersDni;
