@@ -9,7 +9,7 @@ import { SelectionModel } from "@angular/cdk/collections";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
 import { ConquistadorList } from "src/app/core/models/ConquistadorList";
 import { RepositoryService } from "src/app/core/service/repository.service";
-import { ConquistadoresService } from "src/app/core/repositories/conquistador.service";
+import { ConquistadorService } from "src/app/core/repositories/conquistador.service";
 import { ConquistadorDataSource } from "src/app/core/dataSource/ConquistadorList.datasource";
 import { Router } from "@angular/router";
 import { TutorService } from "src/app/core/repositories";

@@ -106,7 +106,7 @@ export class ChangePasswordComponent implements OnInit {
                     title: 'Error!',
                     text: error,
                     icon: 'error',
-                    confirmButtonText: 'Cool'
+                    confirmButtonText: 'Ok'
                 });
             },
         })

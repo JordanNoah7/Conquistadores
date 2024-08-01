@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, map, Observable } from "rxjs";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
 import { ConquistadorList } from "../models";
 import { RepositoryService } from "../service/repository.service";
 import Swal from "sweetalert2";
 @Injectable()
-export class ConquistadoresService extends UnsubscribeOnDestroyAdapter {
+export class ConquistadorService extends UnsubscribeOnDestroyAdapter {
     isTblLoading = true;
     dataChange: BehaviorSubject<ConquistadorList[]> = new BehaviorSubject<ConquistadorList[]>([]);
     dialogData: any;
@@ -32,15 +32,27 @@ export class ConquistadoresService extends UnsubscribeOnDestroyAdapter {
             error: (error: any) => {
                 Swal.fire({
                     title: 'Error!',
-                    text: 'Error al obtener la lista de conquistadores, intente de nuevo más tarde.',
+                    text: error,
                     icon: 'error',
-                    confirmButtonText: 'Cool'
+                    confirmButtonText: 'Ok'
                 });
             },
             complete: () => {
                 this.isTblLoading = false;
             }
         })
+    }
+
+    setConqId(id: number) {
+        this.dialogData = id;
+    }
+
+    public getConquistadorById(id: number): Observable<any> {
+        return this.repositoryService.GetConquistadoresById(id).pipe(
+            map(response => {
+                return response.conquistadorDTO;
+            })
+        );
     }
 
     addConquistador(conquistador: ConquistadorList): void {

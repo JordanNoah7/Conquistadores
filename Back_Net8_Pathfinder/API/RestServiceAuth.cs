@@ -54,7 +54,7 @@ public class RestServiceAuth : ControllerBase
 
             usuario.UsuaRoles = await _service.GetRolesByUserAsync(usuario.UsuaId);
             UsuarioDTO usuarioDto = new UsuarioDTO();
-            usuarioDto.CopyFrom(ref usuario);
+            usuarioDto.CopyFrom(usuario);
             usuarioDto.UsuaRoles = new List<RolDTO>();
             foreach (UsuarioRol rolUsuario in usuario.UsuaRoles)
             {
@@ -75,7 +75,7 @@ public class RestServiceAuth : ControllerBase
             if (conquistador != null)
             {
                 ConquistadorDTO conquistadorDto = new ConquistadorDTO();
-                conquistadorDto.CopyFrom(ref conquistador);
+                conquistadorDto.CopyFrom(conquistador);
                 conquistadorDto.Usuario = usuarioDto;
                 conquistadorDto.Sesion = sesionDto;
                 return Ok(conquistadorDto);

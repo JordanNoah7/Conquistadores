@@ -7,3 +7,4 @@ export * from './Request';
 export * from './RequestValidateUser';
 export * from './Tipo';
 export * from './Tutor';
+export * from './Conquistador';

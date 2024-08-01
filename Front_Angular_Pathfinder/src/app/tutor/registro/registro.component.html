@@ -85,23 +85,23 @@
                                 </ng-container>
                                 <ng-container matColumnDef="id">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-                                    <mat-cell *matCellDef="let row">{{row.ConqId}}</mat-cell>
+                                    <mat-cell *matCellDef="let row">{{row.PersId}}</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="dni">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>DNI</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.ConqDni}}</mat-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.PersDni}}</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="tutor">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Nombres y apellidos</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.ConqNombres + ' ' + row.ConqApellidoPaterno + ' ' + row.ConqApellidoMaterno}}</mat-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.PersNombres + ' ' + row.PersApellidoPaterno + ' ' + row.PersApellidoMaterno}}</mat-cell>
                                 </ng-container>
-                                <ng-container matColumnDef="unidad">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Unidad</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.ConqUnidad}}</mat-cell>
+                                <ng-container matColumnDef="correos">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Correos</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.PersCorreoPersonal + ' | ' + row.PersCorreoCorporativo}}</mat-cell>
                                 </ng-container>
-                                <ng-container matColumnDef="clase">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Clase</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.ConqClase}}</mat-cell>
+                                <ng-container matColumnDef="moviles">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Nros de celular</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.PersCelular + ' | ' + row.PersTelefono}}</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="actions">
                                     <mat-header-cell class="pr-0" *matHeaderCellDef>Actions</mat-header-cell>

@@ -14,8 +14,8 @@ import { IpClientService } from "./service/ipclient.service";
 import { RouterService } from "./service/router.service";
 import { ContextService } from "./service/context.service";
 import { RepositoryService } from "./service/repository.service";
-import { ConquistadoresService } from "./repositories/conquistador.service";
-import { TiposService } from "./repositories";
+import { ConquistadorService } from "./repositories/conquistador.service";
+import { TiposService, TutorService } from "./repositories";
 
 @NgModule({
     declarations: [],
@@ -34,8 +34,9 @@ import { TiposService } from "./repositories";
         RouterService,
         ContextService,
         RepositoryService,
-        ConquistadoresService,
-        TiposService
+        ConquistadorService,
+        TiposService,
+        TutorService
     ],
 })
 export class CoreModule {

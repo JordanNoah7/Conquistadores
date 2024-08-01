@@ -8,8 +8,6 @@ public class ClaseDTO
     public string ClasNombre { get; set; }
     public string ClasDescripcion { get; set; }
     public string ClasImagen {  get; set; }
-    public ICollection<ConquistadorDTO> ClasConquistadores { get; set; }
-    public ICollection<ItemCuadernilloDTO> ClasItemsCuadernillo { get; set; }
 
     public void CopyTo(ref Clase clase)
     {

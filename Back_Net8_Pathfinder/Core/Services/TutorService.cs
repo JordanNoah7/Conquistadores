@@ -30,4 +30,22 @@ public partial class Service
         }
         catch { throw; }
     }
+
+    public async Task<bool> AddTutorAsync(Tutor tutor)
+    {
+        try
+        {
+            return await _tutorRepository.AddAsync(tutor);
+        }
+        catch { throw; }
+    }
+
+    public async Task<bool> UpdateTutorAsync(Tutor tutor)
+    {
+        try
+        {
+            return await _tutorRepository.UpdateAsync(tutor);
+        }
+        catch { throw; }
+    }
 }

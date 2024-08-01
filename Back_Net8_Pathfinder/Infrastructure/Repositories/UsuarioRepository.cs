@@ -40,6 +40,23 @@ public class UsuarioRepository : IUsuarioRepository
         }
     }
 
+    public async Task<bool> AddAsync(Usuario usuario)
+    {
+        try
+        {
+            _dbContext.Usuarios.Add(usuario);
+            await _dbContext.SaveChangesAsync();
+
+            var user = _dbContext.Usuarios.FirstOrDefault(u => u.UsuaUsuario == usuario.UsuaUsuario && u.UsuaContrasenia == usuario.UsuaContrasenia);
+            usuario = user;
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
     public async Task<bool> UpdateAsync(Usuario usuario)
     {
         try

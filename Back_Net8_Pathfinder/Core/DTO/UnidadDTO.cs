@@ -11,8 +11,6 @@ public class UnidadDTO
     public string UnidDescripcion { get; set; }
     public string UnidImagen { get; set; }
 
-    public ICollection<ConquistadorDTO> UnidConquistadores { get; set; }
-
     public void CopyTo(ref Unidad unidad)
     {
         unidad.UnidId = UnidId;

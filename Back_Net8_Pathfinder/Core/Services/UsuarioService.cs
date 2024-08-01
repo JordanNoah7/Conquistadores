@@ -30,6 +30,15 @@ public partial class Service
         }
     }
 
+    public async Task<bool> AddUsuarioAsync(Usuario usuario)
+    {
+        try
+        {
+            return await _usuarioRepository.AddAsync(usuario);
+        }
+        catch (Exception e) { throw; }
+    }
+
     public async Task<bool> UpdateUsuarioAsync(Usuario usuario)
     {
         try

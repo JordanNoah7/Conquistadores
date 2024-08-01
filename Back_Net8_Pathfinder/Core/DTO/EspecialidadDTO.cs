@@ -9,7 +9,6 @@ public class EspecialidadDTO
     public string EspeDescripcion { get; set; }
     public int CateId { get; set; }
     public string EspeImagen { get; set; }
-    public ICollection<ConquistadorDTO> EspeConquistadores { get; set; }
 
     public void CopyTo(ref Especialidad especialidad)
     {

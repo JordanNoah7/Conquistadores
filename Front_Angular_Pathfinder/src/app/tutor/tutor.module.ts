@@ -25,11 +25,13 @@ import { SharedModule } from "../shared/shared.module";
 import { TutorRoutingModule } from "./tutor-routing.module";
 import { RegistroComponent } from "./registro/registro.component";
 import { FormularioComponent } from "./registro/formulario/formulario.component"
+import { ConquistadoresDialogComponent } from "./registro/formulario/conquistadores-dialog/conquistadores-dialog.component";
 
 @NgModule({
     declarations: [
         RegistroComponent,
-        FormularioComponent
+        FormularioComponent,
+        ConquistadoresDialogComponent
     ],
     imports: [
         CommonModule,

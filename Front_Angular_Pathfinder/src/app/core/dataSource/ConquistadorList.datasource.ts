@@ -3,7 +3,7 @@ import { ConquistadorList } from "../models";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { DataSource } from "@angular/cdk/collections";
-import { ConquistadoresService } from "../repositories/conquistador.service";
+import { ConquistadorService } from "../repositories/conquistador.service";
 
 export class ConquistadorDataSource extends DataSource<ConquistadorList> {
     filterChange = new BehaviorSubject("");
@@ -11,7 +11,7 @@ export class ConquistadorDataSource extends DataSource<ConquistadorList> {
     renderedData: ConquistadorList[] = [];
 
     constructor(
-        public conquistadorService: ConquistadoresService,
+        public conquistadorService: ConquistadorService,
         public paginator: MatPaginator,
         public _sort: MatSort
     ) {

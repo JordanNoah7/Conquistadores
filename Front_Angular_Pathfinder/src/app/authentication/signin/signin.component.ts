@@ -65,7 +65,7 @@ export class SigninComponent
                     title: 'Error!',
                     text: 'Error de validación Captcha',
                     icon: 'error',
-                    confirmButtonText: 'Cool'
+                    confirmButtonText: 'Ok'
                 })
                 this.loading = false;
             }
@@ -78,7 +78,7 @@ export class SigninComponent
                 title: 'Error!',
                 text: 'Datos incorrectos',
                 icon: 'error',
-                confirmButtonText: 'Cool'
+                confirmButtonText: 'Ok'
             });
             this.loading = false;
         } else {
@@ -97,7 +97,7 @@ export class SigninComponent
                         title: 'Error!',
                         text: error,
                         icon: 'error',
-                        confirmButtonText: 'Cool'
+                        confirmButtonText: 'Ok'
                     });
                     this.loading = false;
                 },

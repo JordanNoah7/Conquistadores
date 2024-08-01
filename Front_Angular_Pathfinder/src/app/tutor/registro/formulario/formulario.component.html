@@ -8,7 +8,10 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="card">
                         <div class="header">
-                            <h2><strong> {{this.id > 0 ? 'Actualizar' : 'Nuevo'}} tutor</strong></h2>
+                            <h2><strong>{{this.id > 0 ? 'Actualizar' : 'Nuevo'}} tutor</strong></h2>
+                            <h2></h2>
+                            <h2 *ngIf="!(this.id > 0)"><strong><button mat-raised-button class="btn-space" type="button" color="primary" (click)="SearchConquistadores()">¿Eres
+                                        conquistador?</button></strong></h2>
                         </div>
                         <div class="body">
                             <div class="row">
@@ -140,6 +143,9 @@
                                     <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Correo principal</mat-label>
                                         <input matInput formControlName="PersCorreoPersonal" required>
+                                        <mat-error *ngIf="tutorForm.get('PersCorreoPersonal').hasError('required')">
+                                            El correo principal es obligatorio
+                                        </mat-error>
                                         <mat-error *ngIf="tutorForm.get('PersCorreoPersonal').hasError('PersCorreoPersonal') && tutorForm.get('PersCorreoPersonal').touched">
                                             Ingresa un correo v&aacute;lido
                                         </mat-error>
@@ -199,27 +205,21 @@
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                                     <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Contrase&ntilde;a</mat-label>
-                                        <input matInput formControlName="UsuaContrasenia" [type]="hide1 ? 'text' : 'password'" required>
+                                        <input matInput formControlName="UsuaContrasenia" [type]="hide1 ? 'text' : 'password'">
                                         <a style="margin-left: -35px;" class="show-pwd-icon" href="#" onClick="return false;" matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'"
                                             [attr.aria-pressed]="hide1">
                                             <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
                                         </a>
-                                        <mat-error *ngIf="tutorForm.get('UsuaContrasenia').hasError('required')">
-                                            La contrase&ntilde;a es requerida
-                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                                     <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Confirmar contrase&ntilde;a</mat-label>
-                                        <input matInput formControlName="UsuaReContrasenia" [type]="hide2 ? 'text' : 'password'" required>
+                                        <input matInput formControlName="UsuaReContrasenia" [type]="hide2 ? 'text' : 'password'">
                                         <a style="margin-left: -35px;" class="show-pwd-icon" href="#" onClick="return false;" matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
                                             [attr.aria-pressed]="hide1">
                                             <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                                         </a>
-                                        <mat-error *ngIf="tutorForm.get('UsuaReContrasenia').hasError('required')">
-                                            La confirmaci&oacute;n de la contrase&ntilde;a es requerida
-                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -233,7 +233,8 @@
                         <div class="body">
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-                                    <button class="btn-space" [disabled]="!tutorForm.valid" [class.auth-spinner]="isSaving" mat-raised-button color="primary">{{this.id > 0 ? 'Actualizar' : 'Guardar'}}</button>
+                                    <button class="btn-space" [disabled]="!tutorForm.valid" [class.auth-spinner]="isSaving" mat-raised-button color="primary">{{this.id > 0 ? 'Actualizar' :
+                                        'Guardar'}}</button>
                                     <button type="button" mat-button>Cancelar</button>
                                 </div>
                             </div>

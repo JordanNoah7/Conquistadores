@@ -54,7 +54,18 @@ public class TutorRepository : ITutorRepository
     {
         try
         {
-            await _dbContext.Tutores.AddAsync(tutor);
+            _dbContext.Tutores.Add(tutor);
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+        catch { return false; }
+    }
+
+    public async Task<bool> UpdateAsync(Tutor tutor)
+    {
+        try
+        {
+            _dbContext.Tutores.Update(tutor);
             await _dbContext.SaveChangesAsync();
             return true;
         }

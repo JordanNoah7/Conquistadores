@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, map, Observable } from "rxjs";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
 import { Tutor } from "../models";
 import { RepositoryService } from "../service/repository.service";
@@ -34,13 +34,21 @@ export class TutorService extends UnsubscribeOnDestroyAdapter {
                     title: 'Error!',
                     text: 'Error al obtener la lista de conquistadores, intente de nuevo más tarde.',
                     icon: 'error',
-                    confirmButtonText: 'Cool'
+                    confirmButtonText: 'Ok'
                 });
             },
             complete: () => {
                 this.isTblLoading = false;
             }
         })
+    }
+
+    public saveTutor(data: any): Observable<any> {
+        return this.repositoryService.SaveTutor(data).pipe(
+            map(response => {
+                return response;
+            })
+        )
     }
 
     addTutor(tutor: Tutor): void {

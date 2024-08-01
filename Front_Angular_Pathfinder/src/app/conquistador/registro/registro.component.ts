@@ -9,7 +9,7 @@ import { SelectionModel } from "@angular/cdk/collections";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
 import { ConquistadorList } from "src/app/core/models/ConquistadorList";
 import { RepositoryService } from "src/app/core/service/repository.service";
-import { ConquistadoresService } from "src/app/core/repositories/conquistador.service";
+import { ConquistadorService } from "src/app/core/repositories/conquistador.service";
 import { ConquistadorDataSource } from "src/app/core/dataSource/ConquistadorList.datasource";
 import { Router } from "@angular/router";
 @Component({
@@ -27,7 +27,7 @@ export class RegistroComponent extends UnsubscribeOnDestroyAdapter implements On
         "clase",
         "actions",
     ];
-    conquistadoresDataBase: ConquistadoresService | null;
+    conquistadoresDataBase: ConquistadorService | null;
     dataSource: ConquistadorDataSource | null;
     selection = new SelectionModel<ConquistadorList>(true, []);
     index: number;
@@ -41,7 +41,7 @@ export class RegistroComponent extends UnsubscribeOnDestroyAdapter implements On
         public httpClient: HttpClient,
         public dialog: MatDialog,
         public repositoryService: RepositoryService,
-        public conquistadorService: ConquistadoresService,
+        public conquistadorService: ConquistadorService,
         private snackBar: MatSnackBar,
         private router: Router,
     ) {
@@ -53,7 +53,7 @@ export class RegistroComponent extends UnsubscribeOnDestroyAdapter implements On
     }
 
     public loadData() {
-        this.conquistadoresDataBase = new ConquistadoresService(this.repositoryService);
+        this.conquistadoresDataBase = new ConquistadorService(this.repositoryService);
         this.dataSource = new ConquistadorDataSource(
             this.conquistadoresDataBase,
             this.paginator,

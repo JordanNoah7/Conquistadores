@@ -30,6 +30,17 @@ export class RepositoryService {
         );
     }
 
+    public GetConquistadoresById(data: any): Observable<any> {
+        return this.requestService.connectBackendPost("ObtenerConquistadorById", data).pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        );
+    }
+
     public GetHijos(): Observable<any> {
         return this.requestService.connectBackendGet("ObtenerHijos").pipe(
             map(response => {
@@ -85,5 +96,14 @@ export class RepositoryService {
         )
     }
 
-
+    public SaveTutor(data: any): Observable<any> {
+        return this.requestService.connectBackendPost("GuardarTutor", data).pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        );
+    }
 }
