@@ -31,7 +31,7 @@ public static class ServiceExtensions
         services.AddTransient<IEspecialidadRepository, EspecialidadRepository>();
         services.AddTransient<IParametroRepository, ParametroRepository>();
         services.AddTransient<IRolRepository, RolRepository>();
-        services.AddTransient<IRolUsuarioRepository, RolUsuarioRepository>();
+        services.AddTransient<IUsuarioRolRepository, UsuarioRolRepository>();
         services.AddTransient<ISesionRepository, SesionRepository>();
         services.AddTransient<ITipoRepository, TipoRepository>();
         services.AddTransient<ITutorRepository, TutorRepository>();

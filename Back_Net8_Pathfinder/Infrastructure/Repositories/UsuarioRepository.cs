@@ -61,8 +61,15 @@ public class UsuarioRepository : IUsuarioRepository
     {
         try
         {
+            _dbContext.Usuarios.Attach(usuario);
             usuario.AudiFechMod = DateTime.Now;
-            _dbContext.Usuarios.Update(usuario);
+            var usuarioEntry = _dbContext.Entry(usuario);
+            usuarioEntry.Property(t => t.AudiFechMod).IsModified = true;
+            usuarioEntry.Property(t => t.AudiHostMod).IsModified = true;
+            usuarioEntry.Property(t => t.AudiUserMod).IsModified = true;
+            usuarioEntry.Property(t => t.UsuaCambiarContrasenia).IsModified = true;
+            usuarioEntry.Property(t => t.UsuaContrasenia).IsModified = true;
+            usuarioEntry.Property(t => t.UsuaUsuario).IsModified = true;
             await _dbContext.SaveChangesAsync();
             return true;
         }

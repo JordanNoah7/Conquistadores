@@ -1,7 +1,7 @@
 <section class="content">
     <div class="content-block">
         <div class="block-header">
-            <app-breadcrumb [title]="id > 0 ? 'Actualizar' : 'Nuevo' + ' tutor'" [items]="['Tutores']" [active_item]="id > 0 ? 'Actualizar' : 'Nuevo' + ' tutor'"></app-breadcrumb>
+            <app-breadcrumb [title]="(id > 0 ? 'Actualizar' : 'Nuevo') + ' tutor'" [items]="['Tutores']" [active_item]="(id > 0 ? 'Actualizar' : 'Nuevo') + ' tutor'"></app-breadcrumb>
         </div>
         <form class="m-4" [formGroup]="tutorForm" (ngSubmit)="onSubmit()">
             <div class="row clearfix">
@@ -235,7 +235,7 @@
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                                     <button class="btn-space" [disabled]="!tutorForm.valid" [class.auth-spinner]="isSaving" mat-raised-button color="primary">{{this.id > 0 ? 'Actualizar' :
                                         'Guardar'}}</button>
-                                    <button type="button" mat-button>Cancelar</button>
+                                    <button type="button" mat-button (click)="GoToRegistro()">Cancelar</button>
                                 </div>
                             </div>
                         </div>

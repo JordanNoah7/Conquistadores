@@ -48,7 +48,7 @@ export class ConquistadorService extends UnsubscribeOnDestroyAdapter {
     }
 
     public getConquistadorById(id: number): Observable<any> {
-        return this.repositoryService.GetConquistadoresById(id).pipe(
+        return this.repositoryService.GetConquistadorById(id).pipe(
             map(response => {
                 return response.conquistadorDTO;
             })

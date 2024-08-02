@@ -7,8 +7,8 @@ public class FichaMedica
     #region [ Propiedades ]
     [Column(TypeName = "int")]
     public int ConqId { get; set; }
-    [Column(TypeName = "int")]
-    public int FimeId { get; set; }
+    //[Column(TypeName = "int")]
+    //public int FimeId { get; set; }
     [Column(TypeName = "int")]
     public int FimeAnio { get; set; }
     [Column(TypeName = "nvarchar(5)")]

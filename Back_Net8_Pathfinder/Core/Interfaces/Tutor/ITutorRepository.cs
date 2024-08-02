@@ -7,6 +7,7 @@ public interface ITutorRepository
     Task<Tutor> GetByUsuarioAsync(int id);
     Task<ICollection<Tutor>> GetAllAsync();
     Task<ICollection<Tutor>> GetAllByApellidos(string PersApellidoPaterno1, string PersApellidoPaterno2, string PersSexo);
+    Task<Tutor> GetByIdAsync(int TutoId);
     Task<bool> AddAsync(Tutor tutor);
     Task<bool> UpdateAsync(Tutor tutor);
 }

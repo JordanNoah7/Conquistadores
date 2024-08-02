@@ -15,6 +15,7 @@ public class UsuarioDTO
         usuario.UsuaId = UsuaId.HasValue ? UsuaId.Value : 0;
         usuario.UsuaUsuario = UsuaUsuario;
         usuario.UsuaCambiarContrasenia = UsuaCambiarContrasenia;
+        usuario.UsuaContrasenia = UsuaContrasenia;
     }
 
     public void CopyFrom(Usuario usuario)

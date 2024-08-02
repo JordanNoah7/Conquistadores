@@ -18,7 +18,7 @@ public class TutorRepository : ITutorRepository
     {
         try
         {
-            return await _dbContext.Tutores.FirstOrDefaultAsync(c => c.UsuaId == id)!;
+            return await _dbContext.Tutores.FirstOrDefaultAsync(t => t.UsuaId == id)!;
         }
         catch (Exception e)
         {
@@ -50,6 +50,15 @@ public class TutorRepository : ITutorRepository
         catch { throw; }
     }
 
+    public async Task<Tutor> GetByIdAsync(int TutoId)
+    {
+        try
+        {
+            return await _dbContext.Tutores.Include(t => t.PersUsuario).FirstOrDefaultAsync(t => t.PersId == TutoId);
+        }
+        catch { throw; };
+    }
+
     public async Task<bool> AddAsync(Tutor tutor)
     {
         try
@@ -65,7 +74,28 @@ public class TutorRepository : ITutorRepository
     {
         try
         {
-            _dbContext.Tutores.Update(tutor);
+            _dbContext.Tutores.Attach(tutor);
+            tutor.AudiFechMod = DateTime.Now;
+            var tutorEntry = _dbContext.Entry(tutor);
+            tutorEntry.Property(t => t.PersDni).IsModified = true;
+            tutorEntry.Property(t => t.PersNombres).IsModified = true;
+            tutorEntry.Property(t => t.PersApellidoPaterno).IsModified = true;
+            tutorEntry.Property(t => t.PersApellidoMaterno).IsModified = true;
+            tutorEntry.Property(t => t.PersFechaNacimiento).IsModified = true;
+            tutorEntry.Property(t => t.PersCorreoPersonal).IsModified = true;
+            tutorEntry.Property(t => t.PersCorreoCorporativo).IsModified = true;
+            tutorEntry.Property(t => t.PersCelular).IsModified = true;
+            tutorEntry.Property(t => t.PersTelefono).IsModified = true;
+            tutorEntry.Property(t => t.PersSexo).IsModified = true;
+            tutorEntry.Property(t => t.PersDireccionCasa).IsModified = true;
+            tutorEntry.Property(t => t.PersNacionalidad).IsModified = true;
+            tutorEntry.Property(t => t.PersRegion).IsModified = true;
+            tutorEntry.Property(t => t.PersCiudad).IsModified = true;
+            tutorEntry.Property(t => t.TutoCentroTrabajo).IsModified = true;
+            tutorEntry.Property(t => t.TutoDireccionTrabajo).IsModified = true;
+            tutorEntry.Property(t => t.AudiUserMod).IsModified = true;
+            tutorEntry.Property(t => t.AudiFechMod).IsModified = true;
+            tutorEntry.Property(t => t.AudiHostMod).IsModified = true;
             await _dbContext.SaveChangesAsync();
             return true;
         }

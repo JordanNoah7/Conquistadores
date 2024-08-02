@@ -205,7 +205,7 @@ public partial class RestService : ControllerBase
             {
                 return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
             }
-
+            //TODO: Arreglar la obtencion del conquistador porque lo obtiene por el usuaid y le paso el conqid
             Conquistador conquistador = await _service.GetConquistadorByUsuarioAsync(ConqId);
             if (conquistador == null)
             {
@@ -221,37 +221,40 @@ public partial class RestService : ControllerBase
             usuarioDTO.CopyFrom(usuario);
             conquistadorDTO.Usuario = usuarioDTO;
 
-            Clase clase = await _service.GetCurrentClaseAsync(conquistador.PersId);
-            if (clase != null)
-            {
-                ClaseDTO claseDTO = new ClaseDTO();
-                claseDTO.CopyFrom(ref clase);
-                conquistadorDTO.ConqClase = claseDTO;
-                conquistadorDTO.ConqAvance = await _service.GetAvanceConquistadorAsync(conquistadorDTO.PersId);
-            }
-
-            Unidad unidad = await _service.GetCurrentUnidadAsync(conquistador.PersId);
-            if (unidad != null)
-            {
-                UnidadDTO unidadDTO = new UnidadDTO();
-                unidadDTO.CopyFrom(ref unidad);
-                conquistadorDTO.ConqUnidad = unidadDTO;
-            }
-
-            ICollection<Especialidad> especialidades = await _service.GetEspecialidadesByConqIdAsync(conquistador.PersId);
-            if (especialidades != null)
-            {
-                conquistadorDTO.ConqEspecialidades = new List<EspecialidadDTO>();
-                foreach (Especialidad especialidad in especialidades)
-                {
-                    var esp = especialidad;
-                    EspecialidadDTO especialidadDTO = new EspecialidadDTO();
-                    especialidadDTO.CopyFrom(ref esp);
-                    conquistadorDTO.ConqEspecialidades.Add(especialidadDTO);
-                }
-            }
-
             var entidad = new { conquistadorDTO, TiempoSesion = 20 };
+
+            return Ok(entidad);
+        }
+        catch
+        {
+            return BadRequest("Error al validar credenciales");
+        }
+    }
+
+    [HttpPost("ObtenerTutorById")]
+    public async Task<IActionResult> ObtenerTutorById([FromHeader] string requestStr, [FromBody] int TutoId)
+    {
+        try
+        {
+            Request request = JsonConvert.DeserializeObject<Request>(requestStr)!;
+            if (!await ValidarSesion(request.UsuaId))
+            {
+                return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
+            }
+
+            Tutor tutor = await _service.GetTutorByIdAsync(TutoId);
+            if (tutor == null)
+            {
+                return NotFound("Tutor no encontrado.");
+            }
+            TutorDTO tutorDTO = new TutorDTO();
+            tutorDTO.CopyFrom(tutor);
+
+            UsuarioDTO usuarioDTO = new UsuarioDTO();
+            usuarioDTO.CopyFrom(tutor.PersUsuario);
+            tutorDTO.Usuario = usuarioDTO;
+
+            var entidad = new { tutorDTO, TiempoSesion = 20 };
 
             return Ok(entidad);
         }

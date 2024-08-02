@@ -697,9 +697,6 @@ namespace Infrastructure.Migrations
                     b.Property<int>("ConqId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FimeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("FimeAnio")
                         .HasColumnType("int");
 
@@ -745,7 +742,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ConqId", "FimeId", "FimeAnio");
+                    b.HasKey("ConqId", "FimeAnio");
 
                     b.ToTable("FichasMedicas");
                 });

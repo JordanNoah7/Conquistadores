@@ -4,10 +4,11 @@ import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Params, Route, Router } from "@angular/router";
 import { TipoDialogComponent } from "./tipo-dialog/tipo-dialog.component";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
-import { TiposService } from "src/app/core/repositories";
+import { ConquistadorService, TiposService } from "src/app/core/repositories";
 import { Filter } from "angular-feather/icons";
 import { Filters } from "src/app/core/models/filters";
 import { TutoresDialogComponent } from "./tutores-dialog/tutores-dialog.component";
+import Swal from "sweetalert2";
 @Component({
     selector: "app-formulario",
     templateUrl: "./formulario.component.html",
@@ -30,7 +31,9 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
         private fb: UntypedFormBuilder,
         private route: ActivatedRoute,
         public dialog: MatDialog,
-        public tipoService: TiposService
+        public tipoService: TiposService,
+        private conquistadorService: ConquistadorService,
+        private router: Router,
     ) {
         super();
     }
@@ -42,6 +45,28 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
         this.title = this.id > 0 ? 'Actualizar' : 'Nuevo';
         this.conquistadorForm = this.createConquistadorForm();
         this.LoadTipos();
+        if (this.id > 0) {
+            this.GetConquistador();
+        }
+    }
+
+    async GetConquistador() {
+        await this.conquistadorService.getConquistadorById(this.id).subscribe({
+            next: (value: any) => {
+                console.log(value);
+                this.conquistadorForm.patchValue(value);
+                this.conquistadorForm.get('UsuaId').setValue(value.Usuario.UsuaId);
+                this.conquistadorForm.get('UsuaUsuario').setValue(value.Usuario.UsuaUsuario);
+            },
+            error: (error: any) => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: error,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        })
     }
 
     async LoadTipos() {
@@ -216,12 +241,16 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
                 sexo
             }
         });
-        this.subs.sink = dialogRef.afterClosed().subscribe((result)=>{
-            if(result === 1){
-                if(this.tipoService.getDialogData()){
-                    
+        this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+            if (result === 1) {
+                if (this.tipoService.getDialogData()) {
+
                 }
             }
         })
+    }
+
+    GoToRegistro() {
+        this.router.navigate(['/conquistador/registro']);
     }
 }

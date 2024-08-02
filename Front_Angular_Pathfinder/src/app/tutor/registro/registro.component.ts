@@ -98,7 +98,7 @@ export class RegistroComponent extends UnsubscribeOnDestroyAdapter implements On
     editCall(row) {
         this.router.navigate(['/tutor/edit',
             {
-                A: row.ConqId,
+                T: row.PersId,
             },
         ]);
     }

@@ -24,6 +24,14 @@ export class TutorService extends UnsubscribeOnDestroyAdapter {
         return this.dialogData;
     }
 
+    public getTutor(id: number): Observable<any> {
+        return this.repositoryService.GetTutor(id).pipe(
+            map(response => {
+                return response.tutorDTO;
+            })
+        )
+    }
+
     getAllTutor(): void {
         this.repositoryService.GetTutores().subscribe({
             next: (value: any) => {
@@ -46,6 +54,8 @@ export class TutorService extends UnsubscribeOnDestroyAdapter {
     public saveTutor(data: any): Observable<any> {
         return this.repositoryService.SaveTutor(data).pipe(
             map(response => {
+                console.log("response")
+                console.log(response)
                 return response;
             })
         )

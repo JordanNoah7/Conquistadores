@@ -178,7 +178,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         #region [ FichaMedica ]
         modelBuilder.Entity<FichaMedica>()
-            .HasKey(e => new { e.ConqId, e.FimeId, e.FimeAnio });
+            .HasKey(e => new { e.ConqId, e.FimeAnio });
+            //.HasKey(e => new { e.ConqId, e.FimeId, e.FimeAnio });
         #endregion
 
         #region [ Inscripcion ]

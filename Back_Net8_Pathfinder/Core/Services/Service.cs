@@ -14,7 +14,7 @@ public partial class Service : IService
     private readonly IEspecialidadRepository _especialidadRepository;
     private readonly IParametroRepository _parametroRepository;
     private readonly IRolRepository _rolRepository;
-    private readonly IRolUsuarioRepository _rolUsuarioRepository;
+    private readonly IUsuarioRolRepository _rolUsuarioRepository;
     private readonly ISesionRepository _sesionRepository;
     private readonly ITipoRepository _tipoRepository;
     private readonly ITutorRepository _tutorRepository;
@@ -31,7 +31,7 @@ public partial class Service : IService
         , IEspecialidadRepository especialidadRepository
         , IParametroRepository parametroRepository
         , IRolRepository rolRepository
-        , IRolUsuarioRepository rolUsuarioRepository
+        , IUsuarioRolRepository rolUsuarioRepository
         , ISesionRepository sesionRepository
         , ITipoRepository tipoRepository
         , ITutorRepository tutorRepository

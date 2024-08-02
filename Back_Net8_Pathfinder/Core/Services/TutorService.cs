@@ -31,6 +31,15 @@ public partial class Service
         catch { throw; }
     }
 
+    public async Task<Tutor> GetTutorByIdAsync(int TutoId)
+    {
+        try
+        {
+            return await _tutorRepository.GetByIdAsync(TutoId);
+        }
+        catch { throw; }
+    }
+
     public async Task<bool> AddTutorAsync(Tutor tutor)
     {
         try
