@@ -31,6 +31,7 @@ public class ConquistadorDTO
     public SesionDTO? Sesion { get; set; }
     public ClaseDTO? ConqClase { get; set; }
     public UnidadDTO? ConqUnidad { get; set; }
+    public FichaMedicaDTO? ConqFichaMedica { get; set; }
     public ICollection<EspecialidadDTO>? ConqEspecialidades { get; set; }
 
     public void CopyTo(ref Conquistador conquistador)

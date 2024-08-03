@@ -11,6 +11,7 @@ public partial class Service : IService
     private readonly IConquistadorRepository _conquistadorRepository;
     private readonly IConquistadorItemCuadernilloRepository _conquistadorItemCuadernilloRepository;
     private readonly ICuentaCorrienteRepository _cuentaCorrienteRepository;
+    private readonly IFichaMedicaRepository _fichaMedicaCorrienteRepository;
     private readonly IEspecialidadRepository _especialidadRepository;
     private readonly IParametroRepository _parametroRepository;
     private readonly IRolRepository _rolRepository;
@@ -28,6 +29,7 @@ public partial class Service : IService
         , IConquistadorRepository conquistadorRepository
         , IConquistadorItemCuadernilloRepository conquistadorItemCuadernilloRepository
         , ICuentaCorrienteRepository cuentaCorrienteRepository
+        , IFichaMedicaRepository fichaMedicaCorrienteRepository
         , IEspecialidadRepository especialidadRepository
         , IParametroRepository parametroRepository
         , IRolRepository rolRepository
@@ -45,6 +47,7 @@ public partial class Service : IService
         _conquistadorRepository = conquistadorRepository;
         _conquistadorItemCuadernilloRepository = conquistadorItemCuadernilloRepository;
         _cuentaCorrienteRepository = cuentaCorrienteRepository;
+        _fichaMedicaCorrienteRepository = fichaMedicaCorrienteRepository;
         _especialidadRepository = especialidadRepository;
         _parametroRepository = parametroRepository;
         _rolRepository = rolRepository;

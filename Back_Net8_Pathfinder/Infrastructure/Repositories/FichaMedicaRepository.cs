@@ -1,9 +1,10 @@
 ﻿using Core.Entities;
+using Core.Interfaces;
 using Infrastructure.Data;
 
 namespace Infrastructure.Repositories;
 
-public class FichaMedicaRepository
+public class FichaMedicaRepository : IFichaMedicaRepository
 {
     private readonly AppDbContext _dbContext;
 

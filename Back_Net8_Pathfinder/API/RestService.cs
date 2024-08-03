@@ -221,6 +221,10 @@ public partial class RestService : ControllerBase
             usuarioDTO.CopyFrom(usuario);
             conquistadorDTO.Usuario = usuarioDTO;
 
+            FichaMedica fichaMedica = await _service.GetFichaMedicaByConqIdAsync(ConqId);
+            FichaMedicaDTO fichaMedicaDTO = new FichaMedicaDTO();
+            fichaMedicaDTO.CopyFrom(fichaMedica);
+
             var entidad = new { conquistadorDTO, TiempoSesion = 20 };
 
             return Ok(entidad);
