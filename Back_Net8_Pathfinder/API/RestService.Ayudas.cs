@@ -35,6 +35,58 @@ public partial class RestService
         }
     }
 
+    [HttpGet("ObtenerClases")]
+    public async Task<IActionResult> ObtenerClases([FromHeader] string requestStr)
+    {
+        try
+        {
+            Request request = JsonConvert.DeserializeObject<Request>(requestStr)!;
+            if (!await ValidarSesion(request.UsuaId))
+            {
+                return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
+            }
+            ICollection<Clase> clases = await _service.GetAllClasesAsync();
+            ICollection<ClaseDTO> clasesDTO = new ObservableCollection<ClaseDTO>();
+            foreach (var item in clases)
+            {
+                ClaseDTO clase = new ClaseDTO();
+                clase.CopyFrom(item);
+                clasesDTO.Add(clase);
+            }
+            return Ok(clasesDTO);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex);
+        }
+    }
+
+    [HttpGet("ObtenerUnidades")]
+    public async Task<IActionResult> ObtenerUnidades([FromHeader] string requestStr)
+    {
+        try
+        {
+            Request request = JsonConvert.DeserializeObject<Request>(requestStr)!;
+            if (!await ValidarSesion(request.UsuaId))
+            {
+                return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
+            }
+            ICollection<Unidad> unidades = await _service.GetAllUnidadesAsync();
+            ICollection<UnidadDTO> unidadesDTO = new ObservableCollection<UnidadDTO>();
+            foreach (var item in unidades)
+            {
+                UnidadDTO clase = new UnidadDTO();
+                clase.CopyFrom(item);
+                unidadesDTO.Add(clase);
+            }
+            return Ok(unidadesDTO);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex);
+        }
+    }
+
     [HttpPost("ObtenerTipos")]
     public async Task<IActionResult> ObtenerTipos([FromHeader] string requestStr, [FromBody] Filters filtros)
     {
@@ -106,7 +158,7 @@ public partial class RestService
             {
                 return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
             }
-            ICollection<Tutor> tutores = await _service.GetAllTutoresByApellidos(filtros.Nombres!, filtros.Apellidos!, filtros.Tipo!);
+            ICollection<Tutor> tutores = await _service.GetAllTutoresBySexoAsync(filtros.Tipo!);
             ICollection<TutorDTO> tutorDTOs = new List<TutorDTO>();
             foreach (var tutor in tutores)
             {

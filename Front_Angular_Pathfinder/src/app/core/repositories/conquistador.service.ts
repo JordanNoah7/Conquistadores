@@ -43,7 +43,7 @@ export class ConquistadorService extends UnsubscribeOnDestroyAdapter {
         })
     }
 
-    setConqId(id: number) {
+    SetConqId(id: number) {
         this.dialogData = id;
     }
 
@@ -53,6 +53,14 @@ export class ConquistadorService extends UnsubscribeOnDestroyAdapter {
                 return response.conquistadorDTO;
             })
         );
+    }
+
+    public saveConquistador(data: any): Observable<any> {
+        return this.repositoryService.SaveConquistador(data).pipe(
+            map(response => {
+                return response;
+            })
+        )
     }
 
     addConquistador(conquistador: ConquistadorList): void {

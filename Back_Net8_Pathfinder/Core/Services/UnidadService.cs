@@ -16,4 +16,13 @@ public partial class Service
             throw;
         }
     }
+
+    public async Task<ICollection<Unidad>> GetAllUnidadesAsync()
+    {
+        try
+        {
+            return await _unidadRepository.GetAllAsync();
+        }
+        catch { throw; }
+    }
 }

@@ -27,13 +27,17 @@ import { SharedModule } from "../shared/shared.module";
 import { FormularioComponent } from "./registro/formulario/formulario.component";
 import { TipoDialogComponent } from "./registro/formulario/tipo-dialog/tipo-dialog.component";
 import { TutoresDialogComponent } from "./registro/formulario/tutores-dialog/tutores-dialog.component";
+import { ClaseDialogComponent } from "./registro/formulario/clase-dialog/clase-dialog.component";
+import { UnidadDialogComponent } from "./registro/formulario/unidad-dialog/unidad-dialog.component";
 
 @NgModule({
     declarations: [
         RegistroComponent,
         FormularioComponent,
         TipoDialogComponent,
-        TutoresDialogComponent
+        TutoresDialogComponent,
+        ClaseDialogComponent,
+        UnidadDialogComponent,
     ],
     imports: [
         CommonModule,

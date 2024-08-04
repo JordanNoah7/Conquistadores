@@ -40,8 +40,6 @@ export class ConquistadoresDialogComponent extends UnsubscribeOnDestroyAdapter i
         public dialog: MatDialog,
         public repositoryService: RepositoryService,
         public conquistadorService: ConquistadorService,
-        private snackBar: MatSnackBar,
-        private router: Router,
         @Inject(MAT_DIALOG_DATA) public data: any,
     ) {
         super();
@@ -69,6 +67,6 @@ export class ConquistadoresDialogComponent extends UnsubscribeOnDestroyAdapter i
     }
 
     async getConquistador(row) {
-        await this.conquistadorService.setConqId(row.ConqId);
+        await this.conquistadorService.SetConqId(row.ConqId);
     }
 }

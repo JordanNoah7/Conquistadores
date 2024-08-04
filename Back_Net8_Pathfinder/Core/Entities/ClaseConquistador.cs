@@ -9,6 +9,8 @@ public class ClaseConquistador
     public int ClasId { get; set; }
     [Column(TypeName = "int")]
     public int ConqId { get; set; }
+    [Column(TypeName = "int")]
+    public int ClcoAnio { get; set; }
     [Column(TypeName = "nchar(3)")]
     public string ClcoTipoCargoClaseTabla { get; set; }
     [Column(TypeName = "int")]

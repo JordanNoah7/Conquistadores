@@ -27,7 +27,7 @@ public class ClaseRepository : IClaseRepository
     {
         try
         {
-            return await _dbContext.Clases.FindAsync(id);
+            return (await _dbContext.Clases.FindAsync(id))!;
         }
         catch (Exception e)
         {
@@ -40,19 +40,6 @@ public class ClaseRepository : IClaseRepository
     {
         try
         {
-            //using (SqlConnection cnx = new SqlConnection(CadCon))
-            //{
-            //    try
-            //    {
-            //        DynamicParameters parameters = new DynamicParameters();
-            //        parameters.Add("@ConqId", id, DbType.Int32, System.Data.ParameterDirection.Input);
-            //        await cnx.OpenAsync();
-            //        return await cnx.QueryFirstAsync<Clase>("ClasSS_GetCurrentByConqId", parameters, commandType: CommandType.StoredProcedure);
-            //    }
-            //    catch { throw; }
-            //    finally { await cnx.CloseAsync(); }
-            //}
-
             var conquistador = await _dbContext.Conquistadores
                 .Include(c => c.ConqClases)
                 .ThenInclude(cc => cc.ClcoClase)
@@ -64,5 +51,14 @@ public class ClaseRepository : IClaseRepository
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    public async Task<ICollection<Clase>> GetAllAsync()
+    {
+        try
+        {
+            return await _dbContext.Clases.ToListAsync();
+        }
+        catch { throw; }
     }
 }

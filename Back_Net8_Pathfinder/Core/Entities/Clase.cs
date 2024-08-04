@@ -14,6 +14,8 @@ public class Clase
     public string ClasDescripcion { get; set; }
     [Column(TypeName = "nvarchar(50)")]
     public string ClasImagen { get; set; }
+    [Column(TypeName = "nvarchar(10)")]
+    public string ClasColor { get; set; }
     #endregion
 
     #region [ Relaciones ]

@@ -15,7 +15,8 @@ import { RouterService } from "./service/router.service";
 import { ContextService } from "./service/context.service";
 import { RepositoryService } from "./service/repository.service";
 import { ConquistadorService } from "./repositories/conquistador.service";
-import { TiposService, TutorService } from "./repositories";
+import { ClaseService, TiposService, TutorService, UnidadService } from "./repositories";
+import { Unidad } from "./models";
 
 @NgModule({
     declarations: [],
@@ -36,7 +37,9 @@ import { TiposService, TutorService } from "./repositories";
         RepositoryService,
         ConquistadorService,
         TiposService,
-        TutorService
+        TutorService,
+        ClaseService,
+        UnidadService,
     ],
 })
 export class CoreModule {

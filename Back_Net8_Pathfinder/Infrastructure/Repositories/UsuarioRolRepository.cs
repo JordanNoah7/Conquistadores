@@ -31,7 +31,7 @@ public class UsuarioRolRepository : IUsuarioRolRepository
         }
     }
 
-    public async Task AddAsync(UsuarioRol usuarioRol)
+    public async Task<bool> AddAsync(UsuarioRol usuarioRol)
     {
         try
         {
@@ -44,11 +44,11 @@ public class UsuarioRolRepository : IUsuarioRolRepository
                 _dbContext.UsuarioRoles.Add(usuarioRol);
                 await _dbContext.SaveChangesAsync();
             }
+            return true;
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            return false;
         }
     }
 }

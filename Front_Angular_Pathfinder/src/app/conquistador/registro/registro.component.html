@@ -35,13 +35,6 @@
                                                     </button>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="m-l-10" [hidden]=!selection.hasValue() matTooltip="ELIMINAR">
-                                                    <button mat-mini-fab color="warn" (click)="removeSelectedRows()">
-                                                        <mat-icon class="col-white">delete</mat-icon>
-                                                    </button>
-                                                </div>
-                                            </li>
                                         </ul>
                                     </div>
                                     <div class="col-4">
@@ -71,18 +64,6 @@
                                 </div>
                             </div>
                             <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell" #exporter="matTableExporter">
-                                <ng-container matColumnDef="select">
-                                    <mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'">
-                                        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
-                                            [indeterminate]="selection.hasValue() && !isAllSelected()" [ngClass]="'tbl-checkbox'">
-                                        </mat-checkbox>
-                                    </mat-header-cell>
-                                    <mat-cell *matCellDef="let row" [ngClass]="'tbl-col-width-per-6'">
-                                        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
-                                            [ngClass]="'tbl-checkbox'">
-                                        </mat-checkbox>
-                                    </mat-cell>
-                                </ng-container>
                                 <ng-container matColumnDef="id">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
                                     <mat-cell *matCellDef="let row">{{row.ConqId}}</mat-cell>
@@ -104,20 +85,15 @@
                                     <mat-cell *matCellDef="let row"> {{row.ConqClase}}</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="actions">
-                                    <mat-header-cell class="pr-0" *matHeaderCellDef>Actions</mat-header-cell>
+                                    <mat-header-cell class="pr-0" *matHeaderCellDef>Acciones</mat-header-cell>
                                     <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
                                         <button mat-icon-button (click)="$event.stopPropagation()" (click)="editCall(row)" class="tbl-action-btn">
-                                            <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
-                                        </button>
-                                        <button mat-icon-button (click)="$event.stopPropagation()" (click)="deleteItem(row)" class="tbl-action-btn">
-                                            <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                                            <app-feather-icons [icon]="'edit'" class="tbl-fav-edit"></app-feather-icons>
                                         </button>
                                     </mat-cell>
                                 </ng-container>
                                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                                <!-- <mat-row *matRowDef="let row; columns: displayedColumns; when: true;" (click)="editCall(row)" [style.cursor]="'pointer'" matRipple>
-                                </mat-row> -->
                             </mat-table>
                             <div *ngIf="conquistadoresDataBase.isTblLoading" class="tbl-spinner">
                                 <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">

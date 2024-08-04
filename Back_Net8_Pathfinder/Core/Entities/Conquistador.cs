@@ -9,9 +9,9 @@ public class Conquistador : Persona
     public DateTime? ConqFechaInvestidura { get; set; }
     [Column(TypeName = "nvarchar(250)")]
     public string ConqEscuela { get; set; }
-    [Column(TypeName = "nvarchar(25)")]
+    [Column(TypeName = "nvarchar(100)")]
     public string ConqCurso { get; set; }
-    [Column(TypeName = "nvarchar(10)")]
+    [Column(TypeName = "nvarchar(25)")]
     public string ConqTurno { get; set; }
     #endregion
 

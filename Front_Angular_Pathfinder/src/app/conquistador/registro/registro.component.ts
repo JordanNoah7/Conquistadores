@@ -19,7 +19,6 @@ import { Router } from "@angular/router";
 })
 export class RegistroComponent extends UnsubscribeOnDestroyAdapter implements OnInit {
     displayedColumns = [
-        "select",
         "id",
         "dni",
         "conquistador",
@@ -101,64 +100,16 @@ export class RegistroComponent extends UnsubscribeOnDestroyAdapter implements On
         ]);
     }
 
-    deleteItem(row) {
-        //     this.id = row.id;
-        //     let tempDirection;
-        //     if (localStorage.getItem("isRtl") === "true") {
-        //         tempDirection = "rtl";
-        //     } else {
-        //         tempDirection = "ltr";
-        //     }
-        //     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-        //         data: row,
-        //         direction: tempDirection,
-        //     });
-        //     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-        //         if (result === 1) {
-        //             const foundIndex = this.conquistadores.dataChange.value.findIndex(
-        //                 (x) => x.id === this.id
-        //             );
-        //             // for delete we use splice in order to remove single object from DataService
-        //             this.conquistadores.dataChange.value.splice(foundIndex, 1);
-        //             this.refreshTable();
-        //             this.showNotification(
-        //                 "snackbar-danger",
-        //                 "Delete Record Successfully...!!!",
-        //                 "bottom",
-        //                 "center"
-        //             );
-        //         }
-        //     });
-    }
-
-    private refreshTable() {
-        //     this.paginator._changePageSize(this.paginator.pageSize);
-    }
-
-    removeSelectedRows() {
-        //     const totalSelect = this.selection.selected.length;
-        //     this.selection.selected.forEach((item) => {
-        //         const index: number = this.dataSource.renderedData.findIndex(
-        //             (d) => d === item
-        //         );
-        //         this.conquistadores.dataChange.value.splice(index, 1);
-        //         this.refreshTable();
-        //         this.selection = new SelectionModel<Staff>(true, []);
-        //     });
-        //     this.showNotification(
-        //         "snackbar-danger",
-        //         totalSelect + " Record Delete Successfully...!!!",
-        //         "bottom",
-        //         "center"
-        //     );
+    selectClass(row) {
+        this.showNotification("red", "prueba", "center", "center")
     }
 
     showNotification(colorName, text, placementFrom, placementAlign) {
-        //     this.snackBar.open(text, "", {
-        //         duration: 2000,
-        //         verticalPosition: placementFrom,
-        //         horizontalPosition: placementAlign,
-        //         panelClass: colorName,
-        //     });
+        this.snackBar.open(text, "", {
+            duration: 2000,
+            verticalPosition: placementFrom,
+            horizontalPosition: placementAlign,
+            panelClass: colorName,
+        });
     }
 }

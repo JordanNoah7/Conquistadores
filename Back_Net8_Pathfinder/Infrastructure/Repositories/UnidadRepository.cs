@@ -26,18 +26,6 @@ public class UnidadRepository : IUnidadRepository
     {
         try
         {
-            //using (SqlConnection cnx = new SqlConnection(CadCon))
-            //{
-            //    try
-            //    {
-            //        DynamicParameters parameters = new DynamicParameters();
-            //        parameters.Add("@ConqId", id, DbType.Int32, System.Data.ParameterDirection.Input);
-            //        await cnx.OpenAsync();
-            //        return await cnx.QueryFirstAsync<Unidad>("UnidSS_GetCurrentByConqId", parameters, commandType: CommandType.StoredProcedure);
-            //    }
-            //    catch { throw; }
-            //    finally { await cnx.CloseAsync(); }
-            //}
             var conquistador = await _dbContext.Conquistadores
                 .Include(c => c.ConqUnidades)
                 .ThenInclude(uc => uc.UncoUnidad)
@@ -49,5 +37,14 @@ public class UnidadRepository : IUnidadRepository
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    public async Task<ICollection<Unidad>> GetAllAsync()
+    {
+        try
+        {
+            return await _dbContext.Unidades.ToListAsync();
+        }
+        catch { throw; }
     }
 }

@@ -13,8 +13,8 @@
                         </div>
                         <div class="body">
                             <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Nombres</mat-label>
                                         <input matInput formControlName="PersNombres" required>
                                         <mat-error *ngIf="conquistadorForm.get('PersNombres').hasError('required')">
@@ -22,8 +22,8 @@
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Apellido paterno</mat-label>
                                         <input matInput formControlName="PersApellidoPaterno" required>
                                         <mat-error *ngIf="conquistadorForm.get('PersApellidoPaterno').hasError('required')">
@@ -31,8 +31,8 @@
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Apellido materno</mat-label>
                                         <input matInput formControlName="PersApellidoMaterno" required>
                                         <mat-error *ngIf="conquistadorForm.get('PersApellidoMaterno').hasError('required')">
@@ -42,19 +42,36 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
+                                        <mat-label>DNI</mat-label>
+                                        <input matInput formControlName="PersDni" required>
+                                        <mat-error *ngIf="conquistadorForm.get('PersDni').hasError('required')">
+                                            El DNI es obligatorio
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Fecha de nacimiento</mat-label>
-                                        <input matInput [matDatepicker]="picker" formControlName="PersFechaNacimiento" required>
-                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                        <mat-datepicker #picker></mat-datepicker>
+                                        <input matInput [matDatepicker]="pickerNacimiento" formControlName="PersFechaNacimiento" required>
+                                        <mat-datepicker-toggle matSuffix [for]="pickerNacimiento"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickerNacimiento></mat-datepicker>
                                         <mat-error *ngIf="conquistadorForm.get('PersFechaNacimiento').hasError('required')">
                                             Selecciona una fecha de nacimiento
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
+                                        <mat-label>Fecha de investidura</mat-label>
+                                        <input matInput [matDatepicker]="pickerInvestidura" formControlName="ConqFechaInvestidura">
+                                        <mat-datepicker-toggle matSuffix [for]="pickerInvestidura"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickerInvestidura></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>G&eacute;nero</mat-label>
                                         <mat-select formControlName="PersSexo" required>
                                             <mat-option [value]="'M'">
@@ -69,8 +86,10 @@
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Nacionalidad</mat-label>
                                         <mat-select formControlName="PersNacionalidad" required>
                                             <mat-option [value]="'Peruana'"> Peruana </mat-option>
@@ -80,10 +99,8 @@
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Direcci&oacute;n</mat-label>
                                         <input matInput formControlName="PersDireccionCasa" required>
                                         <mat-error *ngIf="conquistadorForm.get('PersDireccionCasa').hasError('required')">
@@ -93,8 +110,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Ciudad</mat-label>
                                         <input matInput formControlName="PersCiudad" required>
                                         <mat-error *ngIf="conquistadorForm.get('PersCiudad').hasError('required')">
@@ -102,8 +119,8 @@
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Provincia</mat-label>
                                         <input matInput formControlName="PersRegion" required>
                                         <mat-error *ngIf="conquistadorForm.get('PersRegion').hasError('required')">
@@ -113,8 +130,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Celular</mat-label>
                                         <input matInput formControlName="PersCelular" type="number" required>
                                         <mat-error *ngIf="conquistadorForm.get('PersCelular').hasError('required')">
@@ -122,14 +139,14 @@
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Tel&eacute;fono</mat-label>
                                         <input matInput formControlName="PersTelefono" type="number">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Correo principal</mat-label>
                                         <input matInput formControlName="PersCorreoPersonal" required>
                                         <mat-error *ngIf="conquistadorForm.get('PersCorreoPersonal').hasError('PersCorreoPersonal') && conquistadorForm.get('PersCorreoPersonal').touched">
@@ -137,8 +154,8 @@
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Correo secundario</mat-label>
                                         <input matInput formControlName="PersCorreoCorporativo">
                                         <mat-error *ngIf="conquistadorForm.get('PersCorreoCorporativo').hasError('PersCorreoCorporativo') && conquistadorForm.get('PersCorreoCorporativo').touched">
@@ -148,8 +165,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Escuela</mat-label>
                                         <input matInput formControlName="ConqEscuela" required>
                                         <mat-error *ngIf="conquistadorForm.get('ConqEscuela').hasError('required')">
@@ -157,10 +174,8 @@
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Curso</mat-label>
                                         <input matInput formControlName="ConqCurso" required>
                                         <mat-error *ngIf="conquistadorForm.get('ConqCurso').hasError('required')">
@@ -168,13 +183,33 @@
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Turno</mat-label>
                                         <input matInput formControlName="ConqTurno" required>
                                         <mat-error *ngIf="conquistadorForm.get('ConqTurno').hasError('required')">
                                             El turno es obligatorio
                                         </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
+                                        <mat-label>Unidad</mat-label>
+                                        <input matInput formControlName="ConqUnidad" readonly>
+                                        <a style="margin-left: -35px; cursor: pointer;" class="show-pwd-icon" matSuffix (click)="SearchUnidades()">
+                                            <mat-icon>search</mat-icon>
+                                        </a>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
+                                        <mat-label>Clase</mat-label>
+                                        <input matInput formControlName="ConqClase" readonly>
+                                        <a style="margin-left: -35px; cursor: pointer;" class="show-pwd-icon" matSuffix (click)="SearchClases()">
+                                            <mat-icon>search</mat-icon>
+                                        </a>
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -190,20 +225,20 @@
                         </div>
                         <div class="body">
                             <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Padre</mat-label>
                                         <input matInput formControlName="ConqPadre" readonly>
-                                        <a style="margin-left: -35px;" class="show-pwd-icon" href="#" matSuffix (click)="SearchPadres('M')">
+                                        <a style="margin-left: -35px; cursor: pointer;" class="show-pwd-icon" matSuffix (click)="SearchPadres('M')">
                                             <mat-icon>search</mat-icon>
                                         </a>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Madre</mat-label>
                                         <input matInput formControlName="ConqMadre" readonly>
-                                        <a style="margin-left: -35px;" class="show-pwd-icon" href="#" matSuffix (click)="SearchPadres('F')">
+                                        <a style="margin-left: -35px; cursor: pointer;" class="show-pwd-icon" matSuffix (click)="SearchPadres('F')">
                                             <mat-icon>search</mat-icon>
                                         </a>
                                     </mat-form-field>
@@ -221,31 +256,25 @@
                         </div>
                         <div class="body">
                             <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Usuario</mat-label>
-                                        <input matInput formControlName="ConqUsuario" required>
-                                        <mat-error *ngIf="conquistadorForm.get('ConqUsuario').hasError('required')">
+                                        <input matInput formControlName="UsuaUsuario" required>
+                                        <mat-error *ngIf="conquistadorForm.get('UsuaUsuario').hasError('required')">
                                             El usuario es obligatorio
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Contrase&ntilde;a</mat-label>
-                                        <input matInput formControlName="ConqContrasenia" type="password" required>
-                                        <mat-error *ngIf="conquistadorForm.get('ConqContrasenia').hasError('required')">
-                                            La contrase&ntilde;a es requerida
-                                        </mat-error>
+                                        <input matInput formControlName="UsuaContrasenia" type="password">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3">
-                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Confirmar contrase&ntilde;a</mat-label>
-                                        <input matInput formControlName="ConqReContrasenia" type="password" required>
-                                        <mat-error *ngIf="conquistadorForm.get('ConqReContrasenia').hasError('required')">
-                                            La confirmaci&oacute;n de la contrase&ntilde;a es requerida
-                                        </mat-error>
+                                        <input matInput formControlName="UsuaReContrasenia" type="password">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -263,8 +292,8 @@
                             <div class="row">
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <div class="row">
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
-                                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                            <mat-form-field class="example-full-width mb-2" appearance="outline">
                                                 <mat-label>Tipo de sangre y factor RH</mat-label>
                                                 <mat-select formControlName="FimeSangreRH">
                                                     <mat-option [value]="'A+'">A+</mat-option>
@@ -281,8 +310,8 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
-                                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                            <mat-form-field class="example-full-width mb-2" appearance="outline">
                                                 <mat-label>Observaciones</mat-label>
                                                 <textarea matInput formControlName="FimeObservaciones"></textarea>
                                             </mat-form-field>
@@ -293,21 +322,21 @@
                                     <mat-label>Vacunas</mat-label>
                                     &nbsp;<button (click)="addVacuna()" mat-mini-fab color="primary"><mat-icon>add</mat-icon></button>
                                     <div class="form-group" *ngFor="let vacuna of vacunasList">
-                                        <mat-checkbox (click)="onChangeVacuna($event, vacuna.TipoId)" class="example-margin">{{vacuna.TipoDescripcion}}</mat-checkbox>
+                                        <mat-checkbox (click)="onChangeVacuna($event, vacuna.TipoId)" class="example-margin" [checked]="vacunas.split('|').includes(vacuna.TipoId.toString())">{{vacuna.TipoDescripcion}}</mat-checkbox>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <mat-label>Enfermedades</mat-label>
                                     &nbsp;<button (click)="addEnfermedad()" mat-mini-fab color="primary"><mat-icon>add</mat-icon></button>
                                     <div class="form-group" *ngFor="let enfermedad of enfermedadesList">
-                                        <mat-checkbox (click)="onChangeEnfermedad($event, enfermedad.TipoId)" class="example-margin">{{enfermedad.TipoDescripcion}}</mat-checkbox>
+                                        <mat-checkbox (click)="onChangeEnfermedad($event, enfermedad.TipoId)" class="example-margin" [checked]="enfermedades.split('|').includes(enfermedad.TipoId.toString())">{{enfermedad.TipoDescripcion}}</mat-checkbox>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <mat-label>Alergias</mat-label>
                                     &nbsp;<button (click)="addAlergia()" mat-mini-fab color="primary"><mat-icon>add</mat-icon></button>
                                     <div class="form-group" *ngFor="let alergia of alergiasList">
-                                        <mat-checkbox (click)="onChangeAlergia($event, alergia.TipoId)" class="example-margin">{{alergia.TipoDescripcion}}</mat-checkbox>
+                                        <mat-checkbox (click)="onChangeAlergia($event, alergia.TipoId)" class="example-margin" [checked]="alergias.split('|').includes(alergia.TipoId.toString())">{{alergia.TipoDescripcion}}</mat-checkbox>
                                     </div>
                                 </div>
                             </div>
@@ -320,8 +349,10 @@
                     <div class="card">
                         <div class="body">
                             <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
-                                    <button class="btn-space" [disabled]="!conquistadorForm.valid " mat-raised-button color="primary">{{this.id > 0 ? 'Actualizar' : 'Guardar'}}</button>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                    <button class="btn-space" [disabled]="!conquistadorForm.valid" [class.auth-spinner]="isSaving" mat-raised-button color="primary">
+                                        {{this.id > 0 ? 'Actualizar' : 'Guardar'}}
+                                    </button>
                                     <button type="button" mat-button (click)="GoToRegistro()">Cancelar</button>
                                 </div>
                             </div>

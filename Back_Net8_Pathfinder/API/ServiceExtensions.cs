@@ -25,9 +25,11 @@ public static class ServiceExtensions
         services.AddTransient<IAsistenciaRepository, AsistenciaRepository>();
         services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         services.AddTransient<IClaseRepository, ClaseRepository>();
+        services.AddTransient<IClaseConquistadorRepository, ClaseConquistadorRepository>();
         services.AddTransient<IConquistadorRepository, ConquistadorRepository>();
         services.AddTransient<IConquistadorItemCuadernilloRepository, ConquistadorItemCuadernilloRepository>();
         services.AddTransient<ICuentaCorrienteRepository, CuentaCorrienteRepository>();
+        services.AddTransient<IFichaMedicaRepository, FichaMedicaRepository>();
         services.AddTransient<IEspecialidadRepository, EspecialidadRepository>();
         services.AddTransient<IParametroRepository, ParametroRepository>();
         services.AddTransient<IRolRepository, RolRepository>();
@@ -35,7 +37,9 @@ public static class ServiceExtensions
         services.AddTransient<ISesionRepository, SesionRepository>();
         services.AddTransient<ITipoRepository, TipoRepository>();
         services.AddTransient<ITutorRepository, TutorRepository>();
+        services.AddTransient<ITutorConquistadorRepository, TutorConquistadorRepository>();
         services.AddTransient<IUnidadRepository, UnidadRepository>();
+        services.AddTransient<IUnidadConquistadorRepository, UnidadConquistadorRepository>();
         services.AddTransient<IUsuarioRepository, UsuarioRepository>();
         return services;
     }

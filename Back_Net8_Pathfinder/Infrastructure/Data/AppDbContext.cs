@@ -148,7 +148,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         #region [ ClaseConquistador ]
         modelBuilder.Entity<ClaseConquistador>()
-            .HasKey(a => new { a.ConqId, a.ClasId });
+            .HasKey(a => new { a.ConqId, a.ClasId, a.ClcoAnio });
         #endregion
 
         #region [ ConquistadorEspecialidad ]

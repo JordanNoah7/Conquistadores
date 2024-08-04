@@ -22,11 +22,20 @@ public partial class Service
         catch { throw; }
     }
 
-    public async Task<ICollection<Tutor>> GetAllTutoresByApellidos(string PersApellidoPaterno1, string PersApellidoPaterno2, string PersSexo)
+    public async Task<ICollection<Tutor>> GetAllTutoresBySexoAsync(string PersSexo)
     {
         try
         {
-            return await _tutorRepository.GetAllByApellidos(PersApellidoPaterno1, PersApellidoPaterno2, PersSexo);
+            return await _tutorRepository.GetAllBySexoAsync(PersSexo);
+        }
+        catch { throw; }
+    }
+
+    public async Task<ICollection<Tutor>> GetAllTutoresByConqIdAsync(int ConqId)
+    {
+        try
+        {
+            return await _tutorRepository.GetAllByConqIdAsync(ConqId);
         }
         catch { throw; }
     }

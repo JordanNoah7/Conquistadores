@@ -29,4 +29,13 @@ public partial class Service
             throw;
         }
     }
+
+    public async Task<ICollection<Clase>> GetAllClasesAsync()
+    {
+        try
+        {
+            return await _claseRepository.GetAllAsync();
+        }
+        catch { throw; }
+    }
 }

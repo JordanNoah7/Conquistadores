@@ -135,7 +135,6 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
     async GetTutor() {
         await this.tutorService.getTutor(this.id).subscribe({
             next: (value: any) => {
-                console.log(value);
                 this.tutorForm.patchValue(value);
                 this.tutorForm.get('UsuaId').setValue(value.Usuario.UsuaId);
                 this.tutorForm.get('UsuaUsuario').setValue(value.Usuario.UsuaUsuario);

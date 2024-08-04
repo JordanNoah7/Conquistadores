@@ -21,7 +21,7 @@ public class UnidadDTO
         unidad.UnidImagen = UnidImagen;
     }
 
-    public void CopyFrom(ref Unidad unidad)
+    public void CopyFrom(Unidad unidad)
     {
         UnidId = unidad.UnidId;
         UnidNombre = unidad.UnidNombre;

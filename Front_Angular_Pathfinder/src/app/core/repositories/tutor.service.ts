@@ -51,14 +51,36 @@ export class TutorService extends UnsubscribeOnDestroyAdapter {
         })
     }
 
+    getAllTutorBySexo(data: any): void {
+        this.repositoryService.GetTutoresBySexo(data).subscribe({
+            next: (value: any) => {
+                debugger;
+                this.dataChange.next(value);
+            },
+            error: (error: any) => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Error al obtener la lista de conquistadores, intente de nuevo más tarde.',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            },
+            complete: () => {
+                this.isTblLoading = false;
+            }
+        })
+    }
+
     public saveTutor(data: any): Observable<any> {
         return this.repositoryService.SaveTutor(data).pipe(
             map(response => {
-                console.log("response")
-                console.log(response)
                 return response;
             })
         )
+    }
+
+    SetTutor(data: any){
+        this.dialogData = data;
     }
 
     addTutor(tutor: Tutor): void {

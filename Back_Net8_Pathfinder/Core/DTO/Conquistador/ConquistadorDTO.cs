@@ -33,6 +33,7 @@ public class ConquistadorDTO
     public UnidadDTO? ConqUnidad { get; set; }
     public FichaMedicaDTO? ConqFichaMedica { get; set; }
     public ICollection<EspecialidadDTO>? ConqEspecialidades { get; set; }
+    public ICollection<TutorDTO>? ConqTutores { get; set; }
 
     public void CopyTo(ref Conquistador conquistador)
     {

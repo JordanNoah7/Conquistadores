@@ -52,6 +52,17 @@ export class RepositoryService {
         );
     }
 
+    public SaveConquistador(data: any): Observable<any> {
+        return this.requestService.connectBackendPost("GuardarConquistador", data).pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        );
+    }
+
     // *Categorias
     public GetCategorias(): Observable<any> {
         return this.requestService.connectBackendGet("ObtenerCategorias").pipe(
@@ -109,6 +120,74 @@ export class RepositoryService {
 
     public GetTutor(data: any): Observable<any> {
         return this.requestService.connectBackendPost("ObtenerTutorById", data).pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        )
+    }
+
+    public GetTutoresBySexo(data: any): Observable<any> {
+        return this.requestService.connectBackendPost("ObtenerTutores", data).pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        )
+    }
+
+    // *Clases
+    public GetClases(): Observable<any> {
+        return this.requestService.connectBackendGet("ObtenerClases").pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        )
+    }
+
+    public SaveClaseConquistador(data: any): Observable<any> {
+        return this.requestService.connectBackendPost("GuardarClaseConquistador", data).pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        )
+    }
+
+    public AprobarClaseConquistador(data: any): Observable<any> {
+        return this.requestService.connectBackendPost("AprobarClaseConquistador", data).pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        )
+    }
+
+    // *Unidades
+    public GetUnidades(): Observable<any> {
+        return this.requestService.connectBackendGet("ObtenerUnidades").pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        )
+    }
+
+    public SaveUnidadConquistador(data: any): Observable<any> {
+        return this.requestService.connectBackendPost("GuardarUnidadConquistador", data).pipe(
             map(response => {
                 if (!!response) {
                     return response;

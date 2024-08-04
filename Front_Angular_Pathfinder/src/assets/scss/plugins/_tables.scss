@@ -114,8 +114,8 @@
 .table-img {
   img {
     border-radius: 5px;
-    height: 33px;
-    width: 33px;
+    height: 33px !important;
+    width: 33px !important;
     background: #fff;
     position: inherit;
   }

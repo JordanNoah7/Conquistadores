@@ -60,7 +60,7 @@ public partial class RestService : ControllerBase
             if (clase != null)
             {
                 ClaseDTO claseDTO = new ClaseDTO();
-                claseDTO.CopyFrom(ref clase);
+                claseDTO.CopyFrom(clase);
                 conquistadorDTO.ConqClase = claseDTO;
                 conquistadorDTO.ConqAvance = await _service.GetAvanceConquistadorAsync(conquistadorDTO.PersId);
             }
@@ -69,7 +69,7 @@ public partial class RestService : ControllerBase
             if (unidad != null)
             {
                 UnidadDTO unidadDTO = new UnidadDTO();
-                unidadDTO.CopyFrom(ref unidad);
+                unidadDTO.CopyFrom(unidad);
                 conquistadorDTO.ConqUnidad = unidadDTO;
             }
 
@@ -206,15 +206,13 @@ public partial class RestService : ControllerBase
                 return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
             }
             //TODO: Arreglar la obtencion del conquistador porque lo obtiene por el usuaid y le paso el conqid
-            Conquistador conquistador = await _service.GetConquistadorByUsuarioAsync(ConqId);
+            Conquistador conquistador = await _service.GetConquistadorByConqIdAsync(ConqId);
             if (conquistador == null)
             {
                 return NotFound("Conquistador no encontrado");
             }
             ConquistadorDTO conquistadorDTO = new ConquistadorDTO();
             conquistadorDTO.CopyFrom(conquistador);
-            conquistadorDTO.ConqAhorros = await _service.GetAhorrosAsync(conquistadorDTO.PersId);
-            conquistadorDTO.ConqPuntos = await _service.GetPuntosAsync(conquistadorDTO.PersId);
 
             Usuario usuario = await _service.GetUserByIdAsync(conquistador.UsuaId);
             UsuarioDTO usuarioDTO = new UsuarioDTO();
@@ -223,7 +221,20 @@ public partial class RestService : ControllerBase
 
             FichaMedica fichaMedica = await _service.GetFichaMedicaByConqIdAsync(ConqId);
             FichaMedicaDTO fichaMedicaDTO = new FichaMedicaDTO();
-            fichaMedicaDTO.CopyFrom(fichaMedica);
+            if (fichaMedica != null)
+            {
+                fichaMedicaDTO.CopyFrom(fichaMedica);
+            }
+            conquistadorDTO.ConqFichaMedica = fichaMedicaDTO;
+
+            ICollection<Tutor> tutores = await _service.GetAllTutoresByConqIdAsync(ConqId);
+            conquistadorDTO.ConqTutores = new List<TutorDTO>();
+            foreach(var item in tutores)
+            {
+                TutorDTO tutor = new TutorDTO();
+                tutor.CopyFrom(item);
+                conquistadorDTO.ConqTutores.Add(tutor);
+            }
 
             var entidad = new { conquistadorDTO, TiempoSesion = 20 };
 

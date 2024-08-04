@@ -10,4 +10,5 @@ namespace Core.Interfaces;
 public partial interface IService
 {
     Task<Unidad> GetCurrentUnidadAsync(int id);
+    Task<ICollection<Unidad>> GetAllUnidadesAsync();
 }

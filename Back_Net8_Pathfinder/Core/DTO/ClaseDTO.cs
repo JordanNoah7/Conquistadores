@@ -8,6 +8,7 @@ public class ClaseDTO
     public string ClasNombre { get; set; }
     public string ClasDescripcion { get; set; }
     public string ClasImagen {  get; set; }
+    public string ClasColor { get; set; }
 
     public void CopyTo(ref Clase clase)
     {
@@ -15,13 +16,15 @@ public class ClaseDTO
         clase.ClasNombre = ClasNombre;
         clase.ClasDescripcion = ClasDescripcion;
         clase.ClasImagen = ClasImagen;
+        clase.ClasColor = ClasColor;
     }
 
-    public void CopyFrom(ref Clase clase)
+    public void CopyFrom(Clase clase)
     {
         ClasId = clase.ClasId;
         ClasNombre = clase.ClasNombre;
         ClasDescripcion = clase.ClasDescripcion;
         ClasImagen = clase.ClasImagen;
+        ClasColor = clase.ClasColor;
     }
 }

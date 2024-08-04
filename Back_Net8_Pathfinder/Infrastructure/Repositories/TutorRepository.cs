@@ -36,14 +36,26 @@ public class TutorRepository : ITutorRepository
         catch { throw; }
     }
 
-    public async Task<ICollection<Tutor>> GetAllByApellidos(string PersApellidoPaterno1, string PersApellidoPaterno2, string PersSexo)
+    public async Task<ICollection<Tutor>> GetAllBySexoAsync(string PersSexo)
     {
         try
         {
             var tutores = await _dbContext.Tutores
-                .Where(t => EF.Functions.Like(t.PersApellidoPaterno, "%" + PersApellidoPaterno1 + "%")
-                || EF.Functions.Like(t.PersApellidoPaterno, "%" + PersApellidoPaterno2 + "%")
-                && t.PersSexo.Equals(PersSexo))
+                .Where(t => t.PersSexo.Equals(PersSexo))
+                .ToListAsync();
+            return tutores;
+        }
+        catch { throw; }
+    }
+
+    public async Task<ICollection<Tutor>> GetAllByConqIdAsync(int ConqId)
+    {
+        try
+        {
+            var tutores = await _dbContext.TutorConquistadores
+                .Include(tc => tc.TucoTutor)
+                .Where(tc => tc.ConqId == ConqId && (tc.TucoTipoParentescoId == 1 || tc.TucoTipoParentescoId == 2))
+                .Select(tc => tc.TucoTutor)
                 .ToListAsync();
             return tutores;
         }

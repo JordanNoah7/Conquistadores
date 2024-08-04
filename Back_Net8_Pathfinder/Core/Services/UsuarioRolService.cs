@@ -17,11 +17,11 @@ public partial class Service
         }
     }
 
-    public async Task AddUsuarioRoleAsync(UsuarioRol usuarioRol)
+    public async Task<bool> AddUsuarioRoleAsync(UsuarioRol usuarioRol)
     {
         try
         {
-            await _rolUsuarioRepository.AddAsync(usuarioRol);
+            return await _rolUsuarioRepository.AddAsync(usuarioRol);
         }
         catch (Exception e)
         {

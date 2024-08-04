@@ -16,7 +16,8 @@ VALUES
 ('UND'    , 2     , 'Capellan'     , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
 ('UND'    , 3     , 'Secretario'   , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
 ('UND'    , 4     , 'Tesorero'     , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
-('PAR'    , 1     , 'Padre'        , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS')
+('PAR'    , 1     , 'Padre'        , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
+('PAR'    , 2     , 'Madre'        , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS')
 GO
 INSERT INTO Parametros (ParaNombre, ParaValor, AudiUserCrea, AudiHostCrea)
 VALUES ('SessionTimeMinutes', '240', 'SISTEMAS', 'J-PC'),

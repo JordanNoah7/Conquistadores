@@ -1,6 +1,9 @@
 import { Especialidad } from "./Especialidad";
+import { FichaMedica } from "./FichaMedica";
+import { Tutor } from "./Tutor";
+import { Usuario } from "./Usuario";
 
-export interface Conquistador{
+export class Conquistador{
     PersId: string;
     ConqFechaInvestidura: string;
     ConqEscuela: string;
@@ -23,9 +26,8 @@ export interface Conquistador{
     ConqAvance: string;
     ConqAhorros: string;
     ConqPuntos: string;
-    Usuario: string;
-    Sesion: string;
-    ConqClase: string;
-    ConqUnidad: string;
+    Usuario: Usuario;
+    ConqFichaMedica: FichaMedica;
     ConqEspecialidades: Especialidad[];
+    ConqTutores: Tutor[];
 }

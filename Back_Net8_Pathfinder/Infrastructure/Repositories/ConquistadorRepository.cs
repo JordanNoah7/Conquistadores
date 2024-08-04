@@ -27,7 +27,20 @@ public class ConquistadorRepository : IConquistadorRepository
     {
         try
         {
-            return await _dbContext.Conquistadores.FirstOrDefaultAsync(c => c.UsuaId == id)!;
+            return (await _dbContext.Conquistadores.FirstOrDefaultAsync(c => c.UsuaId == id))!;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<Conquistador> GetByConqIdAsync(int ConqId)
+    {
+        try
+        {
+            return (await _dbContext.Conquistadores.FirstOrDefaultAsync(c => c.PersId == ConqId))!;
         }
         catch (Exception e)
         {
@@ -58,11 +71,45 @@ public class ConquistadorRepository : IConquistadorRepository
         }
     }
 
-    public async Task<bool> Insert(Conquistador conquistador)
+    public async Task<bool> AddAsync(Conquistador conquistador)
     {
         try
         {
-            await _dbContext.Conquistadores.AddAsync(conquistador);
+            _dbContext.Conquistadores.Add(conquistador);
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+        catch { return false; }
+    }
+
+    public async Task<bool> UpdateAsync(Conquistador conquistador)
+    {
+        try
+        {
+            _dbContext.Conquistadores.Attach(conquistador);
+            conquistador.AudiFechMod = DateTime.Now;
+            var conquistadorEntry = _dbContext.Entry(conquistador);
+            conquistadorEntry.Property(t => t.PersDni).IsModified = true;
+            conquistadorEntry.Property(t => t.PersNombres).IsModified = true;
+            conquistadorEntry.Property(t => t.PersApellidoPaterno).IsModified = true;
+            conquistadorEntry.Property(t => t.PersApellidoMaterno).IsModified = true;
+            conquistadorEntry.Property(t => t.PersFechaNacimiento).IsModified = true;
+            conquistadorEntry.Property(t => t.PersCorreoPersonal).IsModified = true;
+            conquistadorEntry.Property(t => t.PersCorreoCorporativo).IsModified = true;
+            conquistadorEntry.Property(t => t.PersCelular).IsModified = true;
+            conquistadorEntry.Property(t => t.PersTelefono).IsModified = true;
+            conquistadorEntry.Property(t => t.PersSexo).IsModified = true;
+            conquistadorEntry.Property(t => t.PersDireccionCasa).IsModified = true;
+            conquistadorEntry.Property(t => t.PersNacionalidad).IsModified = true;
+            conquistadorEntry.Property(t => t.PersRegion).IsModified = true;
+            conquistadorEntry.Property(t => t.PersCiudad).IsModified = true;
+            conquistadorEntry.Property(t => t.ConqFechaInvestidura).IsModified = true;
+            conquistadorEntry.Property(t => t.ConqEscuela).IsModified = true;
+            conquistadorEntry.Property(t => t.ConqCurso).IsModified = true;
+            conquistadorEntry.Property(t => t.ConqTurno).IsModified = true;
+            conquistadorEntry.Property(t => t.AudiUserMod).IsModified = true;
+            conquistadorEntry.Property(t => t.AudiFechMod).IsModified = true;
+            conquistadorEntry.Property(t => t.AudiHostMod).IsModified = true;
             await _dbContext.SaveChangesAsync();
             return true;
         }

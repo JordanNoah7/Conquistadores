@@ -280,6 +280,10 @@ namespace Infrastructure.Migrations
                     b.Property<string>("AudiUserMod")
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("ClasColor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)");
+
                     b.Property<string>("ClasDescripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(250)");
@@ -303,6 +307,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("ClasId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClcoAnio")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("AudiFechCrea")
@@ -340,7 +347,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nchar(3)");
 
-                    b.HasKey("ConqId", "ClasId");
+                    b.HasKey("ConqId", "ClasId", "ClcoAnio");
 
                     b.HasIndex("ClasId");
 
@@ -379,7 +386,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("ConqCurso")
                         .IsRequired()
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ConqEscuela")
                         .IsRequired()
@@ -390,7 +397,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("ConqTurno")
                         .IsRequired()
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("PersApellidoMaterno")
                         .IsRequired()
