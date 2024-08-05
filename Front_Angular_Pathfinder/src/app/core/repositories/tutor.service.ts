@@ -54,7 +54,6 @@ export class TutorService extends UnsubscribeOnDestroyAdapter {
     getAllTutorBySexo(data: any): void {
         this.repositoryService.GetTutoresBySexo(data).subscribe({
             next: (value: any) => {
-                debugger;
                 this.dataChange.next(value);
             },
             error: (error: any) => {

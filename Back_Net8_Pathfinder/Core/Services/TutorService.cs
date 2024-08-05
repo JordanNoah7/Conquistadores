@@ -1,4 +1,8 @@
-﻿using Core.Entities;
+﻿using Core.DTO;
+using Core.Entities;
+using Core.Interfaces;
+using Org.BouncyCastle.Asn1.Ocsp;
+using System.Transactions;
 
 namespace Core.Services;
 
@@ -63,6 +67,71 @@ public partial class Service
         try
         {
             return await _tutorRepository.UpdateAsync(tutor);
+        }
+        catch { throw; }
+    }
+
+    public async Task<bool> SaveTutorAsync(TutorDTO tutorDTO, string pass, string UsuaUsuario, string AudiHost)
+    {
+        bool result = true;
+        try
+        {
+            using(TransactionScope tran =  new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            {
+                Usuario usuario = new Usuario();
+                tutorDTO.Usuario!.CopyTo(ref usuario);
+                usuario.UsuaContrasenia = pass;
+                usuario.UsuaCambiarContrasenia = true;
+                if (usuario.UsuaId > 0)
+                {
+                    if (!string.IsNullOrEmpty(tutorDTO.Usuario.UsuaContrasenia))
+                    {
+                        usuario.AudiUserMod = UsuaUsuario;
+                        usuario.AudiHostMod = AudiHost!;
+                        result = await _usuarioRepository.UpdateAsync(usuario);
+                    }
+                }
+                else
+                {
+                    usuario.AudiUserCrea = UsuaUsuario;
+                    usuario.AudiHostCrea = AudiHost;
+                    result = await _usuarioRepository.AddAsync(usuario);
+                    if (result)
+                    {
+                        UsuarioRol usuarioRol = new UsuarioRol()
+                        {
+                            UsuaId = usuario.UsuaId,
+                            RoleId = 5,
+                            AudiUserCrea = UsuaUsuario,
+                            AudiHostCrea = AudiHost,
+                        };
+                        result = await _rolUsuarioRepository.AddAsync(usuarioRol);
+                    }
+                }
+                if (result)
+                {
+                    Tutor tutor = new Tutor();
+                    tutorDTO!.CopyTo(ref tutor);
+                    tutor.UsuaId = usuario.UsuaId;
+                    if (tutor.PersId > 0)
+                    {
+                        tutor.AudiUserMod = UsuaUsuario;
+                        tutor.AudiHostMod = AudiHost;
+                        result = await _tutorRepository.UpdateAsync(tutor);
+                    }
+                    else
+                    {
+                        tutor.AudiUserCrea = UsuaUsuario;
+                        tutor.AudiHostCrea = AudiHost;
+                        result = await _tutorRepository.AddAsync(tutor);
+                    }
+                }
+                if (result)
+                {
+                    tran.Complete();
+                }
+                return result;
+            }
         }
         catch { throw; }
     }

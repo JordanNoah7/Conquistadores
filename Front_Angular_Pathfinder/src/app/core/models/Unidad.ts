@@ -5,4 +5,5 @@ export class Unidad {
     UnidGritoGuerra: string;
     UnidDescripcion: string;
     UnidImagen: string;
+    UncoCargoId: number;
 }

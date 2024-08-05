@@ -194,21 +194,32 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                                     <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Unidad</mat-label>
                                         <input matInput formControlName="ConqUnidad" readonly>
                                         <a style="margin-left: -35px; cursor: pointer;" class="show-pwd-icon" matSuffix (click)="SearchUnidades()">
-                                            <mat-icon>search</mat-icon>
+                                            <mat-icon>{{conquistadorForm.get('ConqUnidadId').value ? 'close' : 'search'}}</mat-icon>
                                         </a>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
+                                        <mat-label>Cargo en la unidad</mat-label>
+                                        <mat-select formControlName="UncoCargoId">
+                                            <mat-option *ngFor="let cargo of cargosUnidad" [value]="cargo.TipoId">{{cargo.TipoDescripcion}}</mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="conquistadorForm.get('UncoCargoId').hasError('required')">
+                                            El g&eacute;nero es obligatorio
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                                     <mat-form-field class="example-full-width mb-2" appearance="outline">
                                         <mat-label>Clase</mat-label>
                                         <input matInput formControlName="ConqClase" readonly>
                                         <a style="margin-left: -35px; cursor: pointer;" class="show-pwd-icon" matSuffix (click)="SearchClases()">
-                                            <mat-icon>search</mat-icon>
+                                            <mat-icon>{{conquistadorForm.get('ConqClaseId').value ? 'close' : 'search'}}</mat-icon>
                                         </a>
                                     </mat-form-field>
                                 </div>
@@ -230,7 +241,7 @@
                                         <mat-label>Padre</mat-label>
                                         <input matInput formControlName="ConqPadre" readonly>
                                         <a style="margin-left: -35px; cursor: pointer;" class="show-pwd-icon" matSuffix (click)="SearchPadres('M')">
-                                            <mat-icon>search</mat-icon>
+                                            <mat-icon>{{conquistadorForm.get('ConqPadreId').value ? 'close' : 'search'}}</mat-icon>
                                         </a>
                                     </mat-form-field>
                                 </div>
@@ -239,7 +250,7 @@
                                         <mat-label>Madre</mat-label>
                                         <input matInput formControlName="ConqMadre" readonly>
                                         <a style="margin-left: -35px; cursor: pointer;" class="show-pwd-icon" matSuffix (click)="SearchPadres('F')">
-                                            <mat-icon>search</mat-icon>
+                                            <mat-icon>{{conquistadorForm.get('ConqMadreId').value ? 'close' : 'search'}}</mat-icon>
                                         </a>
                                     </mat-form-field>
                                 </div>
@@ -303,9 +314,6 @@
                                                     <mat-option [value]="'O+'">O+</mat-option>
                                                     <mat-option [value]="'O-'">O-</mat-option>
                                                 </mat-select>
-                                                <mat-error *ngIf="conquistadorForm.get('PersSexo').hasError('required')">
-                                                    El g&eacute;nero es obligatorio
-                                                </mat-error>
                                             </mat-form-field>
                                         </div>
                                     </div>

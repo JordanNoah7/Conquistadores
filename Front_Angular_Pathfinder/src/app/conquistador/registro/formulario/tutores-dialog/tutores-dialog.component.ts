@@ -52,7 +52,6 @@ export class TutoresDialogComponent extends UnsubscribeOnDestroyAdapter implemen
     }
 
     public loadData() {
-        debugger;
         this.tutoresDataBase = new TutorService(this.repositoryService);
         this.dataSource = new TutorModalDataSource(
             this.tutoresDataBase,

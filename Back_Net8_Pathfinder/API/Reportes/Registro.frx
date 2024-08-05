@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/04/2024 21:07:15" ReportInfo.Modified="08/04/2024 22:08:23" ReportInfo.CreatorVersion="2024.2.0.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="Conquistador" ReferenceName="ConquistadorRef" DataType="System.Int32" Enabled="true">
+      <Column Name="PersId" DataType="System.String"/>
+      <Column Name="PersNombres" DataType="System.String"/>
+      <Column Name="PersFechaNacimiento" DataType="System.String"/>
+      <Column Name="PersNacionalidad" DataType="System.String"/>
+      <Column Name="PersDireccionCasa" DataType="System.String"/>
+      <Column Name="PersCiudad" DataType="System.String"/>
+      <Column Name="PersRegion" DataType="System.String"/>
+      <Column Name="PersCelular" DataType="System.String"/>
+      <Column Name="PersCorreoPersonal" DataType="System.String"/>
+      <Column Name="Padre" DataType="System.String"/>
+      <Column Name="Madre" DataType="System.String"/>
+      <Column Name="ConqEscuela" DataType="System.String"/>
+      <Column Name="ConqCurso" DataType="System.String"/>
+      <Column Name="ConqTurno" DataType="System.String"/>
+      <Column Name="FimeSangreRH" DataType="System.String"/>
+      <Column Name="FimeAlergias" DataType="System.String"/>
+      <Column Name="FimeEnfermedades" DataType="System.String"/>
+      <Column Name="ClasNombre" DataType="System.String"/>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="56.7">
+      <TextObject Name="Text1" Left="283.5" Width="151.2" Height="18.9" Text="FICHA DE REGISTRO" Font="Arial, 10pt"/>
+      <TextObject Name="Text2" Left="189" Top="37.8" Width="340.2" Height="18.9" Text="CLUB DE CONQUISTADORES &quot;LAS ÁGUILAS&quot;" HorzAlign="Center" Font="Arial, 10pt"/>
+    </PageHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="60.7" Width="718.2" Height="510.3">
+      <TextObject Name="Text3" Top="9.45" Width="66.15" Height="18.9" Text="Nombre: [Conquistador.PersNombres]" Font="Arial, 10pt"/>
+      <TextObject Name="Text4" Left="75.6" Top="9.45" Width="642.6" Height="18.9" Text="[Conquistador.PersNombres]" Font="Arial, 10pt"/>
+      <TextObject Name="Text5" Top="37.8" Width="151.2" Height="18.9" Text="Fecha de Nacimiento:" Font="Arial, 10pt"/>
+      <TextObject Name="Text6" Left="160.65" Top="37.8" Width="189" Height="18.9" Text="[Conquistador.PersFechaNacimiento]" Font="Arial, 10pt"/>
+      <TextObject Name="Text7" Left="368.55" Top="37.8" Width="94.5" Height="18.9" Text="Nacionalidad:" Font="Arial, 10pt"/>
+      <TextObject Name="Text8" Left="472.5" Top="37.8" Width="245.7" Height="18.9" Text="[Conquistador.PersNacionalidad]" Font="Arial, 10pt"/>
+      <TextObject Name="Text9" Top="66.15" Width="75.6" Height="18.9" Text="Dirección:" Font="Arial, 10pt"/>
+      <TextObject Name="Text10" Left="85.05" Top="66.15" Width="633.15" Height="18.9" Text="[Conquistador.PersDireccionCasa]" Font="Arial, 10pt"/>
+      <TextObject Name="Text11" Top="94.5" Width="56.7" Height="18.9" Text="Ciudad:" Font="Arial, 10pt"/>
+      <TextObject Name="Text12" Left="66.15" Top="94.5" Width="283.5" Height="18.9" Text="[Conquistador.PersCiudad]" Font="Arial, 10pt"/>
+      <TextObject Name="Text13" Left="368.55" Top="94.5" Width="56.7" Height="18.9" Text="Región:" Font="Arial, 10pt"/>
+      <TextObject Name="Text14" Left="434.7" Top="94.5" Width="283.5" Height="18.9" Text="[Conquistador.PersRegion]" Font="Arial, 10pt"/>
+      <TextObject Name="Text15" Top="122.85" Width="56.7" Height="18.9" Text="Celular:" Font="Arial, 10pt"/>
+      <TextObject Name="Text16" Left="66.15" Top="122.85" Width="198.45" Height="18.9" Text="[Conquistador.PersCelular]" Font="Arial, 10pt"/>
+      <TextObject Name="Text17" Left="274.05" Top="122.85" Width="132.3" Height="18.9" Text="Correo electrónico:" Font="Arial, 10pt"/>
+      <TextObject Name="Text18" Left="415.8" Top="122.85" Width="302.4" Height="18.9" Text="[Conquistador.PersCorreoPersonal]" Font="Arial, 10pt"/>
+      <TextObject Name="Text19" Top="151.2" Width="132.3" Height="18.9" Text="Nombre del padre:" Font="Arial, 10pt"/>
+      <TextObject Name="Text20" Left="141.75" Top="151.2" Width="576.45" Height="18.9" Text="[Conquistador.Padre]" Font="Arial, 10pt"/>
+      <TextObject Name="Text21" Top="179.55" Width="132.3" Height="18.9" Text="Nombre del madre:" Font="Arial, 10pt"/>
+      <TextObject Name="Text22" Left="141.75" Top="179.55" Width="576.45" Height="18.9" Text="[Conquistador.Madre]" Font="Arial, 10pt"/>
+      <TextObject Name="Text23" Top="207.9" Width="66.15" Height="18.9" Text="Escuela:" Font="Arial, 10pt"/>
+      <TextObject Name="Text24" Left="75.6" Top="207.9" Width="642.6" Height="18.9" Text="[Conquistador.ConqEscuela]" Font="Arial, 10pt"/>
+      <TextObject Name="Text25" Top="236.25" Width="56.7" Height="18.9" Text="Curso:" Font="Arial, 10pt"/>
+      <TextObject Name="Text26" Left="368.55" Top="236.25" Width="56.7" Height="18.9" Text="Turno:" Font="Arial, 10pt"/>
+      <TextObject Name="Text27" Left="66.15" Top="236.25" Width="283.5" Height="18.9" Text="[Conquistador.ConqCurso]" Font="Arial, 10pt"/>
+      <TextObject Name="Text28" Left="434.7" Top="236.25" Width="283.5" Height="18.9" Text="[Conquistador.ConqTurno]" Font="Arial, 10pt"/>
+      <TextObject Name="Text29" Top="264.6" Width="122.85" Height="18.9" Text="Grupo sanguíneo:" Font="Arial, 10pt"/>
+      <TextObject Name="Text30" Left="132.3" Top="264.6" Width="56.7" Height="18.9" Text="[Conquistador.FimeSangreRH]" Font="Arial, 10pt"/>
+      <TextObject Name="Text31" Left="198.45" Top="264.6" Width="66.15" Height="18.9" Text="Alergias:" Font="Arial, 10pt"/>
+      <TextObject Name="Text32" Left="274.05" Top="264.6" Width="444.15" Height="18.9" GrowToBottom="true" Text="[Conquistador.FimeAlergias]" Font="Arial, 10pt"/>
+      <TextObject Name="Text33" Top="292.95" Width="94.5" Height="18.9" Text="Enfermedades:" Font="Arial, 10pt"/>
+      <TextObject Name="Text34" Left="103.95" Top="292.95" Width="614.25" Height="18.9" Text="[Conquistador.FimeEnfermedades]" Font="Arial, 10pt"/>
+      <TextObject Name="Text35" Top="321.3" Width="56.7" Height="18.9" Text="Clase:" Font="Arial, 10pt"/>
+      <TextObject Name="Text36" Left="66.15" Top="321.3" Width="652.05" Height="18.9" Text="[Conquistador.ClasNombre]" Font="Arial, 10pt"/>
+      <TextObject Name="Text37" Top="349.65" Width="160.65" Height="18.9" Text="Especialidades (código):" Font="Arial, 10pt"/>
+      <TextObject Name="Text38" Top="415.8" Width="718.2" Height="37.8" Text="Compromiso: &quot;Me comprometo a hacer todo lo posible para seguir los principios del Voto y de la Ley del conquistador, cooperar con los lideres y administradores y obedecer los reglamentos del Club de Conquistadores&quot;." HorzAlign="Center" Font="Script MT Bold, 10pt"/>
+      <TextObject Name="Text39" Top="472.5" Width="718.2" Height="18.9" Text="_____________________________________________" HorzAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text40" Top="491.4" Width="718.2" Height="18.9" Text="[Conquistador.PersNombres]" HorzAlign="Center" Font="Arial, 10pt"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="575" Width="718.2" Height="103.95">
+      <TextObject Name="Text41" Left="37.8" Top="9.45" Width="642.6" Height="37.8" Text="Las informaciones que anteceden son verdaderas, asumo cualquier riesgo por información incompleta. Como padre/responsable me comprometo a apoyar todas las actividades de los Conquistadores." HorzAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text42" Top="66.15" Width="718.2" Height="18.9" Text="_____________________________________________" HorzAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text43" Top="85.05" Width="718.2" Height="18.9" Text="Firma del padre o responsable" HorzAlign="Center" Font="Arial, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

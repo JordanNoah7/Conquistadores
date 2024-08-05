@@ -29,11 +29,15 @@ public class FichaMedicaRepository : IFichaMedicaRepository
             var fm = _dbContext.FichasMedicas.FirstOrDefault(fm => fm.ConqId == fichaMedica.ConqId && fm.FimeAnio == DateTime.Now.Year);
             if (fm != null)
             {
-                _dbContext.FichasMedicas.Attach(fichaMedica);
-                fichaMedica.AudiFechMod = DateTime.Now;
-                fichaMedica.AudiUserMod = fichaMedica.AudiUserCrea;
-                fichaMedica.AudiHostMod = fichaMedica.AudiHostCrea;
-                var fichaMedicaEntry = _dbContext.Entry(fichaMedica);
+                fm.AudiFechMod = DateTime.Now;
+                fm.AudiUserMod = fichaMedica.AudiUserCrea;
+                fm.AudiHostMod = fichaMedica.AudiHostCrea;
+                fm.FimeSangreRH = fichaMedica.FimeSangreRH;
+                fm.FimeVacunas = fichaMedica.FimeVacunas;
+                fm.FimeEnfermedades = fichaMedica.FimeEnfermedades;
+                fm.FimeAlergias = fichaMedica.FimeAlergias;
+                fm.FimeObservaciones = fichaMedica.FimeObservaciones;
+                var fichaMedicaEntry = _dbContext.Entry(fm);
                 fichaMedicaEntry.Property(t => t.FimeSangreRH).IsModified = true;
                 fichaMedicaEntry.Property(t => t.FimeVacunas).IsModified = true;
                 fichaMedicaEntry.Property(t => t.FimeEnfermedades).IsModified = true;
@@ -42,6 +46,7 @@ public class FichaMedicaRepository : IFichaMedicaRepository
                 fichaMedicaEntry.Property(t => t.AudiUserMod).IsModified = true;
                 fichaMedicaEntry.Property(t => t.AudiFechMod).IsModified = true;
                 fichaMedicaEntry.Property(t => t.AudiHostMod).IsModified = true;
+                _dbContext.FichasMedicas.Update(fm);
             }
             else
             {

@@ -11,4 +11,5 @@ public partial interface IService
     Task<ICollection<ConquistadorList_DTO>> GetConquistadoresAsync(string sp, DynamicParameters parameters);
     Task<bool> AddConquistadorAsync(Conquistador conquistador);
     Task<bool> UpdateConquistadorAsync(Conquistador conquistador);
+    Task<bool> SaveConquistadorAsync(ConquistadorDTO conquistadorDTO, string pass, string UsuaUsuario, string AudiHost);
 }

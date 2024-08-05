@@ -49,7 +49,7 @@ export const ROUTES: RouteInfo[] = [
             },
             {
                 path: "/conquistador/inscribir",
-                title: "Inscribir",
+                title: "Inscripciones",
                 iconType: "",
                 icon: "",
                 class: "ml-menu",

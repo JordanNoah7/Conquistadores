@@ -18,20 +18,34 @@ public class ClaseConquistadorRepository : IClaseConquistadorRepository
     {
         try
         {
-            var clco = await _dbContext.ClaseConquistadores.FirstOrDefaultAsync(cc => cc.ConqId == claseConquistador.ConqId && cc.ClasId == claseConquistador.ClasId && cc.ClcoAnio == DateTime.Now.Year);
+            var clco = await _dbContext.ClaseConquistadores.FirstOrDefaultAsync(cc => cc.ConqId == claseConquistador.ConqId && cc.ClcoAnio == DateTime.Now.Year && cc.ClcoTipoCargoClaseId == 2);
             if (clco != null)
             {
-                _dbContext.ClaseConquistadores.Attach(claseConquistador);
-                claseConquistador.AudiFechMod = DateTime.Now;
-                claseConquistador.AudiHostMod = claseConquistador.AudiHostCrea;
-                claseConquistador.AudiUserMod = claseConquistador.AudiUserCrea;
-                var claseConquistadorEntry = _dbContext.Entry(claseConquistador);
-                claseConquistadorEntry.Property(t => t.ClasId).IsModified = true;
-                claseConquistadorEntry.Property(t => t.ClcoTipoCargoClaseTabla).IsModified = true;
-                claseConquistadorEntry.Property(t => t.ClcoTipoCargoClaseId).IsModified = true;
-                claseConquistadorEntry.Property(t => t.AudiUserMod).IsModified = true;
-                claseConquistadorEntry.Property(t => t.AudiFechMod).IsModified = true;
-                claseConquistadorEntry.Property(t => t.AudiHostMod).IsModified = true;
+                _dbContext.ClaseConquistadores
+                    .Where(cc => cc.ConqId == clco.ConqId && cc.ClasId == clco.ClasId && cc.ClcoAnio == clco.ClcoAnio)
+                    .ExecuteDelete();
+
+                //clco.AudiFechMod = DateTime.Now;
+                //clco.AudiHostMod = claseConquistador.AudiHostCrea;
+                //clco.AudiUserMod = claseConquistador.AudiUserCrea;
+                //clco.ClasId = claseConquistador.ClasId;
+                //clco.ClcoTipoCargoClaseTabla = claseConquistador.ClcoTipoCargoClaseTabla;
+                //clco.ClcoTipoCargoClaseId = claseConquistador.ClcoTipoCargoClaseId;
+                //var claseConquistadorEntry = _dbContext.Entry(clco);
+                //claseConquistadorEntry.Property(t => t.ClasId).IsModified = true;
+                //claseConquistadorEntry.Property(t => t.ClcoTipoCargoClaseTabla).IsModified = true;
+                //claseConquistadorEntry.Property(t => t.ClcoTipoCargoClaseId).IsModified = true;
+                //claseConquistadorEntry.Property(t => t.AudiUserMod).IsModified = true;
+                //claseConquistadorEntry.Property(t => t.AudiFechMod).IsModified = true;
+                //claseConquistadorEntry.Property(t => t.AudiHostMod).IsModified = true;
+                //_dbContext.ClaseConquistadores.Update(claseConquistador);
+                clco.AudiFechMod = DateTime.Now;
+                clco.AudiHostMod = claseConquistador.AudiHostCrea;
+                clco.AudiUserMod = claseConquistador.AudiUserCrea;
+                clco.ClasId = claseConquistador.ClasId;
+                clco.ClcoTipoCargoClaseTabla = claseConquistador.ClcoTipoCargoClaseTabla;
+                clco.ClcoTipoCargoClaseId = claseConquistador.ClcoTipoCargoClaseId;
+                _dbContext.ClaseConquistadores.Add(clco);
             }
             else
             {

@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
@@ -17,7 +18,12 @@ public class TutorConquistadorRepository : ITutorConquistadorRepository
     {
         try
         {
-            _dbContext.TutorConquistadores.AddRange(tutores);
+            _dbContext.TutorConquistadores
+                .Where(tc => tc.ConqId == tutores.FirstOrDefault()!.ConqId)
+                .ExecuteDelete();
+
+            _dbContext.TutorConquistadores
+                .AddRange(tutores);
             await _dbContext.SaveChangesAsync();
             return true;
         }

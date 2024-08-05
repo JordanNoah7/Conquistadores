@@ -6,6 +6,8 @@ export * from './ConquistadorList';
 export * from './Especialidad';
 export * from './FichaMedica';
 export * from './filters';
+export * from './Inscripcion';
+export * from './InscripcionList';
 export * from './ItemRequest';
 export * from './Request';
 export * from './RequestValidateUser';

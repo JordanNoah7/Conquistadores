@@ -43,7 +43,7 @@ export class ClaseService extends UnsubscribeOnDestroyAdapter {
         })
     }
 
-    setClase(data: any){
-        
+    setClase(data: any) {
+        this.dialogData = data;
     }
 }

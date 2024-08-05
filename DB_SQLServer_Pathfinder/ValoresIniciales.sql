@@ -16,11 +16,13 @@ VALUES
 ('UND'    , 2     , 'Capellan'     , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
 ('UND'    , 3     , 'Secretario'   , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
 ('UND'    , 4     , 'Tesorero'     , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
+('UND'    , 5     , 'Miembro'      , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
 ('PAR'    , 1     , 'Padre'        , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
 ('PAR'    , 2     , 'Madre'        , 1             , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS')
 GO
 INSERT INTO Parametros (ParaNombre, ParaValor, AudiUserCrea, AudiHostCrea)
-VALUES ('SessionTimeMinutes', '240', 'SISTEMAS', 'J-PC'),
+VALUES ('CostoInscripcion', '20', 'SISTEMAS', 'J-PC'),
+       ('SessionTimeMinutes', '240', 'SISTEMAS', 'J-PC'),
        ('Email', 'emito.tite@gmail.com', 'SISTEMAS', 'J-PC'),
        ('Password', 'ahoc znlo gunn nghm', 'SISTEMAS', 'J-PC'),
        ('Smtp', 'smtp.gmail.com', 'SISTEMAS', 'J-PC'),
@@ -147,7 +149,8 @@ GO
 INSERT INTO Unidades
 (UnidNombre, UnidLema                       , UnidGritoGuerra                             , UnidDescripcion    , UnidImagen, AudiUserCrea, AudiFechCrea, AudiHostCrea)
 VALUES
-('Halcones', 'Volamos Alto, Vencemos Juntos', '�Halcones! �Altos volamos, unidos ganamos!', 'Unidad de varones', 'halcones.png', 'SISTEMAS'  , GETDATE()   , 'SISTEMAS')
+('Halcones', 'Volamos Alto, Vencemos Juntos', 'Halcones! Altos volamos, unidos ganamos!', 'Unidad de varones', 'halcones.png', 'SISTEMAS'  , GETDATE()   , 'SISTEMAS'),
+('Fenix'   , ' '                            , ''                                        , 'Unidad de mujeres', 'fenix.png'   , 'SISTEMAS'  , GETDATE()   , 'SISTEMAS')
 GO
 INSERT INTO Clases
 (ClasNombre                       , ClasDescripcion            , ClasImagen                      , AudiUserCrea, AudiFechCrea, AudiHostCrea)

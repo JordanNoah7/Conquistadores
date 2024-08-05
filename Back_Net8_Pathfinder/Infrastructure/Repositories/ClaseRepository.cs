@@ -36,15 +36,44 @@ public class ClaseRepository : IClaseRepository
         }
     }
 
-    public async Task<Clase> GetCurrentAsync(int id)
+    public async Task<Clase> GetCurrentAlumnoAsync(int id)
     {
         try
         {
-            var conquistador = await _dbContext.Conquistadores
-                .Include(c => c.ConqClases)
-                .ThenInclude(cc => cc.ClcoClase)
-                .FirstOrDefaultAsync(c => c.PersId == id);
-            return conquistador!.ConqClases.Select(c => c.ClcoClase).FirstOrDefault(c => c.AudiFechCrea.Year == DateTime.Now.Year)!;
+            var clase = await _dbContext.Clases
+                .Where(c => c.ClasConquistadores
+                .Any(cc => cc.ConqId == id && cc.ClcoTipoCargoClaseId == 2))
+                .FirstOrDefaultAsync();
+
+            //var conquistador = await _dbContext.Conquistadores
+            //    .Include(c => c.ConqClases)
+            //    .ThenInclude(cc => cc.ClcoClase)
+            //    .FirstOrDefaultAsync(c => c.PersId == id);
+            //return conquistador!.ConqClases.Select(c => c.ClcoClase).FirstOrDefault(c => c.AudiFechCrea.Year == DateTime.Now.Year)!;
+            return clase;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<Clase> GetCurrentInstructorAsync(int id)
+    {
+        try
+        {
+            var clase = await _dbContext.Clases
+                .Where(c => c.ClasConquistadores
+                .Any(cc => cc.ConqId == id && cc.ClcoTipoCargoClaseId == 1))
+                .FirstOrDefaultAsync();
+
+            //var conquistador = await _dbContext.Conquistadores
+            //    .Include(c => c.ConqClases)
+            //    .ThenInclude(cc => cc.ClcoClase)
+            //    .FirstOrDefaultAsync(c => c.PersId == id);
+            //return conquistador!.ConqClases.Select(c => c.ClcoClase).FirstOrDefault(c => c.AudiFechCrea.Year == DateTime.Now.Year)!;
+            return clase;
         }
         catch (Exception e)
         {

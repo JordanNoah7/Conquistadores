@@ -20,6 +20,7 @@ public class UnidadConquistador
     #region [ Relaciones ]
     public Unidad UncoUnidad { get; set; }
     public Conquistador UncoConquistador { get; set; }
+    public Tipo UncoTipoCargo { get; set; }
     #endregion
 
     #region [ Auditoria ]

@@ -12,4 +12,13 @@ public partial class Service
         }
         catch { throw; }
     }
+
+    public async Task<int> GetCargoUnidadAsync(int ConqId, int UnidId)
+    {
+        try
+        {
+            return await _unidadConquistadorRepository.GetCargoAsync(ConqId, UnidId);
+        }
+        catch { throw; }
+    }
 }

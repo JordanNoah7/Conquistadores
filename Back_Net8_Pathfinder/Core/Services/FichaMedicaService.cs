@@ -9,7 +9,7 @@ public partial class Service
     {
         try
         {
-            return await _fichaMedicaCorrienteRepository.GetByConqIdAsync(ConqId);
+            return await _fichaMedicaRepository.GetByConqIdAsync(ConqId);
         }
         catch { throw; }
     }
@@ -18,7 +18,7 @@ public partial class Service
     {
         try
         {
-            return await _fichaMedicaCorrienteRepository.SaveAsync(fichaMedica);
+            return await _fichaMedicaRepository.SaveAsync(fichaMedica);
         }
         catch { throw; }
     }

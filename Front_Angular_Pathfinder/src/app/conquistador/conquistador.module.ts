@@ -29,6 +29,8 @@ import { TipoDialogComponent } from "./registro/formulario/tipo-dialog/tipo-dial
 import { TutoresDialogComponent } from "./registro/formulario/tutores-dialog/tutores-dialog.component";
 import { ClaseDialogComponent } from "./registro/formulario/clase-dialog/clase-dialog.component";
 import { UnidadDialogComponent } from "./registro/formulario/unidad-dialog/unidad-dialog.component";
+import { InscripcionComponent } from "./inscripcion/inscripcion.component";
+import { InscripcionDialogComponent } from "./inscripcion/inscripcion-dialog/inscripcion-dialog.component";
 
 @NgModule({
     declarations: [
@@ -38,6 +40,8 @@ import { UnidadDialogComponent } from "./registro/formulario/unidad-dialog/unida
         TutoresDialogComponent,
         ClaseDialogComponent,
         UnidadDialogComponent,
+        InscripcionComponent,
+        InscripcionDialogComponent
     ],
     imports: [
         CommonModule,

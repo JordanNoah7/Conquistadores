@@ -12,8 +12,9 @@ public partial class Service : IService
     private readonly IConquistadorRepository _conquistadorRepository;
     private readonly IConquistadorItemCuadernilloRepository _conquistadorItemCuadernilloRepository;
     private readonly ICuentaCorrienteRepository _cuentaCorrienteRepository;
-    private readonly IFichaMedicaRepository _fichaMedicaCorrienteRepository;
     private readonly IEspecialidadRepository _especialidadRepository;
+    private readonly IFichaMedicaRepository _fichaMedicaRepository;
+    private readonly IInscripcionRepository _inscripcionRepository;
     private readonly IParametroRepository _parametroRepository;
     private readonly IRolRepository _rolRepository;
     private readonly IUsuarioRolRepository _rolUsuarioRepository;
@@ -33,8 +34,9 @@ public partial class Service : IService
         , IConquistadorRepository conquistadorRepository
         , IConquistadorItemCuadernilloRepository conquistadorItemCuadernilloRepository
         , ICuentaCorrienteRepository cuentaCorrienteRepository
-        , IFichaMedicaRepository fichaMedicaCorrienteRepository
         , IEspecialidadRepository especialidadRepository
+        , IFichaMedicaRepository fichaMedicaRepository
+        , IInscripcionRepository inscripcionRepository
         , IParametroRepository parametroRepository
         , IRolRepository rolRepository
         , IUsuarioRolRepository rolUsuarioRepository
@@ -54,8 +56,9 @@ public partial class Service : IService
         _conquistadorRepository = conquistadorRepository;
         _conquistadorItemCuadernilloRepository = conquistadorItemCuadernilloRepository;
         _cuentaCorrienteRepository = cuentaCorrienteRepository;
-        _fichaMedicaCorrienteRepository = fichaMedicaCorrienteRepository;
         _especialidadRepository = especialidadRepository;
+        _fichaMedicaRepository = fichaMedicaRepository;
+        _inscripcionRepository = inscripcionRepository;
         _parametroRepository = parametroRepository;
         _rolRepository = rolRepository;
         _rolUsuarioRepository = rolUsuarioRepository;

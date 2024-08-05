@@ -196,4 +196,39 @@ export class RepositoryService {
             })
         )
     }
+
+    // *Inscripciones
+    public GetInscripciones(): Observable<any> {
+        return this.requestService.connectBackendGet("ObtenerInscripciones").pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        )
+    }
+
+    public SaveInscripcion(data: any): Observable<any> {
+        return this.requestService.connectBackendPost("GuardarInscripcion", data).pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        )
+    }
+
+    // *Parametros
+    public GetValorParametro(data: any): Observable<any> {
+        return this.requestService.connectBackendPost("ObtenerParametro", data).pipe(
+            map(response => {
+                if (!!response) {
+                    return response.ParaValor;
+                }
+                return null;
+            })
+        )
+    }
 }

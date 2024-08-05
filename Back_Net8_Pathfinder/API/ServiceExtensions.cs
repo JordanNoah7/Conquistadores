@@ -29,8 +29,9 @@ public static class ServiceExtensions
         services.AddTransient<IConquistadorRepository, ConquistadorRepository>();
         services.AddTransient<IConquistadorItemCuadernilloRepository, ConquistadorItemCuadernilloRepository>();
         services.AddTransient<ICuentaCorrienteRepository, CuentaCorrienteRepository>();
-        services.AddTransient<IFichaMedicaRepository, FichaMedicaRepository>();
         services.AddTransient<IEspecialidadRepository, EspecialidadRepository>();
+        services.AddTransient<IFichaMedicaRepository, FichaMedicaRepository>();
+        services.AddTransient<IInscripcionRepository, InscripcionRepository>();
         services.AddTransient<IParametroRepository, ParametroRepository>();
         services.AddTransient<IRolRepository, RolRepository>();
         services.AddTransient<IUsuarioRolRepository, UsuarioRolRepository>();

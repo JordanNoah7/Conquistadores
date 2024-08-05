@@ -1,0 +1,106 @@
+<section class="content">
+    <div class="content-block">
+        <div class="block-header">
+            <app-breadcrumb [title]="'Incripciones'" [items]="['Conquistadores']" [active_item]="'Inscripciones'"></app-breadcrumb>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <div class="materialTableHeader">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul class="header-buttons-left ms-0">
+                                            <li class="dropdown">
+                                                <h2>
+                                                    <strong>Inscripciones</strong>
+                                                </h2>
+                                            </li>
+                                            <li class="dropdown m-l-20">
+                                                <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                                                <input placeholder="Buscar" type="text" #filter class="browser-default search-field" aria-label="Search box">
+                                            </li>
+                                            <li>
+                                                <div class="m-l-10" matTooltip="AGREGAR">
+                                                    <button mat-mini-fab color="primary" (click)="addNew()">
+                                                        <mat-icon class="col-white">add</mat-icon>
+                                                    </button>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="m-l-10" matTooltip="ACTUALIZAR">
+                                                    <button mat-mini-fab color="primary" (click)="refresh()">
+                                                        <mat-icon class="col-white">refresh</mat-icon>
+                                                    </button>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <ul class="header-buttons">
+                                            <li>
+                                                <div class="export-button m-l-10" matTooltip="XLSX">
+                                                    <img src="assets/images/icons/xlsx.png" alt="" (click)="exporter.exportTable('xlsx', {fileName:'conquistadores', sheet: 'Conquistadores'})" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="export-button m-l-10" matTooltip="TXT">
+                                                    <img src="assets/images/icons/txt.png" alt="" (click)="exporter.exportTable('txt', {fileName:'conquistadores'})" />
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell" #exporter="matTableExporter">
+                                <ng-container matColumnDef="dni">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>DNI</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.PersDni}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="conquistador">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Nombres y apellidos</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.PersNombres + ' ' + row.PersApellidoPaterno + ' ' + row.PersApellidoMaterno}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="unidad">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Unidad</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.UnidNombre}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="cargo">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Unidad</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.TipoDescripcion}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="clase">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Clase</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.ClasNombre}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="actions">
+                                    <mat-header-cell class="pr-0" *matHeaderCellDef>Acciones</mat-header-cell>
+                                    <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
+                                        <button *ngIf="row.InscCompleto" mat-icon-button (click)="$event.stopPropagation()" (click)="showInscripcion(row)" class="tbl-action-btn">
+                                            <app-feather-icons [icon]="'file'" class="tbl-fav-pdf"></app-feather-icons>
+                                        </button>
+                                        <button *ngIf="!row.InscCompleto" mat-icon-button (click)="$event.stopPropagation()" (click)="payFee(row)" class="tbl-action-btn">
+                                            <app-feather-icons [icon]="'dollar-sign'" class="tbl-fav-money"></app-feather-icons>
+                                        </button>
+                                    </mat-cell>
+                                </ng-container>
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                            </mat-table>
+                            <div *ngIf="inscripcionesDataBase.isTblLoading" class="tbl-spinner">
+                                <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                                </mat-progress-spinner>
+                            </div>
+                            <div *ngIf="!inscripcionesDataBase.isTblLoading" class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+                                A&uacute;n no hay conquistadores inscritos en el a&ntilde;o en curso
+                            </div>
+                            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+                            </mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

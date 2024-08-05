@@ -4,16 +4,17 @@ namespace Core.DTO;
 
 public class UnidadDTO
 {
-    public int UnidId { get; set; }
-    public string UnidNombre { get; set; }
-    public string UnidLema { get; set; }
-    public string UnidGritoGuerra { get; set; }
-    public string UnidDescripcion { get; set; }
-    public string UnidImagen { get; set; }
+    public int? UnidId { get; set; }
+    public string? UnidNombre { get; set; }
+    public string? UnidLema { get; set; }
+    public string? UnidGritoGuerra { get; set; }
+    public string? UnidDescripcion { get; set; }
+    public string? UnidImagen { get; set; }
+    public int? UncoCargoId { get; set; }
 
     public void CopyTo(ref Unidad unidad)
     {
-        unidad.UnidId = UnidId;
+        unidad.UnidId = UnidId.HasValue ? UnidId.Value : 0;
         unidad.UnidNombre = UnidNombre;
         unidad.UnidLema = UnidLema;
         unidad.UnidGritoGuerra = UnidGritoGuerra;

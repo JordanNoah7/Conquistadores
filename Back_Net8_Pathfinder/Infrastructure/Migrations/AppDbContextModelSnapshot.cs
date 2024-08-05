@@ -351,6 +351,8 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ClasId");
 
+                    b.HasIndex("ClcoTipoCargoClaseTabla", "ClcoTipoCargoClaseId");
+
                     b.ToTable("ClaseConquistadores");
                 });
 
@@ -1241,6 +1243,8 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ConqId");
 
+                    b.HasIndex("UncoCargoTabla", "UncoCargoId");
+
                     b.ToTable("UnidadConquistadores");
                 });
 
@@ -1379,9 +1383,17 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Core.Entities.Tipo", "ClcoTipoCargo")
+                        .WithMany("TipoCargoClase")
+                        .HasForeignKey("ClcoTipoCargoClaseTabla", "ClcoTipoCargoClaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ClcoClase");
 
                     b.Navigation("ClcoConquistador");
+
+                    b.Navigation("ClcoTipoCargo");
                 });
 
             modelBuilder.Entity("Core.Entities.Conquistador", b =>
@@ -1562,7 +1574,15 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Core.Entities.Tipo", "UncoTipoCargo")
+                        .WithMany("TipoCargoUnidad")
+                        .HasForeignKey("UncoCargoTabla", "UncoCargoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("UncoConquistador");
+
+                    b.Navigation("UncoTipoCargo");
 
                     b.Navigation("UncoUnidad");
                 });
@@ -1646,6 +1666,10 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Core.Entities.Tipo", b =>
                 {
                     b.Navigation("TipoActividades");
+
+                    b.Navigation("TipoCargoClase");
+
+                    b.Navigation("TipoCargoUnidad");
 
                     b.Navigation("TipoParentescos");
                 });

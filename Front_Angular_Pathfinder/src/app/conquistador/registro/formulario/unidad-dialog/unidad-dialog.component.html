@@ -50,7 +50,7 @@
                             <mat-header-cell class="pr-0" *matHeaderCellDef>Seleccionar</mat-header-cell>
                             <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
                                 <button mat-icon-button (click)="$event.stopPropagation()" (click)="selectUnidad(row)" class="tbl-action-btn" [mat-dialog-close]="1">
-                                    <app-feather-icons [icon]="'user-check'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                                    <app-feather-icons [icon]="'check-circle'" [class]="'tbl-fav-edit'"></app-feather-icons>
                                 </button>
                             </mat-cell>
                         </ng-container>

@@ -51,7 +51,6 @@ export class UnidadDialogComponent extends UnsubscribeOnDestroyAdapter implement
     }
 
     public loadData() {
-        debugger;
         this.unidadesDataBase = new UnidadService(this.repositoryService);
         this.dataSource = new UnidadModalDataSource(
             this.unidadesDataBase,

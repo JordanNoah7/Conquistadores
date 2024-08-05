@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using Core.DTO;
+using Core.Entities;
 
 namespace Core.Interfaces;
 
@@ -11,4 +12,5 @@ public partial interface IService
     Task<Tutor> GetTutorByIdAsync(int TutoId);
     Task<bool> AddTutorAsync(Tutor tutor);
     Task<bool> UpdateTutorAsync(Tutor tutor);
+    Task<bool> SaveTutorAsync(TutorDTO tutorDTO, string pass, string UsuaUsuario, string AudiHost);
 }

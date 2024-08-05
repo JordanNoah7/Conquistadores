@@ -42,6 +42,7 @@ export class GeneralService {
                 } else if (error) {
                     console.error('Error:', error.statusText);
                 }
+                console.log(error.error)
                 return throwError(() => error.error.error);
             })
         );
@@ -68,6 +69,7 @@ export class GeneralService {
                 } else if (error) {
                     console.error('Error:', error.statusText);
                 }
+                console.log(error.error)
                 return throwError(() => error.error.error);
             })
         );

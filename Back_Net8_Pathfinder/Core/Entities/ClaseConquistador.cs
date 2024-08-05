@@ -24,6 +24,7 @@ public class ClaseConquistador
     #region [ Relaciones ]
     public Clase ClcoClase { get; set; }
     public Conquistador ClcoConquistador { get; set; }
+    public Tipo ClcoTipoCargo { get; set; }
     #endregion
 
     #region [ Auditoria ]

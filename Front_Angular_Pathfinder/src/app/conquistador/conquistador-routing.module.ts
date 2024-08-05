@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegistroComponent } from './registro/registro.component';
 import { Page404Component } from '../authentication/page404/page404.component';
 import { FormularioComponent } from './registro/formulario/formulario.component';
+import { InscripcionComponent } from './inscripcion/inscripcion.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,10 @@ const routes: Routes = [
     {
         path: "edit",
         component: FormularioComponent
+    },
+    {
+        path:"inscribir",
+        component: InscripcionComponent
     },
     {
         path: "**",

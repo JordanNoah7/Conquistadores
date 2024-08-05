@@ -9,6 +9,7 @@ namespace API;
 public partial class RestService
 {
     #region [ Endpoints ]
+    #region [ Get ]
     [HttpGet("ObtenerCategorias")]
     public async Task<IActionResult> ObtenerCategorias([FromHeader] string requestStr)
     {
@@ -21,39 +22,13 @@ public partial class RestService
             }
             ICollection<Categoria> categorias = await _service.GetAllCategoriasAsync();
             ICollection<CategoriaDTO> categoriasDTO = new ObservableCollection<CategoriaDTO>();
-            foreach(Categoria item in categorias)
+            foreach (Categoria item in categorias)
             {
                 CategoriaDTO categoria = new CategoriaDTO();
                 categoria.CopyFrom(item);
                 categoriasDTO.Add(categoria);
             }
             return Ok(categoriasDTO);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex);
-        }
-    }
-
-    [HttpGet("ObtenerClases")]
-    public async Task<IActionResult> ObtenerClases([FromHeader] string requestStr)
-    {
-        try
-        {
-            Request request = JsonConvert.DeserializeObject<Request>(requestStr)!;
-            if (!await ValidarSesion(request.UsuaId))
-            {
-                return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
-            }
-            ICollection<Clase> clases = await _service.GetAllClasesAsync();
-            ICollection<ClaseDTO> clasesDTO = new ObservableCollection<ClaseDTO>();
-            foreach (var item in clases)
-            {
-                ClaseDTO clase = new ClaseDTO();
-                clase.CopyFrom(item);
-                clasesDTO.Add(clase);
-            }
-            return Ok(clasesDTO);
         }
         catch (Exception ex)
         {
@@ -86,7 +61,9 @@ public partial class RestService
             return BadRequest(ex);
         }
     }
+    #endregion
 
+    #region [ Post ]
     [HttpPost("ObtenerTipos")]
     public async Task<IActionResult> ObtenerTipos([FromHeader] string requestStr, [FromBody] Filters filtros)
     {
@@ -99,6 +76,25 @@ public partial class RestService
             }
             ICollection<Tipo> tipos = await _service.GetAllTiposAsync(filtros.Tipo!);
             return Ok(tipos);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex);
+        }
+    }
+
+    [HttpPost("ObtenerParametro")]
+    public async Task<IActionResult> ObtenerParametro([FromHeader] string requestStr, [FromBody] Filters filtros)
+    {
+        try
+        {
+            Request request = JsonConvert.DeserializeObject<Request>(requestStr)!;
+            if (!await ValidarSesion(request.UsuaId))
+            {
+                return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
+            }
+            Parametro parametro = await _service.GetParametroByNameAsync(filtros.Nombres);
+            return Ok(parametro);
         }
         catch (Exception ex)
         {
@@ -133,7 +129,7 @@ public partial class RestService
                     title = "vacuna";
                     break;
             }
-            if(await _service.AddTipoAsync(t))
+            if (await _service.AddTipoAsync(t))
             {
                 return Ok($"La {title} se agregó correctamente.");
             }
@@ -142,40 +138,11 @@ public partial class RestService
                 return BadRequest("Hubo un problema al agregar la " + title);
             }
         }
-        catch (Exception ex) 
-        {
-            return BadRequest(ex);
-        }
-    }
-
-    [HttpPost("ObtenerTutores")]
-    public async Task<IActionResult> ObtenerTutores([FromHeader] string requestStr, [FromBody] Filters filtros)
-    {
-        try
-        {
-            Request request = JsonConvert.DeserializeObject<Request>(requestStr)!;
-            if (!await ValidarSesion(request.UsuaId))
-            {
-                return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
-            }
-            ICollection<Tutor> tutores = await _service.GetAllTutoresBySexoAsync(filtros.Tipo!);
-            ICollection<TutorDTO> tutorDTOs = new List<TutorDTO>();
-            foreach (var tutor in tutores)
-            {
-                var t = tutor;
-                TutorDTO td = new TutorDTO();
-                td.CopyFrom(t);
-                tutorDTOs.Add(td);
-            }
-            return Ok(tutorDTOs);
-        }
         catch (Exception ex)
         {
             return BadRequest(ex);
         }
     }
     #endregion
-
-    #region [ Privados ]
     #endregion
 }

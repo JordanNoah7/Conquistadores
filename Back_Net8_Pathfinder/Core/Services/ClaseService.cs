@@ -17,11 +17,24 @@ public partial class Service
         }
     }
 
-    public async Task<Clase> GetCurrentClaseAsync(int id)
+    public async Task<Clase> GetCurrentClaseAlumnoAsync(int id)
     {
         try
         {
-            return await _claseRepository.GetCurrentAsync(id);
+            return await _claseRepository.GetCurrentAlumnoAsync(id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<Clase> GetCurrentClaseInstructorAsync(int id)
+    {
+        try
+        {
+            return await _claseRepository.GetCurrentInstructorAsync(id);
         }
         catch (Exception e)
         {

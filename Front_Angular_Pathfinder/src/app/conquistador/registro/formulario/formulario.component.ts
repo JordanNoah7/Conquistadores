@@ -9,7 +9,7 @@ import { Filter } from "angular-feather/icons";
 import { Filters } from "src/app/core/models/filters";
 import { TutoresDialogComponent } from "./tutores-dialog/tutores-dialog.component";
 import Swal from "sweetalert2";
-import { Conquistador, Tutor } from "src/app/core/models";
+import { Clase, Conquistador, Tutor, Unidad } from "src/app/core/models";
 import { Usuario } from "src/app/core/models/Usuario";
 import { FichaMedica } from "src/app/core/models/FichaMedica";
 import { ClaseDialogComponent } from "./clase-dialog/clase-dialog.component";
@@ -31,6 +31,7 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
     enfermedades = "";
     alergiasList = [];
     alergias = "";
+    cargosUnidad = [];
     isSaving = false;
 
     constructor(
@@ -62,15 +63,14 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
     async GetConquistador() {
         await this.conquistadorService.getConquistadorById(this.id).subscribe({
             next: (value: any) => {
-                console.log(value);
                 this.conquistadorForm.patchValue(value);
                 this.conquistadorForm.get('UsuaId').setValue(value.Usuario.UsuaId);
                 this.conquistadorForm.get('UsuaUsuario').setValue(value.Usuario.UsuaUsuario);
                 this.conquistadorForm.get('FimeSangreRH').setValue(value.ConqFichaMedica.FimeSangreRH);
                 this.conquistadorForm.get('FimeObservaciones').setValue(value.ConqFichaMedica.FimeObservaciones);
-                this.alergias = value.ConqFichaMedica.FimeAlergias;
-                this.enfermedades = value.ConqFichaMedica.FimeEnfermedades;
-                this.vacunas = value.ConqFichaMedica.FimeVacunas;
+                this.alergias = value.ConqFichaMedica.FimeAlergias ?? '';
+                this.enfermedades = value.ConqFichaMedica.FimeEnfermedades ?? '';
+                this.vacunas = value.ConqFichaMedica.FimeVacunas ?? '';
                 if (value.ConqTutores.length > 0) {
                     value.ConqTutores.map(t => {
                         if (t.PersSexo === 'M') {
@@ -81,6 +81,15 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
                             this.conquistadorForm.get('ConqMadre').setValue(t.PersNombres + ' ' + t.PersApellidoPaterno + ' ' + t.PersApellidoMaterno);
                         }
                     })
+                }
+                if (value.ConqClase && value.ConqClase.ClasId) {
+                    this.conquistadorForm.get('ConqClaseId').setValue(value.ConqClase.ClasId);
+                    this.conquistadorForm.get('ConqClase').setValue(value.ConqClase.ClasNombre);
+                }
+                if (value.ConqUnidad && value.ConqUnidad.UnidId) {
+                    this.conquistadorForm.get('ConqUnidadId').setValue(value.ConqUnidad.UnidId);
+                    this.conquistadorForm.get('ConqUnidad').setValue(value.ConqUnidad.UnidNombre);
+                    this.conquistadorForm.get('UncoCargoId').setValue(value.ConqUnidad.UncoCargoId);
                 }
             },
             error: (error: any) => {
@@ -114,6 +123,12 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
                 this.alergiasList = value;
             },
         });
+        filtros.Tipo = "UND";
+        await this.tipoService.GetTipos(filtros).subscribe({
+            next: (value: any) => {
+                this.cargosUnidad = value;
+            }
+        })
     }
 
     onSubmit() {
@@ -163,11 +178,10 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
         conquistador.Usuario.UsuaContrasenia = this.conquistadorForm.get('UsuaContrasenia').value;
         conquistador.ConqFichaMedica.ConqId = this.conquistadorForm.get('PersId').value;
         conquistador.ConqFichaMedica.FimeSangreRH = this.conquistadorForm.get('FimeSangreRH').value;
-        conquistador.ConqFichaMedica.FimeObservaciones = this.conquistadorForm.get('FimeObservaciones').value;
+        conquistador.ConqFichaMedica.FimeObservaciones = this.conquistadorForm.get('FimeObservaciones').value ?? '';
         conquistador.ConqFichaMedica.FimeVacunas = this.vacunas;
         conquistador.ConqFichaMedica.FimeEnfermedades = this.enfermedades;
         conquistador.ConqFichaMedica.FimeAlergias = this.alergias;
-        console.log(conquistador);
         if (this.conquistadorForm.get('ConqPadreId').value > 0) {
             t = new Tutor();
             t.PersId = this.conquistadorForm.get('ConqPadreId').value;
@@ -179,6 +193,17 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
             t.PersId = this.conquistadorForm.get('ConqMadreId').value;
             t.PersSexo = 'F';
             conquistador.ConqTutores.push(t);
+        }
+        if (this.conquistadorForm.get('ConqClaseId').value > 0) {
+            let c = new Clase();
+            c.ClasId = this.conquistadorForm.get('ConqClaseId').value;
+            conquistador.ConqClase = c;
+        }
+        if (this.conquistadorForm.get('ConqUnidadId').value > 0) {
+            let u = new Unidad();
+            u.UnidId = this.conquistadorForm.get('ConqUnidadId').value;
+            u.UncoCargoId = this.conquistadorForm.get('UncoCargoId').value;
+            conquistador.ConqUnidad = u;
         }
         this.conquistadorService.saveConquistador(conquistador).subscribe({
             next: (value: any) => {
@@ -239,10 +264,26 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
             ConqClase: [''],
             ConqUnidadId: [0],
             ConqUnidad: [''],
+            UncoCargoId: [0],
         });
     }
 
     SearchPadres(sexo: string) {
+        if (sexo === 'M') {
+            if (this.conquistadorForm.get('ConqPadreId').value) {
+                this.conquistadorForm.get('ConqPadreId').setValue(null);
+                this.conquistadorForm.get('ConqPadre').setValue(null);
+                return;
+            }
+        } else if (sexo === 'F') {
+            if (this.conquistadorForm.get('ConqMadreId').value) {
+                this.conquistadorForm.get('ConqMadreId').setValue(null);
+                this.conquistadorForm.get('ConqMadre').setValue(null);
+                return;
+            }
+        } else {
+            return;
+        }
         const dialogRef = this.dialog.open(TutoresDialogComponent, {
             data: {
                 sexo
@@ -268,29 +309,39 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
     }
 
     SearchClases() {
-        const dialogRef = this.dialog.open(ClaseDialogComponent, {});
-        this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-            if (result === 1) {
-                if (this.claseService.getDialogData()) {
-                    let clase = this.claseService.getDialogData();
-                    this.conquistadorForm.get('ConqClaseId').setValue(clase.ClasId);
-                    this.conquistadorForm.get('ConqClase').setValue(clase.ClasNombre);
+        if (this.conquistadorForm.get('ConqClaseId').value) {
+            this.conquistadorForm.get('ConqClaseId').setValue(null);
+            this.conquistadorForm.get('ConqClase').setValue(null);
+        } else {
+            const dialogRef = this.dialog.open(ClaseDialogComponent, {});
+            this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+                if (result === 1) {
+                    if (this.claseService.getDialogData()) {
+                        let clase = this.claseService.getDialogData();
+                        this.conquistadorForm.get('ConqClaseId').setValue(clase.ClasId);
+                        this.conquistadorForm.get('ConqClase').setValue(clase.ClasNombre);
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     SearchUnidades() {
-        const dialogRef = this.dialog.open(UnidadDialogComponent, {});
-        this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-            if (result === 1) {
-                if (this.unidadService.getDialogData()) {
-                    let unidad = this.unidadService.getDialogData();
-                    this.conquistadorForm.get('ConqUnidadId').setValue(unidad.UnidId);
-                    this.conquistadorForm.get('ConqUnidad').setValue(unidad.UnidNombre);
+        if (this.conquistadorForm.get('ConqUnidadId').value) {
+            this.conquistadorForm.get('ConqUnidadId').setValue(null);
+            this.conquistadorForm.get('ConqUnidad').setValue(null);
+        } else {
+            const dialogRef = this.dialog.open(UnidadDialogComponent, {});
+            this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+                if (result === 1) {
+                    if (this.unidadService.getDialogData()) {
+                        let unidad = this.unidadService.getDialogData();
+                        this.conquistadorForm.get('ConqUnidadId').setValue(unidad.UnidId);
+                        this.conquistadorForm.get('ConqUnidad').setValue(unidad.UnidNombre);
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     GoToRegistro() {
@@ -314,8 +365,6 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
                 }
             })
         }
-        console.log(this.vacunas);
-        // this.vacunas = this.vacunas.replace('||', '');
     }
 
     onChangeEnfermedad(event: any, id: number) {
@@ -335,8 +384,6 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
                 }
             })
         }
-        console.log(this.enfermedades);
-        // this.enfermedades = this.enfermedades.replace('||', '');
     }
 
     onChangeAlergia(event: any, id: number) {
@@ -356,8 +403,6 @@ export class FormularioComponent extends UnsubscribeOnDestroyAdapter implements 
                 }
             })
         }
-        console.log(this.alergias);
-        // this.alergias = this.alergias.replace('||', '');
     }
 
     addVacuna() {

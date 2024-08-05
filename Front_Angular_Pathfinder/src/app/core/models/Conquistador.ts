@@ -1,9 +1,11 @@
+import { Clase } from "./Clase";
 import { Especialidad } from "./Especialidad";
 import { FichaMedica } from "./FichaMedica";
 import { Tutor } from "./Tutor";
+import { Unidad } from "./Unidad";
 import { Usuario } from "./Usuario";
 
-export class Conquistador{
+export class Conquistador {
     PersId: string;
     ConqFechaInvestidura: string;
     ConqEscuela: string;
@@ -30,4 +32,6 @@ export class Conquistador{
     ConqFichaMedica: FichaMedica;
     ConqEspecialidades: Especialidad[];
     ConqTutores: Tutor[];
+    ConqClase: Clase;
+    ConqUnidad: Unidad;
 }

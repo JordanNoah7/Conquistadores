@@ -44,6 +44,6 @@ export class UnidadService extends UnsubscribeOnDestroyAdapter {
     }
 
     setUnidad(data: any) {
-
+        this.dialogData = data;
     }
 }

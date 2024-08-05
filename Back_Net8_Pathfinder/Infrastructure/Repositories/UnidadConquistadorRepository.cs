@@ -18,19 +18,27 @@ public class UnidadConquistadorRepository : IUnidadConquistadorRepository
     {
         try
         {
-            var clco = await _dbContext.UnidadConquistadores.FirstOrDefaultAsync(cc => cc.ConqId == unidadConquistador.ConqId && cc.UnidId == unidadConquistador.UnidId && cc.UncoAno == DateTime.Now.Year);
-            if (clco != null)
+            var unco = await _dbContext.UnidadConquistadores.FirstOrDefaultAsync(cc => cc.ConqId == unidadConquistador.ConqId && cc.UncoAno == DateTime.Now.Year);
+            if (unco != null)
             {
-                _dbContext.UnidadConquistadores.Attach(unidadConquistador);
-                unidadConquistador.AudiFechMod = DateTime.Now;
-                unidadConquistador.AudiHostMod = unidadConquistador.AudiHostCrea;
-                unidadConquistador.AudiUserMod = unidadConquistador.AudiUserCrea;
-                var claseConquistadorEntry = _dbContext.Entry(unidadConquistador);
-                claseConquistadorEntry.Property(t => t.UncoCargoTabla).IsModified = true;
-                claseConquistadorEntry.Property(t => t.UncoCargoId).IsModified = true;
-                claseConquistadorEntry.Property(t => t.AudiUserMod).IsModified = true;
-                claseConquistadorEntry.Property(t => t.AudiFechMod).IsModified = true;
-                claseConquistadorEntry.Property(t => t.AudiHostMod).IsModified = true;
+                _dbContext.UnidadConquistadores
+                    .Where(uc => uc.ConqId == unco.ConqId && uc.UnidId == unco.UnidId && uc.UncoAno == unco.UncoAno)
+                    .ExecuteDelete();
+
+                unco.AudiFechMod = DateTime.Now;
+                unco.AudiHostMod = unidadConquistador.AudiHostCrea;
+                unco.AudiUserMod = unidadConquistador.AudiUserCrea;
+                unco.UnidId = unidadConquistador.UnidId;
+                unco.UncoCargoTabla = unidadConquistador.UncoCargoTabla;
+                unco.UncoCargoId = unidadConquistador.UncoCargoId;
+                //var claseConquistadorEntry = _dbContext.Entry(unco);
+                //claseConquistadorEntry.Property(t => t.UnidId).IsModified = true;
+                //claseConquistadorEntry.Property(t => t.UncoCargoTabla).IsModified = true;
+                //claseConquistadorEntry.Property(t => t.UncoCargoId).IsModified = true;
+                //claseConquistadorEntry.Property(t => t.AudiUserMod).IsModified = true;
+                //claseConquistadorEntry.Property(t => t.AudiFechMod).IsModified = true;
+                //claseConquistadorEntry.Property(t => t.AudiHostMod).IsModified = true;
+                _dbContext.UnidadConquistadores.Add(unco);
             }
             else
             {
@@ -38,6 +46,17 @@ public class UnidadConquistadorRepository : IUnidadConquistadorRepository
             }
             await _dbContext.SaveChangesAsync();
             return true;
+        }
+        catch { throw; }
+    }
+
+    public async Task<int> GetCargoAsync(int ConqId, int UnidId)
+    {
+        try
+        {
+            var cargo = await _dbContext.UnidadConquistadores
+                .FirstAsync(uc => uc.ConqId == ConqId && uc.UnidId == UnidId && uc.UncoAno == DateTime.Now.Year);
+            return cargo.UncoCargoId;
         }
         catch { throw; }
     }

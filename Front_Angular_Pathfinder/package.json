@@ -64,6 +64,7 @@
         "ngx-color-picker": "^12.0.1",
         "ngx-dropzone-wrapper": "^11.0.0",
         "ngx-echarts": "^18.0.0",
+        "ngx-extended-pdf-viewer": "^20.5.2",
         "ngx-gauge": "^5.0.0",
         "ngx-mask": "^14.0.3",
         "ngx-scrollbar": "^14.1.0",

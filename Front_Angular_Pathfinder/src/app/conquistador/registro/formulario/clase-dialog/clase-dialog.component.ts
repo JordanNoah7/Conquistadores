@@ -52,7 +52,6 @@ export class ClaseDialogComponent extends UnsubscribeOnDestroyAdapter implements
     }
 
     public loadData() {
-        debugger;
         this.clasesDataBase = new ClaseService(this.repositoryService);
         this.dataSource = new ClaseModalDataSource(
             this.clasesDataBase,

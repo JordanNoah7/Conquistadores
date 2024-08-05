@@ -253,6 +253,11 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             .HasOne(cc => cc.ClcoConquistador)
             .WithMany(c => c.ConqClases)
             .HasForeignKey(cc => cc.ConqId);
+
+        modelBuilder.Entity<ClaseConquistador>()
+            .HasOne(cc => cc.ClcoTipoCargo)
+            .WithMany(t => t.TipoCargoClase)
+            .HasForeignKey(cc => new { cc.ClcoTipoCargoClaseTabla, cc.ClcoTipoCargoClaseId });
         #endregion
 
         #region [ ConquistadorEspecialidad ]
@@ -357,6 +362,11 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             .HasOne(uc => uc.UncoConquistador)
             .WithMany(c => c.ConqUnidades)
             .HasForeignKey(uc => uc.ConqId);
+
+        modelBuilder.Entity<UnidadConquistador>()
+            .HasOne(uc => uc.UncoTipoCargo)
+            .WithMany(t => t.TipoCargoUnidad)
+            .HasForeignKey(uc => new { uc.UncoCargoTabla, uc.UncoCargoId });
         #endregion
 
         #region [ Usuario ]
