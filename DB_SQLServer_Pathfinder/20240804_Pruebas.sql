@@ -1,83 +1,106 @@
 use DB_SqlServer_Pathfinder
 go
-select * from UnidadConquistadores
-select * from ClaseConquistadores
-select * from Conquistadores
+SELECT * FROM UnidadConquistadores
+SELECT * FROM ClaseConquistadores
+SELECT * FROM Conquistadores
 
-select * from tipos
+SELECT * FROM tipos
 
-select * from UsuarioRoles
-
-
-select clas.*
-from Conquistadores as conq
-join ClaseConquistadores as clco on conq.PersId = clco.ConqId
-join Clases as clas on clco.ClasId = clas.ClasId
-where clco.ClcoTipoCargoClaseId =  2
-and conq.PersId = 1
+SELECT * FROM UsuarioRoles
 
 
-declare @costo int = (select ParaValor from Parametros where ParaNombre = 'CostoInscripcion')
+SELECT CLAS.*
+FROM Conquistadores AS CONQ
+JOIN ClaseConquistadores AS CLCO ON CONQ.PersId = CLCO.ConqId
+JOIN Clases AS CLAS ON CLCO.ClasId = CLAS.ClasId
+WHERE CLCO.ClcoTipoCargoClaseId =  2
+AND CONQ.PersId = 1
 
-select conq.PersDni
-     , conq.PersNombres
-     , conq.PersApellidoPaterno
-     , conq.PersApellidoMaterno
+
+declare @costo int = (SELECT ParaValor FROM Parametros WHERE ParaNombre = 'CostoInscripcion')
+
+SELECT CONQ.PersDni
+     , CONQ.PersNombres
+     , CONQ.PersApellidoPaterno
+     , CONQ.PersApellidoMaterno
      , unid.UnidNombre
      , tipo.TipoDescripcion
-     , clas.ClasNombre
+     , CLAS.ClasNombre
      , CONVERT(BIT, case when @costo - insc.inscmonto = 0
                          then 0
                          else 1
-                    end) as inscDebe
-from Conquistadores as conq
-join Inscripciones as insc on conq.PersId = insc.ConqId
-join ClaseConquistadores as clco on clco.ConqId = conq.PersId
-join Clases as clas on clco.ClasId = clas.ClasId
-join UnidadConquistadores as unco on unco.ConqId = conq.PersId
-join Unidades as unid on unco.UnidId = unid.UnidId
-join Tipos as tipo on unco.UncoCargoTabla = tipo.TipoTabla
-                  and unco.UncoCargoId = tipo.TipoId
-where insc.InscAnio = year(GETDATE())
-and clco.ClcoAnio  = year(GETDATE())
-and unco.UncoAno = year(GETDATE())
+                    end) AS inscDebe
+FROM Conquistadores AS CONQ
+JOIN Inscripciones AS insc ON CONQ.PersId = insc.ConqId
+JOIN ClaseConquistadores AS CLCO ON CLCO.ConqId = CONQ.PersId
+JOIN Clases AS CLAS ON CLCO.ClasId = CLAS.ClasId
+JOIN UnidadConquistadores AS unco ON unco.ConqId = CONQ.PersId
+JOIN Unidades AS unid ON unco.UnidId = unid.UnidId
+JOIN Tipos AS tipo ON unco.UncoCargoTabla = tipo.TipoTabla
+                  AND unco.UncoCargoId = tipo.TipoId
+WHERE insc.InscAnio = year(GETDATE())
+AND CLCO.ClcoAnio  = year(GETDATE())
+AND unco.UncoAno = year(GETDATE())
 
-select * from Inscripciones
+SELECT * FROM Inscripciones
 
-select * from Parametros
+SELECT * FROM Parametros
 
 
 
 --Consulta para reporte
-select conq.PersId
-     , CONCAT(conq.PersNombres, ' ', conq.PersApellidoPaterno, ' ', conq.PersApellidoPaterno) as PersNombres
-     , conq.PersFechaNacimiento
-     , conq.PersNacionalidad
-     , conq.PersDireccionCasa
-     , conq.PersCiudad
-     , conq.PersRegion
-     , conq.PersCelular
-     , conq.PersCorreoPersonal
-     , ISNULL((select CONCAT(tuto.PersNombres, ' ', tuto.PersApellidoPaterno, ' ', tuto.PersApellidoPaterno)
-                 from Tutores as tuto
-                 join TutorConquistadores as tuco on tuto.PersId = tuco.TutoId
-                where tuco.ConqId = conq.PersId
-                  and tuco.TucoTipoParentescoId = 1), '') as Padre
-     , ISNULL((select CONCAT(tuto.PersNombres, ' ', tuto.PersApellidoPaterno, ' ', tuto.PersApellidoPaterno)
-                 from Tutores as tuto
-                 join TutorConquistadores as tuco on tuto.PersId = tuco.TutoId
-                where tuco.ConqId = conq.PersId
-                  and tuco.TucoTipoParentescoId = 2), '') as Madre
-     , conq.ConqEscuela
-     , conq.ConqCurso
-     , conq.ConqTurno
-     , fime.FimeSangreRH
-     , fime.FimeAlergias
-     , fime.FimeEnfermedades
-     , clas.ClasNombre
-from Conquistadores as conq
-join FichasMedicas as fime on conq.PersId = fime.ConqId
-                          and fime.FimeAnio = YEAR(GETDATE())
-join ClaseConquistadores as clco on conq.PersId = clco.ConqId
-                        and clco.ClcoAnio = YEAR(GETDATE())
-join Clases as clas on clco.ClasId = clas.ClasId
+SELECT CONQ.PersId
+     , CONCAT(CONQ.PersNombres, ' ', CONQ.PersApellidoPaterno, ' ', CONQ.PersApellidoPaterno) AS PersNombres
+     , CONQ.PersFechaNacimiento
+     , CONQ.PersNacionalidad
+     , CONQ.PersDireccionCasa
+     , CONQ.PersCiudad
+     , CONQ.PersRegion
+     , CONQ.PersCelular
+     , CONQ.PersCorreoPersonal
+     , ISNULL((SELECT CONCAT(tuto.PersNombres, ' ', tuto.PersApellidoPaterno, ' ', tuto.PersApellidoPaterno)
+                 FROM Tutores AS tuto
+                 JOIN TutorConquistadores AS tuco ON tuto.PersId = tuco.TutoId
+                WHERE tuco.ConqId = CONQ.PersId
+                  AND tuco.TucoTipoParentescoId = 1), '') AS Padre
+     , ISNULL((SELECT CONCAT(tuto.PersNombres, ' ', tuto.PersApellidoPaterno, ' ', tuto.PersApellidoPaterno)
+                 FROM Tutores AS tuto
+                 JOIN TutorConquistadores AS tuco ON tuto.PersId = tuco.TutoId
+                WHERE tuco.ConqId = CONQ.PersId
+                  AND tuco.TucoTipoParentescoId = 2), '') AS Madre
+     , CONQ.ConqEscuela
+     , CONQ.ConqCurso
+     , CONQ.ConqTurno
+     , FIME.FimeSangreRH
+     , FIME.FimeAlergias
+     , FIME.FimeEnfermedades
+     , CLAS.ClasNombre
+FROM Conquistadores AS CONQ
+JOIN FichasMedicas AS FIME ON CONQ.PersId = FIME.ConqId
+                          AND FIME.FimeAnio = YEAR(GETDATE())
+JOIN ClaseConquistadores AS CLCO ON CONQ.PersId = CLCO.ConqId
+                        AND CLCO.ClcoAnio = YEAR(GETDATE())
+JOIN Clases AS CLAS ON CLCO.ClasId = CLAS.ClasId
+WHERE CONQ.PersId = @ConqId
+
+
+
+
+SELECT STRING_AGG(TipoDescripcion, ', ')
+  FROM Tipos AS TIPO
+  JOIN (SELECT *
+          FROM SplitString((SELECT FimeVacunas
+                              FROM FichasMedicas
+                             WHERE ConqId = 1), '|')) AS VACU ON TipoTabla = 'VAC'
+                                                             AND TipoId = VACU.Value 
+
+
+
+
+
+
+
+
+
+
+

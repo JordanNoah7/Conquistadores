@@ -199,4 +199,13 @@ public partial class Service
         }
         catch { throw; }
     }
+
+    public async Task<ConquistadorRegistroDTO> GetRegistroConquistadorAsync(int ConqId)
+    {
+        try
+        {
+            return await _conquistadorRepository.GetRegistroConquistadorAsync(ConqId);
+        }
+        catch { throw; }
+    }
 }

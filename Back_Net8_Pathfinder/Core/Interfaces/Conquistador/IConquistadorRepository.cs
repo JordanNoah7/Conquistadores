@@ -11,4 +11,5 @@ public interface IConquistadorRepository
     Task<ICollection<ConquistadorList_DTO>> GetAllAsync(string sp, DynamicParameters parameters);
     Task<bool> AddAsync(Conquistador conquistador);
     Task<bool> UpdateAsync(Conquistador conquistador);
+    Task<ConquistadorRegistroDTO> GetRegistroConquistadorAsync(int ConqId);
 }

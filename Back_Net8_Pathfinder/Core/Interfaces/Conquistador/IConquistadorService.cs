@@ -12,4 +12,5 @@ public partial interface IService
     Task<bool> AddConquistadorAsync(Conquistador conquistador);
     Task<bool> UpdateConquistadorAsync(Conquistador conquistador);
     Task<bool> SaveConquistadorAsync(ConquistadorDTO conquistadorDTO, string pass, string UsuaUsuario, string AudiHost);
+    Task<ConquistadorRegistroDTO> GetRegistroConquistadorAsync(int ConqId);
 }

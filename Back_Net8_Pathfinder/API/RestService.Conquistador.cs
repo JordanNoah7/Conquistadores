@@ -1,6 +1,7 @@
 ﻿using Core.DTO;
 using Core.Entities;
 using Dapper;
+using FastReport;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
@@ -291,6 +292,42 @@ public partial class RestService
         {
             return BadRequest("Error al validar credenciales");
         }
+    }
+
+    [HttpPost("ObtenerRegistro")]
+    public async Task<IActionResult> ObtenerRegistro([FromHeader] string requestStr, [FromBody] int ConqId)
+    {
+        try
+        {
+            Request request = JsonConvert.DeserializeObject<Request>(requestStr)!;
+            if (!await ValidarSesion(request.UsuaId))
+            {
+                return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
+            }
+            FastReport.Utils.Config.WebMode = true;
+            Report report = new Report();
+            string path = "Reportes/Registro.frx";
+            report.Load(path);
+            ConquistadorRegistroDTO registro = await _service.GetRegistroConquistadorAsync(ConqId);
+            ICollection<ConquistadorRegistroDTO> registros = new List<ConquistadorRegistroDTO>();
+            registros.Add(registro);
+            report.RegisterData(registros, "ConquistadorRef");
+            if (report.Report.Prepare())
+            {
+                FastReport.Export.PdfSimple.PDFSimpleExport pdfExport = new FastReport.Export.PdfSimple.PDFSimpleExport();
+                pdfExport.ShowProgress = false;
+                pdfExport.Subject = "Subject Report";
+                pdfExport.Title = "Report Title";
+                MemoryStream ms = new MemoryStream();
+                report.Report.Export(pdfExport, ms);
+                report.Dispose();
+                pdfExport.Dispose();
+                ms.Position = 0;
+                return File(ms, "application/pdf", "myreport.pdf");
+            }
+            return Ok();
+        }
+        catch { return BadRequest("Error al obtener el registro del conquistador"); }
     }
     #endregion
     #endregion

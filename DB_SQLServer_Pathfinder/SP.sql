@@ -122,3 +122,87 @@ BEGIN
 END
 GO
 -------------------------------------------------------------------------------
+IF OBJECT_ID(N'dbo.SplitString', N'TF') IS NOT NULL
+    BEGIN
+        DROP FUNCTION dbo.SplitString
+    END
+GO
+-------------------------------------------------------------------------------
+-- Autor - Fecha - Descripción : Jordan - 05/08/2024 - Función para separar un string por un caracter predeterminado
+-- Autor - Fecha - Descripción :
+-------------------------------------------------------------------------------
+CREATE FUNCTION dbo.SplitString(
+    @string nvarchar(max)
+  , @separator char(1))
+RETURNS @result TABLE (Value NVARCHAR(max))
+AS
+BEGIN
+    DECLARE @xml xml
+    SET @xml = CAST('<r>' + REPLACE(@string, @separator, '</r><r>') + '</r>' AS XML)
+
+    INSERT INTO @result
+    SELECT r.value('.','nvarchar(max)') AS Value
+    FROM @xml.nodes('//r') AS records(r)
+
+    RETURN
+END
+GO
+-------------------------------------------------------------------------------
+IF OBJECT_ID(N'dbo.ConqSS_GetRegistro', N'P') IS NOT NULL
+    BEGIN
+        DROP PROCEDURE dbo.ConqSS_GetRegistro
+    END
+GO
+-------------------------------------------------------------------------------
+-- Autor - Fecha - Descripción : Jordan - 08/07/2024 - Procedimiento para seleccionar los conquistadores para la LView
+-- Autor - Fecha - Descripción :
+-------------------------------------------------------------------------------
+CREATE PROCEDURE dbo.ConqSS_GetRegistro
+	@ConqId INT
+AS
+BEGIN
+
+    SELECT CONQ.PersId
+         , CONCAT(CONQ.PersNombres, ' ', CONQ.PersApellidoPaterno, ' ', CONQ.PersApellidoPaterno) AS PersNombres
+         , CONQ.PersFechaNacimiento
+         , CONQ.PersNacionalidad
+         , CONQ.PersDireccionCasa
+         , CONQ.PersCiudad
+         , CONQ.PersRegion
+         , CONQ.PersCelular
+         , CONQ.PersCorreoPersonal
+         , ISNULL((SELECT CONCAT(tuto.PersNombres, ' ', tuto.PersApellidoPaterno, ' ', tuto.PersApellidoPaterno)
+                     FROM Tutores AS tuto
+                     JOIN TutorConquistadores AS tuco ON tuto.PersId = tuco.TutoId
+                    WHERE tuco.ConqId = CONQ.PersId
+                      AND tuco.TucoTipoParentescoId = 1), '') AS Padre
+         , ISNULL((SELECT CONCAT(tuto.PersNombres, ' ', tuto.PersApellidoPaterno, ' ', tuto.PersApellidoPaterno)
+                     FROM Tutores AS tuto
+                     JOIN TutorConquistadores AS tuco ON tuto.PersId = tuco.TutoId
+                    WHERE tuco.ConqId = CONQ.PersId
+                      AND tuco.TucoTipoParentescoId = 2), '') AS Madre
+         , CONQ.ConqEscuela
+         , CONQ.ConqCurso
+         , CONQ.ConqTurno
+         , FIME.FimeSangreRH
+         , ISNULL((SELECT STRING_AGG(TipoDescripcion, ', ')
+                     FROM Tipos AS TIPO
+                     JOIN (SELECT *
+                             FROM dbo.SplitString(FIME.FimeAlergias, '|')) AS VACU ON TipoTabla = 'ALE'
+                                                                             AND TipoId = VACU.Value), '') AS FimeAlergias
+         , ISNULL((SELECT STRING_AGG(TipoDescripcion, ', ')
+                     FROM Tipos AS TIPO
+                     JOIN (SELECT *
+                             FROM dbo.SplitString(FIME.FimeEnfermedades, '|')) AS VACU ON TipoTabla = 'ENF'
+                                                                             AND TipoId = VACU.Value), '') AS FimeEnfermedades
+         , CLAS.ClasNombre
+      FROM Conquistadores AS CONQ
+      JOIN FichasMedicas AS FIME ON CONQ.PersId = FIME.ConqId
+                                AND FIME.FimeAnio = YEAR(GETDATE())
+      JOIN ClaseConquistadores AS CLCO ON CONQ.PersId = CLCO.ConqId
+                              AND CLCO.ClcoAnio = YEAR(GETDATE())
+      JOIN Clases AS CLAS ON CLCO.ClasId = CLAS.ClasId
+     WHERE CONQ.PersId = @ConqId
+
+END
+GO

@@ -115,4 +115,25 @@ public class ConquistadorRepository : IConquistadorRepository
         }
         catch { return false; }
     }
+
+    public async Task<ConquistadorRegistroDTO> GetRegistroConquistadorAsync(int ConqId)
+    {
+        try
+        {
+            using (SqlConnection cnx = new SqlConnection(CadCon))
+            {
+                try
+                {
+                    DynamicParameters parameters = new DynamicParameters();
+                    parameters.Add("ConqId", ConqId, DbType.Int32, ParameterDirection.Input);
+                    await cnx.OpenAsync();
+                    ConquistadorRegistroDTO registro = await cnx.QueryFirstAsync<ConquistadorRegistroDTO>("ConqSS_GetRegistro", parameters, commandType: CommandType.StoredProcedure);
+                    return registro;
+                }
+                catch { throw; }
+                finally { await cnx.CloseAsync(); }
+            }
+        }
+        catch { throw; }
+    }
 }
