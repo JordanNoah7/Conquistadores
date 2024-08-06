@@ -46,7 +46,6 @@ export class InscripcionService extends UnsubscribeOnDestroyAdapter {
     add(data: any): void {
         this.repositoryService.SaveInscripcion(data).subscribe({
             next: (value: any) => {
-                console.log(value)
                 Swal.fire({
                     icon: "success",
                     title: value,

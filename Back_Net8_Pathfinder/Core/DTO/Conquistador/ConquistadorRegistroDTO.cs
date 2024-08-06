@@ -1,5 +1,5 @@
 ﻿using Org.BouncyCastle.Crypto.Macs;
-using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
+using System.ComponentModel.DataAnnotations;
 
 namespace Core.DTO;
 
@@ -7,6 +7,7 @@ public class ConquistadorRegistroDTO
 {
     public int PersId { get; set; }
     public string PersNombres { get; set; }
+    [DisplayFormat(DataFormatString = "dd/MM/yyyy")]
     public DateTime PersFechaNacimiento { get; set; }
     public string PersNacionalidad { get; set; }
     public string PersDireccionCasa { get; set; }
@@ -23,4 +24,5 @@ public class ConquistadorRegistroDTO
     public string FimeAlergias { get; set; }
     public string FimeEnfermedades { get; set; }
     public string ClasNombre { get; set; }
+    public string ConqEspecialidades { get; set; }
 }

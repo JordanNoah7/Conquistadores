@@ -8,6 +8,10 @@ public class UsuarioDTO
     public string? UsuaUsuario { get; set; }
     public string? UsuaContrasenia { get; set; }
     public bool? UsuaCambiarContrasenia { get; set; }
+    public DateTime? AudiFechCrea { get; set; }
+    public string? AudiUserCrea { get; set; }
+    public string? PersNombres { get; set; }
+
     public ICollection<RolDTO>? UsuaRoles { get; set; }
 
     public void CopyTo(ref Usuario usuario)

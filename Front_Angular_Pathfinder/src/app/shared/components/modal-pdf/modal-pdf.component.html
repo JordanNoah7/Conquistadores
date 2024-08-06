@@ -1,0 +1,21 @@
+<div class="addContainer wider-modal">
+    <div class="modalHeader">
+        <div class="editRowModal">
+            <div class="modalHeader clearfix">
+                <div class="modal-about">
+                    <div class="font-weight-bold p-t-5 msl-3 font-17">{{title}}</div>
+                </div>
+            </div>
+        </div>
+        <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content>
+        <ngx-extended-pdf-viewer style="width: 80% !important;" *ngIf="PDFbase64" [base64Src]="PDFbase64" [showSidebarButton]="false" [showFindButton]="false" [showPagingButtons]="false"
+            [showPresentationModeButton]="false" [showOpenFileButton]="false" [showSecondaryToolbarButton]="false" [showHandToolButton]="false" [showScrollingButton]="false" [showSpreadButton]="false"
+            [showPropertiesButton]="false" [language]="'es-ES'" [zoom]="70" [height]="'auto'" [showPrintButton]="true" [showDownloadButton]="true" [showRotateButton]="true"
+            [showZoomButtons]="true" [showDrawEditor]="false" [showTextEditor]="false" [showStampEditor]="false" [showHighlightEditor]="false">
+        </ngx-extended-pdf-viewer>
+    </div>
+</div>

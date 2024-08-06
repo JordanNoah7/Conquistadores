@@ -29,4 +29,13 @@ public partial class Service
             throw;
         }
     }
+
+    public async Task<ICollection<Usuario>> GetUsersByRol(int RoleId)
+    {
+        try
+        {
+            return await _rolUsuarioRepository.GetUsersByRol(RoleId);
+        }
+        catch { throw; }
+    }
 }

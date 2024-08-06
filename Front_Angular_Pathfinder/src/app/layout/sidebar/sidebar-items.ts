@@ -36,8 +36,8 @@ export const ROUTES: RouteInfo[] = [
                 submenu: [],
             },
             {
-                path: "/conquistador/roles",
-                title: "Asignar roles",
+                path: "/conquistador/inscribir",
+                title: "Inscripciones",
                 iconType: "",
                 icon: "",
                 class: "ml-menu",
@@ -48,8 +48,8 @@ export const ROUTES: RouteInfo[] = [
                 submenu: [],
             },
             {
-                path: "/conquistador/inscribir",
-                title: "Inscripciones",
+                path: "/conquistador/asignarRol",
+                title: "Asignar roles",
                 iconType: "",
                 icon: "",
                 class: "ml-menu",

@@ -43,7 +43,6 @@ export class HeaderComponent
         let session = this.sessionService.getCurrentSession();
         this.logo = '/assets/images/logotipo.png';
         this.nombreUsuario = session.token.UsuaNombre;
-        this.nombreEmpresa = 'Club de Conquistadores "Las Águilas"';
     }
 
     ngAfterViewInit() {

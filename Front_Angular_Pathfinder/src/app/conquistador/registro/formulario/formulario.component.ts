@@ -1,11 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { ActivatedRoute, Params, Route, Router } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { TipoDialogComponent } from "./tipo-dialog/tipo-dialog.component";
 import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
 import { ClaseService, ConquistadorService, TiposService, TutorService, UnidadService } from "src/app/core/repositories";
-import { Filter } from "angular-feather/icons";
 import { Filters } from "src/app/core/models/filters";
 import { TutoresDialogComponent } from "./tutores-dialog/tutores-dialog.component";
 import Swal from "sweetalert2";

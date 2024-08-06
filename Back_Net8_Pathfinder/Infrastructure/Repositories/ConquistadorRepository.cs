@@ -136,4 +136,25 @@ public class ConquistadorRepository : IConquistadorRepository
         }
         catch { throw; }
     }
+
+    public async Task<ICollection<ConquistadorFichaMedicaDTO>> GetFichaMedicaConquistadorAsync(int ConqId)
+    {
+        try
+        {
+            using (SqlConnection cnx = new SqlConnection(CadCon))
+            {
+                try
+                {
+                    DynamicParameters parameters = new DynamicParameters();
+                    parameters.Add("ConqId", ConqId, DbType.Int32, ParameterDirection.Input);
+                    await cnx.OpenAsync();
+                    ICollection<ConquistadorFichaMedicaDTO> registro = (await cnx.QueryAsync<ConquistadorFichaMedicaDTO>("ConqSS_GetFichaMedica", parameters, commandType: CommandType.StoredProcedure)).ToList();
+                    return registro;
+                }
+                catch { throw; }
+                finally { await cnx.CloseAsync(); }
+            }
+        }
+        catch { throw; }
+    }
 }

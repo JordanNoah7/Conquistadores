@@ -10,6 +10,8 @@ public class Especialidad
     [Column(TypeName = "int")]
     public int EspeId { get; set; }
     [Column(TypeName = "nvarchar(30)")]
+    public string EspeCodigo { get; set; }
+    [Column(TypeName = "nvarchar(30)")]
     public string EspeNombre { get; set; }
     [Column(TypeName = "nvarchar(250)")]
     public string EspeDescripcion { get; set; }

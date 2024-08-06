@@ -31,6 +31,7 @@ import { ClaseDialogComponent } from "./registro/formulario/clase-dialog/clase-d
 import { UnidadDialogComponent } from "./registro/formulario/unidad-dialog/unidad-dialog.component";
 import { InscripcionComponent } from "./inscripcion/inscripcion.component";
 import { InscripcionDialogComponent } from "./inscripcion/inscripcion-dialog/inscripcion-dialog.component";
+import { AsignarRolComponent } from "./asignar-rol/asignar-rol.component";
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import { InscripcionDialogComponent } from "./inscripcion/inscripcion-dialog/ins
         ClaseDialogComponent,
         UnidadDialogComponent,
         InscripcionComponent,
-        InscripcionDialogComponent
+        InscripcionDialogComponent,
+        AsignarRolComponent,
     ],
     imports: [
         CommonModule,

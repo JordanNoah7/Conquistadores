@@ -16,6 +16,7 @@ import { InscripcionService } from "src/app/core/repositories";
 import { Filters, InscripcionList } from "src/app/core/models";
 import { InscripcionListDataSource } from "src/app/core/dataSource/InscripcionList.datasource";
 import { InscripcionDialogComponent } from "./inscripcion-dialog/inscripcion-dialog.component";
+import { ModalPdfComponent } from "src/app/shared/components/modal-pdf/modal-pdf.component";
 @Component({
     selector: "app-inscripcion",
     templateUrl: "./inscripcion.component.html",
@@ -93,10 +94,40 @@ export class InscripcionComponent extends UnsubscribeOnDestroyAdapter implements
     }
 
     showInscripcion(row) {
+        this.repositoryService.GetRegistro(row.PersId).subscribe({
+            next: (value: any) => {
+                const dialogRef = this.dialog.open(ModalPdfComponent, {
+                    data: {
+                        base64Pdf: value,
+                        title: 'Ficha de registro',
+                        fileName: 'Ficha de registro - ' + row.PersNombres + ' ' + row.PersApellidoPaterno + ' ' + row.PersApellidoMaterno
+                    }
+                })
+            },
+            error: (error: any) => {
+                this.showNotification('red', error, 500, 'center');
+            }
+        });
+    }
+
+    showFichaMedica(row) {
+        this.repositoryService.GetFichaMedica(row.PersId).subscribe({
+            next: (value: any) => {
+                const dialogRef = this.dialog.open(ModalPdfComponent, {
+                    data: {
+                        base64Pdf: value,
+                        title: 'Ficha de medica',
+                        fileName: 'Ficha médica - ' + row.PersNombres + ' ' + row.PersApellidoPaterno + ' ' + row.PersApellidoMaterno
+                    }
+                })
+            },
+            error: (error: any) => {
+                this.showNotification('red', error, 500, 'center');
+            }
+        });
     }
 
     payFee(row) {
-        console.log(row)
         const dialogRef = this.dialog.open(InscripcionDialogComponent, {
             data: {
                 ConqId: row.PersId,

@@ -6,34 +6,58 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
+                    <div class="header">
+                        <div class="row">
+                            <h2>
+                                <strong>Asignar roles</strong>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <form class="m-4" [formGroup]="roleForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-2" appearance="outline">
+                                        <mat-label>G&eacute;nero</mat-label>
+                                        <mat-select formControlName="RoleId" required>
+                                            <mat-option *ngFor="let rol of rolesList" [value]="rol.RoleId">
+                                                {{rol.RoleNombre}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="roleForm.get('RoleId').hasError('required')">
+                                            Debe seleccionar un rol.
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
+                                    <button class="btn btn-primary btn-space" [disabled]="!roleForm.valid" [class.auth-spinner]="isSearching" style="margin-top: 8px;">
+                                        <app-feather-icons [icon]="'search'" class="tbl-fav-pdf"></app-feather-icons> Buscar
+                                    </button>
+                                    <button *ngIf="id" class="btn btn-success btn-space" type="button" (click)="addNew()" [class.auth-spinner]="isSaving" style="margin-top: 8px;">
+                                        <app-feather-icons [icon]="'plus'" class="tbl-fav-pdf"></app-feather-icons> Agregar
+                                    </button>
+                                    <button *ngIf="id" class="btn btn-success btn-danger" type="button" (click)="refresh()" style="margin-top: 8px;">
+                                        <app-feather-icons [icon]="'rotate-ccw'" class="tbl-fav-pdf"></app-feather-icons> Deshacer
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="id">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
                     <div class="body">
                         <div class="table-responsive">
                             <div class="materialTableHeader">
                                 <div class="row">
                                     <div class="col-8">
                                         <ul class="header-buttons-left ms-0">
-                                            <li class="dropdown">
-                                                <h2>
-                                                    <strong>Inscripciones</strong>
-                                                </h2>
-                                            </li>
                                             <li class="dropdown m-l-20">
                                                 <label for="search-input"><i class="material-icons search-icon">search</i></label>
                                                 <input placeholder="Buscar" type="text" #filter class="browser-default search-field" aria-label="Search box">
-                                            </li>
-                                            <li>
-                                                <div class="m-l-10" matTooltip="AGREGAR">
-                                                    <button mat-mini-fab color="primary" (click)="addNew()">
-                                                        <mat-icon class="col-white">add</mat-icon>
-                                                    </button>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="m-l-10" matTooltip="ACTUALIZAR">
-                                                    <button mat-mini-fab color="primary" (click)="refresh()">
-                                                        <mat-icon class="col-white">refresh</mat-icon>
-                                                    </button>
-                                                </div>
                                             </li>
                                         </ul>
                                     </div>
@@ -77,13 +101,13 @@
                                 <ng-container matColumnDef="actions">
                                     <mat-header-cell class="pr-0" *matHeaderCellDef>Acciones</mat-header-cell>
                                     <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
-                                        <button *ngIf="row.InscCompleto" mat-icon-button (click)="$event.stopPropagation()" (click)="showInscripcion(row)" class="tbl-action-btn">
+                                        <button *ngIf="row.InscCompleto" mat-icon-button (click)="$event.stopPropagation()" class="tbl-action-btn">
                                             <app-feather-icons [icon]="'file'" class="tbl-fav-pdf"></app-feather-icons>
                                         </button>
-                                        <button *ngIf="!row.InscCompleto" mat-icon-button (click)="$event.stopPropagation()" (click)="payFee(row)" class="tbl-action-btn">
+                                        <button *ngIf="!row.InscCompleto" mat-icon-button (click)="$event.stopPropagation()" class="tbl-action-btn">
                                             <app-feather-icons [icon]="'dollar-sign'" class="tbl-fav-money"></app-feather-icons>
                                         </button>
-                                        <button *ngIf="row.InscCompleto" mat-icon-button (click)="$event.stopPropagation()" (click)="showFichaMedica(row)" class="tbl-action-btn">
+                                        <button *ngIf="row.InscCompleto" mat-icon-button (click)="$event.stopPropagation()" class="tbl-action-btn">
                                             <app-feather-icons [icon]="'activity'" class="tbl-fav-health"></app-feather-icons>
                                         </button>
                                     </mat-cell>
@@ -91,11 +115,11 @@
                                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                             </mat-table>
-                            <div *ngIf="inscripcionesDataBase.isTblLoading" class="tbl-spinner">
+                            <div *ngIf="asignarRolDataBase.isTblLoading" class="tbl-spinner">
                                 <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
                                 </mat-progress-spinner>
                             </div>
-                            <div *ngIf="!inscripcionesDataBase.isTblLoading" class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+                            <div *ngIf="!asignarRolDataBase.isTblLoading" class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
                                 A&uacute;n no hay conquistadores inscritos en el a&ntilde;o en curso
                             </div>
                             <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">

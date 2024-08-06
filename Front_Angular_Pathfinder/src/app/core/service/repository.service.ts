@@ -63,6 +63,28 @@ export class RepositoryService {
         );
     }
 
+    public GetRegistro(data: any): Observable<any> {
+        return this.requestService.connectBackendPost("ObtenerRegistro", data).pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        );
+    }
+
+    public GetFichaMedica(data: any): Observable<any> {
+        return this.requestService.connectBackendPost("ObtenerFichaMedica", data).pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        );
+    }
+
     // *Categorias
     public GetCategorias(): Observable<any> {
         return this.requestService.connectBackendGet("ObtenerCategorias").pipe(
@@ -223,6 +245,29 @@ export class RepositoryService {
     // *Parametros
     public GetValorParametro(data: any): Observable<any> {
         return this.requestService.connectBackendPost("ObtenerParametro", data).pipe(
+            map(response => {
+                if (!!response) {
+                    return response.ParaValor;
+                }
+                return null;
+            })
+        )
+    }
+
+    // *Roles
+    public GetRoles(): Observable<any> {
+        return this.requestService.connectBackendGet("ObtenerRoles").pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
+                }
+                return null;
+            })
+        )
+    }
+
+    public GetUsuariosByRol(data: any): Observable<any> {
+        return this.requestService.connectBackendPost("ObtenerUsuariosPorRol", data).pipe(
             map(response => {
                 if (!!response) {
                     return response.ParaValor;

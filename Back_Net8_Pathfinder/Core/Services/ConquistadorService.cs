@@ -208,4 +208,13 @@ public partial class Service
         }
         catch { throw; }
     }
+
+    public async Task<ICollection<ConquistadorFichaMedicaDTO>> GetFichaMedicaConquistadorAsync(int ConqId)
+    {
+        try
+        {
+            return await _conquistadorRepository.GetFichaMedicaConquistadorAsync(ConqId);
+        }
+        catch { throw; }
+    }
 }

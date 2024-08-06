@@ -684,6 +684,10 @@ namespace Infrastructure.Migrations
                     b.Property<string>("AudiUserMod")
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("EspeCodigo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
                     b.Property<string>("EspeDescripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(250)");

@@ -2,7 +2,6 @@
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -60,7 +59,7 @@ public class RestServiceAuth : ControllerBase
             {
                 RolDTO rolDto = new RolDTO();
                 var rol = rolUsuario.UsroRol;
-                rolDto.CopyFrom(ref rol);
+                rolDto.CopyFrom(rol);
                 usuarioDto.UsuaRoles.Add(rolDto);
             }
 

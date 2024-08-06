@@ -12,4 +12,5 @@ public interface IConquistadorRepository
     Task<bool> AddAsync(Conquistador conquistador);
     Task<bool> UpdateAsync(Conquistador conquistador);
     Task<ConquistadorRegistroDTO> GetRegistroConquistadorAsync(int ConqId);
+    Task<ICollection<ConquistadorFichaMedicaDTO>> GetFichaMedicaConquistadorAsync(int ConqId);
 }

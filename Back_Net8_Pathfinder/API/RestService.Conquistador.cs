@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Data;
+using FastReport.Export.PdfSimple;
 
 namespace API;
 
@@ -314,7 +315,7 @@ public partial class RestService
             report.RegisterData(registros, "ConquistadorRef");
             if (report.Report.Prepare())
             {
-                FastReport.Export.PdfSimple.PDFSimpleExport pdfExport = new FastReport.Export.PdfSimple.PDFSimpleExport();
+                PDFSimpleExport pdfExport = new PDFSimpleExport();
                 pdfExport.ShowProgress = false;
                 pdfExport.Subject = "Subject Report";
                 pdfExport.Title = "Report Title";
@@ -323,9 +324,47 @@ public partial class RestService
                 report.Dispose();
                 pdfExport.Dispose();
                 ms.Position = 0;
-                return File(ms, "application/pdf", "myreport.pdf");
+                byte[] pdfBytes = ms.ToArray();
+                string base64Pdf = Convert.ToBase64String(pdfBytes);
+                return Ok(base64Pdf);
             }
-            return Ok();
+            return NotFound("No se encontro el registro del conquistador.");
+        }
+        catch { return BadRequest("Error al obtener el registro del conquistador."); }
+    }
+
+    [HttpPost("ObtenerFichaMedica")]
+    public async Task<IActionResult> ObtenerFichaMedica([FromHeader] string requestStr, [FromBody] int ConqId)
+    {
+        try
+        {
+            Request request = JsonConvert.DeserializeObject<Request>(requestStr)!;
+            if (!await ValidarSesion(request.UsuaId))
+            {
+                return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
+            }
+            FastReport.Utils.Config.WebMode = true;
+            Report report = new Report();
+            string path = "Reportes/FichaMedica.frx";
+            report.Load(path);
+            ICollection<ConquistadorFichaMedicaDTO> fichaMedica = await _service.GetFichaMedicaConquistadorAsync(ConqId);
+            report.RegisterData(fichaMedica, "ConquistadorRef");
+            if (report.Report.Prepare())
+            {
+                PDFSimpleExport pdfExport = new PDFSimpleExport();
+                pdfExport.ShowProgress = false;
+                pdfExport.Subject = "Subject Report";
+                pdfExport.Title = "Report Title";
+                MemoryStream ms = new MemoryStream();
+                report.Report.Export(pdfExport, ms);
+                report.Dispose();
+                pdfExport.Dispose();
+                ms.Position = 0;
+                byte[] pdfBytes = ms.ToArray();
+                string base64Pdf = Convert.ToBase64String(pdfBytes);
+                return Ok(base64Pdf);
+            }
+            return NotFound("No se encontro el la ficha médica del conquistador.");
         }
         catch { return BadRequest("Error al obtener el registro del conquistador"); }
     }

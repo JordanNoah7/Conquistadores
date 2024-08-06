@@ -6,4 +6,5 @@ public interface IUsuarioRolRepository
 {
     Task<ICollection<UsuarioRol>> GetByUserAsync(int id);
     Task<bool> AddAsync(UsuarioRol usuarioRol);
+    Task<ICollection<Usuario>> GetUsersByRol(int RoleId);
 }

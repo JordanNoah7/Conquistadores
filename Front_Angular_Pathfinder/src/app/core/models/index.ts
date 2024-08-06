@@ -11,6 +11,7 @@ export * from './InscripcionList';
 export * from './ItemRequest';
 export * from './Request';
 export * from './RequestValidateUser';
+export * from './Rol';
 export * from './Tipo';
 export * from './Tutor';
 export * from './Unidad';

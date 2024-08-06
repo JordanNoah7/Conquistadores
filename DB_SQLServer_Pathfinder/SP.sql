@@ -163,7 +163,7 @@ AS
 BEGIN
 
     SELECT CONQ.PersId
-         , CONCAT(CONQ.PersNombres, ' ', CONQ.PersApellidoPaterno, ' ', CONQ.PersApellidoPaterno) AS PersNombres
+         , CONCAT(CONQ.PersNombres, ' ', CONQ.PersApellidoPaterno, ' ', CONQ.PersApellidoMaterno) AS PersNombres
          , CONQ.PersFechaNacimiento
          , CONQ.PersNacionalidad
          , CONQ.PersDireccionCasa
@@ -171,12 +171,12 @@ BEGIN
          , CONQ.PersRegion
          , CONQ.PersCelular
          , CONQ.PersCorreoPersonal
-         , ISNULL((SELECT CONCAT(tuto.PersNombres, ' ', tuto.PersApellidoPaterno, ' ', tuto.PersApellidoPaterno)
+         , ISNULL((SELECT CONCAT(tuto.PersNombres, ' ', tuto.PersApellidoPaterno, ' ', tuto.PersApellidoMaterno)
                      FROM Tutores AS tuto
                      JOIN TutorConquistadores AS tuco ON tuto.PersId = tuco.TutoId
                     WHERE tuco.ConqId = CONQ.PersId
                       AND tuco.TucoTipoParentescoId = 1), '') AS Padre
-         , ISNULL((SELECT CONCAT(tuto.PersNombres, ' ', tuto.PersApellidoPaterno, ' ', tuto.PersApellidoPaterno)
+         , ISNULL((SELECT CONCAT(tuto.PersNombres, ' ', tuto.PersApellidoPaterno, ' ', tuto.PersApellidoMaterno)
                      FROM Tutores AS tuto
                      JOIN TutorConquistadores AS tuco ON tuto.PersId = tuco.TutoId
                     WHERE tuco.ConqId = CONQ.PersId
@@ -196,12 +196,64 @@ BEGIN
                              FROM dbo.SplitString(FIME.FimeEnfermedades, '|')) AS VACU ON TipoTabla = 'ENF'
                                                                              AND TipoId = VACU.Value), '') AS FimeEnfermedades
          , CLAS.ClasNombre
+         , ISNULL((SELECT STRING_AGG(ESPE.EspeCodigo, ', ')
+                     FROM ConquistadorEspecialidades AS COES
+                     JOIN Especialidades AS ESPE ON COES.EspeId = ESPE.EspeId
+                     JOIN Categorias AS CATE ON ESPE.CateId = CATE.CateId
+                    WHERE COES.ConqId = CONQ.PersId), '') AS ConqEspecialidades
       FROM Conquistadores AS CONQ
       JOIN FichasMedicas AS FIME ON CONQ.PersId = FIME.ConqId
                                 AND FIME.FimeAnio = YEAR(GETDATE())
       JOIN ClaseConquistadores AS CLCO ON CONQ.PersId = CLCO.ConqId
                               AND CLCO.ClcoAnio = YEAR(GETDATE())
       JOIN Clases AS CLAS ON CLCO.ClasId = CLAS.ClasId
+     WHERE CONQ.PersId = @ConqId
+
+END
+GO
+-------------------------------------------------------------------------------
+IF OBJECT_ID(N'dbo.ConqSS_GetFichaMedica', N'P') IS NOT NULL
+    BEGIN
+        DROP PROCEDURE dbo.ConqSS_GetFichaMedica
+    END
+GO
+-------------------------------------------------------------------------------
+-- Autor - Fecha - Descripción : Jordan - 08/07/2024 - Procedimiento para seleccionar la ficha medica del conquistador para el reporte
+-- Autor - Fecha - Descripción :
+-------------------------------------------------------------------------------
+CREATE PROCEDURE dbo.ConqSS_GetFichaMedica
+	@ConqId INT
+AS
+BEGIN
+
+    SELECT CONQ.PersId
+         , CONCAT(CONQ.PersNombres, ' ', CONQ.PersApellidoPaterno, ' ', CONQ.PersApellidoMaterno) AS PersNombres
+         , FIME.FimeSangreRH
+         , CONCAT(TUTO.PersNombres, ' ', TUTO.PersApellidoPaterno, ' ', TUTO.PersApellidoMaterno) AS TutoNombre
+         , TIPO.TipoDescripcion AS TucoParentesco
+         , TUTO.PersCelular
+         , ISNULL((SELECT STRING_AGG(TipoDescripcion, ', ')
+                     FROM Tipos AS TIPO
+                     JOIN (SELECT *
+                             FROM dbo.SplitString(FIME.FimeAlergias, '|')) AS VACU ON TipoTabla = 'ALE'
+                                                                                  AND TipoId = VACU.Value), '') AS FimeAlergias
+         , ISNULL((SELECT STRING_AGG(TipoDescripcion, ', ')
+                     FROM Tipos AS TIPO
+                     JOIN (SELECT *
+                             FROM dbo.SplitString(FIME.FimeEnfermedades, '|')) AS VACU ON TipoTabla = 'ENF'
+                                                                                      AND TipoId = VACU.Value), '') AS FimeEnfermedades
+         , ISNULL((SELECT STRING_AGG(TipoDescripcion, ', ')
+                     FROM Tipos AS TIPO
+                     JOIN (SELECT *
+                             FROM dbo.SplitString(FIME.FimeVacunas, '|')) AS VACU ON TipoTabla = 'VAC'
+                                                                                 AND TipoId = VACU.Value), '') AS FimeVacunas
+      FROM Conquistadores AS CONQ
+      JOIN FichasMedicas AS FIME ON CONQ.PersId = FIME.ConqId
+                                AND FIME.FimeAnio = YEAR(GETDATE())
+ LEFT JOIN TutorConquistadores AS TUCO ON CONQ.PersId = TUCO.ConqId
+ LEFT JOIN Tutores AS TUTO ON TUCO.TutoId = TUTO.PersId
+ LEFT JOIN Tipos AS TIPO ON TUCO.TucoTipoParentescoTabla = TIPO.TipoTabla
+                        AND TUCO.TucoTipoParentescoId = TIPO.TipoId
      WHERE CONQ.PersId = @ConqId
 
 END
