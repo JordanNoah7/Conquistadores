@@ -1,17 +1,27 @@
-﻿using Core.Entities;
+﻿using Core.DTO;
+using Core.Entities;
 using Core.Interfaces;
+using Dapper;
 using Infrastructure.Data;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.Configuration;
+using System.Data;
 
 namespace Infrastructure.Repositories;
 
 public class UsuarioRolRepository : IUsuarioRolRepository
 {
     private readonly AppDbContext _dbContext;
+    private readonly IConfiguration _configuration;
+    private readonly string CadCon;
 
-    public UsuarioRolRepository(AppDbContext dbContext)
+    public UsuarioRolRepository(AppDbContext dbContext, IConfiguration configuration)
     {
         _dbContext = dbContext;
+        _configuration = configuration;
+        CadCon = _configuration.GetConnectionString("ConexionSQL")!;
     }
 
     public async Task<ICollection<UsuarioRol>> GetByUserAsync(int id)
@@ -52,23 +62,22 @@ public class UsuarioRolRepository : IUsuarioRolRepository
         }
     }
 
-    public async Task<ICollection<Usuario>> GetUsersByRol(int RoleId)
+    public async Task<ICollection<UsuarioRolDTO>> GetUsersByRol(int RoleId)
     {
         try
         {
-            return await _dbContext.Roles
-                .Where(r => r.RoleId == 6)
-                .Join(_dbContext.UsuarioRoles, r => r.RoleId, ur => ur.UsroRol.RoleId, (r, ur) => new { Role = r, UsuarioRol = ur })
-                .Join(_dbContext.Usuarios, ur => ur.UsuarioRol.UsuaId, u => u.UsuaId, (ur, u) => new { UsuarioRole = ur, Usuario = u })
-                .Join(_dbContext.Conquistadores, u => u.Usuario.UsuaId, c => c.UsuaId, (u, c) => new Usuario
+            using (SqlConnection cnx = new SqlConnection(CadCon))
+            {
+                try
                 {
-                    UsuaId = u.Usuario.UsuaId,
-                    UsuaContrasenia = c.PersNombres,
-                    UsuaUsuario = u.Usuario.UsuaUsuario,
-                    AudiFechCrea = u.UsuarioRole.UsuarioRol.AudiFechCrea,
-                    AudiUserCrea = u.UsuarioRole.UsuarioRol.AudiUserCrea
-                })
-                .ToListAsync();
+                    DynamicParameters parameters = new DynamicParameters();
+                    parameters.Add("@RoleId", RoleId, DbType.Int32, ParameterDirection.Input);
+                    await cnx.OpenAsync();
+                    return (await cnx.QueryAsync<UsuarioRolDTO>("UsroSS_AllByRol", parameters, commandType: CommandType.StoredProcedure)).ToList();
+                }
+                catch { throw; }
+                finally { await cnx.CloseAsync(); }
+            }
         }
         catch { throw; }
     }

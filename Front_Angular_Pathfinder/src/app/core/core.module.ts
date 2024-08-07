@@ -17,6 +17,7 @@ import { RepositoryService } from "./service/repository.service";
 import { ConquistadorService } from "./repositories/conquistador.service";
 import { ClaseService, InscripcionService, TiposService, TutorService, UnidadService } from "./repositories";
 import { Unidad } from "./models";
+import { UsuarioService } from "./repositories/usuario.service";
 
 @NgModule({
     declarations: [],
@@ -41,6 +42,7 @@ import { Unidad } from "./models";
         ClaseService,
         UnidadService,
         InscripcionService,
+        UsuarioService
     ],
 })
 export class CoreModule {

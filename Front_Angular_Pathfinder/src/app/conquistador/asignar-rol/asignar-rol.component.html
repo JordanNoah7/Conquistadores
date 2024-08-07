@@ -18,8 +18,8 @@
                             <div class="row">
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
                                     <mat-form-field class="example-full-width mb-2" appearance="outline">
-                                        <mat-label>G&eacute;nero</mat-label>
-                                        <mat-select formControlName="RoleId" required>
+                                        <mat-label>Rol</mat-label>
+                                        <mat-select formControlName="RoleId" required [disabled]="!!id">
                                             <mat-option *ngFor="let rol of rolesList" [value]="rol.RoleId">
                                                 {{rol.RoleNombre}}
                                             </mat-option>
@@ -30,14 +30,17 @@
                                     </mat-form-field>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-2">
-                                    <button class="btn btn-primary btn-space" [disabled]="!roleForm.valid" [class.auth-spinner]="isSearching" style="margin-top: 8px;">
+                                    <button *ngIf="!id" class="btn btn-primary btn-space" [disabled]="!roleForm.valid" [class.auth-spinner]="isSearching" style="margin-top: 8px;">
                                         <app-feather-icons [icon]="'search'" class="tbl-fav-pdf"></app-feather-icons> Buscar
                                     </button>
-                                    <button *ngIf="id" class="btn btn-success btn-space" type="button" (click)="addNew()" [class.auth-spinner]="isSaving" style="margin-top: 8px;">
+                                    <button *ngIf="id" class="btn btn-secondary btn-space" type="button" (click)="addNew()" [class.auth-spinner]="isSaving" style="margin-top: 8px;">
                                         <app-feather-icons [icon]="'plus'" class="tbl-fav-pdf"></app-feather-icons> Agregar
                                     </button>
-                                    <button *ngIf="id" class="btn btn-success btn-danger" type="button" (click)="refresh()" style="margin-top: 8px;">
+                                    <button *ngIf="id" class="btn btn-danger btn-space" type="button" (click)="refresh()" style="margin-top: 8px;">
                                         <app-feather-icons [icon]="'rotate-ccw'" class="tbl-fav-pdf"></app-feather-icons> Deshacer
+                                    </button>
+                                    <button *ngIf="id" class="btn btn-success btn-space" type="button" (click)="saveAll()" style="margin-top: 8px;">
+                                        <app-feather-icons [icon]="'save'" class="tbl-fav-pdf"></app-feather-icons> Guardar
                                     </button>
                                 </div>
                             </div>
@@ -46,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <div class="row" *ngIf="id">
+        <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="body">
@@ -78,37 +81,30 @@
                                 </div>
                             </div>
                             <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell" #exporter="matTableExporter">
-                                <ng-container matColumnDef="dni">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>DNI</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.PersDni}}</mat-cell>
+                                <ng-container matColumnDef="nombres">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Conquistador</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.PersNombres}}</mat-cell>
                                 </ng-container>
-                                <ng-container matColumnDef="conquistador">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Nombres y apellidos</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.PersNombres + ' ' + row.PersApellidoPaterno + ' ' + row.PersApellidoMaterno}}</mat-cell>
+                                <ng-container matColumnDef="usuario">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.UsuaUsuario}}</mat-cell>
                                 </ng-container>
-                                <ng-container matColumnDef="unidad">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Unidad</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.UnidNombre}}</mat-cell>
+                                <ng-container matColumnDef="fecha">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de creaci&oacute;n</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.AudiFechCrea}}</mat-cell>
                                 </ng-container>
-                                <ng-container matColumnDef="cargo">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Unidad</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.TipoDescripcion}}</mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="clase">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Clase</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.ClasNombre}}</mat-cell>
+                                <ng-container matColumnDef="creador">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Creador</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.AudiUserCrea}}</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="actions">
                                     <mat-header-cell class="pr-0" *matHeaderCellDef>Acciones</mat-header-cell>
                                     <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
-                                        <button *ngIf="row.InscCompleto" mat-icon-button (click)="$event.stopPropagation()" class="tbl-action-btn">
-                                            <app-feather-icons [icon]="'file'" class="tbl-fav-pdf"></app-feather-icons>
+                                        <button *ngIf="id != 1 && id != 2" mat-icon-button (click)="$event.stopPropagation()" (click)="editItem(row)" class="tbl-action-btn">
+                                            <app-feather-icons [icon]="'edit'" class="tbl-fav-edit"></app-feather-icons>
                                         </button>
-                                        <button *ngIf="!row.InscCompleto" mat-icon-button (click)="$event.stopPropagation()" class="tbl-action-btn">
-                                            <app-feather-icons [icon]="'dollar-sign'" class="tbl-fav-money"></app-feather-icons>
-                                        </button>
-                                        <button *ngIf="row.InscCompleto" mat-icon-button (click)="$event.stopPropagation()" class="tbl-action-btn">
-                                            <app-feather-icons [icon]="'activity'" class="tbl-fav-health"></app-feather-icons>
+                                        <button mat-icon-button (click)="$event.stopPropagation()" (click)="deleteItem(row)" class="tbl-action-btn">
+                                            <app-feather-icons [icon]="'trash'" class="tbl-fav-delete"></app-feather-icons>
                                         </button>
                                     </mat-cell>
                                 </ng-container>
@@ -120,7 +116,7 @@
                                 </mat-progress-spinner>
                             </div>
                             <div *ngIf="!asignarRolDataBase.isTblLoading" class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
-                                A&uacute;n no hay conquistadores inscritos en el a&ntilde;o en curso
+                                A&uacute;n no hay usuarios para mostrar
                             </div>
                             <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
                             </mat-paginator>

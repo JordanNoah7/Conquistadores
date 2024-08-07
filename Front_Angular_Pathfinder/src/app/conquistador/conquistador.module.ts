@@ -32,6 +32,9 @@ import { UnidadDialogComponent } from "./registro/formulario/unidad-dialog/unida
 import { InscripcionComponent } from "./inscripcion/inscripcion.component";
 import { InscripcionDialogComponent } from "./inscripcion/inscripcion-dialog/inscripcion-dialog.component";
 import { AsignarRolComponent } from "./asignar-rol/asignar-rol.component";
+import { UsuariosDialogComponent } from "./asignar-rol/usuarios-dialog/usuarios-dialog.component";
+import { ConsejeroDialogComponent } from "./asignar-rol/consejero-dialog/consejero-dialog.component";
+import { InstructorDialogComponent } from "./asignar-rol/instructor-dialog/instructor-dialog.component";
 
 @NgModule({
     declarations: [
@@ -44,6 +47,9 @@ import { AsignarRolComponent } from "./asignar-rol/asignar-rol.component";
         InscripcionComponent,
         InscripcionDialogComponent,
         AsignarRolComponent,
+        UsuariosDialogComponent,
+        ConsejeroDialogComponent,
+        InstructorDialogComponent,
     ],
     imports: [
         CommonModule,

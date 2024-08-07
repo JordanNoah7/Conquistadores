@@ -58,6 +58,7 @@ export class InscripcionComponent extends UnsubscribeOnDestroyAdapter implements
     }
 
     public loadData() {
+        debugger;
         this.inscripcionesDataBase = new InscripcionService(this.repositoryService);
         this.dataSource = new InscripcionListDataSource(
             this.inscripcionesDataBase,

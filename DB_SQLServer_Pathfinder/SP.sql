@@ -258,3 +258,35 @@ BEGIN
 
 END
 GO
+-------------------------------------------------------------------------------
+IF OBJECT_ID(N'dbo.UsroSS_AllByRol', N'P') IS NOT NULL
+    BEGIN
+        DROP PROCEDURE dbo.UsroSS_AllByRol
+    END
+GO
+-------------------------------------------------------------------------------
+-- Autor - Fecha - Descripción : Jordan - 08/07/2024 - Procedimiento para seleccionar los usuarios por rol
+-- Autor - Fecha - Descripción :
+-------------------------------------------------------------------------------
+CREATE PROCEDURE UsroSS_AllByRol
+    @RoleId INT
+AS
+BEGIN
+    
+    SELECT USUA.UsuaId      , CONQ.PersNombres , USUA.UsuaUsuario
+         , USRO.AudiFechCrea, USRO.AudiUserCrea, CLCO.ClasId
+         , UNCO.UnidId      , CLAS.ClasNombre  , UNID.UnidNombre
+      FROM Roles AS ROLE
+      JOIN UsuarioRoles AS USRO ON ROLE.RoleId = USRO.RoleId
+      JOIN Usuarios AS USUA ON USRO.UsuaId = USUA.UsuaId
+      JOIN Conquistadores AS CONQ ON USUA.UsuaId = CONQ.UsuaId
+ LEFT JOIN ClaseConquistadores AS CLCO ON CONQ.PersId = CLCO.ConqId
+                                      AND CLCO.ClcoTipoCargoClaseId = 1
+ LEFT JOIN UnidadConquistadores AS UNCO ON CONQ.PersId = UNCO.ConqId
+                                       AND UNCO.UncoCargoId = 1
+ LEFT JOIN Clases AS CLAS ON CLCO.ClasId = CLAS.ClasId
+ LEFT JOIN Unidades AS UNID ON UNCO.UnidId = UNID.UnidId
+     where ROLE.RoleId = @RoleId
+
+END
+GO

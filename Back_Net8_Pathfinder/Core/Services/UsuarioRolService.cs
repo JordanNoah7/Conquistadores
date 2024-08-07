@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using Core.DTO;
+using Core.Entities;
 
 namespace Core.Services;
 
@@ -30,7 +31,7 @@ public partial class Service
         }
     }
 
-    public async Task<ICollection<Usuario>> GetUsersByRol(int RoleId)
+    public async Task<ICollection<UsuarioRolDTO>> GetUsersByRol(int RoleId)
     {
         try
         {

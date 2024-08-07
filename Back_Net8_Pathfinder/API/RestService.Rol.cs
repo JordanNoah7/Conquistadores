@@ -55,20 +55,8 @@ public partial class RestService
             {
                 return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
             }
-            ICollection<Usuario> usuarios = await _service.GetUsersByRol(RoleId);
-            ICollection<UsuarioDTO> usuariosDTO = new List<UsuarioDTO>();
-            foreach(var item in usuarios)
-            {
-                UsuarioDTO usuario = new UsuarioDTO()
-                {
-                    UsuaId = item.UsuaId,
-                    PersNombres = item.UsuaContrasenia,
-                    UsuaUsuario = item.UsuaUsuario,
-                    AudiFechCrea = item.AudiFechCrea,
-                    AudiUserCrea = item.AudiUserCrea,
-                };
-            }
-            return Ok(usuariosDTO);
+            ICollection<UsuarioRolDTO> usuarios = await _service.GetUsersByRol(RoleId);
+            return Ok(usuarios);
         }
         catch (Exception ex)
         {

@@ -40,6 +40,26 @@ public class UsuarioRepository : IUsuarioRepository
         }
     }
 
+    public async Task<ICollection<Usuario>> GetAllAsync()
+    {
+        try
+        {
+            try
+            {
+                var result = await _dbContext.Usuarios
+                    .Join(_dbContext.Conquistadores, u => u.UsuaId, c => c.UsuaId, (u, c) => new Usuario {
+                        UsuaId = u.UsuaId,
+                        UsuaUsuario = u.UsuaUsuario,
+                        UsuaContrasenia = c.PersNombres
+                    })
+                    .ToListAsync();
+                return result;
+            }
+            catch { throw; }
+        }
+        catch { throw; }
+    }
+
     public async Task<bool> AddAsync(Usuario usuario)
     {
         try

@@ -61,6 +61,36 @@ public partial class RestService
             return BadRequest(ex);
         }
     }
+
+    [HttpGet("ObtenerUsuarios")]
+    public async Task<IActionResult> ObtenerUsuarios([FromHeader] string requestStr)
+    {
+        try
+        {
+            Request request = JsonConvert.DeserializeObject<Request>(requestStr)!;
+            if (!await ValidarSesion(request.UsuaId))
+            {
+                return Unauthorized("Su sesión ha expirado, debe volver a iniciar sesión.");
+            }
+            ICollection<Usuario> usuarios = await _service.GetAllUsuariosAsync();
+            ICollection<UsuarioDTO> usuariosDTO = new ObservableCollection<UsuarioDTO>();
+            foreach (var item in usuarios)
+            {
+                UsuarioDTO u = new UsuarioDTO()
+                {
+                    UsuaId = item.UsuaId,
+                    UsuaUsuario = item.UsuaUsuario,
+                    PersNombres = item.UsuaContrasenia
+                };
+                usuariosDTO.Add(u);
+            }
+            return Ok(usuariosDTO);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex);
+        }
+    }
     #endregion
 
     #region [ Post ]

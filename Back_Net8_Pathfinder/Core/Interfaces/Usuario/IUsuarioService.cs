@@ -8,4 +8,5 @@ public partial interface IService
     Task<Usuario> GetUserByUsernameAsync(string username);
     Task<bool> AddUsuarioAsync(Usuario usuario);
     Task<bool> UpdateUsuarioAsync(Usuario usuario);
+    Task<ICollection<Usuario>> GetAllUsuariosAsync();
 }

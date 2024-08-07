@@ -270,7 +270,19 @@ export class RepositoryService {
         return this.requestService.connectBackendPost("ObtenerUsuariosPorRol", data).pipe(
             map(response => {
                 if (!!response) {
-                    return response.ParaValor;
+                    return response;
+                }
+                return null;
+            })
+        )
+    }
+
+    // *Usuarios
+    public GetUsuarios(): Observable<any> {
+        return this.requestService.connectBackendGet("ObtenerUsuarios").pipe(
+            map(response => {
+                if (!!response) {
+                    return response;
                 }
                 return null;
             })

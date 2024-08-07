@@ -4,3 +4,5 @@ export * from './inscripcion.service';
 export * from './tipo.service';
 export * from './tutor.service';
 export * from './unidad.service';
+export * from './usuario.service';
+export * from './usuarioRol.service';

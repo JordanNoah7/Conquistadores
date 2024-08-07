@@ -51,4 +51,13 @@ public partial class Service
             throw;
         }
     }
+
+    public async Task<ICollection<Usuario>> GetAllUsuariosAsync()
+    {
+        try
+        {
+            return await _usuarioRepository.GetAllAsync();
+        }
+        catch { throw; }
+    }
 }

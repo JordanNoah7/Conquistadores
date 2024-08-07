@@ -25,7 +25,7 @@
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                                             <mat-form-field class="example-full-width" appearance="outline">
                                                 <mat-label>Usuario</mat-label>
-                                                <input matInput formControlName="username" />
+                                                <input matInput formControlName="username" autofocus/>
                                                 <mat-icon matSuffix>face</mat-icon>
                                                 <mat-error *ngIf="authForm.get('username').hasError('required')">
                                                     Debe ingresar su usuario

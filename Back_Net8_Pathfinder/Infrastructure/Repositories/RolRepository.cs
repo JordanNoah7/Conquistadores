@@ -18,7 +18,9 @@ public class RolRepository : IRolRepository
     {
         try
         {
-            return await _dbContext.Roles.ToListAsync();
+            return await _dbContext.Roles
+                .Where(r => !new[] { 5, 6 }.Contains(r.RoleId))
+                .ToListAsync();
         }
         catch { throw; }
     }

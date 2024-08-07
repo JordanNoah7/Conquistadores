@@ -16,3 +16,4 @@ export * from './Tipo';
 export * from './Tutor';
 export * from './Unidad';
 export * from './Usuario';
+export * from './UsuarioRol';
