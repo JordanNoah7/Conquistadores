@@ -1,0 +1,85 @@
+@startuml Iniciar Sesion
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+boundary User
+control RESTService
+participant BLSessionKey
+participant BLUsuarios
+participant BLParametrosGral
+participant BLSession
+participant BLPtlaUsers
+
+User -> RESTService: ValidarUsuario(RequestRest)
+activate RESTService
+
+RESTService -> RESTService: Get ConnectionString("CaptchaPrivateKey")
+RESTService -> RestClient: Execute POST request (https://www.google.com/recaptcha/api/siteverify)
+activate RestClient
+RestClient -->> RESTService: Response
+deactivate RestClient
+
+RESTService -> JavaScriptSerializer: Deserialize JSON
+activate JavaScriptSerializer
+JavaScriptSerializer -->> RESTService: Dictionary<string, object>
+deactivate JavaScriptSerializer
+RESTService -> RESTService: Parse success and errors
+
+alt success
+    RESTService -> RESTService: ValidarUsuario_Interno(Key, APLI_CodApli)
+    
+    RESTService -> BLSessionKey: GetOne(DateTime.Now.ToString("yyyyMMdd"))
+    activate BLSessionKey
+    alt SESCP_Fecha == null
+        BLSessionKey -->> RESTService: null
+    end
+    BLSessionKey -> BLSessionKey: SelectOneUsuario(string USER_CodUsr)
+    BLSessionKey -->> RESTService: SessionKey
+    deactivate BLSessionKey
+
+    alt Key != null
+        RESTService -> BLUsuarios: GetOne(USER_CodUsr, USER_PassUsr, APLI_CodApli, _hostcrea)
+        activate BLUsuarios
+        alt string.IsNullOrEmpty(USER_CodUsr) || string.IsNullOrEmpty(USER_PassUsr)
+            BLUsuarios -->> RESTService: null
+        end
+        BLUsuarios -> BLUsuarios: SelectOneUsuario(USER_CodUsr: string)
+        alt Usuario != null
+            alt !Usuario.USER_Activo == "A"
+                BLUsuarios -->> RESTService: null
+            end
+            alt Usuario.USER_FechaInactividad > DateTime.Now
+                BLUsuarios -->> RESTService: null
+            end
+            alt Usuario.USER_PassUsr == USER_PassUsr
+                BLUsuarios -> BLSession: GetNewSession(SESS_Token: Session)
+                activate BLSession
+                BLSession -> BLSession: SelectNewSession(SESS_Token: Session)
+                BLSession -->> BLUsuarios: bool
+                deactivate BLSession
+                BLUsuarios -->> RESTService: Usuario
+            else
+                BLUsuarios -->> RESTService: null
+            end
+        end
+        BLUsuarios -->> RESTService: Usuario
+        deactivate BLUsuarios
+        alt Usuario != null
+            RESTService -> BLParametrosGral: GetAllFilterDT(x_procedure: string, x_filters: ObservableCollection<DataAccessFilterSQL>): DataTable
+            activate BLParametrosGral
+            BLParametrosGral -> BLParametrosGral: SelectAllByFilterDT(x_procedure: string, x_filters: ObservableCollection<DataAccessFilterSQL>): DataTable
+            BLParametrosGral -->> RESTService: DataTable
+            deactivate BLParametrosGral
+            RESTService -> BLPtlaUsers: GetAllFilter(x_procedure: string, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<PtlaUsers>
+            activate BLPtlaUsers
+            BLPtlaUsers -> BLPtlaUsers: SelectAllByFilter(x_procedure: string, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<PtlaUsers>
+            BLPtlaUsers -->> RESTService: ObservableCollection<PtlaUsers>
+        else
+            RESTService -->> User: ResponseUsuario with error (code 3)
+        end
+    else
+        RESTService -->> User: ResponseUsuario with error (code 4)
+    end
+end
+RESTService -->> User: ResponseUsuario
+deactivate RESTService
+@enduml

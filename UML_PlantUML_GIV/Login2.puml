@@ -1,0 +1,54 @@
+@startuml
+
+actor Client
+participant "RESTService" as RESTService
+participant "RestClient" as RestClient
+participant "RestRequest" as RestRequest
+participant "JavaScriptSerializer" as JavaScriptSerializer
+participant "BLSessionKey" as BLSessionKey
+participant "BLUsuarios" as BLUsuarios
+participant "BLSession" as BLSession
+participant "BLParametrosGral" as BLParametrosGral
+participant "BLPtlaUsers" as BLPtlaUsers
+participant "Usuarios" as Usuarios
+participant "Session" as Session
+participant "DataAccessFilterSQL" as DataAccessFilterSQL
+participant "AspRijndael" as AspRijndael
+
+Client -> RESTService : POST /ValidarUsuario
+RESTService -> RestClient : new RestClient("https://www.google.com/recaptcha/api/siteverify")
+RESTService -> RestRequest : new RestRequest(Method.Post)
+RESTService -> RestRequest : AddHeader("Content-Type", "application/x-www-form-urlencoded")
+RESTService -> RestRequest : AddParameter("application/json", body)
+RestClient -> RestRequest : Execute()
+RestRequest -> JavaScriptSerializer : Deserialize<Dictionary<string, object>>(response.Content)
+JavaScriptSerializer -> RESTService : success, error-codes
+RESTService -> RESTService : ValidarUsuario_Interno(request.Key, request.APLI_CodApli)
+RESTService -> BLSessionKey : GetOne(_fecha)
+BLSessionKey -> RESTService : SessionKey
+alt Key is valid
+    BLUsuarios -> AspRijndael : Desencriptar(Key, _kprivate.SESCP_KeyPrivate)
+    BLUsuarios -> Usuarios : SelectOneUsuario(USER_CodUsr)
+    Usuarios -> BLUsuarios : Usuarios
+    alt Usuario found
+        BLUsuarios -> BLSession : GetNewSession(ref _session)
+        BLSession -> BLUsuarios : Session
+        BLUsuarios -> BLParametrosGral : GetAllFilterDT("GIV_ALMASS_TodosByUser", _listFilters)
+        BLParametrosGral -> BLUsuarios : DataTable
+        BLUsuarios -> BLPtlaUsers : GetAllFilter("NEXTADMIN_Usuario_Plantilla", _listFilters)
+        BLPtlaUsers -> BLUsuarios : ObservableCollection<PtlaUsers>
+        BLUsuarios -> RESTService : ResponseUsuario
+    else Usuario not found
+        BLUsuarios -> RESTService : codigo = 3, Mensaje
+    end
+else Key is invalid
+    BLUsuarios -> RESTService : codigo = 4, Mensaje
+end
+
+alt Exception
+    RESTService -> RESTService : Handle Exception
+end
+
+RESTService -> Client : Return ResponseUsuario
+
+@enduml

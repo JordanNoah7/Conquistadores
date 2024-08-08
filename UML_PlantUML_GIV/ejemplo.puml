@@ -1,0 +1,52 @@
+@startuml prueba
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+boundary Interfaz
+control RESTService
+participant IConfiguration
+participant RestClient
+participant JavaScriptSerializer
+participant Util
+participant BLSessionKey
+participant BLParametrosGral
+database DataBase
+
+Interfaz->>RESTService: POST/ValidarUsuario(request: RequestRest): ActionResult<ResponseUsuario>
+activate RESTService
+RESTService->IConfiguration: GetConnectionString(name: string);
+RESTService->RestClient: Execute POST request (https://www.google.com/recaptcha/api/siteverify)
+activate RestClient
+RestClient-->>RESTService: Response
+deactivate RestClient
+RESTService->JavaScriptSerializer: Deserialize JSON
+activate JavaScriptSerializer
+JavaScriptSerializer-->>RESTService: Dictionary<string, object>
+deactivate JavaScriptSerializer
+RESTService -> RESTService: Parse success and errors
+alt success
+    RESTService->>RESTService: ValidarUsuario_Interno(Key: string, APLI_CodApli: string): ResponseUsuario
+    alt string.IsNullOrEmpty(Key)
+        RESTService-->>RESTService: Exception("La cadena no es valida")
+        RESTService->>Util: WriteError(x_CodeError: string, ex: Exception, x_Metodo: string, x_ParAdic: string, x_JSON: string): string
+        activate Util
+        Util-->>RESTService: return __tecnichalMessage
+        deactivate Util
+        RESTService-->>Interfaz: ResponseUsuario with error (code 2)
+    end
+    create BLSessionKey
+    RESTService->>BLSessionKey: new BLSessionKey()
+    create BLParametrosGral
+    RESTService->>BLParametrosGral: new BLParametrosGral()
+    activate BLParametrosGral
+    RESTService->>BLSessionKey: GetOne(SESCP_Fecha: string)
+    activate BLSessionKey
+    alt SESCP_Fecha == null
+        BLSessionKey-->>RESTService: return null
+    end
+    BLSessionKey->>BLSessionKey: SelectOne(SESCP_Fecha: string)
+else error
+    RESTService-->>Interfaz: ResponseUsuario with error (code 2)
+end
+RESTService-->>Interfaz: ResponseUsuario
+deactivate RESTService
+@enduml
