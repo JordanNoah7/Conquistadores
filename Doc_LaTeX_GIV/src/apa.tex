@@ -1,0 +1,165 @@
+%%
+%% Archivo `PlantillaLatexAPA7.tex',
+% ----------------------------------------------------------------------
+%%
+%% apa7 - Una clase de LaTeX para formatear documentos de acuerdo con el Manual de publicaciones de la Asociación 7ma Estadounidense de Psicología, séptima edición.
+%%
+%% Diego Vallaolid <diegovallas2184@gmail.com>
+%%  ----------------------------------------------------------------------
+%%
+\documentclass[man, floatsintext]{apa7}
+\usepackage[american]{babel}
+\usepackage[section]{placeins}
+\usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
+\usepackage{csquotes}
+\usepackage{array,fancyvrb,graphicx,verbatim,xurl}
+
+%\addbibresource{references.bib}
+
+
+%\usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+%\addbibresource{bibliography.bib}
+
+\title{Ejemplo de Docuento APA-Style usando \textsf{apa7} Package}
+\shorttitle{Documento Ejemplo}
+
+\author{Diego Valladolid}
+\affiliation{Universidad ABCD}
+
+%\leftheader{Weiss}
+
+%Aqui va el abstract del docuemento
+\abstract{Aqui va el abstract del documento}
+
+\keywords{APA style, demonstration}
+
+% \authornote{
+%   \addORCIDlink{Diego Valladolid}{0000-0000-0000-0000}
+
+% Este docuemente debe ser direccinado al Profesor Diego Valladolid, Departamenteo de Ingenieria, Counseling and
+%   Special Education, A University ABC, Ecuador, Cuenca
+%   13820.  E-mail: diegovallas2184@gmail.com}
+
+\begin{document}
+
+    \maketitle
+
+%\tableofcontents
+% \Textcite{vonDavier2011} said this,
+% too \parencite{vonDavier2011,Lassen2006}.  Further evidence comes from
+% other sources \parencite{Shotton1989,Lassen2006}.
+
+    \section{Titulo de Nivel 1}
+
+
+
+
+    \subsection{titulo 2}
+
+
+
+
+
+    \subsection{titulo 2}
+
+
+    \section{titulo 1}
+
+
+    \subsection{titulo 2}
+
+
+
+
+
+    \subsubsection{titulo 3}
+
+
+%{Reliability}
+%\lipsum[9]
+
+%\subparagraph{Inter-rater reliability}
+%\lipsum[10]
+
+%\subparagraph{Test-retest reliability}
+%lipsum[11]
+
+
+    \section{Resultados}
+
+
+    \begin{table}[h]
+        \caption{Sample Basic Table}
+        \label{tab:BasicTable}
+        \begin{tabular}{@{}llr@{}}         \toprule
+        \multicolumn{2}{c}{Item}        \\ \cmidrule(r){1-2}
+        Animal    & Description & Price \\ \midrule
+        Gnat      & per gram    & 13.65 \\
+        & each        &  0.01 \\
+        Gnu       & stuffed     & 92.50 \\
+        Emu       & stuffed     & 33.33 \\
+        Armadillo & frozen      &  8.99 \\ \bottomrule
+        \end{tabular}
+    \end{table}
+
+    \begin{figure}
+        \caption{Descripción de figuras.}
+        %\includegraphics[scale=]{Figure1.pdf}
+        \label{fig:Figure1}
+    \end{figure}
+
+
+    \section{Discusión}
+
+    \section{Conclusiones}
+
+    \printbibliography
+
+    \appendix
+
+    \section{Instrumentos}
+    \label{Ap. instrumentos}
+
+    ver detalles en las figuras
+
+
+    In this picture you can see a bar graph that shows. In this picture you can see a bar graph that shows
+
+
+    \section{Datos}
+    \label{Ap.Datos}
+
+    detalles en las tablas
+
+
+
+
+\end{document}
+
+
+%%
+%% This work is "maintained" (as per LPPL maintenance status) by
+%%
+%% This work consists of the file  apa7.dtx
+%% and the derived files           apa7.ins,
+%%                                 apa7.cls,
+%%                                 apa7.pdf,
+%%                                 README,
+%%                                 APA7american.txt,
+%%                                 APA7british.txt,
+%%                                 APA7dutch.txt,
+%%                                 APA7english.txt,
+%%                                 APA7german.txt,
+%%                                 APA7ngerman.txt,
+%%                                 APA7greek.txt,
+%%                                 APA7czech.txt,
+%%                                 APA7turkish.txt,
+%%                                 APA7endfloat.cfg,
+%%                                 Figure1.pdf,
+%%                                 shortsample.tex,
+%%                                 longsample.tex, and
+%%                                 bibliography.bib.
+%%
+%%
+%% End of file `./samples/longsample.tex'.

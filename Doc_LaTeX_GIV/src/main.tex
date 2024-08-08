@@ -1,0 +1,157 @@
+%! Author = dyfmeks
+%! Date = 20/05/2024
+
+% Preamble
+\documentclass[stu, 12pt, letterpaper, donotrepeattitle, floatsintext, natbib]{apa7}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{comment}
+\usepackage{marvosym}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[normalem]{ulem}
+\usepackage[spanish]{babel}
+\usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
+\usepackage{standalone}
+\selectlanguage{spanish}
+\useunder{\uline}{\ul}{}
+\newcommand{\myparagraph}[i]{\paragraph{#1}\mbox{}\\}
+%\usepackage[section]{placeins}
+%\usepackage{csquotes}
+%\usepackage{array,fancyvrb,graphicx,verbatim,xurl}
+
+% Config
+%\DeclareLanguageMapping{american}{american-apa}
+%\addbibresource{bibliography.bib}
+\thispagestyle{empty}
+\title{\large DISE\~{N}O Y DESARROLLO DE UN SISTEMA DE INFORMACI\'ON INTEGRAL PARA LA GESTI\'ON DE CONQUISTADORES, ACTIVIDADES Y
+PROGRESOS EN EL CLUB DE CONQUISTADORES}
+\shorttitle{Sistema Integral para la Gesti\'on del Club de Conquistadores}
+\author{John Jordan Quispe Supo}
+\affiliation{Instituto de Educaci\'on Superior Privado del Sur}
+\course{Desarrollo de Sistemas de Informaci\'on}
+\professor{Gustavo Delgado Ugarte}
+\duedate{20/05/2024}
+
+%\abstract{Este proyecto se centra en el dise\~{n}o y desarrollo de un Sistema de Informaci\'on Integral para la Gesti\'on de
+%Conquistadores, Actividades y Progresos en el Club de Conquistadores. El sistema propuesto permitir\'a el registro de
+%nuevos conquistadores, la planificaci\'on y registro de actividades, el seguimiento del avance de los conquistadores en
+%sus especialidades y clases, y la toma de asistencia y actividades semanales en la unidad. Este trabajo busca optimizar
+%la gesti\'on del club, mejorar la eficiencia de las actividades y proporcionar una plataforma web para el seguimiento y
+%desarrollo de los conquistadores. Se espera que este sistema integral mejore significativamente la administraci\'on del
+%club y enriquezca la experciencia de los conquistadores.}
+%\keywords{Sistema de Informaci\'on Integral, Gesti\'on de Conquistadores, Registro de Actividades, Seguimiento de Progresos,
+%Club de Conquistadores, Planificaci\'on de Actividades, Toma de Asistencia, Actividades Semanales, Especialidades y Clases
+%de Conquistadores, Plataforma Web, Optimizaci\'on de la Gesti\'on, Eficiencia de las Actividades}
+
+% Document
+\begin{document}
+    \maketitle
+
+%   Indices
+    \pagenumbering{roman}
+%   Contenido
+    \renewcommand\contentsname{\large\'Indice}
+    \tableofcontents
+    \setcounter{tocdepth}{2}
+    \newpage
+%   Figuras
+    \renewcommand\listfigurename{\large\'Indice de figuras}
+    \listoffigures
+    \newpage
+%   Tablas
+    \renewcommand\listtablename{\large\'Indice de tablas}
+    \listoftables
+    \newpage
+
+%   Cuerpo
+    \pagenumbering{arabic}
+
+
+    \section{\large T\'ITULO}
+    \noindent DISE\~{N}O Y DESARROLLO DE UN SISTEMA DE INFORMACI\'ON INTEGRAL PARA LA GESTI\'ON DE CONQUISTADORES, ACTIVIDADES Y
+    PROGRESOS EN EL CLUB DE CONQUISTADORES
+
+
+    \section{\large DATOS DEL AUTOR}
+    \begin{tabular}{ll}
+        \textbf{Nombres}    & : John Jordan                                                             \\
+        \textbf{Apellidos}  & : Quispe Supo                                                             \\
+        \textbf{Carrera}    & : Desarrollo de Sistemas de Informaci\'on                                 \\
+        \textbf{Rese\~{n}a} & : Soy egresado del Instituto del Sur y actualmente me encuentro laborando \\ & en Soluciones de Informaci\'on NextSoft S.A.C.
+    \end{tabular}
+
+
+    \section{\large RESUMEN}
+    Este proyecto se centra en el dise\~{n}o y desarrollo de un Sistema de Informaci\'on Integral para la Gesti\'on de
+    Conquistadores, Actividades y Progresos en el Club de Conquistadores. El sistema propuesto permitir\'a el registro de
+    nuevos conquistadores, la planificaci\'on y registro de actividades, el seguimiento del avance de los conquistadores en
+    sus especialidades y clases, y la toma de asistencia y actividades semanales en la unidad. Este trabajo busca optimizar
+    la gesti\'on del club, mejorar la eficiencia de las actividades y proporcionar una plataforma web para el seguimiento y
+    desarrollo de los conquistadores. Se espera que este sistema integral mejore significativamente la administraci\'on del
+    club y enriquezca la experciencia de los conquistadores.
+
+
+    \section{\large INTRODUCCI\'ON}
+
+    \subsection{Descripci\'on de la Unidad de Estudio}
+    \begin{tabular}{ll}
+        \textbf{RUC}                            &: 20202020202                                        \\
+        \textbf{Raz\'on Social}                 &: Club de Conquistadores "Las \'Aguilas"             \\
+        \textbf{Fecha de Inicio de Actividades} &: 20/05/2012                                         \\
+        \textbf{Actividad principal}            &: Ayudar a los adolescentes a crecer en las 3 partes \\            & esenciales que son fisico mental y espiritual
+    \end{tabular}
+
+    \subsection{Diagn\'ostico de la Situaci\'on Actual}
+    El Club de Conquistadores "Las \'Aguilas" actualmente alberga a 30 j\'ovenes entusiastas. La ausencia de un sistema de informaci\'on representa un desaf\'io significativo, ya que la gesti\'on del progreso de los conquistadores se realiza de manera manual. Esta situaci\'on limita la capacidad de los padres y tutores para seguir y comprender el desarrollo y avances de sus hijos dentro del club. La implementaci\'on de un sistema de informaci\'on dise\~{n}ado espec\'ificamente para la administraci\'on eficiente de conquistadores, actividades y logros, es imperativa para optimizar la comunicaci\'on y el segumiento del progreso dentro del club.
+
+    \subsection{Definici\'on del Problema}
+    Este proyecto aborda la necesidad de un sistema de informaci\'on integral que optimice la gesti\'on de los miembros, las actividades y el seguimiento de los progresos dentro de un Club de Conquistadores. Actualmente, la administraci\'on de estos elementos se realiza de manera manual o con herramientas dispersas, lo que conlleva a ineficiencias y dificultades en el seguimiento y evaluaci\'on del desarrollo de los conquistadores. Por tanto, se propone el diseño y desarrollo de una soluci\'on inform\'atica que centralice la informaci\'on y automatice los procesos, mejorando as\'i la gesti\'on y el impacto de las actividades del club.
+
+    \subsection{Objetivo General}
+    Desarrollar un sistema de informaci\'on integral que facilite la gesti\'on eficiente de los miembros, actividades y progresos del Club de Conquistadores, proporcionando una herramienta tecnol\'ogica que optimice los procesos administrativos y de seguimiento, garantizando la mejora continua en la organizaci\'on y participaci\'on de los conquistadores.
+
+    \subsection{Objetivos Espec\'ificos}
+    \begin{enumerate}
+        \item\textbf{Automatizar el registro y gesti\'on de conquistadores:}\\Implementar funcionalidades que permitan el registro detallado de nuevos conquistadores, incluyendo sus datos personales, informaci\'on de contacto y estado de inscripci\'on, asegurando un manejo eficiente y seguro de la informaci\'on.
+        \item\textbf{Registrar y monitorear actividades del club:}\\Diseñar y desarrollar m\'odulos que permitan la planificaci\'on, organizaci\'on y seguimiento de las actividades y eventos del club, facilitando la coordinaci\'on y participaci\'on activa de los miembros.
+        \item\textbf{Controlar el progreso de especialidades y clases:}\\Implementar un sistema de seguimiento individualizado para registrar y monitorear el avance de los conquistadores en sus especialidades y clases, proporcionando informes detallados y estad\'isticas de progreso.
+        \item\textbf{Gestionar la asistencia a actividades y reuniones:}\\Crear un m\'odulo para el registro y control de asistencia de los conquistadores en las actividades semanales y eventos especiales, facilitando la evaluaci\'on de la participaci\'on y compromiso de los miembros.
+        \item\textbf{Desarrollar un portal de usuario:}\\Dise\~{n}ar una interfaz amigable y accesible para que los conquistadores y sus l\'ideres puedan consultar y actualizar informaci\'on relevante, facilitando la comunicaci\'on y el acceso a recursos y materiales del club.
+        \item\textbf{Generar informes y estad\'isticas:}\\Implementar herramientas de generaci\'on de informes y estad\'isticas que permitan a los l\'ideres del club evaluar el desempe\~{n}o y progreso de los conquistadores, as\'i como la efectividad de las actividades realizadas.
+        \item\textbf{Garantizar la seguridad y confidencialidad de la informaci\'on:}\\Establecer mecanismos de seguridad que aseguren la protecci\'on de los datos personales y la confidencialidad de la informaci\'on gestionada por el sistema, cumpliendo con las normativas legales vigentes.
+    \end{enumerate}
+
+
+    \section{Marco Te\'orico}
+
+    \subsection{Introducci\'on al Club de Conquistadores}
+    El Club de Conquistadores es una organizaci\'on juvenil que promueve el desarrollo f\'isico, mental y espiritual de ni\~{n}os y adolescentes a trav\'es de actividades educativas, recreativas y de servicio comunitario. Este club, patrocinado por la Iglesia Adventista del S\'eptimo D\'ia, busca fomentar valores cristianos, habilidades pr\'acticas y el amor por la naturaleza. Los miembros del club, conocidos como conquistadores, participan en una variedad de actividades, incluyendo campamentos, marchas, estudios de la naturaleza y clases de desarrollo personal.
+
+    \subsection{Necesidades de Gesti\'on en el Club de Conquistadores}
+    La gesti\'on eficiente de un Club de Conquistadores implica la coordinaci\'on de m\'ultiples aspectos: registro de nuevos miembros, seguimiento del progreso en las especialidades y clases, planificaci\'on y registro de actividades, y control de asistencia. Actualmente, muchos clubes manejan estas tareas de manera manual o utilizando herramientas digitales dispares, lo que puede resultar en una administraci\'on ineficaz y la posibilidad de p\'erdida de datos.
+
+    \subsection{Sistema de Informaci\'on}
+    Un sistema de informaci\'on es un conjunto organizado de recursos que recopilan, almacenan, procesan y distribuyen informaci\'on. En el contexto de un Club de Conquistadores, un sistema de informaci\'on integral puede centralizar la gesti\'on de todas las actividades y registros, mejorando la eficiencia administrativa y proporcionando acceso r\'apido y seguro a los datos.
+
+    \subsection{Beneficios de un Sistema de Informaci\'on Integral}
+    \begin{itemize}
+        \item \textbf{Eficiencia Administrativa: }Automatizaci\'on de tareas repetitivas y reducci\'on de errores humanos.
+        \item \textbf{Acceso Centralizado: }Toda la informaci\'on relevante se encuentra en un solo lugar, accesible a los usuarios autorizados.
+        \item \textbf{Mejora en la Toma de Decisiones: }Informes y an\'alisis en tiempo real que facilitan la planificaci\'on y gestión del club.
+        \item \textbf{Transparencia y Trazabilidad: }Registro detallado de todas las actividades y transacciones, lo que permite una auditor\'ia eficiente.
+    \end{itemize}
+
+    \section{\large DESARROLLO DE LA PROPUESTA}
+    \subsection{Metodolog\'ia}
+    \subsection{Desarrollo}
+    \subsubsection{Diagrama de clases}
+    \subsubsection{Diagrama de base de datos}
+    \subsection{Resultados}
+    \subsubsection{Pantalla para Iniciar Sesi\'on}
+    \section{\large CONCLUSIONES}
+    \section{\large RECOMENDACIONES}
+    \section{\large AGRADECIMIENTOS}
+    \section{\large BIBLIOGRAF\'IA}
+\end{document}
