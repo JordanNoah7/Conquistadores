@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1723125620.58687 "d:/TeSiS/Conquistadores/Doc_LaTeX_GIV/src/main.tex" "main.pdf" "main" 1723125623.48281 0
+["pdflatex"] 1723126027.18388 "d:/TeSiS/Conquistadores/Doc_LaTeX_GIV/src/main.tex" "main.pdf" "main" 1723126033.39533 0
   "C:/Users/John.Quispe/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1723122215 80937 91001db6d4ae332437b4b739862cda02 ""
   "C:/Users/John.Quispe/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1723122130 24252218 edb4c3e7a59d4bc26c238d720be37e57 ""
   "D:/Install/Latex/fonts/enc/dvips/lm/lm-ec.enc" 1256929440 2375 baa924870cfb487815765f9094cf3728 ""
@@ -196,13 +196,13 @@
   "D:/Install/Latex/tex/latex/varwidth/varwidth.sty" 1238469540 10894 d359a13923460b2a73d4312d613554c8 ""
   "D:/Install/Latex/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "D:/Install/Latex/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "d:/TeSiS/Conquistadores/Doc_LaTeX_GIV/src/main.tex" 1723125619 11558 d598ac7912a0cc8a545c94692f0f248b ""
-  "main.aux" 1723125623 3176 b05f10b47a283cbf0646a29377212416 "pdflatex"
-  "main.lof" 1723125623 60 4bc77563de10d0d8a2e6ee96a8d7a948 "pdflatex"
-  "main.lot" 1723125623 60 4bc77563de10d0d8a2e6ee96a8d7a948 "pdflatex"
-  "main.out" 1723125623 3540 96b9254d040575f483e6653c016e15ce "pdflatex"
-  "main.tex" 1723125619 11558 d598ac7912a0cc8a545c94692f0f248b ""
-  "main.toc" 1723125623 1799 4679f5e9a6ab7af4d6e68aeedbba94e8 "pdflatex"
+  "d:/TeSiS/Conquistadores/Doc_LaTeX_GIV/src/main.tex" 1723126021 11550 8212fcc79cbc0cd7feda6f5855c484c0 ""
+  "main.aux" 1723126032 3176 b05f10b47a283cbf0646a29377212416 "pdflatex"
+  "main.lof" 1723126032 60 4bc77563de10d0d8a2e6ee96a8d7a948 "pdflatex"
+  "main.lot" 1723126032 60 4bc77563de10d0d8a2e6ee96a8d7a948 "pdflatex"
+  "main.out" 1723126032 3540 96b9254d040575f483e6653c016e15ce "pdflatex"
+  "main.tex" 1723126021 11550 8212fcc79cbc0cd7feda6f5855c484c0 ""
+  "main.toc" 1723126032 1799 4679f5e9a6ab7af4d6e68aeedbba94e8 "pdflatex"
   (generated)
   "main.aux"
   "main.lof"
