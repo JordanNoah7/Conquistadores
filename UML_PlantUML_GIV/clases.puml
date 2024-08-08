@@ -1,0 +1,33 @@
+@startuml clases
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+actor Client
+boundary Controller
+entity BLEquipos
+database Database
+
+Client -> Controller: Post /GetEquipos
+Controller -> Controller: ValidarSession
+alt Session válida
+    Controller -> BLEquipos: new BLEquipos()
+    loop Para cada filtro
+        Controller -> BLEquipos: Add Filter
+    end
+    Controller -> BLEquipos: GetAllFilter("GIV_EQUISS_AllByFilters", filters)
+    BLEquipos -> Database: Query con filtros
+    Database -> BLEquipos: Resultados de la query
+    BLEquipos -> Controller: List<Equipos>
+    loop Para cada equipo en listEquipos
+        Controller -> CEquipos: new CEquipos()
+        Controller -> CEquipos: equipo.CopyFrom(_dr)
+        Controller -> Controller: Add equipo to equipos
+    end
+    Controller -> Client: Return Response (ItemsEquipos, Codigo 0, TiempoSesion)
+else Session inválida
+    Controller -> Client: Return Response (Codigo 98, Mensaje)
+end
+alt Excepción
+    Controller -> Client: Return Response (Codigo 1, Mensaje de error)
+    Controller -> Util: WriteError(_code, ex, MethodName)
+end
+@enduml

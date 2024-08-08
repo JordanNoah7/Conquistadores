@@ -1,0 +1,58 @@
+@startuml
+participant User as "User"
+participant CaptchaServer as "Captcha Server (Google recaptcha/api/siteverify)"
+participant WebServer as "Web Server"
+participant BLConfiguration as "BL Configuration"
+participant BLSessionKey as "BL Session Key"
+participant BLUsuarios as "BL Usuarios"
+participant BLParametrosGral as "BL Parametros Gral"
+participant BLPtlaUsers as "BL PtlaUsers"
+activate User
+User->>WebServer: POST ValidarUsuario(Request request)
+activate WebServer
+WebServer->>BLConfiguration: GetConnectionString("CaptchaPrivateKey")
+deactivate BLConfiguration
+alt Valid Captcha
+  WebServer->>CaptchaServer: POST (secret, response, remoteip)
+  activate CaptchaServer
+  CaptchaServer->>WebServer: JSON response
+  deactivate CaptchaServer
+  WebServer->BLSessionKey: GetOne(request.Fecha)
+  activate BLSessionKey
+  BLSessionKey->>DataAccessEnterpriseSQL: SelectOne(request.Fecha)
+  deactivate BLSessionKey
+  alt Valid Session Key
+    WebServer->BLUsuarios: GetOne(request.Key, request.APLI_CodApli, String HostCrea)
+    activate BLUsuarios
+    BLUsuarios->>BLConfiguration: GetConnectionString("NA_CdCx")
+    deactivate BLConfiguration
+    BLUsuarios->>DataAccessEnterpriseSQL: USERSS_PorCodUsr(USER_CodUsr)
+    deactivate BLUsuarios
+    alt Valid User
+      WebServer->BLSession: GetNewSession(ref Session)
+      activate BLSession
+      BLSession->>DataAccessEnterpriseSQL: SESSSI_UnReg(SESS_Token, USER_IdUser, APLI_Codigo, TiempoDisponible, AUDI_HostCrea, AUDI_UsrCrea)
+      deactivate BLSession
+      WebServer->BLParametrosGral: GetAllFilterDT("GIV_ALMASS_TodosByUser", List<DataAccessFilterSQL>)
+      activate BLParametrosGral
+      BLParametrosGral->>DataAccessEnterpriseSQL: DAAsignarProcedure("GIV_ALMASS_TodosByUser")
+      BLParametrosGral->>DataAccessEnterpriseSQL: DAAgregarParametro(FilterName, FilterValue, FilterType, FilterSize) (loop for each filter)
+      BLParametrosGral->>DataAccessEnterpriseSQL: DAExecuteReader
+      deactivate BLParametrosGral
+      WebServer->BLPtlaUsers: GetAllFilter("NEXTADMIN_Usuario_Plantilla", List<DataAccessFilterSQL>)
+      activate BLPtlaUsers
+      BLPtlaUsers->>DataAccessEnterpriseSQL: DAAsignarProcedure("NEXTADMIN_Usuario_Plantilla")
+      BLPtlaUsers->>DataAccessEnterpriseSQL: DAAgregarParametro(FilterName, FilterValue, FilterType, FilterSize) (loop for each filter)
+      BLPtlaUsers->>DataAccessEnterpriseSQL: DAExecuteReader
+      deactivate BLPtlaUsers
+      WebServer->User: ResponseUsuario with user data
+    else User Not Found or Inactive
+      WebServer->User: ResponseUsuario with error message
+    end
+  else Invalid Captcha
+    WebServer->User: ResponseUsuario with error message
+  end
+deactivate WebServer
+deactivate User
+end
+@enduml
