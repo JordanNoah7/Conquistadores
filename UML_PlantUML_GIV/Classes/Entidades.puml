@@ -1,0 +1,203 @@
+@startuml Entidades Acceso
+skinparam ClassAttributeIconSize 0
+
+interface INotifyPropertyChanged
+class MasterBusinessEntity
+
+class Session extends MasterBusinessEntity {
+    - m_empr_ruc: String
+    - m_user_iduser: Nullable<Int32>
+    - m_sess_token: Guid
+    - m_sess_inicio: Nullable<DateTime>
+    - m_sess_tiempo: Nullable<Int16>
+    - m_sess_estado: Nullable<Boolean>
+    - m_sess_tipo: String
+    - m_sess_url: String
+    - m_sess_fechauso: Nullable<DateTime>
+    - m_apli_codigo: String
+    - m_audi_hostcrea: String
+    - m_audi_hostmod: String
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: Nullable<DateTime>
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    + EMPR_RUC: String
+    + USER_IdUser: Nullable<Int32>
+    + SESS_Token: Guid
+    + SESS_Inicio: Nullable<DateTime>
+    + SESS_Tiempo: Nullable<Int16>
+    + SESS_Estado: Nullable<Boolean>
+    + SESS_Tipo: String
+    + SESS_Url: String
+    + SESS_FechaUso: Nullable<DateTime>
+    + APLI_Codigo: String
+    + AUDI_HostCrea: String
+    + AUDI_HostMod: String
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: Nullable<DateTime>
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + TiempoDisponible: int
+    + Session()
+    + CopyTo(ref Session Item): void
+}
+
+class SessionKey extends MasterBusinessEntity {
+    - m_sescp_fecha: String
+    - m_sescp_keypublic: String
+    - m_sescp_keyprivate: String
+    - m_sescp_keypublicpem: String
+    - m_sescp_keyprivatepem: String
+    - m_audi_hostcrea: String
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    + SESCP_Fecha: String
+    + SESCP_KeyPublic: String
+    + SESCP_KeyPrivate: String
+    + SESCP_KeyPublicPEM: String
+    + SESCP_KeyPrivatePEM: String
+    + AUDI_HostCrea: String
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + SessionKey()
+    + CopyTo(ref SessionKey Item): void
+}
+
+class Plantillas extends MasterBusinessEntity {
+    - m_apli_codapli: String
+    - m_ptla_key: Int32
+    - m_ptla_relative: Int32
+    - m_ptla_text: String
+    - m_ptla_activo: String
+    - m_ptla_tipsec: String
+    - m_ptla_indeximagen: Nullable<Int32>
+    - m_ptla_id: String
+    - m_ptla_usrcrea: String
+    - m_ptla_feccrea: Nullable<DateTime>
+    - m_ptla_usrmod: String
+    - m_ptla_fecmod: Nullable<DateTime>
+    + APLI_CodApli: String
+    + PTLA_Key: Int32
+    + PTLA_Relative: Int32
+    + PTLA_Text: String
+    + PTLA_Activo: String
+    + PTLA_TipSec: String
+    + PTLA_indexImagen: Nullable<Int32>
+    + PTLA_ID: String
+    + PTLA_UsrCrea: String
+    + PTLA_FecCrea: Nullable<DateTime>
+    + PTLA_UsrMod: String
+    + PTLA_FecMod: Nullable<DateTime>
+    + Plantillas()
+    + CopyTo(ref Plantillas Item): void
+}
+
+class Procesos extends MasterBusinessEntity {
+    - m_apli_codapli: String
+    - m_proc_codigo: String
+    - m_proc_descripcion: String
+    - m_proc_password: String
+    + APLI_codApli: String
+    + PROC_codigo: String
+    + PROC_descripcion: String
+    + PROC_password: String
+    + USER_CodUsr: String
+    + Procesos()
+    + CopyTo(ref Procesos Item): void
+}
+
+class PtlaUsers extends MasterBusinessEntity {
+    - m_apli_codapli: String
+    - m_empr_cod: String
+    - m_user_iduser: Int32
+    - m_ptla_key: Int32
+    - m_ptla_relative: Int32
+    - m_ptla_text: String
+    - m_ptla_activo: String
+    - m_ptla_tipsec: String
+    - m_ptla_id: String
+    - m_ptla_indeximagen: Nullable<Int32>
+    - m_ptla_usrmod: String
+    - m_ptla_fecmod: Nullable<DateTime>
+    + APLI_CodApli: String
+    + EMPR_Cod: String
+    + USER_IdUser: Int32
+    + PTLA_Key: Int32
+    + PTLA_Relative: Int32
+    + PTLA_Text: String
+    + PTLA_Activo: String
+    + PTLA_TipSec: String
+    + PTLA_ID: String
+    + PTLA_indexImagen: Nullable<Int32>
+    + PTLA_UsrMod: String
+    + PTLA_FecMod: Nullable<DateTime>
+    + USUA_Codigo: int
+    + USUA_CodUsr: String
+    + USUA_Nombres: String
+    + OPCI_Estado: String
+    + OPCI_Codigo: int
+    + OPCI_CodigoPadre: int
+    + OPCI_Desc: String
+    + OPCI_Menu: String
+    + EMPR_Desc: String
+    + PtlaUsers()
+    + CopyTo(ref PtlaUsers Item): void
+}
+
+class Usuarios extends MasterBusinessEntity {
+    - m_hash: Hashtable
+    - m_user_iduser: Int32
+    - m_user_codusr: String
+    - m_user_nombre: String
+    - m_user_desc: String
+    - m_user_passusr: String
+    - m_user_activo: String
+    - m_nive_codnivel: String
+    - m_user_usrcrea: String
+    - m_user_feccrea: Nullable<DateTime>
+    - m_user_usrmod: String
+    - m_user_fecmod: Nullable<DateTime>
+    - m_grup_codigo: String
+    - m_user_mail: String
+    - m_user_cambiarpass: Boolean
+    - m_user_fechaclave: Nullable<DateTime>
+    - m_user_vigenciaclave: Nullable<Int32>
+    - m_user_clavesegura: Nullable<Boolean>
+    - m_user_reintentosclave: Nullable<Int32>
+    - m_user_notasat: String
+    - m_user_fechainactividad: Nullable<DateTime>
+    - m_user_tipoinactividad: Nullable<Int32>
+    + Hash: Hashtable
+    + USER_IdUser: Int32
+    + USER_CodUsr: String
+    + USER_Nombre: String
+    + USER_Desc: String
+    + USER_PassUsr: String
+    + USER_Activo: String
+    + NIVE_CodNivel: String
+    + USER_UsrCrea: String
+    + USER_FecCrea: Nullable<DateTime>
+    + USER_UsrMod: String
+    + USER_FecMod: Nullable<DateTime>
+    + GRUP_Codigo: String
+    + USER_Mail: String
+    + USER_CambiarPass: Boolean
+    + USER_FechaClave: Nullable<DateTime>
+    + USER_VigenciaClave: Nullable<Int32>
+    + USER_claveSegura: Nullable<Boolean>
+    + USER_ReintentosClave: Nullable<Int32>
+    + USER_notasAT: String
+    + USER_FechaInactividad: Nullable<DateTime>
+    + USER_TipoInactividad: Nullable<Int32>
+    + Usuarios()
+    + void CopyTo(ref Usuarios Item)
+}
+
+
+Session ..> INotifyPropertyChanged
+SessionKey ..> INotifyPropertyChanged
+Plantillas ..> INotifyPropertyChanged
+Procesos ..> INotifyPropertyChanged
+PtlaUsers ..> INotifyPropertyChanged
+Usuarios ..> INotifyPropertyChanged
+@enduml

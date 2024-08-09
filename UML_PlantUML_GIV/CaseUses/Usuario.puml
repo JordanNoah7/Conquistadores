@@ -1,0 +1,30 @@
+@startuml Usuario
+left to right direction
+actor "Usuario" as u
+rectangle "Sistema de Gestion de Inventario de Equipos" {
+    usecase "Registrar equipo" as uc1
+    usecase "Registrar atributos por equipo" as uc2
+    usecase "Ver historial de estados del equipo" as uc3
+    usecase "Ver calibraciones del equipo" as uc4
+    usecase "Registrar entrega" as uc5
+    usecase "Registrar devolución" as uc6
+    usecase "Registrar trasferencia" as uc7
+    usecase "Ver reporte de equipos" as uc8
+    usecase "Ver reporte de movimientos" as uc9
+    usecase "Ver reporte de trasferencias" as uc10
+    usecase "Ver reporte de pendientes y devoluciones" as uc11
+    usecase "Ver reporte de persona/ubicacion" as uc12
+}
+u --> uc1
+u --> uc2
+u --> uc3
+u --> uc4
+u --> uc5
+u --> uc6
+u --> uc7
+u --> uc8
+u --> uc9
+u --> uc10
+u --> uc11
+u --> uc12
+@enduml
