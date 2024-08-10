@@ -1,0 +1,761 @@
+@startuml Entidades Aplicacion
+skinparam ClassAttributeIconSize 0
+
+interface INotifyPropertyChanged
+class MasterBusinessEntity
+
+Activos ..> INotifyPropertyChanged
+Adjuntos ..> INotifyPropertyChanged
+Almacenes ..> INotifyPropertyChanged
+Archivos ..> INotifyPropertyChanged
+AtributosEquipos ..> INotifyPropertyChanged
+AtributosPorTipoEquipo ..> INotifyPropertyChanged
+Calibraciones ..> INotifyPropertyChanged
+Categorias ..> INotifyPropertyChanged
+ConfiguracionEquipo ..> INotifyPropertyChanged
+Entidad ..> INotifyPropertyChanged
+EqHistEstados ..> INotifyPropertyChanged
+Equipos ..> INotifyPropertyChanged
+FuncionEntidad ..> INotifyPropertyChanged
+Marcas ..> INotifyPropertyChanged
+Modelos ..> INotifyPropertyChanged
+MovimientoArchivo ..> INotifyPropertyChanged
+Movimientos ..> INotifyPropertyChanged
+ParametrosGral ..> INotifyPropertyChanged
+PlantillaAtributos ..> INotifyPropertyChanged
+
+Marcas "1" -- "0..*" Modelos
+Marcas "1" -- "0..*" Equipos
+Modelos "1" -- "0..*" Equipos
+Categorias "1" -- "0..*" Equipos
+Activos "0..1" -- "0..*" Equipos
+
+class Activos extends MasterBusinessEntity {
+    - m_hash: Hashtable
+    - m_acti_codigo: String
+    - m_acti_codigoref: String
+    - m_entc_codprov: String
+    - m_cuen_codigo: String
+    - m_acti_desc: String
+    - m_acti_feccompra: DateTime
+    - m_cuen_ano: String
+    - m_acti_fecinidepre: DateTime
+    - m_acti_usrcrea: String
+    - m_acti_feccrea: DateTime
+    - m_acti_usrmod: String
+    - m_acti_fecmod: Nullable<DateTime>
+    - m_acti_valorini: Decimal?
+    - m_acti_valorinidol: Decimal?
+    - m_acti_tipocambio: Decimal?
+    - m_acti_ubicacion: String
+    - m_entc_codtrab: String
+    - m_acti_montodol: Decimal?
+    - m_acti_contado: Nullable<Boolean>
+    - m_acti_plazos: Nullable<Int32>
+    - m_acti_ruc: String
+    - m_tipo_tabactivo: String
+    - m_tipo_tipactivo: String
+    - m_tipo_tabmoneda: String
+    - m_tipo_tipmoneda: String
+    - m_acti_ubicanterior: String
+    - m_acti_marca: String
+    - m_acti_serie: String
+    - m_cent_ano: String
+    - m_cent_codigo: String
+    - m_acti_fectrans: Nullable<DateTime>
+    - m_acti_motivo: String
+    - m_acti_otros: String
+    - m_acti_nivel: Nullable<Int32>
+    - m_acti_ordenjerarquico: Nullable<Int32>
+    - m_acti_seriedoc: String
+    - m_acti_numdoc: String
+    - m_tipo_tabdocumento: String
+    - m_tipo_coddocumento: String
+    - m_acti_fecharetiro: Nullable<DateTime>
+    - m_acti_tabubicacion: String
+    - m_acti_codubicacion: String
+    - m_acti_tabubicacionant: String
+    - m_acti_codubicacionanterior: String
+    - m_acti_condicion: String
+    - m_cloc_codigo: String
+    - m_ccla_codigo: String
+    - m_acti_fecha: Nullable<DateTime>
+    - m_acti_hora: String
+    - m_acti_fechaant: Nullable<DateTime>
+    - m_acti_horaant: String
+    - m_acti_tiporetiro: String
+    - m_acti_documento: String
+    - m_acti_situacion: String
+    - m_acti_codetiqueta: String
+    - m_sucr_codigo: String
+    - m_ctct_nrotran: Nullable<Int32>
+    - m_acti_modelo: String
+    + Hash: Hashtable
+    + ACTI_Codigo: String
+    + ACTI_codigoRef: String
+    + ENTC_CodProv: String
+    + CUEN_codigo: String
+    + ACTI_Desc: String
+    + ACTI_FecCompra: DateTime
+    + CUEN_ano: String
+    + ACTI_FecIniDepre: DateTime
+    + ACTI_UsrCrea: String
+    + ACTI_FecCrea: DateTime
+    + ACTI_UsrMod: String
+    + ACTI_FecMod: Nullable<DateTime>
+    + ACTI_ValorIni: Decimal?
+    + ACTI_ValorIniDol: Decimal?
+    + ACTI_tipoCambio: Decimal?
+    + ACTI_Ubicacion: String
+    + ENTC_CodTrab: String
+    + ACTI_montoDol: Decimal?
+    + ACTI_contado: Nullable<Boolean>
+    + ACTI_plazos: Nullable<Int32>
+    + ACTI_ruc: String
+    + TIPO_TabActivo: String
+    + TIPO_TipActivo: String
+    + TIPO_TabMoneda: String
+    + TIPO_TipMoneda: String
+    + ACTI_UbicAnterior: String
+    + ACTI_marca: String
+    + ACTI_serie: String
+    + CENT_Ano: String
+    + CENT_Codigo: String
+    + ACTI_fecTrans: Nullable<DateTime>
+    + ACTI_motivo: String
+    + ACTI_otros: String
+    + ACTI_nivel: Nullable<Int32>
+    + ACTI_ordenJerarquico: Nullable<Int32>
+    + ACTI_SerieDoc: String
+    + ACTI_NumDoc: String
+    + TIPO_TabDocumento: String
+    + TIPO_CodDocumento: String
+    + ACTI_FechaRetiro: Nullable<DateTime>
+    + ACTI_TabUbicacion: String
+    + ACTI_CodUbicacion: String
+    + ACTI_TabUbicacionAnt: String
+    + ACTI_CodUbicacionAnterior: String
+    + ACTI_Condicion: String
+    + CLOC_Codigo: String
+    + CCLA_Codigo: String
+    + ACTI_Fecha: Nullable<DateTime>
+    + ACTI_Hora: String
+    + ACTI_FechaAnt: Nullable<DateTime>
+    + ACTI_HoraAnt: String
+    + ACTI_TipoRetiro: String
+    + ACTI_documento: String
+    + ACTI_Situacion: String
+    + ACTI_CodEtiqueta: String
+    + SUCR_Codigo: String
+    + ctct_nrotran: Nullable<Int32>
+    + ACTI_modelo: String
+    + Activos()
+    + CopyTo(ref Activos Item): void
+}
+
+class Adjuntos extends MasterBusinessEntity {
+    - Hashtable m_hash
+    - Int16 m_equi_codigo
+    - Int16 m_cali_id
+    - Int32 m_arch_interno
+    - String m_audi_usrcrea
+    - DateTime m_audi_feccrea
+    - String m_audi_hostcrea
+    + Hashtable Hash
+    + Int16 EQUI_Codigo
+    + Int16 CALI_Id
+    + Int32 ARCH_Interno
+    + String AUDI_UsrCrea
+    + DateTime AUDI_FecCrea
+    + String AUDI_HostCrea
+    + Adjuntos()
+    + CopyTo(ref Item: Adjuntos): void
+}
+
+class Almacenes extends MasterBusinessEntity {
+    - m_hash: Hashtable
+    - m_alma_codigo: String
+    - m_alma_codpadre: String
+    - m_alma_nombre: String
+    - m_alma_descripcion: String
+    - m_alma_estado: Nullable<Boolean>
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: Nullable<DateTime>
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + Hash: Hashtable
+    + ALMA_Codigo: String
+    + ALMA_CodPadre: String
+    + ALMA_Nombre: String
+    + ALMA_Descripcion: String
+    + ALMA_Estado: Nullable<Boolean>
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: Nullable<DateTime>
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + Almacenes()
+    + CopyTo(ref Item: Almacenes): void
+}
+
+class Archivos extends MasterBusinessEntity {
+    - m_hash: Hashtable
+    - m_arch_interno: Int32
+    - m_arch_tabla: String
+    - m_arch_descripcion: String
+    - m_arch_id: String
+    - m_arch_path: String
+    - m_arch_nombrearchivo: String
+    - m_arch_tamano: Decimal
+    - m_arch_estado: String
+    - m_arch_binary: byte[]
+    - m_arch_almacenamiento: String
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + Hash: Hashtable
+    + ARCH_Interno: Int32
+    + ARCH_Tabla: String
+    + ARCH_Descripcion: String
+    + ARCH_Id: String
+    + ARCH_Path: String
+    + ARCH_NombreArchivo: String
+    + ARCH_Tamano: Decimal
+    + ARCH_Estado: String
+    + ARCH_Binary: byte[]
+    + ARCH_Almacenamiento: String
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + Archivos()
+    + CopyTo(ref Item: Archivos): void
+}
+
+class AtributosEquipos extends MasterBusinessEntity {
+    - m_aequ_item: Int16
+    - m_equi_codigo: Int16
+    - m_aequ_valor: String
+    - m_plat_item: Nullable<Int16>
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: Nullable<DateTime>
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + AEQU_Item: Int16
+    + EQUI_Codigo: Int16
+    + AEQU_Valor: String
+    + PLAT_Item: Nullable<Int16>
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: Nullable<DateTime>
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + AtributosEquipos()
+    + CopyTo(ref Item: AtributosEquipos): void
+}
+
+class AtributosPorTipoEquipo extends MasterBusinessEntity {
+    - m_conf_codigo: Int16
+    - m_plat_item: Int16
+    - m_ateu_baja: Nullable<Boolean>
+    - m_ateu_hacialaot: Nullable<Boolean>
+    - m_ateu_valor: String
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + CONF_Codigo: Int16
+    + PLAT_Item: Int16
+    + ATEU_Baja: Nullable<Boolean>
+    + ATEU_HaciaLaOT: Nullable<Boolean>
+    + ATEU_Valor: String
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + AtributosPorTipoEquipo()
+    + CopyTo(ref Item: AtributosPorTipoEquipo): void
+}
+
+class Calibraciones extends MasterBusinessEntity {
+    - m_equi_codigo: Int16?
+    - m_cali_id: Int16
+    - m_cali_fecha: DateTime
+    - m_cali_detalle: String
+    - m_cali_historial: String
+    - m_cali_activo: bool?
+    - m_tipo_tabtcc: String
+    - m_tipo_codtcc: String
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + EQUI_Codigo: Int16?
+    + CALI_Id: Int16
+    + CALI_Fecha: DateTime
+    + CALI_Detalle: String
+    + CALI_Historial: String
+    + CALI_Activo: bool?
+    + TIPO_TabTCC: String
+    + TIPO_CodTCC: String
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + Calibraciones()
+    + CopyTo(ref Item: Calibraciones): void
+}
+
+class Categorias extends MasterBusinessEntity {
+    - m_cate_codigo: Int16?
+    - m_cate_nombre: String
+    - m_cate_descripcion: String
+    - m_cate_estado: Nullable<Boolean>
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + CATE_Codigo: Int16?
+    + CATE_Nombre: String
+    + CATE_Descripcion: String
+    + CATE_Estado: Nullable<Boolean>
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + Categorias()
+    + CopyTo(ref Item: Categorias): void
+}
+
+class ConfiguracionEquipo extends MasterBusinessEntity {
+    - m_conf_codigo: Int16
+    - m_conf_codpadre: Nullable<Int16>
+    - m_conf_descripcion: String
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + CONF_Codigo: Int16
+    + CONF_CodPadre: Nullable<Int16>
+    + CONF_Descripcion: String
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + ConfiguracionEquipo()
+    + void CopyTo(ref ConfiguracionEquipo Item)
+}
+
+class Entidad extends MasterBusinessEntity {
+    - m_entc_codigo: String
+    - m_entc_ruc: String
+    - m_entc_nomcom: String
+    - m_entc_razonsoc: String
+    - m_entc_contacto: String
+    - m_entc_tel1: String
+    - m_entc_tel2: String
+    - m_entc_tel3: String
+    - m_entc_fax: String
+    - m_entc_dir: String
+    - m_entc_dirrefe: String
+    - m_entc_ubicacion: String
+    - m_entc_dociden: String
+    - m_entc_nomprop: String
+    - m_zoge_codigo: String
+    - m_entc_domiciliado: Nullable<Boolean>
+    - m_entc_ptrapemat: Nullable<Int16>
+    - m_entc_ptrnombre1: Nullable<Int16>
+    - m_entc_ptrnombre2: Nullable<Int16>
+    - m_entc_email: String
+    - m_entc_usrcrea: String
+    - m_entc_feccrea: DateTime
+    - m_entc_usrmod: String
+    - m_entc_fecmod: Nullable<DateTime>
+    - m_entc_tipdociden: String
+    - m_entc_tipoentidadpdt: String
+    - m_entc_rucduplicado: Nullable<Int32>
+    - m_entc_percepcion: Nullable<Decimal>
+    - m_entc_pagoinmediato: Nullable<Boolean>
+    - m_entc_agretencion: Nullable<Boolean>
+    - m_entc_buencontribuyente: Nullable<Boolean>
+    - m_entc_agpercepcion: Nullable<Boolean>
+    - m_entc_bloqueosunat: Nullable<Boolean>
+    - m_entc_sexo: String
+    - m_entc_fecnac: Nullable<DateTime>
+    - m_entc_codpadre: String
+    - m_tipo_tabnac: String
+    - m_tipo_codnac: String
+    - m_entc_publico: Nullable<Boolean>
+    - m_entc_codinterbancario: String
+    - m_entc_codinterbancariodol: String
+    - m_entc_vinculada: Nullable<Boolean>
+    - m_entc_tipocci: String
+    - m_entc_felectronica: Nullable<Boolean>
+    - m_entc_codfacturacion: String
+    - m_entc_actualizacionsunat: Nullable<DateTime>
+    - m_entc_password: String
+    - m_entc_cambiarpass: Nullable<Boolean>
+    + ENTC_Codigo: String
+    + ENTC_Ruc: String
+    + ENTC_NomCom: String
+    + ENTC_RazonSoc: String
+    + ENTC_Contacto: String
+    + ENTC_Tel1: String
+    + ENTC_Tel2: String
+    + ENTC_Tel3: String
+    + ENTC_Fax: String
+    + ENTC_Dir: String
+    + ENTC_DirRefe: String
+    + ENTC_Ubicacion: String
+    + ENTC_DocIden: String
+    + ENTC_NomProp: String
+    + ZOGE_Codigo: String
+    + ENTC_domiciliado: Nullable<Boolean>
+    + ENTC_PtrApemat: Nullable<Int16>
+    + ENTC_PtrNombre1: Nullable<Int16>
+    + ENTC_PtrNombre2: Nullable<Int16>
+    + ENTC_Email: String
+    + ENTC_UsrCrea: String
+    + ENTC_FecCrea: DateTime
+    + ENTC_UsrMod: String
+    + ENTC_FecMod: Nullable<DateTime>
+    + ENTC_TipDocIden: String
+    + ENTC_TipoEntidadPDT: String
+    + ENTC_RucDuplicado: Nullable<Int32>
+    + ENTC_Percepcion: Nullable<Decimal>
+    + ENTC_pagoInmediato: Nullable<Boolean>
+    + ENTC_AgRetencion: Nullable<Boolean>
+    + ENTC_buenContribuyente: Nullable<Boolean>
+    + ENTC_AgPercepcion: Nullable<Boolean>
+    + ENTC_bloqueoSUNAT: Nullable<Boolean>
+    + ENTC_Sexo: String
+    + ENTC_FecNac: Nullable<DateTime>
+    + ENTC_CodPadre: String
+    + TIPO_tabNac: String
+    + TIPO_codNac: String
+    + ENTC_Publico: Nullable<Boolean>
+    + ENTC_codInterbancario: String
+    + ENTC_codInterbancarioDol: String
+    + ENTC_Vinculada: Nullable<Boolean>
+    + ENTC_tipoCCI: String
+    + ENTC_FElectronica: Nullable<Boolean>
+    + ENTC_codFacturacion: String
+    + ENTC_ActualizacionSunat: Nullable<DateTime>
+    + ENTC_Password: String
+    + ENTC_CambiarPass: Nullable<Boolean>
+    + Entidad()
+    + CopyTo(ref Item: Entidad): void
+}
+
+class EqHistEstados extends MasterBusinessEntity {
+    - m_equi_codigo: Int16
+    - m_ehes_item: Int16
+    - m_ehes_fecha: DateTime
+    - m_ehes_estado: String
+    - m_ehes_observaciones: String
+    - m_entc_codresponsable: String
+    - m_tipo_tabsec: String
+    - m_tipo_codsec: String
+    - m_alma_codigo: String
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    - m_audi_hostcrea: String
+    + EQUI_Codigo: Int16
+    + EHES_Item: Int16
+    + EHES_Fecha: DateTime
+    + EHES_Estado: String
+    + EHES_Observaciones: String
+    + ENTC_CodResponsable: String
+    + TIPO_TabSEC: String
+    + TIPO_CodSEC: String
+    + ALMA_Codigo: String
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + AUDI_HostCrea: String
+    + EqHistEstados()
+    + CopyTo(ref Item: EqHistEstados): void
+}
+
+class Equipos extends MasterBusinessEntity {
+    - m_equi_codigo: Int16
+    - m_equi_nombre: String
+    - m_equi_descripcion: String
+    - m_equi_fecgarantia: Nullable<DateTime>
+    - m_equi_detgarantia: String
+    - m_equi_fecregistro: Nullable<DateTime>
+    - m_equi_nroserie: String
+    - m_equi_nroqr: String
+    - m_equi_estado: String
+    - m_equi_docserie: String
+    - m_equi_docnumero: String
+    - m_tipo_tabtdo: String
+    - m_tipo_codtdo: String
+    - m_entc_codproveedor: String
+    - m_conf_codigo: Nullable<Int16>
+    - m_cate_codigo: Nullable<Int16>
+    - m_marc_codigo: String
+    - m_mode_codigo: Nullable<Int16>
+    - m_acti_codigo: String
+    - m_prod_codigo: String
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + EQUI_Codigo: Int16
+    + EQUI_Nombre: String
+    + EQUI_Descripcion: String
+    + EQUI_FecGarantia: Nullable<DateTime>
+    + EQUI_DetGarantia: String
+    + EQUI_FecRegistro: Nullable<DateTime>
+    + EQUI_NroSerie: String
+    + EQUI_NroQR: String
+    + EQUI_Estado: String
+    + EQUI_DocSerie: String
+    + EQUI_DocNumero: String
+    + TIPO_TabTDO: String
+    + TIPO_CodTDO: String
+    + ENTC_CodProveedor: String
+    + CONF_Codigo: Nullable<Int16>
+    + CATE_Codigo: Nullable<Int16>
+    + MARC_Codigo: String
+    + MODE_Codigo: Nullable<Int16>
+    + ACTI_Codigo: String
+    + PROD_Codigo: String
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + Equipos()
+    + CopyTo(ref Item: Equipos): void
+}
+
+class FuncionEntidad extends MasterBusinessEntity {
+    - m_entc_codigo: String
+    - m_tipe_codigo: String
+    - m_fent_fecbloq: Nullable<DateTime>
+    - m_fent_sitbloq: Nullable<Boolean>
+    - m_fent_glosablq: String
+    - m_tipo_tabbloq: String
+    - m_tipo_tipbloq: String
+    - m_cuen_codigo: String
+    - m_cuen_codigodol: String
+    + ENTC_Codigo: String
+    + TIPE_Codigo: String
+    + FENT_FecBloq: Nullable<DateTime>
+    + FENT_SitBloq: Nullable<Boolean>
+    + FENT_GlosaBlq: String
+    + TIPO_TabBloq: String
+    + TIPO_TipBloq: String
+    + CUEN_codigo: String
+    + CUEN_codigoDol: String
+    + FuncionEntidad()
+    + CopyTo(ref Item: FuncionEntidad): void
+}
+
+class Marcas extends MasterBusinessEntity {
+    - m_marc_codigo: String
+    - m_marc_descripcion: String
+    - m_marc_usrcrea: String
+    - m_marc_feccrea: DateTime
+    - m_marc_usrmod: String
+    - m_marc_fecmod: Nullable<DateTime>
+    + MARC_Codigo: String
+    + MARC_Descripcion: String
+    + MARC_UsrCrea: String
+    + MARC_FecCrea: DateTime
+    + MARC_UsrMod: String
+    + MARC_FecMod: Nullable<DateTime>
+    + Marcas()
+    + CopyTo(ref Item: Marcas): void
+}
+
+class Modelos extends MasterBusinessEntity {
+    - m_mode_codigo: Int16?
+    - m_marc_codigo: String
+    - m_mode_nombre: String
+    - m_mode_descripcion: String
+    - m_mode_estado: Nullable<Boolean>
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + MODE_Codigo: Int16?
+    + MARC_Codigo: String
+    + MODE_Nombre: String
+    + MODE_Descripcion: String
+    + MODE_Estado: Nullable<Boolean>
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + Modelos()
+    + CopyTo(ref Item: Modelos): void
+}
+
+class MovimientoArchivo extends MasterBusinessEntity {
+    - m_moar_codigo: int
+    - m_movi_tipo: String
+    - m_movi_codigo: Int32?
+    - m_moar_archivo: byte[]
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    - m_audi_hostcrea: String
+    + MOAR_Codigo: Int32?
+    + MOVI_Tipo: String
+    + MOVI_Codigo: Int32?
+    + MOAR_Archivo: byte[]
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + AUDI_HostCrea: String
+    + MovimientoArchivo()
+    + CopyTo(ref Item: MovimientoArchivo): void
+}
+
+class Movimientos extends MasterBusinessEntity {
+    - m_movi_tipo: String
+    - m_movi_codigo: Int32?
+    - m_movi_fecha: DateTime
+    - m_movi_motivo: String
+    - m_movi_tipoie: String
+    - m_movi_observaciones: String
+    - m_tipe_codigo: String
+    - m_entc_codresponsable: String
+    - m_equi_codigo: Int16?
+    - m_alma_codigo: String
+    - m_proy_codigo: Int16?
+    - m_movi_tpadre: String
+    - m_movi_codpadre: Nullable<Int32>
+    - m_tipo_tabsec: String
+    - m_tipo_codsec: String
+    - m_tipo_tabmtv: String
+    - m_tipo_codmtv: String
+    - m_ubic_id: Nullable<Int16>
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + MOVI_Tipo: String
+    + MOVI_Codigo: Int32?
+    + MOVI_Fecha: DateTime
+    + MOVI_Motivo: String
+    + MOVI_TipoIE: String
+    + MOVI_Observaciones: String
+    + TIPE_Codigo: String
+    + ENTC_CodResponsable: String
+    + EQUI_Codigo: Int16?
+    + ALMA_Codigo: String
+    + PROY_Codigo: Int16?
+    + MOVI_TPadre: String
+    + MOVI_CodPadre: Nullable<Int32>
+    + TIPO_TabSEC: String
+    + TIPO_CodSEC: String
+    + TIPO_TabMTV: String
+    + TIPO_CodMTV: String
+    + UBIC_Id: Nullable<Int16>
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + Movimientos()
+    + CopyTo(ref Item: Movimientos): void
+}
+
+class ParametrosGral extends MasterBusinessEntity {
+    - m_sucr_codigo: String
+    - m_para_aplicacion: String
+    - m_para_nombre: String
+    - m_para_valor: String
+    - m_para_tipo: String
+    - m_para_desc: String
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: Nullable<DateTime>
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    + SUCR_Codigo: String
+    + PARA_Aplicacion: String
+    + PARA_Nombre: String
+    + PARA_Valor: String
+    + PARA_Tipo: String
+    + PARA_Desc: String
+    + AUDI_UsrCrea: String
+    + AUDI_fecCrea: Nullable<DateTime>
+    + AUDI_UsrMod: String
+    + AUDI_fecMod: Nullable<DateTime>
+    + ParametrosGral()
+    + CopyTo(ref Item: ParametrosGral): void
+}
+
+class PlantillaAtributos extends MasterBusinessEntity {
+    - m_plat_item: Int16
+    - m_plat_descripcion: String
+    - m_plat_valor: String
+    - m_plat_tipodato: String
+    - m_plat_obligatorio: Nullable<Boolean>
+    - m_plat_baja: Nullable<Boolean>
+    - m_tipo_tabatr: String
+    - m_tipo_codatr: String
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + PLAT_Item: Int16
+    + PLAT_Descripcion: String
+    + PLAT_Valor: String
+    + PLAT_TipoDato: String
+    + PLAT_Obligatorio: Nullable<Boolean>
+    + PLAT_Baja: Nullable<Boolean>
+    + TIPO_TabATR: String
+    + TIPO_CodATR: String
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + PlantillaAtributos()
+    + CopyTo(ref Item: PlantillaAtributos): void
+}
+
+
+@enduml

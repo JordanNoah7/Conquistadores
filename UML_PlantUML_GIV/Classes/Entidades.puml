@@ -39,7 +39,7 @@ class Session extends MasterBusinessEntity {
     + AUDI_FecMod: Nullable<DateTime>
     + TiempoDisponible: int
     + Session()
-    + CopyTo(ref Session Item): void
+    + CopyTo(ref Item: Session): void
 }
 
 class SessionKey extends MasterBusinessEntity {
@@ -60,7 +60,7 @@ class SessionKey extends MasterBusinessEntity {
     + AUDI_UsrCrea: String
     + AUDI_FecCrea: DateTime
     + SessionKey()
-    + CopyTo(ref SessionKey Item): void
+    + CopyTo(ref Item: SessionKey): void
 }
 
 class Plantillas extends MasterBusinessEntity {
@@ -89,7 +89,7 @@ class Plantillas extends MasterBusinessEntity {
     + PTLA_UsrMod: String
     + PTLA_FecMod: Nullable<DateTime>
     + Plantillas()
-    + CopyTo(ref Plantillas Item): void
+    + CopyTo(ref Item: Plantillas): void
 }
 
 class Procesos extends MasterBusinessEntity {
@@ -103,7 +103,7 @@ class Procesos extends MasterBusinessEntity {
     + PROC_password: String
     + USER_CodUsr: String
     + Procesos()
-    + CopyTo(ref Procesos Item): void
+    + CopyTo(ref Item: Procesos): void
 }
 
 class PtlaUsers extends MasterBusinessEntity {
@@ -141,11 +141,10 @@ class PtlaUsers extends MasterBusinessEntity {
     + OPCI_Menu: String
     + EMPR_Desc: String
     + PtlaUsers()
-    + CopyTo(ref PtlaUsers Item): void
+    + CopyTo(ref Item: PtlaUsers): void
 }
 
 class Usuarios extends MasterBusinessEntity {
-    - m_hash: Hashtable
     - m_user_iduser: Int32
     - m_user_codusr: String
     - m_user_nombre: String
@@ -190,7 +189,7 @@ class Usuarios extends MasterBusinessEntity {
     + USER_FechaInactividad: Nullable<DateTime>
     + USER_TipoInactividad: Nullable<Int32>
     + Usuarios()
-    + void CopyTo(ref Usuarios Item)
+    + CopyTo(ref Item: Usuarios): void
 }
 
 
