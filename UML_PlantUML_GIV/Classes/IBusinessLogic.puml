@@ -1,0 +1,28 @@
+@startuml BusinessLogic
+' eliminar adjuntos
+skinparam ClassAttributeIconSize 0
+
+class BLActivos{
+    public GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Activos>
+    public GetAll(): ObservableCollection<Activos>
+    public GetOne(ENTC_CodProv: String, ACTI_serie: string): Activos
+    private SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Activos>
+    private SelectAll(): ObservableCollection<Activos>
+    private SelectOne(ENTC_CodProv: string, ACTI_serie: string): Activos
+}
+
+class BLAlmacenes{
+    public GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Almacenes>
+    public GetAll(): ObservableCollection<Almacenes>
+    public GetOne(ALMA_Codigo: String): Almacenes
+    public Save(ref Item: Almacenes): Boolean
+    private SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Almacenes>
+    private SelectAll(): ObservableCollection<Almacenes>
+    private Almacenes SelectOne(ALMA_Codigo: String)
+    private Insert(ref Item: Almacenes): bool
+    private Update(ref Item: Almacenes): bool
+    private Delete(ref Item: Almacenes): bool
+}
+
+
+@enduml

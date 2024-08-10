@@ -4,175 +4,73 @@ skinparam ClassAttributeIconSize 0
 interface INotifyPropertyChanged
 class MasterBusinessEntity
 
-' Activos ..> INotifyPropertyChanged
-' Adjuntos ..> INotifyPropertyChanged
-' Almacenes ..> INotifyPropertyChanged
-' Archivos ..> INotifyPropertyChanged
-' AtributosEquipos ..> INotifyPropertyChanged
-' AtributosPorTipoEquipo ..> INotifyPropertyChanged
-' Calibraciones ..> INotifyPropertyChanged
-' ConfiguracionEquipo ..> INotifyPropertyChanged
-' Entidad ..> INotifyPropertyChanged
-' EqHistEstados ..> INotifyPropertyChanged
-' Equipos ..> INotifyPropertyChanged
-' FuncionEntidad ..> INotifyPropertyChanged
-' Marcas ..> INotifyPropertyChanged
-' Modelos ..> INotifyPropertyChanged
-' MovimientoArchivo ..> INotifyPropertyChanged
-' Movimientos ..> INotifyPropertyChanged
-' ParametrosGral ..> INotifyPropertyChanged
-' PlantillaAtributos ..> INotifyPropertyChanged
-' Productos ..> INotifyPropertyChanged
-' Proyectos ..> INotifyPropertyChanged
-' Tipos ..> INotifyPropertyChanged
-' Ubicaciones ..> INotifyPropertyChanged
-' UsuarioPorAlmacen ..> INotifyPropertyChanged
+Activos ..> INotifyPropertyChanged
+Adjuntos ..> INotifyPropertyChanged
+Almacenes ..> INotifyPropertyChanged
+Archivos ..> INotifyPropertyChanged
+AtributosEquipos ..> INotifyPropertyChanged
+AtributosPorTipoEquipo ..> INotifyPropertyChanged
+Calibraciones ..> INotifyPropertyChanged
+ConfiguracionEquipo ..> INotifyPropertyChanged
+Entidad ..> INotifyPropertyChanged
+EqHistEstados ..> INotifyPropertyChanged
+Equipos ..> INotifyPropertyChanged
+Marcas ..> INotifyPropertyChanged
+Modelos ..> INotifyPropertyChanged
+MovimientoArchivo ..> INotifyPropertyChanged
+Movimientos ..> INotifyPropertyChanged
+ParametrosGral ..> INotifyPropertyChanged
+PlantillaAtributos ..> INotifyPropertyChanged
+Productos ..> INotifyPropertyChanged
+Proyectos ..> INotifyPropertyChanged
+Tipos ..> INotifyPropertyChanged
+Ubicaciones ..> INotifyPropertyChanged
+UsuarioPorAlmacen ..> INotifyPropertyChanged
 
 Marcas "1" -- "0..*" Modelos
-Marcas "1" -- "0..*" Equipos
-Modelos "1" -- "0..*" Equipos
-ConfiguracionEquipo "1" -- "0..*" Equipos
-Activos "0..1" -- "0..1" Equipos
+Equipos "0..*" -- "1" Marcas
+Equipos "0..*" -- "1" Modelos
+Equipos "0..*" -- "1" ConfiguracionEquipo
+Equipos "0..1" -left- "0..1" Activos
+Equipos "0..*" -right- "1" Productos
+Equipos "1..*" -right- "1" Movimientos
+Equipos "1" -- "1..*" EqHistEstados
+Equipos "1" -left- "0..*" AtributosEquipos
+Equipos "1" -right- "0..*" Calibraciones
+Movimientos "0..*" -- "1" Almacenes
+Movimientos "0..*" -- "1" Ubicaciones
+Movimientos "0..*" -- "1" Tipos
+Movimientos "0..*" -- "1" Proyectos
+Movimientos "1" -- "1" MovimientoArchivo
+Movimientos "1" -- "1" Entidad: Responsable
 Calibraciones "1" -- "0..*" Adjuntos
-Almacenes "1" -- "0..*" Movimientos
 Almacenes "1" -- "0..*" UsuarioPorAlmacen
-Productos "1" -- "0..*" Equipos
 Proyectos "1" -- "0..*" Ubicaciones
 Tipos "1" -- "0..*" Ubicaciones: Sector
 Proyectos "1" -- "0..*" Tipos: Sector
-Ubicaciones "1" -- "0..*" Movimientos
-Tipos "1" -- "0..*" Movimientos
-Proyectos "1" -- "0..*" Movimientos
 Adjuntos "1" -- "1" Archivos
-Movimientos "1" -- "1" MovimientoArchivo
-Movimientos "1" -- "1..*" Equipos
-Movimientos "1" -- "1" Entidad: Responsable
-Equipos "1" -- "1..*" EqHistEstados
+ConfiguracionEquipo "1" -- "1..*" AtributosPorTipoEquipo
+PlantillaAtributos "1" -- "0..*" AtributosPorTipoEquipo
+AtributosEquipos "1" -- "1" PlantillaAtributos
 
-' class Activos extends MasterBusinessEntity {
-class Activos {
+class Activos extends MasterBusinessEntity {
+' class Activos {
     - m_acti_codigo: String
-    - m_acti_codigoref: String
-    - m_entc_codprov: String
-    - m_cuen_codigo: String
     - m_acti_desc: String
-    - m_acti_feccompra: DateTime
-    - m_cuen_ano: String
-    - m_acti_fecinidepre: DateTime
-    - m_acti_usrcrea: String
-    - m_acti_feccrea: DateTime
-    - m_acti_usrmod: String
-    - m_acti_fecmod: Nullable<DateTime>
-    - m_acti_valorini: Decimal?
-    - m_acti_valorinidol: Decimal?
-    - m_acti_tipocambio: Decimal?
-    - m_acti_ubicacion: String
-    - m_entc_codtrab: String
-    - m_acti_montodol: Decimal?
-    - m_acti_contado: Nullable<Boolean>
-    - m_acti_plazos: Nullable<Int32>
-    - m_acti_ruc: String
-    - m_tipo_tabactivo: String
-    - m_tipo_tipactivo: String
-    - m_tipo_tabmoneda: String
-    - m_tipo_tipmoneda: String
-    - m_acti_ubicanterior: String
-    - m_acti_marca: String
     - m_acti_serie: String
-    - m_cent_ano: String
-    - m_cent_codigo: String
-    - m_acti_fectrans: Nullable<DateTime>
-    - m_acti_motivo: String
-    - m_acti_otros: String
-    - m_acti_nivel: Nullable<Int32>
-    - m_acti_ordenjerarquico: Nullable<Int32>
-    - m_acti_seriedoc: String
-    - m_acti_numdoc: String
-    - m_tipo_tabdocumento: String
-    - m_tipo_coddocumento: String
-    - m_acti_fecharetiro: Nullable<DateTime>
-    - m_acti_tabubicacion: String
-    - m_acti_codubicacion: String
-    - m_acti_tabubicacionant: String
-    - m_acti_codubicacionanterior: String
-    - m_acti_condicion: String
-    - m_cloc_codigo: String
-    - m_ccla_codigo: String
-    - m_acti_fecha: Nullable<DateTime>
-    - m_acti_hora: String
-    - m_acti_fechaant: Nullable<DateTime>
-    - m_acti_horaant: String
-    - m_acti_tiporetiro: String
-    - m_acti_documento: String
-    - m_acti_situacion: String
-    - m_acti_codetiqueta: String
-    - m_sucr_codigo: String
-    - m_ctct_nrotran: Nullable<Int32>
-    - m_acti_modelo: String
+    - m_acti_ruc: String
+    - m_entc_codprov: String
     + ACTI_Codigo: String
-    + ACTI_codigoRef: String
-    + ENTC_CodProv: String
-    + CUEN_codigo: String
     + ACTI_Desc: String
-    + ACTI_FecCompra: DateTime
-    + CUEN_ano: String
-    + ACTI_FecIniDepre: DateTime
-    + ACTI_UsrCrea: String
-    + ACTI_FecCrea: DateTime
-    + ACTI_UsrMod: String
-    + ACTI_FecMod: Nullable<DateTime>
-    + ACTI_ValorIni: Decimal?
-    + ACTI_ValorIniDol: Decimal?
-    + ACTI_tipoCambio: Decimal?
-    + ACTI_Ubicacion: String
-    + ENTC_CodTrab: String
-    + ACTI_montoDol: Decimal?
-    + ACTI_contado: Nullable<Boolean>
-    + ACTI_plazos: Nullable<Int32>
-    + ACTI_ruc: String
-    + TIPO_TabActivo: String
-    + TIPO_TipActivo: String
-    + TIPO_TabMoneda: String
-    + TIPO_TipMoneda: String
-    + ACTI_UbicAnterior: String
-    + ACTI_marca: String
     + ACTI_serie: String
-    + CENT_Ano: String
-    + CENT_Codigo: String
-    + ACTI_fecTrans: Nullable<DateTime>
-    + ACTI_motivo: String
-    + ACTI_otros: String
-    + ACTI_nivel: Nullable<Int32>
-    + ACTI_ordenJerarquico: Nullable<Int32>
-    + ACTI_SerieDoc: String
-    + ACTI_NumDoc: String
-    + TIPO_TabDocumento: String
-    + TIPO_CodDocumento: String
-    + ACTI_FechaRetiro: Nullable<DateTime>
-    + ACTI_TabUbicacion: String
-    + ACTI_CodUbicacion: String
-    + ACTI_TabUbicacionAnt: String
-    + ACTI_CodUbicacionAnterior: String
-    + ACTI_Condicion: String
-    + CLOC_Codigo: String
-    + CCLA_Codigo: String
-    + ACTI_Fecha: Nullable<DateTime>
-    + ACTI_Hora: String
-    + ACTI_FechaAnt: Nullable<DateTime>
-    + ACTI_HoraAnt: String
-    + ACTI_TipoRetiro: String
-    + ACTI_documento: String
-    + ACTI_Situacion: String
-    + ACTI_CodEtiqueta: String
-    + SUCR_Codigo: String
-    + ctct_nrotran: Nullable<Int32>
-    + ACTI_modelo: String
+    + ACTI_ruc: String
+    + ENTC_CodProv: String
     + Activos()
     + CopyTo(ref Activos Item): void
 }
 
-' class Adjuntos extends MasterBusinessEntity {
-class Adjuntos {
+class Adjuntos extends MasterBusinessEntity {
+' class Adjuntos {
     - Int16 m_equi_codigo
     - Int16 m_cali_id
     - Int32 m_arch_interno
@@ -189,8 +87,8 @@ class Adjuntos {
     + CopyTo(ref Item: Adjuntos): void
 }
 
-' class Almacenes extends MasterBusinessEntity {
-class Almacenes {
+class Almacenes extends MasterBusinessEntity {
+' class Almacenes {
     - m_alma_codigo: String
     - m_alma_codpadre: String
     - m_alma_nombre: String
@@ -217,8 +115,8 @@ class Almacenes {
     + CopyTo(ref Item: Almacenes): void
 }
 
-' class Archivos extends MasterBusinessEntity {
-class Archivos {
+class Archivos extends MasterBusinessEntity {
+' class Archivos {
     - m_arch_interno: Int32
     - m_arch_tabla: String
     - m_arch_descripcion: String
@@ -255,8 +153,8 @@ class Archivos {
     + CopyTo(ref Item: Archivos): void
 }
 
-' class AtributosEquipos extends MasterBusinessEntity {
-class AtributosEquipos {
+class AtributosEquipos extends MasterBusinessEntity {
+' class AtributosEquipos {
     - m_aequ_item: Int16
     - m_equi_codigo: Int16
     - m_aequ_valor: String
@@ -281,8 +179,8 @@ class AtributosEquipos {
     + CopyTo(ref Item: AtributosEquipos): void
 }
 
-' class AtributosPorTipoEquipo extends MasterBusinessEntity {
-class AtributosPorTipoEquipo {
+class AtributosPorTipoEquipo extends MasterBusinessEntity {
+' class AtributosPorTipoEquipo {
     - m_conf_codigo: Int16
     - m_plat_item: Int16
     - m_ateu_baja: Nullable<Boolean>
@@ -309,8 +207,8 @@ class AtributosPorTipoEquipo {
     + CopyTo(ref Item: AtributosPorTipoEquipo): void
 }
 
-' class Calibraciones extends MasterBusinessEntity {
-class Calibraciones {
+class Calibraciones extends MasterBusinessEntity {
+' class Calibraciones {
     - m_equi_codigo: Int16?
     - m_cali_id: Int16
     - m_cali_fecha: DateTime
@@ -343,8 +241,8 @@ class Calibraciones {
     + CopyTo(ref Item: Calibraciones): void
 }
 
-' class ConfiguracionEquipo extends MasterBusinessEntity {
-class ConfiguracionEquipo {
+class ConfiguracionEquipo extends MasterBusinessEntity {
+' class ConfiguracionEquipo {
     - m_conf_codigo: Int16
     - m_conf_codpadre: Nullable<Int16>
     - m_conf_descripcion: String
@@ -367,110 +265,22 @@ class ConfiguracionEquipo {
     + void CopyTo(ref ConfiguracionEquipo Item)
 }
 
-' class Entidad extends MasterBusinessEntity {
-class Entidad {
+class Entidad extends MasterBusinessEntity {
+' class Entidad {
     - m_entc_codigo: String
     - m_entc_ruc: String
     - m_entc_nomcom: String
     - m_entc_razonsoc: String
-    - m_entc_contacto: String
-    - m_entc_tel1: String
-    - m_entc_tel2: String
-    - m_entc_tel3: String
-    - m_entc_fax: String
-    - m_entc_dir: String
-    - m_entc_dirrefe: String
-    - m_entc_ubicacion: String
-    - m_entc_dociden: String
-    - m_entc_nomprop: String
-    - m_zoge_codigo: String
-    - m_entc_domiciliado: Nullable<Boolean>
-    - m_entc_ptrapemat: Nullable<Int16>
-    - m_entc_ptrnombre1: Nullable<Int16>
-    - m_entc_ptrnombre2: Nullable<Int16>
-    - m_entc_email: String
-    - m_entc_usrcrea: String
-    - m_entc_feccrea: DateTime
-    - m_entc_usrmod: String
-    - m_entc_fecmod: Nullable<DateTime>
-    - m_entc_tipdociden: String
-    - m_entc_tipoentidadpdt: String
-    - m_entc_rucduplicado: Nullable<Int32>
-    - m_entc_percepcion: Nullable<Decimal>
-    - m_entc_pagoinmediato: Nullable<Boolean>
-    - m_entc_agretencion: Nullable<Boolean>
-    - m_entc_buencontribuyente: Nullable<Boolean>
-    - m_entc_agpercepcion: Nullable<Boolean>
-    - m_entc_bloqueosunat: Nullable<Boolean>
-    - m_entc_sexo: String
-    - m_entc_fecnac: Nullable<DateTime>
-    - m_entc_codpadre: String
-    - m_tipo_tabnac: String
-    - m_tipo_codnac: String
-    - m_entc_publico: Nullable<Boolean>
-    - m_entc_codinterbancario: String
-    - m_entc_codinterbancariodol: String
-    - m_entc_vinculada: Nullable<Boolean>
-    - m_entc_tipocci: String
-    - m_entc_felectronica: Nullable<Boolean>
-    - m_entc_codfacturacion: String
-    - m_entc_actualizacionsunat: Nullable<DateTime>
-    - m_entc_password: String
-    - m_entc_cambiarpass: Nullable<Boolean>
     + ENTC_Codigo: String
     + ENTC_Ruc: String
     + ENTC_NomCom: String
     + ENTC_RazonSoc: String
-    + ENTC_Contacto: String
-    + ENTC_Tel1: String
-    + ENTC_Tel2: String
-    + ENTC_Tel3: String
-    + ENTC_Fax: String
-    + ENTC_Dir: String
-    + ENTC_DirRefe: String
-    + ENTC_Ubicacion: String
-    + ENTC_DocIden: String
-    + ENTC_NomProp: String
-    + ZOGE_Codigo: String
-    + ENTC_domiciliado: Nullable<Boolean>
-    + ENTC_PtrApemat: Nullable<Int16>
-    + ENTC_PtrNombre1: Nullable<Int16>
-    + ENTC_PtrNombre2: Nullable<Int16>
-    + ENTC_Email: String
-    + ENTC_UsrCrea: String
-    + ENTC_FecCrea: DateTime
-    + ENTC_UsrMod: String
-    + ENTC_FecMod: Nullable<DateTime>
-    + ENTC_TipDocIden: String
-    + ENTC_TipoEntidadPDT: String
-    + ENTC_RucDuplicado: Nullable<Int32>
-    + ENTC_Percepcion: Nullable<Decimal>
-    + ENTC_pagoInmediato: Nullable<Boolean>
-    + ENTC_AgRetencion: Nullable<Boolean>
-    + ENTC_buenContribuyente: Nullable<Boolean>
-    + ENTC_AgPercepcion: Nullable<Boolean>
-    + ENTC_bloqueoSUNAT: Nullable<Boolean>
-    + ENTC_Sexo: String
-    + ENTC_FecNac: Nullable<DateTime>
-    + ENTC_CodPadre: String
-    + TIPO_tabNac: String
-    + TIPO_codNac: String
-    + ENTC_Publico: Nullable<Boolean>
-    + ENTC_codInterbancario: String
-    + ENTC_codInterbancarioDol: String
-    + ENTC_Vinculada: Nullable<Boolean>
-    + ENTC_tipoCCI: String
-    + ENTC_FElectronica: Nullable<Boolean>
-    + ENTC_codFacturacion: String
-    + ENTC_ActualizacionSunat: Nullable<DateTime>
-    + ENTC_Password: String
-    + ENTC_CambiarPass: Nullable<Boolean>
     + Entidad()
     + CopyTo(ref Item: Entidad): void
 }
 
-' class EqHistEstados extends MasterBusinessEntity {
-class EqHistEstados {
+class EqHistEstados extends MasterBusinessEntity {
+' class EqHistEstados {
     - m_equi_codigo: Int16
     - m_ehes_item: Int16
     - m_ehes_fecha: DateTime
@@ -499,8 +309,8 @@ class EqHistEstados {
     + CopyTo(ref Item: EqHistEstados): void
 }
 
-' class Equipos extends MasterBusinessEntity {
-class Equipos {
+class Equipos extends MasterBusinessEntity {
+' class Equipos {
     - m_equi_codigo: Int16
     - m_equi_nombre: String
     - m_equi_descripcion: String
@@ -557,8 +367,8 @@ class Equipos {
     + CopyTo(ref Item: Equipos): void
 }
 
-' class Marcas extends MasterBusinessEntity {
-class Marcas {
+class Marcas extends MasterBusinessEntity {
+' class Marcas {
     - m_marc_codigo: String
     - m_marc_descripcion: String
     - m_marc_usrcrea: String
@@ -575,8 +385,8 @@ class Marcas {
     + CopyTo(ref Item: Marcas): void
 }
 
-' class Modelos extends MasterBusinessEntity {
-class Modelos {
+class Modelos extends MasterBusinessEntity {
+' class Modelos {
     - m_mode_codigo: Int16?
     - m_marc_codigo: String
     - m_mode_nombre: String
@@ -603,8 +413,8 @@ class Modelos {
     + CopyTo(ref Item: Modelos): void
 }
 
-' class MovimientoArchivo extends MasterBusinessEntity {
-class MovimientoArchivo {
+class MovimientoArchivo extends MasterBusinessEntity {
+' class MovimientoArchivo {
     - m_moar_codigo: int
     - m_movi_tipo: String
     - m_movi_codigo: Int32?
@@ -623,8 +433,8 @@ class MovimientoArchivo {
     + CopyTo(ref Item: MovimientoArchivo): void
 }
 
-' class Movimientos extends MasterBusinessEntity {
-class Movimientos {
+class Movimientos extends MasterBusinessEntity {
+' class Movimientos {
     - m_movi_tipo: String
     - m_movi_codigo: Int32?
     - m_movi_fecha: DateTime
@@ -677,8 +487,8 @@ class Movimientos {
     + CopyTo(ref Item: Movimientos): void
 }
 
-' class ParametrosGral extends MasterBusinessEntity {
-class ParametrosGral {
+class ParametrosGral extends MasterBusinessEntity {
+' class ParametrosGral {
     - m_sucr_codigo: String
     - m_para_aplicacion: String
     - m_para_nombre: String
@@ -703,8 +513,8 @@ class ParametrosGral {
     + CopyTo(ref Item: ParametrosGral): void
 }
 
-' class PlantillaAtributos extends MasterBusinessEntity {
-class PlantillaAtributos {
+class PlantillaAtributos extends MasterBusinessEntity {
+' class PlantillaAtributos {
     - m_plat_item: Int16
     - m_plat_descripcion: String
     - m_plat_valor: String
@@ -737,265 +547,137 @@ class PlantillaAtributos {
     + CopyTo(ref Item: PlantillaAtributos): void
 }
 
-' class Productos extends MasterBusinessEntity {
-class Productos {
-    private m_prod_codigo: String
-    private m_fami_codigo: String
-    private m_tipo_tabprod: String
-    private m_tipo_codprod: String
-    private m_tipo_tabmed: String
-    private m_tipo_codmedmenor: String
-    private m_tipo_codmedmayor: String
-    private m_marc_codigo: String
-    private m_prod_factor: Decimal
-    private m_prod_codalternativo: String
-    private m_prod_desc: String
-    private m_prod_pesounimayor: Decimal
-    private m_prod_pesounimenor: Decimal
-    private m_prod_volunimayor: Decimal
-    private m_prod_volunimenor: Decimal
-    private m_prod_marca: String
-    private m_prod_factor2: Decimal
-    private m_prod_original: Nullable<Boolean>
-    private m_prod_claseabc: String
-    private m_cuen_codctacompra: String
-    private m_cuen_codctaconsumo: String
-    private m_prod_obser: String
-    private m_prod_presentacion: String
-    private m_prod_foto: String
-    private m_prod_usrcrea: String
-    private m_prod_feccrea: DateTime
-    private m_prod_usrmod: String
-    private m_prod_fecmod: Nullable<DateTime>
-    private m_tipo_tabmoneda: String
-    private m_tipo_codmonedaventa: String
-    private m_tipo_codmonedacompra: String
-    private m_prod_nacional: Nullable<Boolean>
-    private m_cent_ano: String
-    private m_cent_codventa: String
-    private m_prod_formatobebida: Nullable<Byte>
-    private m_prod_descontinuado: Nullable<Boolean>
-    private m_cent_codigo: String
-    private m_prod_atributos: Nullable<Byte>
-    private m_prod_combo: Nullable<Boolean>
-    private m_form_codigo: Nullable<Int16>
-    private m_tipo_codmedmenor_tmp: String
-    private m_tipo_codmedmayor_tmp: String
-    private m_prod_factor_tmp: Nullable<Decimal>
-    private m_prod_desc_tmp: String
-    private m_prod_densidad: String
-    private m_prod_gascarb: Nullable<Boolean>
-    private m_sabo_codigo: Nullable<Int16>
-    private m_prod_flag: Nullable<Boolean>
-    private m_prod_codenproceso: String
-    private m_prod_enprocesoacumulacosto: Nullable<Boolean>
-    private m_prod_controlado: Nullable<Boolean>
-    private m_prod_vidautil: Nullable<Int16>
-    private m_prod_codalternativo2: String
-    private m_prod_codinter: String
-    private m_prod_ubicacion: Nullable<Boolean>
-    private m_prod_posicion: Nullable<Decimal>
-    private m_prod_imagen: byte[]
-    private m_prod_contabilizar: Nullable<Boolean>
-    private m_audi_tipo: String
-    private m_audi_ipaddress: String
-    private m_audi_machinename: String
-    private m_audi_applicationname: String
-    private m_audi_loginname: String
-    private m_audi_usuario: String
-    private m_audi_fecha: Nullable<DateTime>
-    private m_audi_proc: String
-    public PROD_Codigo: String
-    public FAMI_Codigo: String
-    public TIPO_TabProd: String
-    public TIPO_CodProd: String
-    public TIPO_TabMed: String
-    public TIPO_CodMedMenor: String
-    public TIPO_CodMedMayor: String
-    public MARC_Codigo: String
-    public PROD_Factor: Decimal
-    public PROD_CodAlternativo: String
-    public PROD_Desc: String
-    public PROD_PesoUniMayor: Decimal
-    public PROD_PesoUniMenor: Decimal
-    public PROD_VolUniMayor: Decimal
-    public PROD_VolUniMenor: Decimal
-    public PROD_Marca: String
-    public PROD_Factor2: Decimal
-    public PROD_Original: Nullable<Boolean>
-    public PROD_ClaseABC: String
-    public CUEN_CodCtaCompra: String
-    public CUEN_CodCtaConsumo: String
-    public PROD_Obser: String
-    public PROD_Presentacion: String
-    public PROD_Foto: String
-    public PROD_UsrCrea: String
-    public PROD_FecCrea: DateTime
-    public PROD_UsrMod: String
-    public PROD_FecMod: Nullable<DateTime>
-    public TIPO_TabMoneda: String
-    public TIPO_CodMonedaVenta: String
-    public TIPO_CodMonedaCompra: String
-    public PROD_Nacional: Nullable<Boolean>
-    public CENT_ano: String
-    public CENT_CodVenta: String
-    public PROD_FormatoBebida: Nullable<Byte>
-    public prod_Descontinuado: Nullable<Boolean>
-    public CENT_Codigo: String
-    public PROD_Atributos: Nullable<Byte>
-    public PROD_Combo: Nullable<Boolean>
-    public FORM_codigo: Nullable<Int16>
-    public TIPO_CodMedMenor_tmp: String
-    public TIPO_CodMedMayor_tmp: String
-    public PROD_Factor_tmp: Nullable<Decimal>
-    public PROD_Desc_tmp: String
-    public PROD_Densidad: String
-    public PROD_GasCarb: Nullable<Boolean>
-    public SABO_Codigo: Nullable<Int16>
-    public PROD_flag: Nullable<Boolean>
-    public prod_codEnProceso: String
-    public PROD_EnProcesoAcumulaCosto: Nullable<Boolean>
-    public PROD_Controlado: Nullable<Boolean>
-    public PROD_VidaUtil: Nullable<Int16>
-    public PROD_CodAlternativo2: String
-    public PROD_CodInter: String
-    public PROD_Ubicacion: Nullable<Boolean>
-    public PROD_Posicion: Nullable<Decimal>
-    public PROD_Imagen: byte[]
-    public PROD_Contabilizar: Nullable<Boolean>
-    public AUDI_Tipo: String
-    public AUDI_IPAddress: String
-    public AUDI_MachineName: String
-    public AUDI_ApplicationName: String
-    public AUDI_LoginName: String
-    public AUDI_Usuario: String
-    public AUDI_Fecha: Nullable<DateTime>
-    public AUDI_Proc: String
-    public Productos()
-    public CopyTo(ref Item: Productos): void
+class Productos extends MasterBusinessEntity {
+' class Productos {
+    - m_prod_codigo: String
+    - m_prod_desc: String
+    + PROD_Codigo: String
+    + PROD_Desc: String
+    + Productos()
+    + CopyTo(ref Item: Productos): void
 }
 
-' class Proyectos extends MasterBusinessEntity {
-class Proyectos {
-    private m_proy_codigo: Int16?
-    private m_proy_nombre: String
-    private m_proy_descripcion: String
-    private m_proy_estado: Nullable<Boolean>
-    private m_audi_usrcrea: String
-    private m_audi_feccrea: DateTime
-    private m_audi_hostcrea: String
-    private m_audi_usrmod: String
-    private m_audi_fecmod: Nullable<DateTime>
-    private m_audi_hostmod: String
-    public PROY_Codigo: Int16?
-    public PROY_Nombre: String
-    public PROY_Descripcion: String
-    public PROY_Estado: Nullable<Boolean>
-    public AUDI_UsrCrea: String
-    public AUDI_FecCrea: DateTime
-    public AUDI_HostCrea: String
-    public AUDI_UsrMod: String
-    public AUDI_FecMod: Nullable<DateTime>
-    public AUDI_HostMod: String
-    public Proyectos()
-    public CopyTo(ref Item: Proyectos): void
+class Proyectos extends MasterBusinessEntity {
+' class Proyectos {
+    - m_proy_codigo: Int16?
+    - m_proy_nombre: String
+    - m_proy_descripcion: String
+    - m_proy_estado: Nullable<Boolean>
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + PROY_Codigo: Int16?
+    + PROY_Nombre: String
+    + PROY_Descripcion: String
+    + PROY_Estado: Nullable<Boolean>
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + Proyectos()
+    + CopyTo(ref Item: Proyectos): void
 }
 
-' class Tipos extends MasterBusinessEntity {
-class Tipos {
-    private m_tipo_codtabla: String
-    private m_tipo_codtipo: String
-    private m_tipo_desc1: String
-    private m_tipo_desc2: String
-    private m_tipo_descc: String
-    private m_tipo_num1: Nullable<Decimal>
-    private m_tipo_num2: Nullable<Decimal>
-    private m_tipo_estado: String
-    private m_tipo_usrcrea: String
-    private m_tipo_feccrea: DateTime
-    private m_tipo_usrmod: String
-    private m_tipo_fecmod: Nullable<DateTime>
-    private m_tipo_num4: Nullable<Int16>
-    private m_tipo_num3: Nullable<Int16>
-    private m_tipo_mascara: String
-    private m_tipo_cadctrlvta: String
-    private m_tipo_codsunat: String
-    private m_tipo_codsincro: String
-    public TIPO_CodTabla: String
-    public TIPO_CodTipo: String
-    public TIPO_Desc1: String
-    public TIPO_Desc2: String
-    public TIPO_DescC: String
-    public TIPO_Num1: Nullable<Decimal>
-    public TIPO_Num2: Nullable<Decimal>
-    public TIPO_Estado: String
-    public TIPO_UsrCrea: String
-    public TIPO_FecCrea: DateTime
-    public TIPO_UsrMod: String
-    public TIPO_FecMod: Nullable<DateTime>
-    public TIPO_Num4: Nullable<Int16>
-    public TIPO_Num3: Nullable<Int16>
-    public TIPO_mascara: String
-    public TIPO_CadCtrlVta: String
-    public TIPO_codSunat: String
-    public TIPO_CodSincro: String
-    public Tipos()
-    public CopyTo(ref Item: Tipos): void
+class Tipos extends MasterBusinessEntity {
+' class Tipos {
+    - m_tipo_codtabla: String
+    - m_tipo_codtipo: String
+    - m_tipo_desc1: String
+    - m_tipo_desc2: String
+    - m_tipo_descc: String
+    - m_tipo_num1: Nullable<Decimal>
+    - m_tipo_num2: Nullable<Decimal>
+    - m_tipo_estado: String
+    - m_tipo_usrcrea: String
+    - m_tipo_feccrea: DateTime
+    - m_tipo_usrmod: String
+    - m_tipo_fecmod: Nullable<DateTime>
+    - m_tipo_num4: Nullable<Int16>
+    - m_tipo_num3: Nullable<Int16>
+    - m_tipo_mascara: String
+    - m_tipo_cadctrlvta: String
+    - m_tipo_codsunat: String
+    - m_tipo_codsincro: String
+    + TIPO_CodTabla: String
+    + TIPO_CodTipo: String
+    + TIPO_Desc1: String
+    + TIPO_Desc2: String
+    + TIPO_DescC: String
+    + TIPO_Num1: Nullable<Decimal>
+    + TIPO_Num2: Nullable<Decimal>
+    + TIPO_Estado: String
+    + TIPO_UsrCrea: String
+    + TIPO_FecCrea: DateTime
+    + TIPO_UsrMod: String
+    + TIPO_FecMod: Nullable<DateTime>
+    + TIPO_Num4: Nullable<Int16>
+    + TIPO_Num3: Nullable<Int16>
+    + TIPO_mascara: String
+    + TIPO_CadCtrlVta: String
+    + TIPO_codSunat: String
+    + TIPO_CodSincro: String
+    + Tipos()
+    + CopyTo(ref Item: Tipos): void
 }
 
-' class Ubicaciones extends MasterBusinessEntity {
-class Ubicaciones {
-    private m_ubic_id: Int16
-    private m_ubic_nombre: String
-    private m_ubic_desccorta: String
-    private m_proy_codigo: Nullable<Int16>
-    private m_tipo_tabsec: String
-    private m_tipo_codsec: String
-    private m_audi_usrcrea: String
-    private m_audi_feccrea: Nullable<DateTime>
-    private m_audi_hostcrea: String
-    private m_audi_usrmod: String
-    private m_audi_fecmod: Nullable<DateTime>
-    private m_audi_hostmod: String
-    public UBIC_Id: Int16
-    public UBIC_Nombre: String
-    public UBIC_DescCorta: String
-    public PROY_Codigo: Nullable<Int16>
-    public TIPO_TabSEC: String
-    public TIPO_CodSEC: String
-    public AUDI_UsrCrea: String
-    public AUDI_FecCrea: Nullable<DateTime>
-    public AUDI_HostCrea: String
-    public AUDI_UsrMod: String
-    public AUDI_FecMod: Nullable<DateTime>
-    public AUDI_HostMod: String
-    public Ubicaciones()
-    public CopyTo(ref Item: Ubicaciones): void
+class Ubicaciones extends MasterBusinessEntity {
+' class Ubicaciones {
+    - m_ubic_id: Int16
+    - m_ubic_nombre: String
+    - m_ubic_desccorta: String
+    - m_proy_codigo: Nullable<Int16>
+    - m_tipo_tabsec: String
+    - m_tipo_codsec: String
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: Nullable<DateTime>
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + UBIC_Id: Int16
+    + UBIC_Nombre: String
+    + UBIC_DescCorta: String
+    + PROY_Codigo: Nullable<Int16>
+    + TIPO_TabSEC: String
+    + TIPO_CodSEC: String
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: Nullable<DateTime>
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + Ubicaciones()
+    + CopyTo(ref Item: Ubicaciones): void
 }
 
-' class UsuarioPorAlmacen extends MasterBusinessEntity {
-class UsuarioPorAlmacen {
-    private m_ualm_usuario: String
-    private m_ualm_administrador: Nullable<Boolean>
-    private m_ualm_sololectura: Nullable<Boolean>
-    private m_alma_codigo: String
-    private m_audi_usrcrea: String
-    private m_audi_feccrea: DateTime
-    private m_audi_hostcrea: String
-    private m_audi_usrmod: String
-    private m_audi_fecmod: Nullable<DateTime>
-    private m_audi_hostmod: String
-    public UALM_Usuario: String
-    public UALM_Administrador: Nullable<Boolean>
-    public UALM_SoloLectura: Nullable<Boolean>
-    public ALMA_Codigo: String
-    public AUDI_UsrCrea: String
-    public AUDI_FecCrea: DateTime
-    public AUDI_HostCrea: String
-    public AUDI_UsrMod: String
-    public AUDI_FecMod: Nullable<DateTime>
-    public AUDI_HostMod: String
-    public UsuarioPorAlmacen()
-    public CopyTo(ref Item: UsuarioPorAlmacen): void
+class UsuarioPorAlmacen extends MasterBusinessEntity {
+' class UsuarioPorAlmacen {
+    - m_ualm_usuario: String
+    - m_ualm_administrador: Nullable<Boolean>
+    - m_ualm_sololectura: Nullable<Boolean>
+    - m_alma_codigo: String
+    - m_audi_usrcrea: String
+    - m_audi_feccrea: DateTime
+    - m_audi_hostcrea: String
+    - m_audi_usrmod: String
+    - m_audi_fecmod: Nullable<DateTime>
+    - m_audi_hostmod: String
+    + UALM_Usuario: String
+    + UALM_Administrador: Nullable<Boolean>
+    + UALM_SoloLectura: Nullable<Boolean>
+    + ALMA_Codigo: String
+    + AUDI_UsrCrea: String
+    + AUDI_FecCrea: DateTime
+    + AUDI_HostCrea: String
+    + AUDI_UsrMod: String
+    + AUDI_FecMod: Nullable<DateTime>
+    + AUDI_HostMod: String
+    + UsuarioPorAlmacen()
+    + CopyTo(ref Item: UsuarioPorAlmacen): void
 }
 @enduml
