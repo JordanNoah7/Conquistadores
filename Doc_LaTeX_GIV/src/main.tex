@@ -14,6 +14,7 @@
 \usepackage[normalem]{ulem}
 \usepackage[spanish]{babel}
 \usepackage{apacite}
+\usepackage{tabularx}
 % \usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
 \usepackage{standalone}
 \usepackage{csquotes}
@@ -76,12 +77,19 @@ PROGRESOS EN EL CLUB DE CONQUISTADORES}
 PROGRESOS EN EL CLUB DE CONQUISTADORES
 
 \section{\large DATOS DEL AUTOR}
-\begin{tabular}{ll}
-    \textbf{Nombres}    &: John Jordan                                                             \\
-    \textbf{Apellidos}  &: Quispe Supo                                                             \\
-    \textbf{Carrera}    &: Desarrollo de Sistemas de Informaci\'on                                 \\
-    \textbf{Rese\~{n}a} &: Soy egresado del Instituto del Sur y actualmente me encuentro laborando \\ & en Soluciones de Informaci\'on NextSoft S.A.C.
+% \begin{tabular}{ll}
+%     \textbf{Nombres}    & : John Jordan                                                             \\
+%     \textbf{Apellidos}  & : Quispe Supo                                                             \\
+%     \textbf{Carrera}    & : Desarrollo de Sistemas de Informaci\'on                                 \\
+%     \textbf{Rese\~{n}a} & : Soy egresado del Instituto del Sur y actualmente me encuentro laborando \\ & en Soluciones de Informaci\'on NextSoft S.A.C.
+% \end{tabular}
+\section{\large Datos del Autor}
+\begin{tabular}{@{} p{3cm} p{11.8cm} @{}}
+    \textbf{Nombres} & : John Jordan Quispe Supo                                                                              \\
+    \textbf{Carrera} & : Desarrollo de Sistemas de Información                                                                \\
+    \textbf{Reseña}  & : Soy egresado del Instituto del Sur y actualmente laboro en Soluciones de Información NextSoft S.A.C.
 \end{tabular}
+
 
 \section{\large RESUMEN}
 Este proyecto se centra en el dise\~{n}o y desarrollo de un Sistema de
@@ -100,10 +108,10 @@ experciencia de los conquistadores.
 
 \subsection{Descripci\'on de la Unidad de Estudio}
 \begin{tabular}{ll}
-    \textbf{RUC}                            &: 20202020202                                        \\
-    \textbf{Raz\'on Social}                 &: Club de Conquistadores "Las \'Aguilas"             \\
-    \textbf{Fecha de Inicio de Actividades} &: 20/05/2012                                         \\
-    \textbf{Actividad principal}            &: Ayudar a los adolescentes a crecer en las 3 partes \\            & esenciales que son fisico mental y espiritual
+    \textbf{RUC}                            & : 20202020202                                        \\
+    \textbf{Raz\'on Social}                 & : Club de Conquistadores "Las \'Aguilas"             \\
+    \textbf{Fecha de Inicio de Actividades} & : 20/05/2012                                         \\
+    \textbf{Actividad principal}            & : Ayudar a los adolescentes a crecer en las 3 partes \\            & esenciales que son fisico mental y espiritual
 \end{tabular}
 
 \subsection{Diagn\'ostico de la Situaci\'on Actual}
@@ -194,4 +202,9 @@ datos.
 \section{\large RECOMENDACIONES}
 \section{\large AGRADECIMIENTOS}
 \section{\large BIBLIOGRAF\'IA}
+\section{\large ANEXOS}
+\begin{figure}
+    \caption{Descripción de figuras.}
+    \includegraphics[scale=0.1588, angle=90]{./diagrams/BusinessLogic/BusinessLogic.pdf}
+\end{figure}
 \end{document}

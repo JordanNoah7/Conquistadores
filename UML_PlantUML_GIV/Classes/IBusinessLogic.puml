@@ -1,208 +1,268 @@
 @startuml BusinessLogic
-' eliminar adjuntos
 skinparam ClassAttributeIconSize 0
 
-class BLActivos{
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Activos>
-    + GetAll(): ObservableCollection<Activos>
-    + GetOne(ENTC_CodProv: String, ACTI_serie: string): Activos
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Activos>
-    - SelectAll(): ObservableCollection<Activos>
-    - SelectOne(ENTC_CodProv: string, ACTI_serie: string): Activos
+package "NextAdmin"{
+    class BLSession{
+        + GetNewSession(ref SESS_Token: Session): Boolean
+        + GetValidateSession(SESS_Token: Guid, AUDI_UsrMod: String, AUDI_HostMod: String): Session
+        - SelectNewSession(ref Item: Session): Boolean
+        - SelectValidateSession(SESS_Token: Guid, AUDI_UsrMod: String, AUDI_HostMod: String): Session
+    }
+
+    class BLSessionKey{
+        + GetOne(SESCP_Fecha: String): SessionKey
+        + Save(ref Item: SessionKey): Boolean
+        - SelectOne(SESCP_Fecha: String): SessionKey
+        - Insert(ref Item: SessionKey): bool
+        - Update(ref Item: SessionKey): bool
+        - Delete(ref Item: SessionKey): bool
+    }
+
+    class BLPtlaUsers{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<PtlaUsers>
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<PtlaUsers>
+    }
+
+    class BLUsuarios{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Usuarios>
+        + GetAllFilterDS(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
+        + GetOne(USER_IdUser: Int32): Usuarios
+        + GetOne(USER_CodUsr: string, USER_PassUsr: string, APLI_Codigo: String, HostCrea: String, ref Message: string): Usuarios
+        + CambiarContrasenha(USER_IdUser: int, USER_CodUsr: String, USER_PassUsr: String, AUDI_HostCrea: String): Boolean
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Usuarios>
+        - SelectAllByFilterDS(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
+        - SelectOne(USER_IdUser: Int32): Usuarios
+        - SelectOneUsuario(USER_CodUsr: String): Usuarios
+        - UpdateCambiaContrasehna(ref Item: Usuarios): bool
+    }
 }
 
-class BLAlmacenes{
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Almacenes>
-    + GetAll(): ObservableCollection<Almacenes>
-    + GetOne(ALMA_Codigo: String): Almacenes
-    + Save(ref Item: Almacenes): Boolean
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Almacenes>
-    - SelectAll(): ObservableCollection<Almacenes>
-    - Almacenes SelectOne(ALMA_Codigo: String)
-    - Insert(ref Item: Almacenes): bool
-    - Update(ref Item: Almacenes): bool
-    - Delete(ref Item: Almacenes): bool
+package "NextSis"{
+        class BLActivos{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Activos>
+        + GetAll(): ObservableCollection<Activos>
+        + GetOne(ENTC_CodProv: String, ACTI_serie: string): Activos
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Activos>
+        - SelectAll(): ObservableCollection<Activos>
+        - SelectOne(ENTC_CodProv: string, ACTI_serie: string): Activos
+    }
+
+    class BLAlmacenes{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Almacenes>
+        + GetAll(): ObservableCollection<Almacenes>
+        + GetOne(ALMA_Codigo: String): Almacenes
+        + Save(ref Item: Almacenes): Boolean
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Almacenes>
+        - SelectAll(): ObservableCollection<Almacenes>
+        - Almacenes SelectOne(ALMA_Codigo: String)
+        - Insert(ref Item: Almacenes): bool
+        - Update(ref Item: Almacenes): bool
+        - Delete(ref Item: Almacenes): bool
+    }
+
+    class BLAtributosEquipos{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<AtributosEquipos>
+        + Save(ref Item: AtributosEquipos): Boolean
+        + Save(ref Items: ObservableCollection<AtributosEquipos>): Boolean
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<AtributosEquipos>
+        - Insert(ref Item: AtributosEquipos): bool
+        - Update(ref Item: AtributosEquipos): bool
+        - Delete(ref Item: AtributosEquipos): bool
+        - InsertJSON(ref Item: ObservableCollection<AtributosEquipos>): bool
+        - UpdateJSON(ref Item: ObservableCollection<AtributosEquipos>): bool
+    }
+
+    class BLAtributosPorTipoEquipo{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<AtributosPorTipoEquipo>
+        + Save(ref Items: ObservableCollection<AtributosPorTipoEquipo>): Boolean
+        + Delete(CONF_Codigo: short): Boolean
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<AtributosPorTipoEquipo>
+        - Insert(ref Item: AtributosPorTipoEquipo): bool
+        - Update(ref Item: AtributosPorTipoEquipo): bool
+        - Delete(ref Item: AtributosPorTipoEquipo): bool
+        - DeleteAll(CONF_Codigo: short): bool
+    }
+
+    class BLCalibraciones{
+        + Save(ref Items: ObservableCollection<Calibraciones>): Boolean
+        + GetAllByEquipo(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
+        - InsertJSON(ref Item: ObservableCollection<Calibraciones>): bool
+        - SelectAllByEquipo(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
+    }
+
+    class BLConfiguracionEquipo{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<ConfiguracionEquipo>
+        + Save(ref Item: ConfiguracionEquipo): Boolean
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<ConfiguracionEquipo>
+        - Insert(ref Item: ConfiguracionEquipo): bool
+        - Update(ref Item: ConfiguracionEquipo): bool
+        - Delete(ref Item: ConfiguracionEquipo): bool
+    }
+
+    class BLEntidad{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Entidad>
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Entidad>
+    }
+
+    class BLEqHistEstados{
+        + GetAllFilterDS(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
+        - SelectAllByFilterDS(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
+    }
+
+    class BLEquipos{
+        + GetAllFilterDT(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataTable
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Equipos>
+        + GetAll(): ObservableCollection<Equipos>
+        + GetOne(EQUI_Codigo: Int16): Equipos
+        + Save(ref Item: Equipos): Boolean
+        + Save(ref Items: ObservableCollection<Equipos>): Boolean
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Equipos>
+        - ObservableCollection<Equipos> SelectAll()
+        - SelectOne(EQUI_Codigo: Int16): Equipos
+        - Insert(ref Item: Equipos): bool
+        - Update(ref Item: Equipos): bool
+        - Delete(ref Item: Equipos): bool
+        - InsertJSON(ref Item: ObservableCollection<Equipos>): bool
+        - UpdateJSON(ref Item: ObservableCollection<Equipos>): bool
+    }
+
+    class BLMarcas{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Marcas>
+        + GetOne(MARC_Codigo: String): Marcas
+        + Save(ref Item: Marcas): Boolean
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Marcas>
+        - SelectOne(MARC_Codigo: String): Marcas
+        - Insert(ref Item: Marcas): bool
+        - Update(ref Item: Marcas): bool
+        - Delete(ref Item: Marcas): bool
+    }
+
+    class BLModelos{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Modelos>
+        + GetOne(MODE_Codigo: Int16, MARC_Codigo: String): Modelos
+        + Save(ref Item: Modelos): Boolean
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Modelos>
+        - SelectOne(MODE_Codigo: Int16, MARC_Codigo: String): Modelos
+        - Insert(ref Item: Modelos): bool
+        - Update(ref Item: Modelos): bool
+        - Delete(ref Item: Modelos): bool
+    }
+
+    class BLMovimientoArchivo{
+        + GetOne(MOVI_Tipo: String, MOVI_Codigo: Int32): MovimientoArchivo
+        + Save(ref Item: MovimientoArchivo): Boolean
+        - SelectOne(MOVI_Tipo: String, MOVI_Codigo: Int32): MovimientoArchivo
+        - Insert(ref Item: MovimientoArchivo): bool
+    }
+
+    class BLMovimientos{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Movimientos>
+        + GetAllFilterDS(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
+        + GetOne(MOVI_Tipo: String, MOVI_Codigo: Int32, EQUI_Codigo: int): Movimientos
+        + Save(ref Items: ObservableCollection<Movimientos>): Boolean
+        + SaveJSON(ref Items: ObservableCollection<Movimientos>): Boolean
+        + MOVI_LastNumber(MOVI_Tipo: string): int
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Movimientos>
+        - SelectAllByFilterDS(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
+        - SelectOne(MOVI_Tipo: String, MOVI_Codigo: Int32, EQUI_Codigo: int): Movimientos
+        - Insert(ref Item: Movimientos): bool
+        - Update(ref Item: Movimientos): bool
+        - Delete(ref Item: Movimientos): bool
+        - InsertJSON(ref Item: ObservableCollection<Movimientos>): bool
+        - LastNumber(String MOVI_Tipo): int
+    }
+
+    class BLParametrosGral{
+        + System.Data.DataTable GetAllFilterDT(String x_procedure, ObservableCollection<Infrastructure.Aspect.DataAccess.DataAccessFilterSQL> x_filters)
+        + ObservableCollection<ParametrosGral> GetAllFilter(String x_procedure, ObservableCollection<Infrastructure.Aspect.DataAccess.DataAccessFilterSQL> x_filters)
+        + ObservableCollection<ParametrosGral> GetAll()
+        + Boolean Save(ref ParametrosGral Item)
+        - System.Data.DataTable SelectAllByFilterDT(String x_procedure, ObservableCollection<Infrastructure.Aspect.DataAccess.DataAccessFilterSQL> x_filters)
+        - ObservableCollection<ParametrosGral> SelectAllByFilter(String x_procedure, ObservableCollection<Infrastructure.Aspect.DataAccess.DataAccessFilterSQL> x_filters)
+        - ObservableCollection<ParametrosGral> SelectAll()
+        - bool Update(ref ParametrosGral Item)
+    }
+
+    class BLPlantillaAtributos{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<PlantillaAtributos>
+        + GetAll(): ObservableCollection<PlantillaAtributos>
+        + GetOne(PLAT_Item: Int16): PlantillaAtributos
+        + Save(ref Item: PlantillaAtributos): Boolean
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<PlantillaAtributos>
+        - SelectAll(): ObservableCollection<PlantillaAtributos>
+        - SelectOne(PLAT_Item: Int16): PlantillaAtributos
+        - Insert(ref Item: PlantillaAtributos): bool
+        - Update(ref Item: PlantillaAtributos): bool
+        - Delete(ref Item: PlantillaAtributos): bool
+    }
+
+    class BLProyectos{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Proyectos>
+        + GetAll(): ObservableCollection<Proyectos>
+        + GetOne(PROY_Codigo: Int16): Proyectos
+        + Save(ref Item: Proyectos): Boolean
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Proyectos>
+        - SelectAll(): ObservableCollection<Proyectos>
+        - SelectOne(PROY_Codigo: Int16): Proyectos
+        - Insert(ref Item: Proyectos): bool
+        - Update(ref Item: Proyectos): bool
+        - Delete(ref Item: Proyectos): bool
+    }
+
+    class BLTipos{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Tipos>
+        + Save(ref Item: Tipos): Boolean
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Tipos>
+        - Insert(ref Item: Tipos): bool
+        - Update(ref Item: Tipos): bool
+        - Delete(ref Item: Tipos): bool
+    }
+
+    class BLUbicaciones{
+        + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Ubicaciones>
+        + GetAll(): ObservableCollection<Ubicaciones>
+        + GetOne(UBIC_Id: Int16): Ubicaciones
+        + Save(ref Item: Ubicaciones): Boolean
+        - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Ubicaciones>
+        - SelectAll(): ObservableCollection<Ubicaciones>
+        - SelectOne(UBIC_Id: Int16): Ubicaciones
+        - Insert(ref Item: Ubicaciones): bool
+        - Update(ref Item: Ubicaciones): bool
+        - Delete(ref Item: Ubicaciones): bool
+    }
+
+    class BLUsuarioPorAlmacen{
+        + GetAllFilterDT(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataTable
+        + Save(ref Item: UsuarioPorAlmacen): Boolean
+        + Save(ref Items: ObservableCollection<UsuarioPorAlmacen>): Boolean
+        - SelectAllByFilterDT(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataTable
+        - InsertJSON(ref Item: UsuarioPorAlmacen): bool
+        - UpdateJSON(ref Item: UsuarioPorAlmacen): bool
+        - Delete(ref Item: UsuarioPorAlmacen): bool
+        - InsertUpdate(ref Item: UsuarioPorAlmacen): bool
+    }
 }
 
-class BLAtributosEquipos{
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<AtributosEquipos>
-    + Save(ref Item: AtributosEquipos): Boolean
-    + Save(ref Items: ObservableCollection<AtributosEquipos>): Boolean
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<AtributosEquipos>
-    - Insert(ref Item: AtributosEquipos): bool
-    - Update(ref Item: AtributosEquipos): bool
-    - Delete(ref Item: AtributosEquipos): bool
-    - InsertJSON(ref Item: ObservableCollection<AtributosEquipos>): bool
-    - UpdateJSON(ref Item: ObservableCollection<AtributosEquipos>): bool
-}
+BLPtlaUsers -[hidden]-> BLSession
+BLSession -[hidden]-> BLSessionKey
+BLSessionKey -[hidden]-> BLUsuarios
 
-class BLAtributosPorTipoEquipo{
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<AtributosPorTipoEquipo>
-    + Save(ref Items: ObservableCollection<AtributosPorTipoEquipo>): Boolean
-    + Delete(CONF_Codigo: short): Boolean
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<AtributosPorTipoEquipo>
-    - Insert(ref Item: AtributosPorTipoEquipo): bool
-    - Update(ref Item: AtributosPorTipoEquipo): bool
-    - Delete(ref Item: AtributosPorTipoEquipo): bool
-    - DeleteAll(CONF_Codigo: short): bool
-}
+BLActivos -[hidden]-> BLAlmacenes
+BLAlmacenes -[hidden]-> BLAtributosEquipos
+BLAtributosEquipos -[hidden]-> BLAtributosPorTipoEquipo
+BLAtributosPorTipoEquipo -[hidden]-> BLCalibraciones
+BLCalibraciones -[hidden]-> BLConfiguracionEquipo
+BLConfiguracionEquipo -[hidden]-> BLEntidad
 
-class BLCalibraciones{
-    + Save(ref Items: ObservableCollection<Calibraciones>): Boolean
-    + GetAllByEquipo(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
-    - InsertJSON(ref Item: ObservableCollection<Calibraciones>): bool
-    - SelectAllByEquipo(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
-}
+BLEqHistEstados -[hidden]-> BLEquipos
+BLEquipos -[hidden]-> BLMarcas
+BLMarcas -[hidden]-> BLModelos
+BLModelos -[hidden]-> BLMovimientoArchivo
+BLMovimientoArchivo -[hidden]-> BLMovimientos
+BLMovimientos -[hidden]-> BLParametrosGral
 
-class BLConfiguracionEquipo{
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<ConfiguracionEquipo>
-    + Save(ref Item: ConfiguracionEquipo): Boolean
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<ConfiguracionEquipo>
-    - Insert(ref Item: ConfiguracionEquipo): bool
-    - Update(ref Item: ConfiguracionEquipo): bool
-    - Delete(ref Item: ConfiguracionEquipo): bool
-}
-
-class BLEntidad{
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Entidad>
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Entidad>
-}
-
-class BLEqHistEstados{
-    + GetAllFilterDS(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
-    - SelectAllByFilterDS(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
-}
-
-class BLEquipos{
-    + GetAllFilterDT(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataTable
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Equipos>
-    + GetAll(): ObservableCollection<Equipos>
-    + GetOne(EQUI_Codigo: Int16): Equipos
-    + Save(ref Item: Equipos): Boolean
-    + Save(ref Items: ObservableCollection<Equipos>): Boolean
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Equipos>
-    - ObservableCollection<Equipos> SelectAll()
-    - SelectOne(EQUI_Codigo: Int16): Equipos
-    - Insert(ref Item: Equipos): bool
-    - Update(ref Item: Equipos): bool
-    - Delete(ref Item: Equipos): bool
-    - InsertJSON(ref Item: ObservableCollection<Equipos>): bool
-    - UpdateJSON(ref Item: ObservableCollection<Equipos>): bool
-}
-
-class BLMarcas{
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Marcas>
-    + GetOne(MARC_Codigo: String): Marcas
-    + Save(ref Item: Marcas): Boolean
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Marcas>
-    - SelectOne(MARC_Codigo: String): Marcas
-    - Insert(ref Item: Marcas): bool
-    - Update(ref Item: Marcas): bool
-    - Delete(ref Item: Marcas): bool
-}
-
-class BLModelos{
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Modelos>
-    + GetOne(MODE_Codigo: Int16, MARC_Codigo: String): Modelos
-    + Save(ref Item: Modelos): Boolean
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Modelos>
-    - SelectOne(MODE_Codigo: Int16, MARC_Codigo: String): Modelos
-    - Insert(ref Item: Modelos): bool
-    - Update(ref Item: Modelos): bool
-    - Delete(ref Item: Modelos): bool
-}
-
-class BLMovimientoArchivo{
-    + GetOne(MOVI_Tipo: String, MOVI_Codigo: Int32): MovimientoArchivo
-    + Save(ref Item: MovimientoArchivo): Boolean
-    - SelectOne(MOVI_Tipo: String, MOVI_Codigo: Int32): MovimientoArchivo
-    - Insert(ref Item: MovimientoArchivo): bool
-}
-
-class BLMovimientos{
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Movimientos>
-    + GetAllFilterDS(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
-    + GetOne(MOVI_Tipo: String, MOVI_Codigo: Int32, EQUI_Codigo: int): Movimientos
-    + Save(ref Items: ObservableCollection<Movimientos>): Boolean
-    + SaveJSON(ref Items: ObservableCollection<Movimientos>): Boolean
-    + MOVI_LastNumber(MOVI_Tipo: string): int
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Movimientos>
-    - SelectAllByFilterDS(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
-    - SelectOne(MOVI_Tipo: String, MOVI_Codigo: Int32, EQUI_Codigo: int): Movimientos
-    - Insert(ref Item: Movimientos): bool
-    - Update(ref Item: Movimientos): bool
-    - Delete(ref Item: Movimientos): bool
-    - InsertJSON(ref Item: ObservableCollection<Movimientos>): bool
-    - LastNumber(String MOVI_Tipo): int
-}
-
-class BLParametrosGral{
-    + System.Data.DataTable GetAllFilterDT(String x_procedure, ObservableCollection<Infrastructure.Aspect.DataAccess.DataAccessFilterSQL> x_filters)
-    + ObservableCollection<ParametrosGral> GetAllFilter(String x_procedure, ObservableCollection<Infrastructure.Aspect.DataAccess.DataAccessFilterSQL> x_filters)
-    + ObservableCollection<ParametrosGral> GetAll()
-    + Boolean Save(ref ParametrosGral Item)
-    - System.Data.DataTable SelectAllByFilterDT(String x_procedure, ObservableCollection<Infrastructure.Aspect.DataAccess.DataAccessFilterSQL> x_filters)
-    - ObservableCollection<ParametrosGral> SelectAllByFilter(String x_procedure, ObservableCollection<Infrastructure.Aspect.DataAccess.DataAccessFilterSQL> x_filters)
-    - ObservableCollection<ParametrosGral> SelectAll()
-    - bool Update(ref ParametrosGral Item)
-}
-
-class BLPlantillaAtributos{
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<PlantillaAtributos>
-    + GetAll(): ObservableCollection<PlantillaAtributos>
-    + GetOne(PLAT_Item: Int16): PlantillaAtributos
-    + Save(ref Item: PlantillaAtributos): Boolean
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<PlantillaAtributos>
-    - SelectAll(): ObservableCollection<PlantillaAtributos>
-    - SelectOne(PLAT_Item: Int16): PlantillaAtributos
-    - Insert(ref Item: PlantillaAtributos): bool
-    - Update(ref Item: PlantillaAtributos): bool
-    - Delete(ref Item: PlantillaAtributos): bool
-}
-
-class BLProyectos{
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Proyectos>
-    + GetAll(): ObservableCollection<Proyectos>
-    + GetOne(PROY_Codigo: Int16): Proyectos
-    + Save(ref Item: Proyectos): Boolean
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Proyectos>
-    - SelectAll(): ObservableCollection<Proyectos>
-    - SelectOne(PROY_Codigo: Int16): Proyectos
-    - Insert(ref Item: Proyectos): bool
-    - Update(ref Item: Proyectos): bool
-    - Delete(ref Item: Proyectos): bool
-}
-
-class BLTipos{
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Tipos>
-    + Save(ref Item: Tipos): Boolean
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Tipos>
-    - Insert(ref Item: Tipos): bool
-    - Update(ref Item: Tipos): bool
-    - Delete(ref Item: Tipos): bool
-}
-
-class BLUbicaciones{
-    + GetAllFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Ubicaciones>
-    + GetAll(): ObservableCollection<Ubicaciones>
-    + GetOne(UBIC_Id: Int16): Ubicaciones
-    + Save(ref Item: Ubicaciones): Boolean
-    - SelectAllByFilter(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): ObservableCollection<Ubicaciones>
-    - SelectAll(): ObservableCollection<Ubicaciones>
-    - SelectOne(UBIC_Id: Int16): Ubicaciones
-    - Insert(ref Item: Ubicaciones): bool
-    - Update(ref Item: Ubicaciones): bool
-    - Delete(ref Item: Ubicaciones): bool
-}
-
-class BLUsuarioPorAlmacen{
-    + GetAllFilterDT(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataTable
-    + Save(ref Item: UsuarioPorAlmacen): Boolean
-    + Save(ref Items: ObservableCollection<UsuarioPorAlmacen>): Boolean
-    - SelectAllByFilterDT(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataTable
-    - InsertJSON(ref Item: UsuarioPorAlmacen): bool
-    - UpdateJSON(ref Item: UsuarioPorAlmacen): bool
-    - Delete(ref Item: UsuarioPorAlmacen): bool
-    - InsertUpdate(ref Item: UsuarioPorAlmacen): bool
-}
+BLPlantillaAtributos -[hidden]-> BLProyectos
+BLProyectos -[hidden]-> BLTipos
+BLTipos -[hidden]-> BLUbicaciones
+BLUbicaciones -[hidden]-> BLUsuarioPorAlmacen
 @enduml
