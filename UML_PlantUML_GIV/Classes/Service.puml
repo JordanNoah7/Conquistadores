@@ -1,0 +1,244 @@
+@startuml Clases Service
+skinparam ClassAttributeIconSize 0
+
+package "Service" {
+    class Request {
+        + SESS_Token: Guid
+        + USER_IdUser: int
+        + USER_CodUsr: String
+        + AUDI_Host: String
+        + APLI_CodApli: String?
+        + ALMA_Codigo: String?
+        + FechaActualizacion: String?
+    }
+
+    class RequestRest {
+        + TypeKey: string
+        + APLI_CodApli: string
+        + Captcha: string
+        + Key: string
+        + IpClient: string
+        + USER_CodUsr: string
+        + USER_PassUser: string
+        + AUDI_HostCrea: string
+        + itemRequest: Request
+    }
+
+    class RequestRestGIV {
+        + itemRequest: Request
+        + equipo: CEquipos?
+        + ccalibraciones: CCalibraciones?
+        + equipos: ObservableCollection<CEquipos>?
+        + movimientos: ObservableCollection<CMovimientos>?
+        + usuariosPorAlmacen: ObservableCollection<CUsuarioPorAlmacen>?
+        + atributosEquipos: ObservableCollection<CAtributosEquipos>?
+        + calibraciones: ObservableCollection<CCalibraciones>?
+        + marca: CMarcas?
+        + modelo: CModelos?
+        + categoria: CCategorias?
+        + almacen: CAlmacenes?
+        + proyecto: CProyectos?
+        + ubicacion: CUbicaciones?
+        + tipo: CTipos?
+        + plantilla: CPlantillaAtributos?
+        + configuracionEquipo: CConfiguracionEquipo?
+        + atributoEquipo: CAtributosEquipos?
+        + movimiento: CMovimientos?
+        + usuarioPorAlmacen: CUsuarioPorAlmacen?
+        + activo: CActivos?
+        + TResult: TipoResultado?
+        + entidad: CEntidad?
+        + parametro: CParametros?
+        + base64File: String?
+    }
+
+    class Response {
+        + SESS_Token: Guid
+        + Codigo: int
+        + Mensaje: String
+        + base64: string
+        + TiempoSesion: int
+        + ItemsUsuario: ObservableCollection<CUsuarios>
+        + ItemsMarca: ObservableCollection<CMarcas>
+        + ItemsModelos: ObservableCollection<CModelos>
+        + ItemsCategorias: ObservableCollection<CCategorias>
+        + ItemsEquipos: ObservableCollection<CEquipos>
+        + ItemsCalibraciones: ObservableCollection<CCalibraciones>
+        + ItemsEquiposJSON: string
+        + ItemsAlmacenes: ObservableCollection<CAlmacenes>
+        + ItemsProyectos: ObservableCollection<CProyectos>
+        + ItemsUbicaciones: ObservableCollection<CUbicaciones>
+        + ItemsTipos: ObservableCollection<CTipos>
+        + ItemsPlantillaAtributos: ObservableCollection<CPlantillaAtributos>
+        + ItemsParametro: ObservableCollection<CParametros>
+        + ItemsTiposEquipo: ObservableCollection<CConfiguracionEquipo>
+        + ItemsAtributosPorTipoEquipo: ObservableCollection<CAtributosPorTipoEquipo>
+        + ItemsAtributosEquipos: ObservableCollection<CAtributosEquipos>
+        + ItemsMovimientos: ObservableCollection<CMovimientos>
+        + ItemsEntidades: ObservableCollection<CEntidad>
+        + ItemsHistorial: ObservableCollection<CEqHistEstados>
+        + Marca: CMarcas
+        + Modelo: CModelos
+        + Categoria: CCategorias
+        + Equipo: CEquipos
+        + Almacen: CAlmacenes
+        + Proyecto: CProyectos
+        + Ubicacion: CUbicaciones
+        + Tipo: CTipos
+        + Movimiento: CMovimientos
+        + Archivo: CArchivos
+        + ItemsActivos: ObservableCollection<CActivos>
+        + ItemsUsuarioPorAlmacen: ObservableCollection<CUsuarioPorAlmacen>
+        + ItemsProductos: ObservableCollection<CProductos>
+        + FechaActualizacion: String?
+    }
+
+    class ResponseEmpresa {
+        + Icono: String
+        + Logo: String
+        + background: String
+        + codigo: int
+        + Mensaje: String
+        + CadenaConexion: String
+        + EMPR_CodReferencia: String
+        + Manual: String
+        + version_fecha: String
+        + version: String
+    }
+
+    class ResponseRecuperarContrasena {
+        + SESS_Token: Guid
+        + USER_Id: int
+        + codigo: int
+        + Mensaje: String
+        + TRAB_EMailCorporativo: String
+        + EMPR_RUC: String
+    }
+
+    class ResponseUsuario {
+        + SESS_Token: Guid
+        + USER_Id: int
+        + codigo: int
+        + Mensaje: String
+        + Usuario: CUsuarios
+        + TiempoSesion: int
+        + ItemAlmacenes: List<CUsuarioPorAlmacen>
+    }
+
+    Request -[hidden]-> RequestRest
+    RequestRest -[hidden]-> RequestRestGIV
+    RequestRestGIV -[hidden]-> Response
+
+    ResponseEmpresa -[hidden]-> ResponseRecuperarContrasena
+    ResponseRecuperarContrasena -[hidden]-> ResponseUsuario
+}
+
+package "API" {
+    abstract ControllerBase
+
+    class RESTService {
+        - _configuration: IConfiguration
+        + RESTService(configuration: IConfiguration)
+        + GetPublicKey(itemRequest: RequestRest): ActionResult<string>
+        + getConfigInicial(): ActionResult<ResponseEmpresa>
+        + ValidarUsuario(request: RequestRest): ActionResult<ResponseUsuario>
+        + ObtenerCorreo(request: RequestRest): ActionResult<ResponseRecuperarContrasena>
+        + CambiarContrasena(request: RequestRest): ActionResult<Response>
+        - ValidarUsuario_Interno(Key: String, APLI_CodApli: String): ResponseUsuario
+        - ValidarSession(x_itemRequest: Request, ref x_tiempo: int): Boolean
+    }
+
+    class RESTServiceGIV {
+        - _configuration: IConfiguration
+        - _m_equi_ok: bool
+        + RESTServiceGIV(configuration: IConfiguration)
+        + GetMarcas(request: RequestRestGIV): Response
+        + GetMarca(request: RequestRestGIV): Response
+        + AddMarca(request: RequestRestGIV): Response
+        + UpdateMarca(request: RequestRestGIV): Response
+        + GetModelos(request: RequestRestGIV): Response
+        + GetModelo(request: RequestRestGIV): Response
+        + AddModelo(request: RequestRestGIV): Response
+        + UpdateModelo(request: RequestRestGIV): Response
+        + DeleteModelo(request: RequestRestGIV): Response
+        + GetAlmacenes(request: RequestRestGIV): Response
+        + GetAlmacen(request: RequestRestGIV): Response
+        + AddAlmacen(request: RequestRestGIV): Response
+        + UpdateAlmacen(request: RequestRestGIV): Response
+        + GetProyectos(request: RequestRestGIV): Response
+        + GetProyecto(request: RequestRestGIV): Response
+        + AddProyecto(request: RequestRestGIV): Response
+        + UpdateProyecto(request: RequestRestGIV): Response
+        + GetUbicaciones(request: RequestRestGIV): Response
+        + GetUbicacion(request: RequestRestGIV): Response
+        + AddUbicacion(request: RequestRestGIV): Response
+        + UpdateUbicacion(request: RequestRestGIV): Response
+        + GetAllTipos(request: RequestRestGIV): Response
+        + InsertUpdateTipo(request: RequestRestGIV): Response
+        + GetAllPlantillaAtributos(request: RequestRestGIV): Response
+        + GetPlantillaAtributosByTipo(request: RequestRestGIV): Response
+        + GetPlantillaAtributo(request: RequestRestGIV): Response
+        + InsertUpdatePlantillaAtributo(request: RequestRestGIV): Response
+        + DeletePlantillaAtributo(request: RequestRestGIV): Response
+        + GetTiposEquipo(request: RequestRestGIV): Response
+        + GetAtributosPorTipoEquipo(request: RequestRestGIV): Response
+        + InsertUpdateConfiguracionEquipo(request: RequestRestGIV): Response
+        + GetAtributosEquipos(request: RequestRestGIV): Response
+        + GetUsuariosAlmacen(request: RequestRestGIV): Response
+        + GetOpcionesAlmacen(request: RequestRestGIV): Response
+        + InsertUpdateUsuarioAlmacen(request: RequestRestGIV): Response
+        + DeleteUsuarioAlmacen(request: RequestRestGIV): Response
+        + GetUsuarios(request: RequestRestGIV): Response
+        + GetEquiposFromExcel(request: RequestRestGIV): Response
+        + GetAllParametros(request: RequestRestGIV): Response
+        + AddParametro(request: RequestRestGIV): Response
+        + GetUbicacionesByProyectoSector(request: RequestRestGIV): Response
+        + GetModelosActivosByMarca(request: RequestRestGIV): Response
+        + GetAlmacenesPadres(request: RequestRestGIV): Response
+        + GetAlmacenesDisponibles(request: RequestRestGIV): Response
+        + GetSectoresDisponibles(request: RequestRestGIV): Response
+        + GetTiposEquipos(request: RequestRestGIV): Response
+        + GetProyectosDisponibles(request: RequestRestGIV): Response
+        + GetActivos(request: RequestRestGIV): Response
+        + GetActivo(request: RequestRestGIV): Response
+        + GetResponsables(request: RequestRestGIV): Response
+        + GetEquipos(request: RequestRestGIV): Response
+        + GetEquipo(request: RequestRestGIV): Response
+        + AddEquipo(request: RequestRestGIV): Response
+        + AddEquipos(request: RequestRestGIV): Response
+        + UpdateEquipo(request: RequestRestGIV): Response
+        + GetProveedores(request: RequestRestGIV): Response
+        + GetDocumento(request: RequestRestGIV): Response
+        + GetEquiposDisponibles(request: RequestRestGIV): Response
+        + GetProductos(request: RequestRestGIV): Response
+        + AddAtributosEquipo(request: RequestRestGIV): Response
+        + GetCalibracionesByEquipo(request: RequestRestGIV): Response
+        + GetMovimientos(request: RequestRestGIV): Response
+        + GetMovimiento(request: RequestRestGIV): Response
+        + AddMovimiento(request: RequestRestGIV): Response
+        + MovimientoDevolucion(request: RequestRestGIV): Response
+        + GetPendientes(request: RequestRestGIV): Response
+        + GetReporte(request: RequestRestGIV): Response
+        + GetReporteEquipos(request: RequestRestGIV): Response
+        + GetHistorialEstadoByEquipo(request: RequestRestGIV): Response
+        + GetReporteMovimientos(request: RequestRestGIV): Response
+        + GetReporteMovimientosEquipo(request: RequestRestGIV): Response
+        + GetReporteMovimientosResponsable(request: RequestRestGIV): Response
+        + GetReportePendientesDevoluciones(request: RequestRestGIV): Response
+        + GetReportePersonaUbicacion(request: RequestRestGIV): Response
+        - ValidarSession(token: Guid, x_itemRequest: Request, ref x_tiempo: int): Boolean
+        - ValidateData(equipo: CEquipos, tipo: string): string
+        - ExcelDataReader(_filePath: string, _filaInicio: int): DataTable
+        - GetNombreColumna(x_Columnas: string[], x_NombreColumna: string, x_Separador: char): string
+        - void EnviarCorreo(String x_body, String To, String CC, String Asunto)
+        - SetBodyReplace(_bodyMail: StringBuilder): StringBuilder
+        - BuildBodyMail(x_Titulo: string, x_Fecha: DateTime, responsable: Entidad, usuario: Usuarios, itemsMovimiento: ObservableCollection<Movimientos>, almaSalida: Almacenes, almaDest: Almacenes): StringBuilder
+        - checkMailFormat(x_mail: string): bool
+    }
+
+    RESTService --|> ControllerBase
+    RESTServiceGIV --|> ControllerBase
+}
+
+Service -[hidden]-> API
+@enduml

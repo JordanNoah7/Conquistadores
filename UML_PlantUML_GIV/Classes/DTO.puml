@@ -1,0 +1,392 @@
+@startuml Entidades Service
+skinparam ClassAttributeIconSize 0
+
+package "NextAdmin" {
+    class CUsuarios {
+        + USER_IdUser: Int32?
+        + USER_CodUsr: String?
+        + USER_Nombre: String?
+        + USER_Desc: String?
+        + USER_PassUsr: String?
+        + USER_Activo: String?
+        + NIVE_CodNivel: String?
+        + GRUP_Codigo: String?
+        + USER_Mail: String?
+        + USER_CambiarPass: Boolean?
+        + USER_FechaClave: String?
+        + USER_VigenciaClave: Int32?
+        + USER_claveSegura: Boolean?
+        + USER_ReintentosClave: Int32?
+        + USER_notasAT: String?
+        + USER_FechaInactividad: String?
+        + USER_TipoInactividad: Int32?
+        + ItemsEmpresas: List<CEmpresa>?
+        + ItemsPlantillaMenu: List<CPlantillaMenu>?
+        + CopyFrom(Item: Usuarios): void
+    }
+
+    class CEmpresa {
+        + EMPR_RUC: String?
+        + EMPR_Desc: String?
+        + EMPR_Logo: String?
+        + EMPR_Icono: String?
+    }
+
+    class CPlantillaMenu {
+        + USUA_Codigo: int?
+        + USUA_CodUsr: String?
+        + USUA_Nombres: String?
+        + OPCI_Estado: String?
+        + OPCI_Codigo: int?
+        + OPCI_CodigoPadre: int?
+        + OPCI_Desc: String?
+        + OPCI_Menu: String?
+        + EMPR_Desc: String?
+        + CopyFrom(item: PtlaUsers): void
+    }
+
+    CEmpresa -[hidden]-> CPlantillaMenu
+    CPlantillaMenu -[hidden]-> CUsuarios
+}
+
+package "NextSis" {
+    enum InstanceEntity {
+        Unchanged = 0
+        Added = 1
+        Modified = 2
+        Deleted = 3
+    }
+
+    class CActivos {
+        + ACTI_Codigo: String?
+        + ACTI_Desc: String?
+        + ACTI_serie: String?
+        + ACTI_ruc: String?
+        + ENTC_CodProv: String?
+        + CopyFrom(Item: Activos): void
+    }
+
+    class CAlmacenes {
+        + ALMA_Codigo: String?
+        + ALMA_CodPadre: String?
+        + ALMA_Nombre: String?
+        + ALMA_Descripcion: String?
+        + ALMA_Estado: Boolean?
+        + ALMA_NomPadre: String?
+        + ALMA_EstadoTxt: String?
+        + CopyTo(ref Item: Almacenes): void
+        + CopyFrom(Item: Almacenes): void
+    }
+
+    class CArchivos {
+        + ARCH_Interno: Int32?
+        + ARCH_Tabla: String?
+        + ARCH_Descripcion: String?
+        + ARCH_Id: String?
+        + ARCH_Path: String?
+        + ARCH_NombreArchivo: String?
+        + ARCH_Tamano: Decimal?
+        + ARCH_Estado: String?
+        + ARCH_Binary: byte[]?
+        + ARCH_Almacenamiento: String?
+        + ARCH_Base64: string?
+        + Instance: InstanceEntity
+    }
+
+    class CAtributosEquipos {
+        + AEQU_Item: Int16?
+        + EQUI_Codigo: Int16?
+        + AEQU_Valor: String?
+        + PLAT_Item: Int16?
+        + PLAT_Descripcion: string?
+        + PLAT_TipoDato: string?
+        + PLAT_Obligatorio: boolean?
+        + TIPO_Desc1: string?
+        + EQUI_NroSerie: string?
+        + CONF_Codigo: int?
+        + CONF_Descripcion: string?
+        + CopyTo(ref Item: AtributosEquipos): void
+        + CopyFrom(Item: AtributosEquipos): void
+    }
+
+    class CAtributosPorTipoEquipo {
+        + CONF_Codigo: Int16?
+        + PLAT_Item: Int16?
+        + ATEU_Baja: Boolean?
+        + ATEU_HaciaLaOT: Boolean?
+        + ATEU_Valor: String?
+        + CONF_Descripcion: String?
+        + PLAT_Descripcion: string?
+        + TIPO_Desc1: string?
+        + PLAT_TipoDato: string?
+        + PLAT_Obligatorio: bool?
+        + CopyTo(ref Item: AtributosPorTipoEquipo): void
+        + CopyFrom(Item: AtributosPorTipoEquipo): void
+    }
+
+    class CCalibraciones {
+        + EQUI_Codigo: Int16?
+        + CALI_Id: Int16?
+        + ARCH_Interno: int?
+        + CALI_Fecha: String?
+        + CALI_Detalle: String?
+        + CALI_Historial: String?
+        + TIPO_TabTCC: String?
+        + TIPO_CodTCC: String?
+        + CALI_Activo: bool?
+        + Instance: InstanceEntity
+        + TIPO_Desc1: string?
+        + ARCH_NombreArchivo: string?
+        + Archivos: ObservableCollection<CArchivos>?
+        + CopyTo(ref Item: Calibraciones): void
+    }
+
+    class CConfiguracionEquipo {
+        + CONF_Codigo: Int16?
+        + CONF_CodPadre: Int16?
+        + CONF_Descripcion: String?
+        + ItemsAtributosPorTipoEquipo: List<CAtributosPorTipoEquipo>?
+        + CONF_Estado: bool?
+        + CopyTo(ref Item: ConfiguracionEquipo): void
+        + CopyFrom(Item: ConfiguracionEquipo): void
+    }
+
+    class CEntidad {
+        + ENTC_Codigo: String?
+        + ENTC_Ruc: String?
+        + ENTC_NomCom: String?
+        + ENTC_RazonSoc: String?
+        + CopyFrom(Item: Entidad): void
+    }
+
+    class CEqHistEstados {
+        + EHES_Fecha: DateTime?
+        + EQUI_Nombre: string?
+        + EQUI_Descripcion: string?
+    }
+
+    class CEquipos {
+        + EQUI_Codigo: Int16?
+        + EQUI_Nombre: String?
+        + EQUI_Descripcion: String?
+        + EQUI_FecGarantia: String?
+        + EQUI_DetGarantia: String?
+        + EQUI_FecRegistro: String?
+        + EQUI_NroSerie: String?
+        + EQUI_NroQR: String?
+        + EQUI_Estado: String?
+        + EQUI_DocSerie: String?
+        + EQUI_DocNumero: String?
+        + TIPO_TabTDO: String?
+        + TIPO_CodTDO: String?
+        + ENTC_CodProveedor: String?
+        + CONF_Codigo: Int16?
+        + MARC_Codigo: String?
+        + MODE_Codigo: Int16?
+        + ACTI_Codigo: String?
+        + PROD_Codigo: String?
+        + MARC_Descripcion: String?
+        + MODE_Nombre: String?
+        + EQUI_Observacion: string?
+        + MOVI_Codigo: int?
+        + ALMA_Codigo: string?
+        + ALMA_Nombre: string?
+        + PROD_Desc: string?
+        + CONF_Descripcion: string?
+        + ACTI_Desc: string?
+        + CTCT_NroTran: int?
+        + SUCR_Codigo: string?
+        + ENTC_Ruc: string?
+        + ENTC_RazonSoc: string?
+        + TIPO_Desc1: string?
+        + CTCT_FecEmi: string?
+        + CTCT_Glosa: string?
+        + CTCT_Monto: decimal?
+        + CopyTo(ref Item: Equipos): void
+        + CopyFrom(Item: Equipos): void
+    }
+
+    class CMarcas{
+        + MARC_Codigo: String?
+        + MARC_Descripcion: String?
+        + CopyTo(ref Item: Marcas): void
+        + CopyFrom(Item: Marcas): void
+    }
+
+    class CModelos{
+        + MODE_Codigo: Int16?
+        + MARC_Codigo: String?
+        + MARC_Descripcion: String?
+        + MODE_Nombre: String?
+        + MODE_Descripcion: String?
+        + MODE_Estado: Boolean?
+        + CopyTo(ref Item: Modelos): void
+        + CopyFrom(Item: Modelos): void
+    }
+
+    class CMovimientoArchivo {
+        + MOAR_Codigo: Int32?
+        + MOVI_Tipo: String?
+        + MOVI_Codigo: Int32?
+        + MOAR_Archivo: byte[]?
+    }
+
+    class CMovimientos {
+        + MOVI_Tipo: String?
+        + MOVI_Codigo: Int32?
+        + MOVI_Fecha: String?
+        + MOVI_Motivo: String?
+        + MOVI_TipoIE: String?
+        + MOVI_Observaciones: String?
+        + TIPE_Codigo: String?
+        + ENTC_CodResponsable: String?
+        + EQUI_Codigo: Int16?
+        + ALMA_Codigo: String?
+        + PROY_Codigo: Int16?
+        + MOVI_TPadre: String?
+        + MOVI_CodPadre: Int32?
+        + TIPO_TabSEC: String?
+        + TIPO_CodSEC: String?
+        + TIPO_TabMTV: String?
+        + TIPO_CodMTV: String?
+        + UBIC_Id: Int16?
+        + FEC_Desde: DateTime?
+        + FEC_Hasta: DateTime?
+        + EQUI_Nombre: string?
+        + ALMA_Nombre: string?
+        + ENTC_RazonSoc: string?
+        + UBIC_Nombre: string?
+        + PROY_Nombre: string?
+        + TIPO_Desc1: string?
+        + ALMA_CodigoDest: string?
+        + EQUI_CodPadre: int?
+        + MOVI_Cantidad: int?
+        + EQUI_Descripcion: string?
+        + MARC_Descripcion: string?
+        + EQUI_NroSerie: string?
+        + CATE_Codigo: int?
+        + MARC_Codigo: string?
+        + CONF_Codigo: int?
+        + CONF_Descripcion: string?
+        + ACTI_Codigo: String?
+        + ACTI_Desc: String?
+        + PROD_Codigo: String?
+        + PROD_Desc: String?
+        + MODE_Nombre: String?
+        + ALMA_NombreDest: string?
+        + MOVI_Devolucion: int?
+        + EQUI_FecGarantia: string?
+        + ACTI_Existe: bool?
+        + CopyTo(ref Item: Movimientos): void
+        + CopyFrom(Item: Movimientos): void
+    }
+
+    class CParametros {
+        + PARA_Aplicacion: String?
+        + SUCR_Codigo: String?
+        + PARA_Nombre: String?
+        + PARA_Valor: String?
+        + PARA_Tipo: String?
+        + PARA_Desc: String?
+        + CopyFrom(Item: ParametrosGral): void
+        + CopyTo(ref Item: ParametrosGral): void
+    }
+
+    class CPlantillaAtributos {
+        + PLAT_Item: Int16?
+        + PLAT_Descripcion: String?
+        + PLAT_Valor: String?
+        + PLAT_TipoDato: String?
+        + PLAT_Obligatorio: Boolean?
+        + PLAT_Baja: Boolean?
+        + TIPO_TabATR: String?
+        + TIPO_CodATR: String?
+        + TIPO_Desc1: string?
+        + CopyTo(ref Item: PlantillaAtributos): void
+        + CopyFrom(Item: PlantillaAtributos): void
+    }
+
+    class CProductos {
+        + PROD_Codigo: String?
+        + FAMI_Codigo: String?
+        + MARC_Codigo: String?
+        + PROD_Desc: String?
+        + MARC_Descripcion: String?
+    }
+
+    class CProyectos {
+        + PROY_Codigo: Int16?
+        + PROY_Nombre: String?
+        + PROY_Descripcion: String?
+        + PROY_Estado: Boolean?
+        + CopyTo(ref Item: Proyectos): void
+        + CopyFrom(Item: Proyectos): void
+    }
+
+    class CTipos {
+        + TIPO_CodTabla: String?
+        + TIPO_CodTipo: String?
+        + TIPO_Desc1: String?
+        + TIPO_Desc2: String?
+        + TIPO_DescC: String?
+        + TIPO_Num1: Decimal?
+        + TIPO_Num2: Decimal?
+        + TIPO_Estado: String?
+        + TIPO_Num4: Int16?
+        + TIPO_Num3: Int16?
+        + TIPO_mascara: String?
+        + TIPO_CadCtrlVta: String?
+        + TIPO_codSunat: String?
+        + TIPO_CodSincro: String?
+        + Instance: int?
+        + CopyTo(ref Item: Tipos): void
+        + CopyFrom(Item: Tipos): void
+    }
+
+    class CUbicaciones {
+        + UBIC_Id: Int16?
+        + UBIC_Nombre: String?
+        + UBIC_DescCorta: String?
+        + UBIC_Estado: bool?
+        + PROY_Codigo: Int16?
+        + PROY_Nombre: string?
+        + TIPO_TabSEC: String?
+        + TIPO_CodSEC: String?
+        + TIPO_Desc1: String?
+        + CopyTo(ref Item: Ubicaciones): void
+        + CopyFrom(Item: Ubicaciones): void
+    }
+
+    class CUsuarioPorAlmacen {
+        + UALM_Usuario: String?
+        + UALM_Administrador: Boolean?
+        + UALM_SoloLectura: Boolean?
+        + ALMA_Codigo: String?
+        + ALMA_Nombre: String?
+        + CopyTo(ref Item: UsuarioPorAlmacen): void
+        + CopyFrom(Item: UsuarioPorAlmacen): void
+    }
+
+    InstanceEntity -[hidden]-> CActivos
+    CActivos -[hidden]-> CAlmacenes
+    CAlmacenes -[hidden]-> CArchivos
+    CArchivos -[hidden]-> CAtributosEquipos
+
+    CAtributosPorTipoEquipo -[hidden]-> CCalibraciones
+    CCalibraciones -[hidden]-> CConfiguracionEquipo
+    CConfiguracionEquipo -[hidden]-> CEntidad
+    CEntidad -[hidden]-> CEqHistEstados
+
+    CEquipos -[hidden]-> CMarcas
+    CMarcas -[hidden]-> CModelos
+    CModelos -[hidden]-> CMovimientoArchivo
+    CMovimientoArchivo -[hidden]-> CMovimientos
+
+    CParametros -[hidden]-> CPlantillaAtributos
+    CPlantillaAtributos -[hidden]-> CProductos
+    CProductos -[hidden]-> CProyectos
+    CProyectos -[hidden]-> CTipos
+
+    CUbicaciones -[hidden]-> CUsuarioPorAlmacen
+}
+@enduml

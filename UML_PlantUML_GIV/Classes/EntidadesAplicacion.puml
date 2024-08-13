@@ -69,23 +69,23 @@ class Activos extends MasterBusinessEntity {
     + CopyTo(ref Activos Item): void
 }
 
-class Adjuntos extends MasterBusinessEntity {
-' class Adjuntos {
-    - Int16 m_equi_codigo
-    - Int16 m_cali_id
-    - Int32 m_arch_interno
-    - String m_audi_usrcrea
-    - DateTime m_audi_feccrea
-    - String m_audi_hostcrea
-    + Int16 EQUI_Codigo
-    + Int16 CALI_Id
-    + Int32 ARCH_Interno
-    + String AUDI_UsrCrea
-    + DateTime AUDI_FecCrea
-    + String AUDI_HostCrea
-    + Adjuntos()
-    + CopyTo(ref Item: Adjuntos): void
-}
+' class Adjuntos extends MasterBusinessEntity {
+' ' class Adjuntos {
+'     - Int16 m_equi_codigo
+'     - Int16 m_cali_id
+'     - Int32 m_arch_interno
+'     - String m_audi_usrcrea
+'     - DateTime m_audi_feccrea
+'     - String m_audi_hostcrea
+'     + Int16 EQUI_Codigo
+'     + Int16 CALI_Id
+'     + Int32 ARCH_Interno
+'     + String AUDI_UsrCrea
+'     + DateTime AUDI_FecCrea
+'     + String AUDI_HostCrea
+'     + Adjuntos()
+'     + CopyTo(ref Item: Adjuntos): void
+' }
 
 class Almacenes extends MasterBusinessEntity {
 ' class Almacenes {
@@ -547,15 +547,15 @@ class PlantillaAtributos extends MasterBusinessEntity {
     + CopyTo(ref Item: PlantillaAtributos): void
 }
 
-class Productos extends MasterBusinessEntity {
-' class Productos {
-    - m_prod_codigo: String
-    - m_prod_desc: String
-    + PROD_Codigo: String
-    + PROD_Desc: String
-    + Productos()
-    + CopyTo(ref Item: Productos): void
-}
+' class Productos extends MasterBusinessEntity {
+' ' class Productos {
+'     - m_prod_codigo: String
+'     - m_prod_desc: String
+'     + PROD_Codigo: String
+'     + PROD_Desc: String
+'     + Productos()
+'     + CopyTo(ref Item: Productos): void
+' }
 
 class Proyectos extends MasterBusinessEntity {
 ' class Proyectos {
