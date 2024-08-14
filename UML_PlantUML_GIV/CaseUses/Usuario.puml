@@ -3,8 +3,9 @@ left to right direction
 actor "Usuario" as u
 rectangle "Sistema de Gestion de Inventario de Equipos" {
     usecase "Registrar equipo" as uc1
-    usecase "Registrar atributos por equipo" as uc2
-    usecase "Ver historial de estados del equipo" as uc3
+    usecase "Registrar equipos desde un excel" as uc2
+    usecase "Registrar atributos por equipo" as uc3
+    ' usecase "Ver historial de estados del equipo" as uc3
     usecase "Ver calibraciones del equipo" as uc4
     usecase "Registrar entrega" as uc5
     usecase "Registrar devolución" as uc6

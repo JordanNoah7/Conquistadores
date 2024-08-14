@@ -1,0 +1,114 @@
+@startuml Registrar equipo desde un excel
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+boundary Usuario
+control RESTServiceGIV
+entity CAtributosEquipos
+entity Response
+participant BLAtributosEquipos
+participant AtributosEquipos as ListAtributos <<ObservableCollection>>
+entity AtributosEquipos as datributo
+entity AtributosEquipos as aatributo
+participant TransactionScope
+participant Util
+
+Usuario -> RESTServiceGIV: AddEquipos(request: RequestRestGIV): Response
+activate RESTServiceGIV
+create Response
+RESTServiceGIV -->> Response: Response()
+RESTServiceGIV -> RESTServiceGIV: ValidarSession(token: Guid, x_itemRequest: Request, ref x_tiempo: int): Boolean
+alt Sesión Válida
+    create BLAtributosEquipos
+    RESTServiceGIV -->> BLAtributosEquipos: BLAtributosEquipos()
+    create ListAtributos
+    RESTServiceGIV -->> ListAtributos: ObservableCollection<AtributosEquipos>()
+    create datributo
+    RESTServiceGIV -->> datributo: AtributosEquipos()
+    datributo -> datributo: EQUI_Codigo = (short)request.atributosEquipos.FirstOrDefault().EQUI_Codigo
+    activate datributo
+    deactivate datributo
+    datributo -> datributo: Instance = InstanceEntity.Deleted
+    activate datributo
+    deactivate datributo
+    RESTServiceGIV -> BLAtributosEquipos: Save(ref Item: AtributosEquipos): Boolean
+    activate BLAtributosEquipos
+    alt InstanceEntity.Added
+        BLAtributosEquipos -> BLAtributosEquipos: Insert(ref Item: AtributosEquipos): bool
+    else InstanceEntity.Modified
+        BLAtributosEquipos -> BLAtributosEquipos: Update(ref Item: AtributosEquipos): bool
+    else InstanceEntity.Deleted
+        BLAtributosEquipos -> BLAtributosEquipos: Delete(ref Item: AtributosEquipos): bool
+    end
+    BLAtributosEquipos -->> RESTServiceGIV: bool
+    alt Exception
+        BLAtributosEquipos -->> RESTServiceGIV: throw
+    end
+    deactivate BLAtributosEquipos
+    loop CAtributosEquipos
+        create aatributo
+        RESTServiceGIV -->> aatributo: AtributosEquipos()
+        RESTServiceGIV -> CAtributosEquipos: CopyTo(ref Item: AtributosEquipos): void
+        activate CAtributosEquipos
+        deactivate CAtributosEquipos
+        RESTServiceGIV -> ListAtributos: Add(item: AtributosEquipos): void
+        activate ListAtributos
+        deactivate ListAtributos
+    end
+    RESTServiceGIV -> BLAtributosEquipos: Save(ref Items: ObservableCollection<AtributosEquipos>): Boolean
+    activate BLAtributosEquipos
+    create TransactionScope
+    BLAtributosEquipos -->> TransactionScope: TransactionScope()
+    alt InstanceEntity.Added
+        BLAtributosEquipos -> BLAtributosEquipos: InsertJSON(ref Item: ObservableCollection<AtributosEquipos>): bool
+    else InstanceEntity.Modified
+        BLAtributosEquipos -> BLAtributosEquipos: UpdateJSON(ref Item: ObservableCollection<AtributosEquipos>): bool
+    end
+    alt Guardado exitoso
+        BLAtributosEquipos -> TransactionScope: Complete()
+        activate TransactionScope
+        deactivate TransactionScope
+    end
+    BLAtributosEquipos -->> RESTServiceGIV: bool
+    alt Exception
+        BLAtributosEquipos -->> RESTServiceGIV: throw
+    end
+    deactivate BLAtributosEquipos
+    alt bool = true
+        Response -> Response: Codigo = 0
+        activate Response
+        deactivate Response
+        Response -> Response: Mensase = "Se realizó correctamente el registro de los atributos."
+        activate Response
+        deactivate Response
+    else
+        Response -> Response: Codigo = 1
+        activate Response
+        deactivate Response
+        Response -> Response: Mensase = "No se pudo realizar el registro de los atributos."
+        activate Response
+        deactivate Response
+    end
+    Response -> Response: TiempoSesion = _tiempodisponible
+    activate Response
+    deactivate Response
+else
+    Response -> Response: Codigo = 98
+    activate Response
+    deactivate Response
+    Response -> Response: Mensase = string.Format("Mensaje: {0} - Tiempo Disponible: {1} minutos", "TOKEN No Valido", _tiempodisponible)
+    activate Response
+    deactivate Response
+end
+alt Exception
+    Response -> Response: Codigo = 1
+    activate Response
+    deactivate Response
+    Response -> Response: Mensase = string.Format("Error-{0}: {1}", _code, ex.Message)
+    activate Response
+    deactivate Response
+    RESTServiceGIV -> Util: WriteError(x_CodeError: String, ex: Exception, x_Metodo: String, x_ParAdic: String, x_JSON: String): String
+    activate Util
+    deactivate Util
+end
+RESTServiceGIV -->> Usuario: Response
+@enduml

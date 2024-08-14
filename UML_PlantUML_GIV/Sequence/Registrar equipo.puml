@@ -1,0 +1,194 @@
+@startuml Registrar equipo
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+
+boundary Usuario
+control RESTServiceGIV
+entity CEquipos
+entity CAtributosEquipos
+entity CCalibraciones
+entity Response
+participant BLEquipos
+entity Equipos
+participant Equipos as ListEquipos <<ObservableCollection>>
+participant BLAtributosEquipos
+participant BLCalibraciones
+participant AtributosEquipos as ListAtributos <<ObservableCollection>>
+participant Calibraciones as ListCalibraciones <<ObservableCollection>>
+entity AtributosEquipos
+entity Calibraciones
+participant TransactionScope
+participant Util
+
+Usuario -> RESTServiceGIV: AddEquipo(request: RequestRestGIV): Response
+activate RESTServiceGIV
+create Response
+RESTServiceGIV -->> Response: Response()
+RESTServiceGIV -> RESTServiceGIV: ValidarSession(token: Guid, x_itemRequest: Request, ref x_tiempo: int): Boolean
+alt Sesión Válida
+    create BLEquipos
+    RESTServiceGIV -->> BLEquipos: BLEquipos()
+    create Equipos
+    RESTServiceGIV -->> Equipos: Equipos()
+    RESTServiceGIV -> CEquipos: CopyTo(ref Item: Equipos): void
+    activate CEquipos
+    deactivate CEquipos
+    create ListEquipos
+    RESTServiceGIV -->> ListEquipos: ObservableCollection<Equipos>()
+    RESTServiceGIV -> ListEquipos: Add(item: Equipos): void
+    activate ListEquipos
+    deactivate ListEquipos
+    RESTServiceGIV -> BLEquipos: Save(ref Items: ObservableCollection<Equipos>): Boolean
+    activate BLEquipos
+    create TransactionScope
+    BLEquipos -->> TransactionScope: TransactionScope()
+    alt InstanceEntity.Added
+        BLEquipos -> BLEquipos: InsertJSON(ref Item: ObservableCollection<Equipos>): bool
+    else InstanceEntity.Modified
+        BLEquipos -> BLEquipos: UpdateJSON(ref Item: ObservableCollection<Equipos>): bool
+    end
+    alt Guardado exitoso
+        BLEquipos -> TransactionScope: Complete()
+        activate TransactionScope
+        deactivate TransactionScope
+    end
+    BLEquipos -->> RESTServiceGIV: bool
+    alt Exception
+        BLEquipos -->> RESTServiceGIV: throw
+    end
+    deactivate BLEquipos
+    alt bool = true
+        Response -> Response: Codigo = 0
+        activate Response
+        deactivate Response
+        Response -> Response: Mensase = "El equipo ha sido registrado exitosamente"
+        activate Response
+        deactivate Response
+        create BLAtributosEquipos
+        RESTServiceGIV -->> BLAtributosEquipos: BLAtributosEquipos()
+        create BLCalibraciones
+        RESTServiceGIV -->> BLCalibraciones: BLCalibraciones()
+        create ListAtributos
+        RESTServiceGIV -->> ListAtributos: ObservableCollection<AtributosEquipos>()
+        create ListCalibraciones
+        RESTServiceGIV -->> ListCalibraciones: ObservableCollection<Calibraciones>()
+        loop CAtributosEquipos
+            create AtributosEquipos
+            RESTServiceGIV -->> AtributosEquipos: AtributosEquipos()
+            RESTServiceGIV -> CAtributosEquipos: CopyTo(ref Item: AtributosEquipos): void
+            activate CAtributosEquipos
+            deactivate CAtributosEquipos
+            RESTServiceGIV -> ListAtributos: Add(item: AtributosEquipos): void
+            activate ListAtributos
+            deactivate ListAtributos
+        end
+        loop CCalibraciones
+            alt InstanceEntity.Added
+                alt Archivos.Count > 0
+                    loop CArchivos
+                        create Calibraciones
+                        RESTServiceGIV -->> Calibraciones: Calibraciones()
+                        RESTServiceGIV -> CCalibraciones: CopyTo(ref Item: Calibraciones): void
+                        activate CCalibraciones
+                        deactivate CCalibraciones
+                        alt !InstanceEntity.Unchanged
+                            RESTServiceGIV -> Calibraciones: Copia propiedades de archivo
+                            activate Calibraciones
+                            deactivate Calibraciones
+                        end
+                        RESTServiceGIV -> ListCalibraciones: Add(item: Calibraciones): void
+                        activate ListCalibraciones
+                        deactivate ListCalibraciones
+                    end
+                else
+                    ' create Calibraciones
+                    RESTServiceGIV -->> Calibraciones: Calibraciones()
+                    RESTServiceGIV -> CCalibraciones: CopyTo(ref Item: Calibraciones): void
+                    activate CCalibraciones
+                    deactivate CCalibraciones
+                    RESTServiceGIV -> ListCalibraciones: Add(item: Calibraciones): void
+                    activate ListCalibraciones
+                    deactivate ListCalibraciones
+                end
+            end
+        end
+        alt ObservableCollection<AtributosEquipos> != null && ObservableCollection<AtributosEquipos>.Count > 0
+            RESTServiceGIV -> BLAtributosEquipos: Save(ref Items: ObservableCollection<AtributosEquipos>): Boolean
+            activate BLAtributosEquipos
+            ' create TransactionScope
+            BLAtributosEquipos -->> TransactionScope: TransactionScope()
+            alt InstanceEntity.Added
+                BLAtributosEquipos -> BLAtributosEquipos: InsertJSON(ref Item: ObservableCollection<AtributosEquipos>): bool
+            else InstanceEntity.Modified
+                BLAtributosEquipos -> BLAtributosEquipos: UpdateJSON(ref Item: ObservableCollection<AtributosEquipos>): bool
+            end
+            alt Guardado exitoso
+                BLAtributosEquipos -> TransactionScope: Complete()
+                activate TransactionScope
+                deactivate TransactionScope
+            end
+            BLAtributosEquipos -->> RESTServiceGIV: bool
+            alt Exception
+                BLAtributosEquipos -->> RESTServiceGIV: throw
+            end
+            deactivate BLAtributosEquipos
+            alt bool = false
+                Response -> Response: Mensase += ", pero hubo un error al registrar los atributos"
+                activate Response
+                deactivate Response
+            end
+        end
+        alt ObservableCollection<Calibraciones> != null && ObservableCollection<Calibraciones>.Count > 0
+            RESTServiceGIV -> BLCalibraciones: Save(ref Items: ObservableCollection<Calibraciones>): Boolean
+            activate BLCalibraciones
+            ' create TransactionScope
+            BLCalibraciones -->> TransactionScope: TransactionScope()
+            BLCalibraciones -> BLCalibraciones: InsertJSON(ref Item: ObservableCollection<Calibraciones>): bool
+            alt Guardado exitoso
+                BLCalibraciones -> TransactionScope: Complete()
+                activate TransactionScope
+                deactivate TransactionScope
+            end
+            BLCalibraciones -->> RESTServiceGIV: bool
+            alt Exception
+                BLCalibraciones -->> RESTServiceGIV: throw
+            end
+            deactivate BLCalibraciones
+            alt bool = false
+                Response -> Response: Mensase += " y las calibraciones."
+                activate Response
+                deactivate Response
+            end
+        end
+    else
+        Response -> Response: Codigo = 1
+        activate Response
+        deactivate Response
+        Response -> Response: Mensase = "Ha ocurido un error al realizar el registro del equipo. </br>"
+        activate Response
+        deactivate Response
+    end
+    Response -> Response: TiempoSesion = _tiempodisponible
+    activate Response
+    deactivate Response
+else
+    Response -> Response: Codigo = 98
+    activate Response
+    deactivate Response
+    Response -> Response: Mensase = string.Format("Mensaje: {0} - Tiempo Disponible: {1} minutos", "TOKEN No Valido", _tiempodisponible)
+    activate Response
+    deactivate Response
+end
+alt Exception
+    Response -> Response: Codigo = 1
+    activate Response
+    deactivate Response
+    Response -> Response: Mensase = string.Format("Error-{0}: {1}", _code, ex.Message)
+    activate Response
+    deactivate Response
+    RESTServiceGIV -> Util: WriteError(x_CodeError: String, ex: Exception, x_Metodo: String, x_ParAdic: String, x_JSON: String): String
+    activate Util
+    deactivate Util
+end
+RESTServiceGIV -->> Usuario: Response
+@enduml

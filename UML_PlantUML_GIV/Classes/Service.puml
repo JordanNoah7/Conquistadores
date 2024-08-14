@@ -91,6 +91,7 @@ package "Service" {
         + ItemsUsuarioPorAlmacen: ObservableCollection<CUsuarioPorAlmacen>
         + ItemsProductos: ObservableCollection<CProductos>
         + FechaActualizacion: String?
+        + Response()
     }
 
     class ResponseEmpresa {
