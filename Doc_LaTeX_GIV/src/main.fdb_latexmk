@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1723612359.59318 "f:/Conquistadores/Doc_LaTeX_GIV/src/main.tex" "main.pdf" "main" 1723612361.7072 0
+["pdflatex"] 1723697586.57002 "f:/Conquistadores/Doc_LaTeX_GIV/src/main.tex" "main.pdf" "main" 1723697588.75466 0
   "C:/Users/dyfmeks/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1723428258 80937 91001db6d4ae332437b4b739862cda02 ""
   "C:/Users/dyfmeks/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1716343434 24241339 a20aea6229ce1bb17534171378f0a336 ""
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc" 1256929440 2375 baa924870cfb487815765f9094cf3728 ""
@@ -9,7 +9,6 @@
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/fonts/tfm/public/lm/ec-lmbxi10.tfm" 1256929440 17180 a5723008921cdcb0c5f4ebe997919b73 ""
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/fonts/tfm/public/lm/ec-lmcsc10.tfm" 1256929440 11276 116dd5bea6621ce4a1999f96d876084c ""
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/fonts/tfm/public/lm/ec-lmr12.tfm" 1256929440 12092 7b1546e2d096cfd5dcbd4049b0b1ec2e ""
-  "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/fonts/tfm/public/lm/ec-lmr8.tfm" 1256929440 12064 9b9ade9f64cb32ce1d9a88d21fbd5c2d ""
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/fonts/tfm/public/lm/ec-lmri12.tfm" 1256929440 17144 271aaf9ebb339934b04110dc5211fba4 ""
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/fonts/tfm/public/lm/lmbsy10.tfm" 1256929440 1300 2df9da0fc09d4a8c772b3dd386a47c6a ""
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/fonts/tfm/public/lm/lmbsy7.tfm" 1256929440 1304 535e0954c1961c817723e44bc6a9662c ""
@@ -35,7 +34,6 @@
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb" 1256929440 112766 6259d69aa3d87a505f375e49d8f6bf3a ""
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb" 1256929440 116427 4909e80035dae5d5a4ec2b5ddd9649dd ""
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb" 1256929440 113634 9384aebdf26f9881e046a4b5574566db ""
-  "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb" 1256929440 122174 a2d5e73f396ddbeb3bdf5c79aea0993d ""
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb" 1256929440 109265 e6c7d377db6dfccd4a123fb26da8cffb ""
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/tex/generic/atbegshi/atbegshi.sty" 1575571100 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
@@ -204,13 +202,13 @@
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "C:/Users/dyfmeks/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "diagrams/BusinessLogic/BusinessLogic.pdf" 1723433785 63235 69670a24127503108ac58cae84d4b73e ""
-  "f:/Conquistadores/Doc_LaTeX_GIV/src/main.tex" 1723612358 12187 5b8bd9e2b40cf11e7ad17fb122a8ad62 ""
-  "main.aux" 1723612361 3419 caa04805542e2cff533306baaab6e32c "pdflatex"
-  "main.lof" 1723612361 164 8a208c4a71531b81ac78178661bb99c5 "pdflatex"
-  "main.lot" 1723612361 60 4bc77563de10d0d8a2e6ee96a8d7a948 "pdflatex"
-  "main.out" 1723612361 3616 1d5246cff89bf465580d7ba67583365f "pdflatex"
-  "main.tex" 1723612358 12187 5b8bd9e2b40cf11e7ad17fb122a8ad62 ""
-  "main.toc" 1723612361 1855 5279d059bec099c681cf32661d3f1d7d "pdflatex"
+  "f:/Conquistadores/Doc_LaTeX_GIV/src/main.tex" 1723697582 16071 eca6458ae99240d356876837b4285c4f ""
+  "main.aux" 1723697588 3346 c6fef5936a5bd2c1e817e58ca084d8f8 "pdflatex"
+  "main.lof" 1723697588 164 1e16ace932320eb5430d311be84dd335 "pdflatex"
+  "main.lot" 1723697588 60 4bc77563de10d0d8a2e6ee96a8d7a948 "pdflatex"
+  "main.out" 1723697588 3026 684013d414ef3e2a44a56e0fb38d0c91 "pdflatex"
+  "main.tex" 1723697582 16071 eca6458ae99240d356876837b4285c4f ""
+  "main.toc" 1723697588 1826 dd4d08204318d8177297416c58750c7a "pdflatex"
   (generated)
   "main.aux"
   "main.lof"

@@ -379,7 +379,6 @@ INPUT .\main.lot
 INPUT .\main.lot
 INPUT main.lot
 OUTPUT main.lot
-INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr8.tfm
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbxi10.tfm
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri12.tfm
 INPUT .\diagrams\BusinessLogic\BusinessLogic.pdf
@@ -405,7 +404,5 @@ INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmcsc
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmcsc10.pfb
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr12.pfb
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr12.pfb
-INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr8.pfb
-INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr8.pfb
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmri12.pfb
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmri12.pfb
