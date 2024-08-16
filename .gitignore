@@ -151,3 +151,15 @@ orleans.codegen.cs
 *.bak
 *.swp
 *.swo
+
+
+# Archivos generados de latex
+*.aux
+*.toc
+*.gz
+*.out
+*.lot
+*.log
+*.lof
+*.fls
+*.fdb_latexmk

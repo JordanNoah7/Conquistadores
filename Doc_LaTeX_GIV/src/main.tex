@@ -1,4 +1,4 @@
-% Author = dyfmeks
+% Autor = dyfmeks
 % Date = 20/05/2024
 
 % Preamble
@@ -15,6 +15,7 @@
 \usepackage[spanish]{babel}
 \usepackage{apacite}
 \usepackage{tabularx}
+\usepackage{longtable}
 % \usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
 \usepackage{standalone}
 \usepackage{csquotes}
@@ -27,7 +28,7 @@
 
 % Config
 %\DeclareLanguageMapping{american}{american-apa}
-%\addbibresource{bibliography.bib}
+% \addbibresource{bibliography.bib}
 \thispagestyle{empty}
 \title{\large OPTIMIZACI\'ON DE LA GESTI\'ON DE INVENTARIO DE EQUIPOS MEDIANTE EL DISE\~{N}O E IMPLEMENTACI\'ON DE UN MODULO CON GESTI\'ON DE MOVIMIENTOS Y REPORTES}
 \shorttitle{Gesti\'on de Inventario de Equipos}
@@ -97,19 +98,19 @@
 %     \textbf{RUC}                   & : 20454819137                                                                                                                                         \\
 %     \textbf{Raz\'on Social}        & : Soluciones de Informaci\'on NextSoft S.A.C.                                                                                                         \\
 %     \textbf{Inicio de Actividades} & : 01/05/2008                                                                                                                                          \\
-%     \textbf{Actividad principal}   & : Brinda soluciones informáticas a través de un sistema ERP personalizado y desarrollos a medida para empresas locales, nacionales e internacionales.
+%     \textbf{Actividad principal}   & : Brinda soluciones inform\'aticas a trav\'es de un sistema ERP personalizado y desarrollos a medida para empresas locales, nacionales e internacionales.
 % \end{tabular}
 El presente proyecto se llevar\'a a cabo en Soluciones de Informaci\'on NextSoft S.A.C. con RUC 20454819137, una empresa especializada en el desarrollo de soluciones tecnol\'ogicas para la gesti\'on empresarial.
-Fundada con el objetivo de ofrecer productos y servicios de alta calidad en el \'ambito de la tecnolog\'{\i}a de la informaci\'on, NextSoft S.A.C. se ha consolidado como un actor relevante en el sector, destac\'andose
+Fundada con el objetivo de ofrecer servicios de alta calidad en el \'ambito de la tecnolog\'{\i}a de la informaci\'on, NextSoft S.A.C. se ha consolidado como un actor relevante en el sector, destac\'andose
 por su innovaci\'on y compromiso con la satisfacci\'on del cliente.
 
 \textbf{Misi\'on. }Brindar a nuestros clientes, soluciones de negocio de la m\'as alta calidad, utilizando tecnolog\'{\i}as innovadoras y pertinentes que permitan el aumento de la productividad.
 
-\textbf{Visi\'on. }Constituirnos en un elemento fundamental de apoyo a nuestros clientes llegando a convertirnos en la empresa líder del medio, al entregar soluciones innovadoras que satisfagan a nuestros clientes quienes
+\textbf{Visi\'on. }Constituirnos en un elemento fundamental de apoyo a nuestros clientes llegando a convertirnos en la empresa l\'{\i}der del medio, al entregar soluciones innovadoras que satisfagan a nuestros clientes quienes
 son nuestra raz\'on de ser.
 
 \textbf{Estructura Organizativa. }NextSoft S.A.C. cuenta con un equipo multidisciplinario de profesionales altamente capacitados en diversas \'areas de la tecnolog\'{\i}a de la informaci\'on. La empresa se organiza en
-departamentos clave, como desarrollo de software, soporte t\'ecnico y atención al cliente, todos ellos coordinados para ofrecer un servicio integral y de alta calidad.
+departamentos clave, como desarrollo de software, soporte t\'ecnico y atenci\'on al cliente, todos ellos coordinados para ofrecer un servicio integral y de alta calidad.
 
 \textbf{Relevancia en el Sector. }Gracias a su enfoque en la innovaci\'on y la calidad, NextSoft S.A.C. ha logrado posicionarse como un proveedor confiable de soluciones tecnol\'ogicas para diversas industrias. Su capacidad
 para adaptarse a las necesidades cambiantes del mercado y ofrecer productos personalizados ha sido fundamental para su crecimiento y reconocimiento en el sector.
@@ -119,7 +120,7 @@ En la actualidad, la gesti\'on de inventario de equipos en diversas empresas pre
 organizaciones dependen de sistemas manuales o soluciones tecnol\'ogicas gen\'ericas que no est\'an adaptadas a las necesidades particulares de la gesti\'on de equipos. Esto resulta en procesos ineficaces, errores en el
 registro de datos, dificultades en el seguimiento de movimientos y transferencias de equipos, y una visibilidad limitada sobre el estado y la ubicaci\'on de los recursos.
 
-\textbf{Sistemas y Procesos Existentes. }En la mayor\'{\i}a de las empresas, la gesti\'on de inventarios de equipos se lleva a cabo mediante hojas de c\'alculo o software b\'asico de gesti\'on, que no est\'an dise\~{n}ados
+\textbf{Sistemas y Procesos Existentes. }En la mayor\'{\i}a de las empresas, la gesti\'on de inventario de equipos se lleva a cabo mediante hojas de c\'alculo o software b\'asico de gesti\'on, que no est\'an dise\~{n}ados
 espec\'{\i}ficamente para manejar la complejidad de los movimientos, entregas, devoluciones y transferencias de equipos entre almacenes. Estos m\'etodos suelen ser propensos a errores humanos, carecen de funcionalidades
 avanzadas para la generaci\'on de reportes detallados y no permiten un seguimiento en tiempo real, lo que complica la toma de decisiones informadas.
 
@@ -129,89 +130,337 @@ para la gesti\'on de marcas, modelos y categor\'{\i}as de equipos dificulta el a
 
 \textbf{Oportunidad de Mejora. }La implementaci\'on de un m\'odulo espec\'{\i}fico para la gesti\'on de inventario de equipos, que contemple no solo el registro y control de los equipos, sino tambi\'en la gesti\'on de
 movimientos, transferencias entre almacenes, y la generaci\'on de reportes, representa una oportunidad significativa para optimizar estos procesos. Este m\'odulo est\'a dise\~{n}ado para ser adaptable y escalable, permitiendo
-su implementaci\'on en diferentes empresas que requieran mejorar su gesti\'on de inventarios, independientemente de su tama\~{n}o o sector.
+su implementaci\'on en diferentes empresas que requieran mejorar su gesti\'on de inventario, independientemente de su tama\~{n}o o sector.
 
-La soluci\'on propuesta busca atender estas deficiencias, proporcionando a las empresas una herramienta robusta y especializada que facilite la gesti\'on integral de sus inventarios de equipos, mejorando la eficiencia
-operativa y la precisi\'on en el manejo de recursos.
+% La soluci\'on propuesta busca atender estas deficiencias, proporcionando a las empresas una herramienta robusta y especializada que facilite la gesti\'on integral de sus inventarios de equipos, mejorando la eficiencia
+% operativa y la precisi\'on en el manejo de recursos.
 \subsection{Problema de Investigaci\'on}
+En el contexto actual, muchas empresas enfrentan dificultades significativas en la gesti\'on de inventario de equipos debido a la ausencia de sistemas especializados que puedan manejar eficazmente los distintos aspectos
+de este proceso. Estas deficiencias se manifiestan en errores en el registro de equipos, dificultades para rastrear movimientos y transferencias, falta de control sobre las devoluciones, y la carencia de reportes precisos
+y oportunos. Estos problemas no solo generan ineficiencias operativas, sino que tambi\'en aumentan el riesgo de p\'erdidas de equipos, mal uso de los recursos, y decisiones mal informadas.
 
-\subsubsection{Definici\'on del Problema}
-Este proyecto aborda la necesidad de un sistema de informaci\'on integral que
-optimice la gesti\'on de los miembros, las actividades y el seguimiento de los
-progresos dentro de un Club de Conquistadores. Actualmente, la administraci\'on
-de estos elementos se realiza de manera manual o con herramientas dispersas, lo
-que conlleva a ineficiencias y dificultades en el seguimiento y evaluaci\'on
-del desarrollo de los conquistadores. Por tanto, se propone el dise\~{n}o y
-desarrollo de una soluci\'on inform\'atica que centralice la informaci\'on y
-automatice los procesos, mejorando as\'i la gesti\'on y el impacto de las
-actividades del club.
+El problema espec\'{\i}fico identificado es la falta de un m\'odulo de gesti\'on de inventario de equipos que est\'e dise\~{n}ado para satisfacer las necesidades particulares de las empresas en cuanto al control detallado
+de sus activos. La falta de tal herramienta afecta negativamente la capacidad de las empresas para mantener un control riguroso sobre sus inventarios, lo que resulta en una gesti\'on desorganizada y poco eficiente. Adem\'as,
+la imposibilidad de generar reportes detallados limita la capacidad de las empresas para evaluar el estado de sus equipos y tomar decisiones informadas sobre la adquisici\'on, mantenimiento y reasignaci\'on de equipos.
 
-\subsection{Objetivo General}
-Desarrollar un sistema de informaci\'on integral que facilite la gesti\'on
-eficiente de los miembros, actividades y progresos del Club de Conquistadores,
-proporcionando una herramienta tecnol\'ogica que optimice los procesos
-administrativos y de seguimiento, garantizando la mejora continua en la
-organizaci\'on y participaci\'on de los conquistadores.
+En el caso de Soluciones de Informaci\'on NextSoft S.A.C., y en otras empresas que podr\'{\i}an implementar este m\'odulo, la ausencia de una herramienta especializada en la gesti\'on de inventario de equipos ha resultado
+en procesos fragmentados y poco optimizados. Esto ha generado un incremento en el tiempo y esfuerzo necesarios para mantener actualizados los registros de equipos, una mayor posibilidad de errores en la transferencia de
+informaci\'on, y una visi\'on incompleta de la disponibilidad y ubicaci\'on de los recursos. Estos problemas no solo afectan la eficiencia operativa, sino que tambi\'en repercuten en la capacidad de la empresa para ofrecer
+servicios de alta calidad a sus clientes, ya que una gesti\'on inadecuada de los equipos puede impactar en la disponibilidad y fiabilidad de los recursos.
 
-\subsection{Objetivos Espec\'ificos}
+El problema que el m\'odulo propuesto resolver\'a es la falta de una soluci\'on integral y especializada para la gesti\'on de inventario de equipos, que contemple todos los aspectos cr\'{\i}ticos como el registro,
+seguimiento de movimientos, control de transferencias, y generaci\'on de reportes detallados, con el fin de optimizar la eficiencia operativa y mejorar la administraci\'on de recursos en las empresas.
+\subsection{Justificaci\'on}
+El desarrollo de un m\'odulo de gesti\'on de inventario de equipos es esencial debido a las deficiencias cr\'{\i}ticas que existen en los sistemas actuales utilizados por muchas empresas. La ausencia de una herramienta
+especializada ha llevado a procesos fragmentados, errores en el registro y seguimiento de equipos, y una falta de control efectivo sobre los movimientos y transferencias de activos. Estos problemas no solo generan ineficiencias
+operativas, sino que tambi\'en ponen en riesgo la disponibilidad y el uso adecuado de los recursos, afectando directamente la capacidad de las empresas para ofrecer servicios de alta calidad.
+
+Este proyecto es de gran importancia porque aborda una necesidad real y urgente en la gesti\'on empresarial. La implementaci\'on de un m\'odulo especializado permitir\'a a las empresas, como Soluciones de Informaci\'on NextSoft
+S.A.C., optimizar la administraci\'on de sus inventarios de equipos, reducir errores, y mejorar la precisi\'on en la informaci\'on disponible para la toma de decisiones. Esto, a su vez, contribuir\'a a una mayor eficiencia
+operativa, un mejor control de los activos, y una reducci\'on de los costos asociados con la gesti\'on ineficaz de recursos.
+\subsubsection{Beneficios Potenciales}
+El desarrollo de este m\'odulo proporcionar\'a m\'ultiples beneficios, entre los que destacan:
+\begin{itemize}
+    \item\textbf{Mejora en la eficiencia operativa:} Al automatizar y centralizar el control de inventarios, las empresas podr\'an reducir el tiempo y esfuerzo necesarios para mantener actualizados sus registros de equipos.
+    \item\textbf{Reducci\'on de errores y p\'erdidas:} La herramienta permitir\'a un seguimiento m\'as preciso de los movimientos y transferencias de equipos, minimizando los errores humanos y reduciendo el riesgo de p\'erdidas
+          de activos.
+    \item\textbf{Decisiones m\'as informadas:} La generaci\'on de reportes detallados ofrecer\'a a las empresas una visi\'on clara y actualizada del estado de sus equipos, facilitando la planificaci\'on de adquisiciones, mantenimientos
+          y reasignaciones.
+\end{itemize}
+\subsection{Objetivos}
+\subsubsection{Objetivo General}
+Desarrollar e implementar un m\'odulo de gesti\'on de inventario de equipos que permita optimizar el control de recursos, incluyendo el registro de equipos, movimientos (entregas a responsables y devoluciones a almac\'en),
+transferencias entre almacenes, y la generaci\'on de reportes detallados, mejorando as\'{\i} la eficiencia operativa de las empresas que lo utilicen.
+\subsubsection{Objetivos Espec\'{\i}ficos}
 \begin{enumerate}
-    \item\textbf{Automatizar el registro y gesti\'on de conquistadores:}\\Implementar funcionalidades que permitan el registro detallado de nuevos conquistadores, incluyendo sus datos personales, informaci\'on de contacto y estado de inscripci\'on, asegurando un manejo eficiente y seguro de la informaci\'on.
-    \item\textbf{Registrar y monitorear actividades del club:}\\Dise\~{n}ar y desarrollar m\'odulos que permitan la planificaci\'on, organizaci\'on y seguimiento de las actividades y eventos del club, facilitando la coordinaci\'on y participaci\'on activa de los miembros.
-    \item\textbf{Controlar el progreso de especialidades y clases:}\\Implementar un sistema de seguimiento individualizado para registrar y monitorear el avance de los conquistadores en sus especialidades y clases, proporcionando informes detallados y estad\'isticas de progreso.
-    \item\textbf{Gestionar la asistencia a actividades y reuniones:}\\Crear un m\'odulo para el registro y control de asistencia de los conquistadores en las actividades semanales y eventos especiales, facilitando la evaluaci\'on de la participaci\'on y compromiso de los miembros.
-    \item\textbf{Desarrollar un portal de usuario:}\\Dise\~{n}ar una interfaz amigable y accesible para que los conquistadores y sus l\'ideres puedan consultar y actualizar informaci\'on relevante, facilitando la comunicaci\'on y el acceso a recursos y materiales del club.
-    \item\textbf{Generar informes y estad\'isticas:}\\Implementar herramientas de generaci\'on de informes y estad\'isticas que permitan a los l\'ideres del club evaluar el desempe\~{n}o y progreso de los conquistadores, as\'i como la efectividad de las actividades realizadas.
-    \item\textbf{Garantizar la seguridad y confidencialidad de la informaci\'on:}\\Establecer mecanismos de seguridad que aseguren la protecci\'on de los datos personales y la confidencialidad de la informaci\'on gestionada por el sistema, cumpliendo con las normativas legales vigentes.
+    \item Analizar y definir los requisitos funcionales y no funcionales necesarios para la implementaci\'on del m\'odulo de gesti\'on de inventario de equipos.
+    \item Dise\~{n}ar un sistema que contemple todas las funciones clave de la gesti\'on de inventario de equipos, incluyendo el registro, control de movimientos, y manejo de transferencias entre almacenes.
+    \item Desarrollar el m\'odulo utilizando tecnolog\'{\i}as actuales, asegurando su integrabilidad y escalabilidad dentro de diferentes infraestructuras empresariales.
+    \item Implementar y probar el m\'odulo en un entorno real, evaluando su eficacia en la optimizaci\'on de la gesti\'on de inventario de equipos.
+    \item Generar reportes detallados y personalizados que permitan a las empresas obtener una visi\'on clara y actualizada del estado de sus equipos.
 \end{enumerate}
 
 \section{Marco Te\'orico}
+El marco te\'orico de este proyecto se enfoca en fundamentar conceptualmente los elementos clave relacionados con la gesti\'on de inventario de equipos, el desarrollo de m\'odulos de software, su impacto en la eficiencia
+operativa de las empresas, y las tecnolog\'{\i}as a utilizar. A continuaci\'on, se exploran los conceptos y teor\'{\i}as m\'as relevantes para este estudio.
+\subsection{Gesti\'on de Inventario}
+\subsubsection{Concepto y Funci\'on de la Gesti\'on de Inventario}
+La gesti\'on de inventario es un proceso cr\'{\i}tico en la administraci\'on de recursos de una empresa, cuyo objetivo principal es asegurar la disponibilidad de los materiales o productos necesarios para las operaciones, al
+tiempo que se minimizan los costos asociados. En el contexto de equipos, la gesti\'on de inventario implica el registro, seguimiento, y control de activos como hardware, maquinaria, y otros equipos esenciales para el funcionamiento
+de la empresa. Seg\'un~\cite{cja}, una gesti\'on de inventario eficiente permite a las empresas mantener un equilibrio adecuado entre la oferta y la demanda, evitando tanto el exceso como la falta de recursos.
+\subsubsection{Importancia de la Gesti\'on de Inventario de Equipos}
+En muchas organizaciones, los equipos representan una inversi\'on significativa, y su gesti\'on adecuada es esencial para garantizar la continuidad operativa. La falta de control en el inventario puede llevar a la p\'erdida de
+equipos, sobrecostos, y una disminuci\'on en la capacidad de respuesta de la empresa. La gesti\'on de inventario de equipos tambi\'en incluye la planificaci\'on de mantenimientos preventivos y correctivos, la evaluaci\'on del
+ciclo de vida de los activos, y la optimizaci\'on de su uso a lo largo del tiempo.
+\subsection{Sistemas de Informaci\'on para la Gesti\'on de Inventario}
+\subsubsection{Concepto y Tipos}
+Un sistema de informaci\'on es un conjunto organizado de recursos que permite la recolecci\'on, almacenamiento, procesamiento y distribuci\'on de informaci\'on para apoyar la toma de decisiones en una organizaci\'on. En el \'ambito
+de la gesti\'on de inventario, los sistemas de informaci\'on juegan un papel crucial al proporcionar herramientas que automatizan y optimizan el seguimiento y control de los recursos.~\cite{om} definen los sistemas de informaci\'on
+como un componente clave en la gesti\'on empresarial moderna, al integrar datos, procesos y tecnolog\'{\i}as para mejorar la eficiencia y efectividad de las operaciones.
+\subsubsection{M\'odulos de Gesti\'on de Inventario}
+Los m\'odulos de gesti\'on de inventario son componentes espec\'{\i}ficos dentro de un sistema de informaci\'on m\'as amplio, dise\'{n}ados para gestionar de manera centralizada y automatizada todos los aspectos relacionados con el control de
+inventarios. Estos m\'odulos suelen incluir funcionalidades como el registro de entradas y salidas, la generaci\'on de reportes, el control de niveles de stock, y la planificaci\'on de reaprovisionamientos. En el caso de los equipos,
+un m\'odulo especializado permite no solo la gesti\'on de existencias, sino tambi\'en el seguimiento del ciclo de vida de cada equipo, incluyendo su mantenimiento, traslado, y eventual desincorporaci\'on.
+\subsubsection{Beneficios de la Automatizaci\'on en la Gesti\'on de Inventario}
+La automatizaci\'on de la gesti\'on de inventarios a trav\'es de m\'odulos especializados ofrece m\'ultiples beneficios, incluyendo una mayor precisi\'on en los registros, reducci\'on de errores humanos, visibilidad en tiempo real del estado
+de los recursos, y la capacidad de generar reportes detallados que faciliten la toma de decisiones. Seg\'un~\cite{ll}, la implementaci\'on de sistemas automatizados en la gesti\'on de inventarios puede reducir los costos
+operativos, mejorar la eficiencia y aumentar la competitividad de las empresas.
+\subsection{Desarrollo de Software para la Gesti\'on de Inventarios}
+\subsubsection{Ciclo de Vida del Desarrollo de Software (SDLC)}
+El desarrollo de software, en particular de m\'odulos como el propuesto en este proyecto, sigue un ciclo de vida estructurado conocido como SDLC (Software Development Life Cycle). Este ciclo incluye etapas como la planificaci\'on,
+an\'alisis de requerimientos, dise\'{n}o, implementaci\'on, pruebas, y mantenimiento. Cada una de estas etapas es crucial para garantizar que el software desarrollado cumpla con los objetivos planteados y se integre adecuadamente en
+los procesos de la empresa.
+\subsubsection{Metodolog\'{\i}as de Desarrollo \'Agil}
+En la actualidad, las metodolog\'{\i}as \'agiles han ganado popularidad en el desarrollo de software debido a su enfoque en la flexibilidad, colaboraci\'on continua con el cliente, y la entrega de productos funcionales en plazos cortos.
+Metodolog\'{\i}as como Scrum y Kanban permiten a los equipos de desarrollo adaptarse r\'apidamente a los cambios en los requerimientos y asegurar que el producto final satisfaga las necesidades del usuario. En el desarrollo del m\'odulo
+de gesti\'on de inventarios de equipos, la adopci\'on de una metodolog\'{\i}a \'agil permitir\'a iterar r\'apidamente y ajustar el software seg\'un las pruebas y feedback obtenidos durante su implementaci\'on.
+\subsection{Tecnolog\'{\i}as a Utilizar}
+\subsubsection{Angular 12}
+Angular 12 es un framework de desarrollo web front-end basado en TypeScript, mantenido por Google. Es ampliamente utilizado para construir aplicaciones web de una sola p\'agina (SPA) debido a su arquitectura modular, su robusto
+sistema de inyecci\'on de dependencias y su capacidad para manejar formularios y validaciones de manera eficiente. En este proyecto, Angular 12 se utilizar\'a para desarrollar la interfaz de usuario del m\'odulo de gesti\'on de inventarios
+, permitiendo una experiencia de usuario din\'amica y responsiva.
+\subsubsection{.NET 8}
+.NET 8 es una plataforma de desarrollo de software mantenida por Microsoft que permite construir aplicaciones robustas y escalables. Con un enfoque en la alta performance y la seguridad,~.NET 8 se utilizar\'a en este proyecto para
+desarrollar la l\'ogica de negocio y los servicios backend del m\'odulo de gesti\'on de inventarios. Esta tecnolog\'{\i}a permitir\'a integrar de manera eficiente el front-end desarrollado en Angular 12 con el servidor y la base de datos.
+\subsubsection{SQL Server}
+SQL Server es un sistema de gesti\'on de bases de datos relacional (RDBMS) desarrollado por Microsoft, conocido por su fiabilidad, escalabilidad y capacidades de an\'alisis avanzadas. En este proyecto, SQL Server ser\'a utilizado para
+almacenar, gestionar, y consultar los datos relacionados con los equipos, movimientos, transferencias, y reportes del m\'odulo de gesti\'on de inventario. La elecci\'on de SQL Server asegura un manejo eficiente de grandes vol\'umenes
+de datos y soporte para consultas complejas, lo que es crucial para mantener la integridad y disponibilidad de la informaci\'on.
+\subsection{Impacto de la Gesti\'on de Inventario en la Eficiencia Operativa}
+\subsubsection{Relaci\'on entre Gesti\'on de Inventario y Eficiencia Operativa}
+La eficiencia operativa se refiere a la capacidad de una organizaci\'on para maximizar su productividad y minimizar costos mediante el uso \'optimo de sus recursos. Una gesti\'on eficaz de inventario es fundamental para lograr esta
+eficiencia, ya que garantiza que los recursos est\'en disponibles cuando se necesitan, evitando interrupciones en las operaciones y reduciendo los costos asociados con el almacenamiento y la obsolescencia de los equipos.
+\subsubsection{Contribuci\'on del M\'odulo de Gesti\'on de Inventario a la Eficiencia}
+El m\'odulo de gesti\'on de inventario propuesto contribuir\'a directamente a la eficiencia operativa al proporcionar una herramienta centralizada y automatizada para el control de equipos. Esto permitir\'a a las empresas reducir el
+tiempo y esfuerzo dedicados a la gesti\'on manual del inventario, minimizar errores, y mejorar la capacidad para tomar decisiones basadas en datos precisos y actualizados. Adem\'as, la generaci\'on de reportes ofrecer\'a
+una visi\'on clara del estado de los recursos, facilitando la planificaci\'on y optimizaci\'on del uso de los equipos.
+\section{\large Metodolog\'{\i}a}
+\subsection{An\'alisis de Requerimientos}
+El m\'odulo de gesti\'on de inventario de equipos ser\'a una aplicaci\'on web responsiva, dise\'{n}ada para ser utilizada en diversas empresas y acoplarse al ERP de NextSoft. Este an\'alisis detalla los requerimientos funcionales y no funcionales,
+asegurando que el sistema cumpla con las expectativas de usabilidad, seguridad, y rendimiento.
+\subsubsection{Requerimientos Funcionales}
+\textbf{Gesti\'on de Usuarios y Acceso.}
 
-\subsection{Introducci\'on al Club de Conquistadores}
-El Club de Conquistadores es una organizaci\'on juvenil que promueve el
-desarrollo f\'isico, mental y espiritual de ni\~{n}os y adolescentes a trav\'es
-de actividades educativas, recreativas y de servicio comunitario. Este club,
-patrocinado por la Iglesia Adventista del S\'eptimo D\'ia, busca fomentar
-valores cristianos, habilidades pr\'acticas y el amor por la naturaleza. Los
-miembros del club, conocidos como conquistadores, participan en una variedad de
-actividades, incluyendo campamentos, marchas, estudios de la naturaleza y
-clases de desarrollo personal.
-
-\subsection{Necesidades de Gesti\'on en el Club de Conquistadores}
-La gesti\'on eficiente de un Club de Conquistadores implica la coordinaci\'on
-de m\'ultiples aspectos: registro de nuevos miembros, seguimiento del progreso
-en las especialidades y clases, planificaci\'on y registro de actividades, y
-control de asistencia. Actualmente, muchos clubes manejan estas tareas de
-manera manual o utilizando herramientas digitales dispares, lo que puede
-resultar en una administraci\'on ineficaz y la posibilidad de p\'erdida de
-datos.
-
-\subsection{Sistema de Informaci\'on}
-Un sistema de informaci\'on es un conjunto organizado de recursos que
-recopilan, almacenan, procesan y distribuyen informaci\'on. En el contexto de
-un Club de Conquistadores, un sistema de informaci\'on integral puede
-centralizar la gesti\'on de todas las actividades y registros, mejorando la
-eficiencia administrativa y proporcionando acceso r\'apido y seguro a los
-datos.
-
-\subsection{Beneficios de un Sistema de Informaci\'on Integral}
+\textit{\textbf{Autenticaci\'on y Control de Acceso.}}
 \begin{itemize}
-    \item \textbf{Eficiencia Administrativa: }Automatizaci\'on de tareas repetitivas y reducci\'on de errores humanos.
-    \item \textbf{Acceso Centralizado: }Toda la informaci\'on relevante se encuentra en un solo lugar, accesible a los usuarios autorizados.
-    \item \textbf{Mejora en la Toma de Decisiones: }Informes y an\'alisis en tiempo real que facilitan la planificaci\'on y gesti\'on del club.
-    \item \textbf{Transparencia y Trazabilidad: }Registro detallado de todas las actividades y transacciones, lo que permite una auditor\'ia eficiente.
+    \item\textbf{Inicio de sesi\'on: }Los usuarios acceder\'an al m\'odulo utilizando sus credenciales del ERP de NextSoft, asegurando un \'unico punto de autenticaci\'on y facilitando la integraci\'on con los sistemas existentes.
+    \item\textbf{Roles de usuario: }El sistema manejar\'a dos roles principales:
+          \begin{itemize}
+              \item\textbf{Administrador: }Tendr\'a acceso completo a todas las funcionalidades del m\'odulo, incluyendo la gesti\'on de usuarios por almac\'en, configuraci\'on de par\'ametros, registro y gesti\'on de equipos, movimientos, y generaci\'on de reportes.
+              \item\textbf{Solo lectura: }Este rol permitir\'a a los usuarios visualizar la informaci\'on registrada en el sistema sin la capacidad de modificar datos o realizar movimientos.
+          \end{itemize}
 \end{itemize}
 
-\section{\large DESARROLLO DE LA PROPUESTA}
-\subsection{Metodolog\'ia}
-\subsection{Desarrollo}
-\subsubsection{Diagrama de clases}
-\subsubsection{Diagrama de base de datos}
-\subsection{Resultados}
-\subsubsection{Pantalla para Iniciar Sesi\'on}
+\textit{\textbf{Configuraci\'on de Accesos y Par\'ametros.}}
+\begin{itemize}
+    \item\textbf{Gesti\'on de usuarios: }Dentro del apartado de configuraci\'on, los administradores podr\'an definir qu\'e usuarios tienen acceso a los diferentes almacenes, as\'{\i} como asignarles los roles correspondientes.
+    \item\textbf{Definici\'on de par\'ametros: }Los administradores podr\'an configurar par\'ametros clave de la aplicaci\'on, como la familia de productos para adaptarse a las necesidades de cada empresa.
+\end{itemize}
+
+\textbf{Gesti\'on de Maestros.}
+\begin{itemize}
+    \item\textbf{Categor\'{\i}as y atributos de equipos: }El sistema permitir\'a la creaci\'on y gesti\'on de categor\'{\i}as de equipos, definiendo atributos personalizados para cada una (e.g., almacenamiento, memoria RAM, procesador).
+    \item\textbf{Marcas y modelos: }Los usuarios podr\'an gestionar un cat\'alogo de marcas y modelos, facilitando la estandarizaci\'on de los datos relacionados con los equipos registrados.
+    \item\textbf{Almacenes: }Se podr\'an definir m\'ultiples almacenes.
+    \item\textbf{Proyectos y ubicaciones: }El m\'odulo permitir\'a asociar equipos a proyectos espec\'{\i}ficos y ubicaciones dentro de la empresa, mejorando el control y la trazabilidad de los recursos.
+\end{itemize}
+
+\textbf{Registro y Gesti\'on de Equipos.}
+
+\textit{\textbf{Registro de Equipos.}}
+\begin{itemize}
+    \item\textbf{Registro individual: }Los administradores podr\'an registrar equipos uno a uno, proporcionando informaci\'on detallada como n\'umero de serie, categor\'{\i}, marca, modelo, producto, activo fijo, fecha y detalle de
+          garant\'{\i}a, y datos de la factura o boleta.
+    \item\textbf{Registro masivo: }El sistema soportar\'a la carga masiva de equipos mediante archivos EXCEL, con validaci\'on autom\'atica de los datos como categor\'{\i}a, producto, marca, modelo, descripci\'on, n\'umero de serie,
+          fecha y detalle de garant\'{\i}a.
+    \item\textbf{Validaci\'on de datos: }El sistema validar\'a la informaci\'on ingresada para asegurar que cumpla con los requisitos establecidos (e.g., formato correcto, datos obligatorios, integridad).
+\end{itemize}
+
+\textit{\textbf{Historial de Vida del Equipo.}}
+\begin{itemize}
+    \item\textbf{Registro de atributos y calibraciones: }Se podr\'an registrar atributos propios de la categor\'{\i}a del equipo y calibraciones realizadas ya sean correctivas o preventivas.
+    \item\textbf{Seguimiento de estado: }El sistema permitir\'a gestionar el estado de cada equipo, con los estados disponibles de Activo, Baja, Mantenimiento, Asignado, y Pr\'estamo. Los cambios de estado se
+          reflejar\'an en el historial de vida del equipo.
+    \item\textbf{Bajas: }Los administradores podr\'an registrar bajas de equipos, indicando el motivo y actualizando el estado del equipo en el sistema.
+\end{itemize}
+
+\textbf{Gesti\'on de Movimientos.}
+
+\textit{\textbf{Tipos de Movimientos.}}
+\begin{itemize}
+    \item\textbf{Entregas y devoluciones: }Los administradores podr\'an registrar movimientos de entrega y devoluci\'on de equipos, asign\'andolos a los responsables o devolvi\'endolos a los almacenes correspondientes.
+    \item\textbf{Transferencias entre almacenes: }El sistema permitir\'a registrar la transferencia de equipos entre diferentes almacenes, actualizando autom\'aticamente las ubicaciones y generando los movimientos correspondientes.
+\end{itemize}
+
+\textit{\textbf{Control y Seguimiento.}}
+\begin{itemize}
+    \item\textbf{B\'usqueda y listado de equipos: }El sistema permitir\'a buscar y listar equipos seg\'un m\'ultiples criterios, como responsable, categor\'{\i}a, marca, tipo de movimiento, y si esta pendiente de devoluci\'on.
+    \item\textbf{Registro de movimientos: }Cada equipo registrado o movido generar\'a un registro de movimiento, vinculado al almac\'en correspondiente y manteniendo un historial completo de todas las transacciones.
+\end{itemize}
+
+\textbf{Reportes.}
+\begin{itemize}
+    \item\textbf{Reporte de equipos: }Este reporte proporcionar\'a una visi\'on completa de todos los equipos registrados, incluyendo su estado, ubicaci\'on, responsable, y detalles relevantes.
+    \item\textbf{Reporte de movimientos: }Se podr\'an generar reportes detallados de los movimientos de equipos, filtrando por tipo de movimiento, fecha, responsable, y almac\'en.
+    \item\textbf{Reporte de transferencias: }Se podr\'an generar reportes de las tranferencias de equipos, filtrando por fecha, almac\'en de origen y almac\'en de destino.
+    \item\textbf{Reporte de pendientes y devoluciones: }Este reporte permitir\'a visualizar los equipos que han sido asignados y est\'an pendientes de devoluci\'on, ayudando a mantener un control preciso de las responsabilidades.
+    \item\textbf{Reporte por persona/ubicaci\'on: }Los administradores podr\'an generar un reporte que muestre todos los equipos asignados a una persona o a una determinada ubicaci\'on, facilitando el seguimiento y control.
+\end{itemize}
+\subsubsection{Requerimientos No Funcionales}
+\textbf{Usabilidad.}
+
+\textit{\textbf{Interfaz de Usuario.}}
+\begin{itemize}
+    \item\textbf{Angular 12: }La aplicaci\'on estar\'a desarrollada con Angular 12, ofreciendo una experiencia de usuario moderna, din\'amica, y responsiva, optimizada tanto para dispositivos de escritorio como m\'oviles.
+    \item\textbf{Navegaci\'on intuitiva: }La interfaz ser\'a dise\'{n}ada para ser intuitiva, con men\'us claros y accesibles, facilitando la navegaci\'on y el acceso r\'apido a las funcionalidades clave.
+\end{itemize}
+
+\textit{\textbf{Mensajes de Error y Ayuda.}}
+\begin{itemize}
+    \item\textbf{Validaci\'on y mensajes de error: }El sistema proporcionar\'a mensajes de error claros y detallados cuando se detecten problemas en la entrada de datos, guiando al usuario para corregir los errores.
+          % \item\textbf{Ayuda en l\'{\i}nea: }La aplicaci\'on incluir\'a una secci\'on de ayuda y documentaci\'on accesible desde la interfaz, para resolver dudas y guiar a los usuarios en el uso del sistema.
+\end{itemize}
+
+\textbf{Rendimiento.}
+\begin{itemize}
+    \item\textbf{Tiempo de respuesta: }El sistema ser\'a optimizado para garantizar tiempos de respuesta r\'apidos en todas las operaciones, incluyendo la carga masiva de equipos y la generaci\'on de reportes.
+          % \item\textbf{Escalabilidad: }El dise\'{n}o permitir\'a manejar grandes vol\'umenes de datos, asegurando que el rendimiento no se vea afectado por el aumento de la cantidad de equipos registrados o movimientos procesados.
+\end{itemize}
+
+\textbf{Seguridad.}
+\begin{itemize}
+    \item\textbf{.NET 8 y seguridad integrada: }El backend, desarrollado en~.NET 8, implementar\'a las mejores pr\'acticas de seguridad, incluyendo cifrado de datos sensibles, autenticaci\'on robusta, y control de acceso basado en roles.
+    \item\textbf{Integraci\'on con ERP:~}La autenticaci\'on y autorizaci\'on estar\'an integradas con el ERP de NextSoft, asegurando una gesti\'on centralizada de las credenciales y permisos.
+\end{itemize}
+
+\textbf{Escalabilidad.}
+\begin{itemize}
+    \item\textbf{Acoplamiento con ERP:~}El m\'odulo estar\'a dise\'{n}ado para integrarse sin problemas con el ERP de NextSoft, permitiendo su despliegue en cualquier empresa que utilice este sistema.
+    \item\textbf{Configuraci\'on personalizable: }La arquitectura del sistema permitir\'a personalizar los par\'ametros y configuraciones seg\'un las necesidades espec\'{\i}ficas de cada empresa, facilitando su adaptaci\'on a diferentes contextos.
+\end{itemize}
+
+% \textbf{Mantenibilidad.}
+% \begin{itemize}
+%     \item\textbf{Actualizaciones y mejoras: }El sistema ser\'a desarrollado con una arquitectura modular, facilitando las actualizaciones y la incorporaci\'on de nuevas funcionalidades sin interrumpir el servicio.
+%     \item\textbf{Configuraci\'on Personalizable: }Se proporcionar\'a documentaci\'on t\'ecnica y de usuario detallada, cubriendo la implementaci\'on, uso, y mantenimiento del sistema, para asegurar su sostenibilidad a largo plazo.
+% \end{itemize}
+\subsection{Dise\'{n}o del Sistema}
+\subsubsection{Casos de Uso}
+La Figura~\ref{admin} muestra los casos de uso espec\'{\i}ficos para el rol de administrador en el m\'odulo de gesti\'on de inventario de equipos, quien tiene acceso completo a todas las funcionalidades del sistema. Por otro lado,
+la Figura~\ref{readonly} presenta los casos de uso correspondientes al rol con permisos de solo lectura. Este usuario tiene acceso restringido, lo que le permite \'unicamente visualizar la informaci\'on, sin la capacidad de realizar modificaciones en el sistema.
+\begin{figure}[H]
+    \centering
+    \caption{Casos de Uso del Rol Solo Lectura}\label{readonly}
+    \includegraphics[scale=0.62]{./diagrams/CaseUses/ReadOnly/Solo Lectura.pdf}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \caption{Casos de Uso del Rol Administrador}\label{admin}
+    \includegraphics[scale=0.43]{./diagrams/CaseUses/Admin/Administrador.pdf}
+\end{figure}
+\subsubsection{Especificaci\'on de Casos de Uso}
+Ahora se detallar\'an las especificaciones de cada uno de los casos de uso identificados anteriormente. Estas especificaciones proporcionan una descripci\'on precisa y estructurada de las interacciones entre los actores y el sistema, destacando los flujos
+de eventos principales, las precondiciones, postcondiciones, y las excepciones relevantes. La especificaci\'on de casos de uso es esencial para guiar el diseño y desarrollo del m\'odulo, asegurando que todas las funcionalidades requeridas est\'en claramente
+definidas y alineadas con los objetivos del sistema.
+\newline
+\begin{longtable}{@{} p{16.5cm} @{}}
+    \caption{Especificaci\'on de Caso de Uso Iniciar Sesi\'on}\label{tab:UC01}                                                            \\ \toprule
+    \multicolumn{1}{c}{Caso de uso: Iniciar Sesi\'on}                                                                                     \\ \midrule
+    ID:~UC01                                                                                                                              \\ \midrule
+    Breve descripci\'on:                                                                                                                  \\
+    El usuario se autentica en el sistema utilizando sus credenciales del ERP de NextSoft.                                                \\ \midrule
+    Actores principales:                                                                                                                  \\
+    Usuario (Administrador, Solo Lectura)                                                                                                 \\ \midrule
+    Actores secundarios:                                                                                                                  \\
+    Ninguno                                                                                                                               \\ \midrule
+    Precondiciones:                                                                                                                       \\
+    1. El usuario debe tener una cuenta activa en el ERP.                                                                                 \\ \midrule
+    Flujo principal:                                                                                                                      \\
+    1. El usuario navega a la pantalla de inicio de sesi\'on del m\'odulo de gesti\'on de inventario de equipos.                          \\
+    2. El sistema muestra un formulario de inicio de sesi\'on donde el usuario ingresa sus credenciales (nombre de usuario y contraseña). \\
+    3. El usuario ingresa sus credenciales y presiona el bot\'on ``Iniciar Sesi\'on''.                                                    \\
+    4. El sistema valida las credenciales proporcionadas.                                                                                 \\
+    5. Si las credenciales son correctas, el sistema autentica al usuario y muestra una pantalla para que elija el almac\'en.             \\
+    6. Una vez elegido el almac\'en determina su rol (Administrador o Solo Lectura).                                                      \\
+    7. El usuario es redirigido a la p\'agina principal del m\'odulo con los permisos correspondientes a su rol.                          \\ \midrule
+    Postcondiciones:                                                                                                                      \\
+    1. El usuario accede al m\'odulo con los permisos correspondientes a su rol.                                                          \\ \midrule
+    Flujos alternativos:                                                                                                                  \\
+    A1- Credenciales incorrectas:                                                                                                         \\
+    \hspace{1cm}1. El sistema ERP de NextSoft detecta que las credenciales ingresadas no son correctas.                                   \\
+    \hspace{1cm}2. El sistema muestra un mensaje de error indicando que las credenciales son inv\'alidas.                                 \\
+    \hspace{1cm}3. El flujo retorna al paso 2 del flujo principal si el usuario decide intentar nuevamente.                               \\ \bottomrule
+\end{longtable}
+\newpage
+\begin{longtable}{@{} p{16.5cm} @{}}
+    \caption{Especificaci\'on de Caso de Uso Configurar Accesos y Par\'ametros}\label{tab:UC02}                                                        \\ \toprule
+    \multicolumn{1}{c}{Caso de uso: Configurar Accesos y Par\'ametros}                                                                                 \\ \midrule
+    ID:~UC02                                                                                                                                           \\ \midrule
+    Breve descripci\'on:                                                                                                                               \\
+    El administrador configura los usuarios con acceso a los almacenes y define los par\'ametros del sistema.                                          \\ \midrule
+    Actores principales:                                                                                                                               \\
+    Administrador                                                                                                                                      \\ \midrule
+    Actores secundarios:                                                                                                                               \\
+    Base de datos del sistema                                                                                                                          \\ \midrule
+    Precondiciones:                                                                                                                                    \\
+    1. El administrador debe haber iniciado sesi\'on.                                                                                                  \\ \midrule
+    Flujo principal:                                                                                                                                   \\
+    1. El administrador navega a la secci\'on de configuraci\'on del m\'odulo de gesti\'on de inventario de equipos.                                   \\
+    2. El sistema muestra una interfaz con opciones para configurar accesos a almacenes y definir par\'ametros del sistema.                            \\
+    3. El administrador selecciona la opci\'on para gestionar usuarios y asignar permisos de acceso a los almacenes.                                   \\
+    4. El administrador elige los usuarios, define su rol (Administrador o Solo Lectura) y asigna los almacenes correspondientes.                      \\
+    5. El administrador guarda los cambios realizados.                                                                                                 \\
+    6. El sistema guarda la configuraci\'on de accesos en la base de datos y muestra un mensaje de confirmaci\'on.                                     \\
+    7. A continuaci\'on, el administrador selecciona la opci\'on para definir par\'ametros generales del m\'odulo (p. ej., familia de productos.).     \\
+    8. El administrador ajusta los par\'ametros necesarios y guarda los cambios.                                                                       \\
+    9. El sistema guarda los par\'ametros en la base de datos y confirma la actualizaci\'on con un mensaje de \'exito.                                 \\ \midrule
+    Postcondiciones:                                                                                                                                   \\
+    1. Los usuarios y par\'ametros son configurados correctamente y guardados en el sistema.                                                           \\ \midrule
+    Flujos alternativos:                                                                                                                               \\
+    A1- Error al guardar configuraciones:                                                                                                              \\
+    \hspace{1cm}1. Si ocurre un error durante el guardado de los accesos o par\'ametros, el sistema muestra un mensaje de error indicando el problema. \\
+    \hspace{1cm}2. El administrador tiene la opci\'on de intentar guardar nuevamente o revisar los cambios realizados.                                 \\
+    \hspace{1cm}3. El flujo retorna al paso 5 o 8 del flujo principal, dependiendo de la acci\'on que decida tomar el administrador.                   \\ \bottomrule
+\end{longtable}
+\newpage
+\begin{longtable}{@{} p{16.5cm} @{}}
+    \caption{Especificaci\'on de Caso de Uso Gestionar Maestros}\label{tab:UC03}                                                                                                                  \\ \toprule
+    \multicolumn{1}{c}{Caso de uso: Gestionar Maestros}                                                                                                                                           \\ \midrule
+    ID:~UC03                                                                                                                                                                                      \\ \midrule
+    Breve descripci\'on:                                                                                                                                                                          \\
+    El usuario administra los datos maestros, como categor\'{\i}as, marcas, modelos, almacenes, proyectos, ubicaciones y atributos de equipos.                                                    \\ \midrule
+    Actores principales:                                                                                                                                                                          \\
+    Administrador                                                                                                                                                                                 \\ \midrule
+    Actores secundarios:                                                                                                                                                                          \\
+    Base de datos del sistema                                                                                                                                                                     \\ \midrule
+    Precondiciones:                                                                                                                                                                               \\
+    1. El administrador debe haber iniciado sesi\'on.                                                                                                                                             \\ \midrule
+    Flujo principal:                                                                                                                                                                              \\
+    1. El administrador accede a la secci\'on de ``Maestros'' en el m\'odulo de gesti\'on de inventario de equipos.                                                                               \\
+    2. El sistema muestra una lista de opciones para administrar diferentes tipos de datos maestros (categor\'{\i}as, marcas, modelos, almacenes, proyectos, ubicaciones y atributos de equipos). \\
+    3. El administrador selecciona una de las opciones para gestionar los datos maestros.                                                                                                         \\
+    4. El sistema muestra una lista con los registros existentes para el tipo de dato maestro seleccionado.                                                                                       \\
+    5. El administrador puede realizar las siguientes acciones:                                                                                                                                   \\
+    \hspace{1cm}- Registrar un nuevo dato maestro: El administrador introduce la informaci\'on requerida en un formulario y guarda el nuevo registro.                                             \\
+    \hspace{1cm}- Actualizar un dato maestro existente: El administrador selecciona un registro, edita la informaci\'on y guarda los cambios.                                                     \\
+    \hspace{1cm}- Eliminar un dato maestro: El administrador selecciona un registro y lo elimina del sistema.                                                                                     \\
+    6. El sistema guarda los cambios realizados (registro, actualizaci\'on o eliminaci\'on) en la base de datos y muestra un mensaje de confirmaci\'on.                                           \\
+    7. El administrador puede repetir el proceso para otros datos maestros o salir de la secci\'on.                                                                                               \\ \midrule
+    Postcondiciones:                                                                                                                                                                              \\
+    1. Los datos maestros son registrados, actualizados o eliminados en el sistema.                                                                                                               \\ \midrule
+    Flujos alternativos:                                                                                                                                                                          \\
+    A1- Error al guardar cambios:                                                                                                                                                                 \\
+    \hspace{1cm}1. Si ocurre un error al intentar registrar, actualizar o eliminar un dato maestro, el sistema muestra un mensaje de error indicando el problema.                                 \\
+    \hspace{1cm}2. El administrador tiene la opci\'on de intentar la acci\'on nuevamente o revisar los cambios realizados.                                                                        \\
+    \hspace{1cm}3. El flujo retorna al paso 5 del flujo principal, dependiendo de la acci\'on que decida tomar el administrador.                                                                  \\ \bottomrule
+\end{longtable}
+
+
+
 \section{\large CONCLUSIONES}
 \section{\large RECOMENDACIONES}
 \section{\large AGRADECIMIENTOS}
-\section{\large BIBLIOGRAF\'IA}
+\bibliography{bibliography}
 \section{\large ANEXOS}
 \begin{figure}
     \caption{Descripci\'on de figuras.}

@@ -1,0 +1,21 @@
+@startuml Solo Lectura
+left to right direction
+
+actor "Solo Lectura" as b
+rectangle "Sistema de Gestion de Inventario de Equipos" {
+    usecase "Iniciar Sesión" as uc1
+    usecase "Ver Historial de Vida del Equipo" as uc6
+    usecase "Generar Reporte de Equipos" as uc11
+    usecase "Generar Reporte de Movimientos" as uc12
+    usecase "Generar Reporte de Transferencias" as uc13
+    usecase "Generar Reporte de Pendientes de Devolución" as uc14
+    usecase "Generar Reporte por Persona/Ubicación" as uc15
+}
+b -- uc1
+b -- uc6
+b -- uc11
+b -- uc12
+b -- uc13
+b -- uc14
+b -- uc15
+@enduml

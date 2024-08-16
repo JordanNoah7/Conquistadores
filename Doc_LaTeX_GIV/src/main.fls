@@ -256,6 +256,8 @@ INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\tools\tabularx.st
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\tools\tabularx.sty
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\tools\array.sty
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\tools\longtable.sty
+INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\tools\longtable.sty
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\standalone\standalone.sty
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\standalone\standalone.sty
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\tools\shellesc.sty
@@ -331,6 +333,8 @@ OUTPUT main.out
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\apa7\config\APA7spanish.txt
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\apa7\config\APA7spanish.txt
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\apa7\config\APA7spanish.txt
+INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\caption\ltcaption.sty
+INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\caption\ltcaption.sty
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx12.tfm
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx12.tfm
 INPUT C:\Users\dyfmeks\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
@@ -381,6 +385,26 @@ INPUT main.lot
 OUTPUT main.lot
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbxi10.tfm
 INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri12.tfm
+INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
+INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
+INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
+INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ts1-lmr12.tfm
+INPUT C:\Users\dyfmeks\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ts1.enc
+INPUT .\diagrams\CaseUses\ReadOnly\Solo Lectura.pdf
+INPUT .\diagrams\CaseUses\ReadOnly\Solo Lectura.pdf
+INPUT .\diagrams\CaseUses\ReadOnly\Solo Lectura.pdf
+INPUT .\diagrams\CaseUses\ReadOnly\Solo Lectura.pdf
+INPUT .\diagrams\CaseUses\ReadOnly\Solo Lectura.pdf
+INPUT .\diagrams\CaseUses\ReadOnly\Solo Lectura.pdf
+INPUT .\diagrams\CaseUses\Admin\Administrador.pdf
+INPUT .\diagrams\CaseUses\Admin\Administrador.pdf
+INPUT .\diagrams\CaseUses\Admin\Administrador.pdf
+INPUT .\diagrams\CaseUses\Admin\Administrador.pdf
+INPUT .\diagrams\CaseUses\Admin\Administrador.pdf
+INPUT .\diagrams\CaseUses\Admin\Administrador.pdf
+INPUT .\main.bbl
+INPUT .\main.bbl
+INPUT main.bbl
 INPUT .\diagrams\BusinessLogic\BusinessLogic.pdf
 INPUT .\diagrams\BusinessLogic\BusinessLogic.pdf
 INPUT .\diagrams\BusinessLogic\BusinessLogic.pdf

@@ -1,0 +1,41 @@
+@startuml Administrador
+left to right direction
+
+actor "Administrador" as a
+rectangle "Sistema de Gestion de Inventario de Equipos" {
+    ' usecase "Registrar equipo" as uc1
+    ' usecase "Registrar equipos desde un excel" as uc2
+    ' usecase "Registrar atributos por equipo" as uc3
+    ' usecase "Ver calibraciones del equipo" as uc4
+    usecase "Iniciar Sesión" as uc1
+    usecase "Configurar Accesos y Parámetros" as uc2
+    usecase "Gestionar Maestros" as uc3
+    usecase "Registrar Equipo Individual" as uc4
+    usecase "Registrar Equipo de Forma Masiva" as uc5
+    usecase "Ver Historial de Vida del Equipo" as uc6
+    usecase "Registrar Movimiento de Entrega de Equipos" as uc7
+    usecase "Registrar Baja de Equipos" as uc8
+    usecase "Registrar Movimiento de Devolución de Equipos" as uc9
+    usecase "Registrar Transferencia de Equipos entre Almacenes" as uc10
+    usecase "Generar Reporte de Equipos" as uc11
+    usecase "Generar Reporte de Movimientos" as uc12
+    usecase "Generar Reporte de Transferencias" as uc13
+    usecase "Generar Reporte de Pendientes de Devolución" as uc14
+    usecase "Generar Reporte por Persona/Ubicación" as uc15
+}
+a -- uc1
+a -- uc2
+a -- uc3
+a -- uc4
+a -- uc5
+a -- uc6
+a -- uc7
+a -- uc8
+a -- uc9
+a -- uc10
+a -- uc11
+a -- uc12
+a -- uc13
+a -- uc14
+a -- uc15
+@enduml
