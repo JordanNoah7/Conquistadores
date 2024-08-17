@@ -2,329 +2,390 @@
 skinparam Linetype ortho
 hide circle
 
-
 entity ACT_Activos {
-    PK ACTI_Codigo INT
+    PK ACTI_Codigo CHAR(20)
+    FK ENTC_CodProv CHAR(12)
     --
-    ACTI_Desc VARCHAR(10)
-    ACTI_serie VARCHAR(10)
-    ACTI_ruc VARCHAR(10)
-    ENTC_CodProv VARCHAR(10)
-}
-
-entity GIV_Adjuntos {
-    EQUI_Codigo INT
-    CALI_Id INT
-    ARCH_Interno INT
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-}
-
-entity GIV_Almacenes {
-    PK ALMA_Codigo VARCHAR(10)
-    --
-    FK ALMA_CodPadre VARCHAR()
-    ALMA_Nombre VARCHAR()
-    ALMA_Descripcion VARCHAR()
-    ALMA_Estado BIT
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-    AUDI_UsrMod VARCHAR()
-    AUDI_FecMod DATETIME
-    AUDI_HostMod VARCHAR()
+    ACTI_Desc VARCHAR(100)
+    ACTI_serie VARCHAR(50)
+    ACTI_ruc VARCHAR(20)
 }
 
 entity Archivos {
-    ARCH_INTerno INT
+    PK ARCH_Interno INT
     --
-    ARCH_Tabla VARCHAR()
-    ARCH_Descripcion VARCHAR()
-    ARCH_Id VARCHAR()
-    ARCH_Path VARCHAR()
-    ARCH_NombreArchivo VARCHAR()
-    ARCH_Tamano Decimal
-    ARCH_Estado VARCHAR()
-    ARCH_Binary byte[]
-    ARCH_Almacenamiento VARCHAR()
-    AUDI_UsrCrea VARCHAR()
+    ARCH_Tabla VARCHAR(6)
+    ARCH_Descripcion VARCHAR(100)
+    ARCH_Id VARCHAR(15)
+    ARCH_Path VARCHAR(255)
+    ARCH_NombreArchivo VARCHAR(100)
+    ARCH_Tamano DECIMAL(9,2)
+    ARCH_Estado CHAR(1)
+    ARCH_Binary varbinary
+    ARCH_Almacenamiento CHAR(1)
+    AUDI_UsrCrea VARCHAR(20)
     AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-    AUDI_UsrMod VARCHAR()
+    AUDI_HostCrea VARCHAR(50)
+    AUDI_UsrMod VARCHAR(20)
     AUDI_FecMod DATETIME
-    AUDI_HostMod VARCHAR()
+    AUDI_HostMod VARCHAR(50)
 }
 
-entity GIV_AtributosEquipos {
-    AEQU_Item INT
-    EQUI_Codigo INT
-    AEQU_Valor VARCHAR()
-    PLAT_Item INT
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-    AUDI_UsrMod VARCHAR()
-    AUDI_FecMod DATETIME
-    AUDI_HostMod VARCHAR()
-}
-
-entity GIV_AtributosPorTipoEquipo {
-    CONF_Codigo INT
-    PLAT_Item INT
-    ATEU_Baja BIT
-    ATEU_HaciaLaOT BIT
-    ATEU_Valor VARCHAR()
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-    AUDI_UsrMod VARCHAR()
-    AUDI_FecMod DATETIME
-    AUDI_HostMod VARCHAR()
-}
-
-entity GIV_Calibraciones {
-    EQUI_Codigo INT
-    CALI_Id INT
-    CALI_Fecha DATETIME
-    CALI_Detalle VARCHAR()
-    CALI_Historial VARCHAR()
-    CALI_Activo BIT
-    TIPO_TabTCC VARCHAR()
-    TIPO_CodTCC VARCHAR()
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-    AUDI_UsrMod VARCHAR()
-    AUDI_FecMod DATETIME
-    AUDI_HostMod VARCHAR()
-}
-
-entity GIV_ConfiguracionEquipo {
-    CONF_Codigo INT
-    CONF_CodPadre INT
-    CONF_Descripcion VARCHAR()
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-    AUDI_UsrMod VARCHAR()
-    AUDI_FecMod DATETIME
-    AUDI_HostMod VARCHAR()
+entity CAJ_CtaCte {
+    PK SUCR_Codigo CHAR(2)
+    PK CTCT_NroTran INT
+    FK TIPO_TabDoc CHAR(3)
+    FK TIPO_CodDoc CHAR(3)
+    --
+    CTCT_Serie VARCHAR(20)
+    CTCT_NumDoc VARCHAR(15)
+    CTCT_FecEmi DATETIME(8)
+    CTCT_Monto DECIMAL(9,2)
+    CTCT_Glosa VARCHAR(100)
+    CTCT_Estado CHAR(1)
 }
 
 entity Entidad {
-    ENTC_Codigo VARCHAR()
-    ENTC_Ruc VARCHAR()
-    ENTC_NomCom VARCHAR()
-    ENTC_RazonSoc VARCHAR()
-}
-
-entity GIV_EqHistEstados {
-    EQUI_Codigo INT
-    EHES_Item INT
-    EHES_Fecha DATETIME
-    EHES_Estado VARCHAR()
-    EHES_Observaciones VARCHAR()
-    ENTC_CodResponsable VARCHAR()
-    TIPO_TabSEC VARCHAR()
-    TIPO_CodSEC VARCHAR()
-    ALMA_Codigo VARCHAR()
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-}
-
-entity GIV_Equipos {
-    EQUI_Codigo INT
-    EQUI_Nombre VARCHAR()
-    EQUI_Descripcion VARCHAR()
-    EQUI_FecGarantia DATETIME
-    EQUI_DetGarantia VARCHAR()
-    EQUI_FecRegistro DATETIME
-    EQUI_NroSerie VARCHAR()
-    EQUI_NroQR VARCHAR()
-    EQUI_Estado VARCHAR()
-    EQUI_DocSerie VARCHAR()
-    EQUI_DocNumero VARCHAR()
-    TIPO_TabTDO VARCHAR()
-    TIPO_CodTDO VARCHAR()
-    ENTC_CodProveedor VARCHAR()
-    CONF_Codigo INT
-    CATE_Codigo INT
-    MARC_Codigo VARCHAR()
-    MODE_Codigo INT
-    ACTI_Codigo VARCHAR()
-    PROD_Codigo VARCHAR()
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-    AUDI_UsrMod VARCHAR()
-    AUDI_FecMod DATETIME
-    AUDI_HostMod VARCHAR()
-}
-
-entity LOG_Marcas {
-    MARC_Codigo VARCHAR()
-    MARC_Descripcion VARCHAR()
-    MARC_UsrCrea VARCHAR()
-    MARC_FecCrea DATETIME
-    MARC_UsrMod VARCHAR()
-    MARC_FecMod DATETIME
-}
-
-entity GIV_Modelos {
-    MODE_Codigo INT
-    MARC_Codigo VARCHAR()
-    MODE_Nombre VARCHAR()
-    MODE_Descripcion VARCHAR()
-    MODE_Estado BIT
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-    AUDI_UsrMod VARCHAR()
-    AUDI_FecMod DATETIME
-    AUDI_HostMod VARCHAR()
-}
-
-entity GIV_MovimientoArchivo {
-    MOAR_Codigo INT
-    MOVI_Tipo VARCHAR()
-    MOVI_Codigo INT
-    MOAR_Archivo byte[]
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-}
-
-entity GIV_Movimientos {
-    MOVI_Tipo VARCHAR()
-    MOVI_Codigo INT
-    MOVI_Fecha DATETIME
-    MOVI_Motivo VARCHAR()
-    MOVI_TipoIE VARCHAR()
-    MOVI_Observaciones VARCHAR()
-    TIPE_Codigo VARCHAR()
-    ENTC_CodResponsable VARCHAR()
-    EQUI_Codigo INT
-    ALMA_Codigo VARCHAR()
-    PROY_Codigo INT
-    MOVI_TPadre VARCHAR()
-    MOVI_CodPadre INT
-    TIPO_TabSEC VARCHAR()
-    TIPO_CodSEC VARCHAR()
-    TIPO_TabMTV VARCHAR()
-    TIPO_CodMTV VARCHAR()
-    UBIC_Id INT
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-    AUDI_UsrMod VARCHAR()
-    AUDI_FecMod DATETIME
-    AUDI_HostMod VARCHAR()
-}
-
-entity ParametrosGral {
-    SUCR_Codigo VARCHAR()
-    PARA_Aplicacion VARCHAR()
-    PARA_Nombre VARCHAR()
-    PARA_Valor VARCHAR()
-    PARA_Tipo VARCHAR()
-    PARA_Desc VARCHAR()
-    AUDI_UsrCrea VARCHAR()
-    AUDI_fecCrea DATETIME
-    AUDI_UsrMod VARCHAR()
-    AUDI_fecMod DATETIME
-}
-
-entity GIV_PlantillaAtributos {
-    PLAT_Item INT
-    PLAT_Descripcion VARCHAR()
-    PLAT_Valor VARCHAR()
-    PLAT_TipoDato VARCHAR()
-    PLAT_Obligatorio BIT
-    PLAT_Baja BIT
-    TIPO_TabATR VARCHAR()
-    TIPO_CodATR VARCHAR()
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-    AUDI_UsrMod VARCHAR()
-    AUDI_FecMod DATETIME
-    AUDI_HostMod VARCHAR()
-}
-
-entity GIV_Proyectos {
-    PROY_Codigo INT
-    PROY_Nombre VARCHAR()
-    PROY_Descripcion VARCHAR()
-    PROY_Estado BIT
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-    AUDI_UsrMod VARCHAR()
-    AUDI_FecMod DATETIME
-    AUDI_HostMod VARCHAR()
-}
-
-entity Tipos {
-    TIPO_CodTabla VARCHAR()
-    TIPO_CodTipo VARCHAR()
-    TIPO_Desc1 VARCHAR()
-    TIPO_Desc2 VARCHAR()
-    TIPO_DescC VARCHAR()
-    TIPO_Num1 Decimal
-    TIPO_Num2 Decimal
-    TIPO_Estado VARCHAR()
-    TIPO_UsrCrea VARCHAR()
-    TIPO_FecCrea DATETIME
-    TIPO_UsrMod VARCHAR()
-    TIPO_FecMod DATETIME
-    TIPO_Num4 INT
-    TIPO_Num3 INT
-    TIPO_mascara VARCHAR()
-    TIPO_CadCtrlVta VARCHAR()
-    TIPO_codSunat VARCHAR()
-    TIPO_CodSincro VARCHAR()
-}
-
-entity GIV_Ubicaciones {
-    UBIC_Id INT
-    UBIC_Nombre VARCHAR()
-    UBIC_DescCorta VARCHAR()
-    PROY_Codigo INT
-    TIPO_TabSEC VARCHAR()
-    TIPO_CodSEC VARCHAR()
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-    AUDI_UsrMod VARCHAR()
-    AUDI_FecMod DATETIME
-    AUDI_HostMod VARCHAR()
-}
-
-entity GIV_UsuarioPorAlmacen {
-    UALM_Usuario VARCHAR()
-    UALM_Administrador BIT
-    UALM_SoloLectura BIT
-    ALMA_Codigo VARCHAR()
-    AUDI_UsrCrea VARCHAR()
-    AUDI_FecCrea DATETIME
-    AUDI_HostCrea VARCHAR()
-    AUDI_UsrMod VARCHAR()
-    AUDI_FecMod DATETIME
-    AUDI_HostMod VARCHAR()
+    PK ENTC_Codigo CHAR(12)
+    --
+    ENTC_Ruc VARCHAR(11)
+    ENTC_NomCom VARCHAR(50)
+    ENTC_RazonSoc VARCHAR(100)
 }
 
 entity FuncionEntidad {
-
+    PK FK ENTC_Codigo CHAR(12)
+    PK FK TIPE_Codigo VARCHAR(17)
+    --
+    FENT_FecBloq DATETIME
+    FENT_SitBloq BIT
+    FENT_GlosaBlq VARCHAR(100)
+    TIPO_TabBloq CHAR(3)
+    TIPO_TipBloq CHAR(3)
+    CUEN_codigo CHAR(17)
+    CUEN_codigoDol CHAR(17)
 }
 
-entity TiposEntidad {
+entity GIV_Adjuntos {
+    PK FK EQUI_Codigo SMALLINT
+    PK FK CALI_Id SMALLINT
+    PK FK ARCH_Interno INT
+    --
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME(8)
+    AUDI_HostCrea VARCHAR(50)
+}
 
+entity GIV_Almacenes {
+    PK ALMA_Codigo VARCHAR(6)
+    FK ALMA_CodPadre VARCHAR(6)
+    --
+    ALMA_Nombre	VARCHAR(100)
+    ALMA_Descripcion VARCHAR(100)
+    ALMA_Estado BIT
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+    AUDI_UsrMod VARCHAR(20)
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR(50)
+}
+
+entity GIV_AtributosEquipos {
+    PK AEQU_Item SMALLINT
+    PK FK EQUI_Codigo SMALLINT
+    FK PLAT_Item SMALLINT
+    --
+    AEQU_Valor VARCHAR(500)
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+    AUDI_UsrMod VARCHAR(20)
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR(50)
+}
+
+entity GIV_AtributosPorTipoEquipo {
+    PK FK CONF_Codigo SMALLINT
+    PK FK PLAT_Item SMALLINT
+    --
+    ATEU_Baja BIT
+    ATEU_HaciaLaOT BIT
+    ATEU_Valor VARCHAR(100)
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+    AUDI_UsrMod VARCHAR(20)
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR(50)
+}
+
+entity GIV_Calibraciones {
+    PK FK EQUI_Codigo SMALLINT
+    PK CALI_Id SMALLINT
+    FK TIPO_TabTCC CHAR(3)
+    FK TIPO_CodTCC CHAR(3)
+    --
+    CALI_Fecha DATETIME
+    CALI_Detalle VARCHAR(250)
+    CALI_Historial VARCHAR(MAX)
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+    AUDI_UsrMod VARCHAR(20)
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR(50)
+    CALI_Activo BIT
+}
+
+entity GIV_ConfiguracionEquipo {
+    PK CONF_Codigo SMALLINT
+    FK CONF_CodPadre SMALLINT
+    --
+    CONF_Descripcion VARCHAR(50)
+    CONF_Estado BIT
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+    AUDI_UsrMod VARCHAR(20)
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR(50)
+}
+
+entity GIV_EqHistEstados {
+    PK FK EQUI_Codigo SMALLINT
+    PK EHES_Item SMALLINT
+    FK ALMA_Codigo VARCHAR(6)
+    FK ENTC_CodResponsable CHAR(12)
+    FK TIPO_TabSEC CHAR(3)
+    FK TIPO_CodSEC CHAR(3)
+    --
+    EHES_Fecha DATETIME
+    EHES_Estado CHAR(1)
+    EHES_Observaciones VARCHAR(500)
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+}
+
+entity GIV_Equipos {
+    PK EQUI_Codigo SMALLINT
+    FK ACTI_Codigo CHAR(20)
+    FK CONF_Codigo SMALLINT
+    FK SUCR_Codigo CHAR(2)
+    FK CTCT_NroTran INT
+    FK MARC_Codigo CHAR(4)
+    FK MODE_Codigo SMALLINT
+    FK PROD_Codigo VARCHAR(15)
+    --
+    EQUI_Nombre VARCHAR(100)
+    EQUI_Descripcion VARCHAR(100)
+    EQUI_FecGarantia DATETIME
+    EQUI_DetGarantia VARCHAR(500)
+    EQUI_FecRegistro DATETIME
+    EQUI_NroSerie VARCHAR(100)
+    EQUI_NroQR VARCHAR(50)
+    EQUI_Estado CHAR(1)
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+    AUDI_UsrMod VARCHAR(20)
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR(50)
+}
+
+entity GIV_Modelos {
+    PK FK MARC_Codigo CHAR(4)
+    PK MODE_Codigo SMALLINT
+    --
+    MODE_Nombre VARCHAR(100)
+    MODE_Descripcion VARCHAR(100)
+    MODE_Estado BIT
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+    AUDI_UsrMod VARCHAR(20)
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR(50)
+}
+
+entity GIV_MovimientoArchivo {
+    PK MOAR_Codigo INT
+    --
+    MOVI_Tipo CHAR(2)
+    MOVI_Codigo INT
+    MOAR_Archivo IMAGE
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+}
+
+entity GIV_Movimientos {
+    PK MOVI_Tipo CHAR(2)
+    PK MOVI_Codigo INT
+    PK FK EQUI_Codigo SMALLINT
+    FK ALMA_Codigo VARCHAR(6)
+    FK TIPE_Codigo VARCHAR(17)
+    FK ENTC_CodResponsable CHAR(12)
+    FK MOVI_TPadre CHAR(2)
+    FK MOVI_CodPadre INT
+    FK EQUI_CodPadre SMALLINT
+    FK PROY_Codigo SMALLINT
+    FK TIPO_TabSEC CHAR(3)
+    FK TIPO_CodSEC CHAR(3)
+    FK TIPO_TabMTV CHAR(3)
+    FK TIPO_CodMTV CHAR(3)
+    FK UBIC_Id SMALLINT
+    --
+    MOVI_Fecha DATETIME
+    MOVI_Motivo VARCHAR(500)
+    MOVI_Observaciones VARCHAR(500)
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+    AUDI_UsrMod VARCHAR(20)
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR(50)
+}
+
+entity GIV_PlantillaAtributos {
+    PK PLAT_Item SMALLINT
+    FK TIPO_TabATR CHAR(3)
+    FK TIPO_CodATR CHAR(3)
+    --
+    PLAT_Descripcion VARCHAR(100)
+    PLAT_Valor VARCHAR(100)
+    PLAT_TipoDato CHAR(1)
+    PLAT_Obligatorio BIT
+    PLAT_Baja BIT
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+    AUDI_UsrMod VARCHAR(20)
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR(50)
+}
+
+entity GIV_Proyectos {
+    PK PROY_Codigo SMALLINT
+    --
+    PROY_Nombre VARCHAR(100)
+    PROY_Descripcion VARCHAR(100)
+    PROY_Estado BIT
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+    AUDI_UsrMod VARCHAR(20)
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR(50)
+}
+
+entity GIV_Ubicaciones {
+    PK UBIC_Id SMALLINT
+    FK PROY_Codigo SMALLINT
+    FK TIPO_TabSEC CHAR(3)
+    FK TIPO_CodSEC CHAR(3)
+    --
+    UBIC_Nombre VARCHAR(100)
+    UBIC_DescCorta VARCHAR(20)
+    UBIC_Estado BIT
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+    AUDI_UsrMod VARCHAR(20)
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR(50)
+}
+
+entity GIV_UsuarioPorAlmacen {
+    PK UALM_Usuario VARCHAR(20)
+    PK FK ALMA_Codigo VARCHAR(6)
+    --
+    UALM_Administrador BIT
+    UALM_SoloLectura BIT
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR(50)
+    AUDI_UsrMod VARCHAR(20)
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR(50)
+}
+
+entity LOG_Familias {
+    PK FAMI_Codigo VARCHAR(12)
+    --
+    FAMI_Desc1 VARCHAR(50)
+    FAMI_DescC VARCHAR(10)
+}
+
+entity LOG_Marcas {
+    PK MARC_Codigo CHAR(4)
+    --
+    MARC_Descripcion VARCHAR(20)
+    MARC_UsrCrea VARCHAR(20)
+    MARC_FecCrea DATETIME
+    MARC_UsrMod VARCHAR(20)
+    MARC_FecMod DATETIME
 }
 
 entity LOG_Productos {
+    PK PROD_Codigo VARCHAR(15)
+    FK MARC_Codigo CHAR(4)
+    FK FAMI_Codigo VARCHAR(12)
+    --
+    PROD_Desc VARCHAR(70)
+}
 
+entity ParametrosGral {
+    PK SUCR_Codigo CHAR(2)
+    PK PARA_Aplicacion CHAR(3)
+    PK PARA_Nombre VARCHAR(30)
+    --
+    PARA_Valor VARCHAR(8000)
+    PARA_Tipo CHAR(3)
+    PARA_Desc VARCHAR(100)
+    AUDI_UsrCrea VARCHAR(20)
+    AUDI_fecCrea DATETIME
+    AUDI_UsrMod VARCHAR(20)
+    AUDI_fecMod DATETIME
+}
+
+entity Tipos {
+    PK TIPO_CodTabla CHAR(3)
+    PK TIPO_CodTipo CHAR(3)
+    --
+    TIPO_Desc1 VARCHAR(100)
+    TIPO_Desc2 VARCHAR(100)
+    TIPO_DescC VARCHAR(10)
+    TIPO_Num1 DECIMAL(9,2)
+    TIPO_Num2 DECIMAL(9,2)
+    TIPO_Estado CHAR(1)
+    TIPO_UsrCrea VARCHAR(20)
+    TIPO_FecCrea DATETIME
+    TIPO_UsrMod VARCHAR(20)
+    TIPO_FecMod DATETIME
+    TIPO_Num4 SMALLINT
+    TIPO_Num3 SMALLINT
+    TIPO_mascara VARCHAR(50)
+    TIPO_CadCtrlVta VARCHAR(100)
+    TIPO_codSunat VARCHAR(10)
+    TIPO_CodSincro VARCHAR(10)
+    TIPO_antiguoCodigo CHAR(3)
+}
+
+entity TiposEntidad {
+    PK TIPE_Codigo VARCHAR(17)
+    --
+    TIPE_Padre VARCHAR(17)
+    TIPE_Desc VARCHAR(50)
+    TIPE_Nivel SMALLINT
+    TIPE_Fijo BIT
+    TIPE_TipOperacion BIT
+    TIPE_UsrCrea VARCHAR(20)
+    TIPE_FecCrea DATETIME
+    TIPE_UsrMod VARCHAR(20)
+    TIPE_FecMod DATETIME
+    TIPE_fecCierre DATETIME
 }
 
 Archivos ||--|{ GIV_Adjuntos
@@ -332,9 +393,9 @@ GIV_Calibraciones ||--o{ GIV_Adjuntos
 Tipos ||--o{ GIV_Calibraciones
 GIV_Equipos ||--o{ GIV_Calibraciones
 TiposEntidad ||--o{ FuncionEntidad
-TiposEntidad ||--o{ GIV_Movimientos
+' TiposEntidad ||--o{ GIV_Movimientos
 Entidad ||--|{ FuncionEntidad
-Entidad |o--o{ GIV_Movimientos
+' Entidad |o--o{ GIV_Movimientos
 Entidad |o--o{ GIV_EqHistEstados
 GIV_Almacenes ||--|{ GIV_UsuarioPorAlmacen
 GIV_Almacenes ||--o{ GIV_Almacenes
@@ -349,6 +410,7 @@ GIV_Proyectos ||--o{ GIV_Movimientos
 GIV_Movimientos ||--o| GIV_Movimientos
 GIV_Equipos ||--o{ GIV_Movimientos
 ACT_Activos |o--o| GIV_Equipos
+Entidad ||--o{ ACT_Activos
 LOG_Productos ||--o{ GIV_Equipos
 LOG_Marcas ||--o{ LOG_Productos
 LOG_Marcas ||--o{ GIV_Modelos
@@ -360,4 +422,9 @@ Tipos ||--o{ GIV_PlantillaAtributos
 GIV_ConfiguracionEquipo ||--o{ GIV_Equipos
 GIV_ConfiguracionEquipo ||--o{ GIV_ConfiguracionEquipo
 GIV_ConfiguracionEquipo ||--o{ GIV_AtributosPorTipoEquipo
+CAJ_CtaCte ||--o{ GIV_Equipos
+FuncionEntidad ||--o{ GIV_Movimientos
+LOG_Familias ||--o{ LOG_Productos
+
+GIV_MovimientoArchivo -[hidden]-> ParametrosGral
 @enduml
