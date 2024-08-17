@@ -19,6 +19,7 @@
 % \usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
 \usepackage{standalone}
 \usepackage{csquotes}
+\usepackage[page]{appendix}
 \selectlanguage{spanish}
 \useunder{\uline}{\ul}{}
 \newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}\\}
@@ -30,7 +31,7 @@
 %\DeclareLanguageMapping{american}{american-apa}
 % \addbibresource{bibliography.bib}
 \thispagestyle{empty}
-\title{\large OPTIMIZACI\'ON DE LA GESTI\'ON DE INVENTARIO DE EQUIPOS MEDIANTE EL DISE\~{N}O E IMPLEMENTACI\'ON DE UN MODULO CON GESTI\'ON DE MOVIMIENTOS Y REPORTES}
+\title{OPTIMIZACI\'ON DE LA GESTI\'ON DE INVENTARIO DE EQUIPOS MEDIANTE EL DISE\~{N}O E IMPLEMENTACI\'ON DE UN MODULO CON GESTI\'ON DE MOVIMIENTOS Y REPORTES}
 \shorttitle{Gesti\'on de Inventario de Equipos}
 \author{John Jordan Quispe Supo}
 \authorsaffiliations{Instituto de Educaci\'on Superior Privado del Sur}
@@ -56,26 +57,26 @@
 %   Indices
 \pagenumbering{roman}
 %   Contenido
-\renewcommand\contentsname{\large\'Indice}
+\renewcommand\contentsname{\'Indice}
 \tableofcontents
 \setcounter{tocdepth}{2}
 \newpage
 %   Figuras
-\renewcommand\listfigurename{\large\'Indice de figuras}
+\renewcommand\listfigurename{\'Indice de figuras}
 \listoffigures
 \newpage
 %   Tablas
-\renewcommand\listtablename{\large\'Indice de tablas}
+\renewcommand\listtablename{\'Indice de tablas}
 \listoftables
 \newpage
 
 %   Cuerpo
 \pagenumbering{arabic}
 
-% \section{\large T\'ITULO}
+% \section{T\'ITULO}
 % \noindent OPTIMIZACI\'ON DE LA GESTI\'ON DE INVENTARIO DE EQUIPOS MEDIANTE EL DISE\~{N}O E IMPLEMENTACI\'ON DE UN MODULO CON GESTI\'ON DE MOVIMIENTOS Y REPORTES
 
-% \section{\large DATOS DEL AUTOR}
+% \section{DATOS DEL AUTOR}
 % \begin{tabular}{@{} p{2cm} p{12.8cm} @{}}
 %     \textbf{Nombres}   & : John Jordan                                                                                            \\
 %     \textbf{Apellidos} & : Quispe Supo                                                                                            \\
@@ -84,14 +85,14 @@
 % \end{tabular}
 % \newline
 
-% \section{\large RESUMEN}
+% \section{RESUMEN}
 % El presente proyecto se centra en el desarrollo de un m\'odulo de gesti\'on de inventario de equipos, dise\~{n}ado para optimizar el control de recursos en una organizaci\'on. Este m\'odulo permite el registro
 % detallado de equipos, la gesti\'on de movimientos (entregas a responsables, devoluciones a almac\'en) y las transferencias entre almacenes. Adem\'as, incluye funcionalidades para el mantenimiento de datos
 % maestros como marcas, modelos, productos y categor\'{\i}as. El sistema tambi\'en genera reportes exhaustivos que facilitan la toma de decisiones, mejorando la eficiencia en la administraci\'on de los equipos.
 % La implementaci\'on del m\'odulo fue realizada utilizando tecnolog\'{\i}as actuales, asegurando su integrabilidad y escalabilidad dentro de la infraestructura existente de la organizaci\'on.
 
 
-\section{\large Introducci\'on}
+\section{Introducci\'on}
 \subsection{Contexto y Antecedentes}
 \subsubsection{Descripci\'on de la Unidad de Estudio}
 % \begin{tabular}{@{} p{4.3cm} p{9.5cm} @{}}
@@ -179,7 +180,7 @@ transferencias entre almacenes, y la generaci\'on de reportes detallados, mejora
     \item Implementar y probar el m\'odulo en un entorno real, evaluando su eficacia en la optimizaci\'on de la gesti\'on de inventario de equipos.
     \item Generar reportes detallados y personalizados que permitan a las empresas obtener una visi\'on clara y actualizada del estado de sus equipos.
 \end{enumerate}
-
+\newpage
 \section{Marco Te\'orico}
 El marco te\'orico de este proyecto se enfoca en fundamentar conceptualmente los elementos clave relacionados con la gesti\'on de inventario de equipos, el desarrollo de m\'odulos de software, su impacto en la eficiencia
 operativa de las empresas, y las tecnolog\'{\i}as a utilizar. A continuaci\'on, se exploran los conceptos y teor\'{\i}as m\'as relevantes para este estudio.
@@ -234,7 +235,8 @@ eficiencia, ya que garantiza que los recursos est\'en disponibles cuando se nece
 El m\'odulo de gesti\'on de inventario propuesto contribuir\'a directamente a la eficiencia operativa al proporcionar una herramienta centralizada y automatizada para el control de equipos. Esto permitir\'a a las empresas reducir el
 tiempo y esfuerzo dedicados a la gesti\'on manual del inventario, minimizar errores, y mejorar la capacidad para tomar decisiones basadas en datos precisos y actualizados. Adem\'as, la generaci\'on de reportes ofrecer\'a
 una visi\'on clara del estado de los recursos, facilitando la planificaci\'on y optimizaci\'on del uso de los equipos.
-\section{\large Metodolog\'{\i}a}
+\newpage
+\section{Metodolog\'{\i}a}
 \subsection{An\'alisis de Requerimientos}
 El m\'odulo de gesti\'on de inventario de equipos ser\'a una aplicaci\'on web responsiva, dise\'{n}ada para ser utilizada en diversas empresas y acoplarse al ERP de NextSoft. Este an\'alisis detalla los requerimientos funcionales y no funcionales,
 asegurando que el sistema cumpla con las expectativas de usabilidad, seguridad, y rendimiento.
@@ -853,14 +855,23 @@ definidas y alineadas con los objetivos del sistema.
 \subsubsection{Diagramas de Clases}
 
 
-
-\section{\large CONCLUSIONES}
-\section{\large RECOMENDACIONES}
-\section{\large AGRADECIMIENTOS}
+\newpage
+\section{Conclusiones}
+\newpage
+\section{Recomendaciones}
+\newpage
+\section{Agradecimientos}
+\newpage
 \bibliography{bibliography}
-\section{\large ANEXOS}
+\newpage
+\section{Figuras}
+
+\newpage
+\section{Anexos}
+\subsection{Diagrama de Clases BusinessLogic}
 \begin{figure}
+    \centering
     \caption{Descripci\'on de figuras.}
-    \includegraphics[scale=0.1588, angle=90]{./diagrams/BusinessLogic/BusinessLogic.pdf}
+    \includegraphics[scale=0.13, angle=90]{./diagrams/BusinessLogic/BusinessLogic.pdf}
 \end{figure}
 \end{document}

@@ -1,5 +1,6 @@
 @startuml Entidades Aplicacion
 skinparam ClassAttributeIconSize 0
+skinparam Linetype ortho
 
 interface INotifyPropertyChanged
 class MasterBusinessEntity
@@ -546,16 +547,6 @@ class PlantillaAtributos extends MasterBusinessEntity {
     + PlantillaAtributos()
     + CopyTo(ref Item: PlantillaAtributos): void
 }
-
-' class Productos extends MasterBusinessEntity {
-' ' class Productos {
-'     - m_prod_codigo: String
-'     - m_prod_desc: String
-'     + PROD_Codigo: String
-'     + PROD_Desc: String
-'     + Productos()
-'     + CopyTo(ref Item: Productos): void
-' }
 
 class Proyectos extends MasterBusinessEntity {
 ' class Proyectos {

@@ -1,0 +1,363 @@
+@startuml Entidad Relacion NextSis
+skinparam Linetype ortho
+hide circle
+
+
+entity ACT_Activos {
+    PK ACTI_Codigo INT
+    --
+    ACTI_Desc VARCHAR(10)
+    ACTI_serie VARCHAR(10)
+    ACTI_ruc VARCHAR(10)
+    ENTC_CodProv VARCHAR(10)
+}
+
+entity GIV_Adjuntos {
+    EQUI_Codigo INT
+    CALI_Id INT
+    ARCH_Interno INT
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+}
+
+entity GIV_Almacenes {
+    PK ALMA_Codigo VARCHAR(10)
+    --
+    FK ALMA_CodPadre VARCHAR()
+    ALMA_Nombre VARCHAR()
+    ALMA_Descripcion VARCHAR()
+    ALMA_Estado BIT
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+    AUDI_UsrMod VARCHAR()
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR()
+}
+
+entity Archivos {
+    ARCH_INTerno INT
+    --
+    ARCH_Tabla VARCHAR()
+    ARCH_Descripcion VARCHAR()
+    ARCH_Id VARCHAR()
+    ARCH_Path VARCHAR()
+    ARCH_NombreArchivo VARCHAR()
+    ARCH_Tamano Decimal
+    ARCH_Estado VARCHAR()
+    ARCH_Binary byte[]
+    ARCH_Almacenamiento VARCHAR()
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+    AUDI_UsrMod VARCHAR()
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR()
+}
+
+entity GIV_AtributosEquipos {
+    AEQU_Item INT
+    EQUI_Codigo INT
+    AEQU_Valor VARCHAR()
+    PLAT_Item INT
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+    AUDI_UsrMod VARCHAR()
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR()
+}
+
+entity GIV_AtributosPorTipoEquipo {
+    CONF_Codigo INT
+    PLAT_Item INT
+    ATEU_Baja BIT
+    ATEU_HaciaLaOT BIT
+    ATEU_Valor VARCHAR()
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+    AUDI_UsrMod VARCHAR()
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR()
+}
+
+entity GIV_Calibraciones {
+    EQUI_Codigo INT
+    CALI_Id INT
+    CALI_Fecha DATETIME
+    CALI_Detalle VARCHAR()
+    CALI_Historial VARCHAR()
+    CALI_Activo BIT
+    TIPO_TabTCC VARCHAR()
+    TIPO_CodTCC VARCHAR()
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+    AUDI_UsrMod VARCHAR()
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR()
+}
+
+entity GIV_ConfiguracionEquipo {
+    CONF_Codigo INT
+    CONF_CodPadre INT
+    CONF_Descripcion VARCHAR()
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+    AUDI_UsrMod VARCHAR()
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR()
+}
+
+entity Entidad {
+    ENTC_Codigo VARCHAR()
+    ENTC_Ruc VARCHAR()
+    ENTC_NomCom VARCHAR()
+    ENTC_RazonSoc VARCHAR()
+}
+
+entity GIV_EqHistEstados {
+    EQUI_Codigo INT
+    EHES_Item INT
+    EHES_Fecha DATETIME
+    EHES_Estado VARCHAR()
+    EHES_Observaciones VARCHAR()
+    ENTC_CodResponsable VARCHAR()
+    TIPO_TabSEC VARCHAR()
+    TIPO_CodSEC VARCHAR()
+    ALMA_Codigo VARCHAR()
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+}
+
+entity GIV_Equipos {
+    EQUI_Codigo INT
+    EQUI_Nombre VARCHAR()
+    EQUI_Descripcion VARCHAR()
+    EQUI_FecGarantia DATETIME
+    EQUI_DetGarantia VARCHAR()
+    EQUI_FecRegistro DATETIME
+    EQUI_NroSerie VARCHAR()
+    EQUI_NroQR VARCHAR()
+    EQUI_Estado VARCHAR()
+    EQUI_DocSerie VARCHAR()
+    EQUI_DocNumero VARCHAR()
+    TIPO_TabTDO VARCHAR()
+    TIPO_CodTDO VARCHAR()
+    ENTC_CodProveedor VARCHAR()
+    CONF_Codigo INT
+    CATE_Codigo INT
+    MARC_Codigo VARCHAR()
+    MODE_Codigo INT
+    ACTI_Codigo VARCHAR()
+    PROD_Codigo VARCHAR()
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+    AUDI_UsrMod VARCHAR()
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR()
+}
+
+entity LOG_Marcas {
+    MARC_Codigo VARCHAR()
+    MARC_Descripcion VARCHAR()
+    MARC_UsrCrea VARCHAR()
+    MARC_FecCrea DATETIME
+    MARC_UsrMod VARCHAR()
+    MARC_FecMod DATETIME
+}
+
+entity GIV_Modelos {
+    MODE_Codigo INT
+    MARC_Codigo VARCHAR()
+    MODE_Nombre VARCHAR()
+    MODE_Descripcion VARCHAR()
+    MODE_Estado BIT
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+    AUDI_UsrMod VARCHAR()
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR()
+}
+
+entity GIV_MovimientoArchivo {
+    MOAR_Codigo INT
+    MOVI_Tipo VARCHAR()
+    MOVI_Codigo INT
+    MOAR_Archivo byte[]
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+}
+
+entity GIV_Movimientos {
+    MOVI_Tipo VARCHAR()
+    MOVI_Codigo INT
+    MOVI_Fecha DATETIME
+    MOVI_Motivo VARCHAR()
+    MOVI_TipoIE VARCHAR()
+    MOVI_Observaciones VARCHAR()
+    TIPE_Codigo VARCHAR()
+    ENTC_CodResponsable VARCHAR()
+    EQUI_Codigo INT
+    ALMA_Codigo VARCHAR()
+    PROY_Codigo INT
+    MOVI_TPadre VARCHAR()
+    MOVI_CodPadre INT
+    TIPO_TabSEC VARCHAR()
+    TIPO_CodSEC VARCHAR()
+    TIPO_TabMTV VARCHAR()
+    TIPO_CodMTV VARCHAR()
+    UBIC_Id INT
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+    AUDI_UsrMod VARCHAR()
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR()
+}
+
+entity ParametrosGral {
+    SUCR_Codigo VARCHAR()
+    PARA_Aplicacion VARCHAR()
+    PARA_Nombre VARCHAR()
+    PARA_Valor VARCHAR()
+    PARA_Tipo VARCHAR()
+    PARA_Desc VARCHAR()
+    AUDI_UsrCrea VARCHAR()
+    AUDI_fecCrea DATETIME
+    AUDI_UsrMod VARCHAR()
+    AUDI_fecMod DATETIME
+}
+
+entity GIV_PlantillaAtributos {
+    PLAT_Item INT
+    PLAT_Descripcion VARCHAR()
+    PLAT_Valor VARCHAR()
+    PLAT_TipoDato VARCHAR()
+    PLAT_Obligatorio BIT
+    PLAT_Baja BIT
+    TIPO_TabATR VARCHAR()
+    TIPO_CodATR VARCHAR()
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+    AUDI_UsrMod VARCHAR()
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR()
+}
+
+entity GIV_Proyectos {
+    PROY_Codigo INT
+    PROY_Nombre VARCHAR()
+    PROY_Descripcion VARCHAR()
+    PROY_Estado BIT
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+    AUDI_UsrMod VARCHAR()
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR()
+}
+
+entity Tipos {
+    TIPO_CodTabla VARCHAR()
+    TIPO_CodTipo VARCHAR()
+    TIPO_Desc1 VARCHAR()
+    TIPO_Desc2 VARCHAR()
+    TIPO_DescC VARCHAR()
+    TIPO_Num1 Decimal
+    TIPO_Num2 Decimal
+    TIPO_Estado VARCHAR()
+    TIPO_UsrCrea VARCHAR()
+    TIPO_FecCrea DATETIME
+    TIPO_UsrMod VARCHAR()
+    TIPO_FecMod DATETIME
+    TIPO_Num4 INT
+    TIPO_Num3 INT
+    TIPO_mascara VARCHAR()
+    TIPO_CadCtrlVta VARCHAR()
+    TIPO_codSunat VARCHAR()
+    TIPO_CodSincro VARCHAR()
+}
+
+entity GIV_Ubicaciones {
+    UBIC_Id INT
+    UBIC_Nombre VARCHAR()
+    UBIC_DescCorta VARCHAR()
+    PROY_Codigo INT
+    TIPO_TabSEC VARCHAR()
+    TIPO_CodSEC VARCHAR()
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+    AUDI_UsrMod VARCHAR()
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR()
+}
+
+entity GIV_UsuarioPorAlmacen {
+    UALM_Usuario VARCHAR()
+    UALM_Administrador BIT
+    UALM_SoloLectura BIT
+    ALMA_Codigo VARCHAR()
+    AUDI_UsrCrea VARCHAR()
+    AUDI_FecCrea DATETIME
+    AUDI_HostCrea VARCHAR()
+    AUDI_UsrMod VARCHAR()
+    AUDI_FecMod DATETIME
+    AUDI_HostMod VARCHAR()
+}
+
+entity FuncionEntidad {
+
+}
+
+entity TiposEntidad {
+
+}
+
+entity LOG_Productos {
+
+}
+
+Archivos ||--|{ GIV_Adjuntos
+GIV_Calibraciones ||--o{ GIV_Adjuntos
+Tipos ||--o{ GIV_Calibraciones
+GIV_Equipos ||--o{ GIV_Calibraciones
+TiposEntidad ||--o{ FuncionEntidad
+TiposEntidad ||--o{ GIV_Movimientos
+Entidad ||--|{ FuncionEntidad
+Entidad |o--o{ GIV_Movimientos
+Entidad |o--o{ GIV_EqHistEstados
+GIV_Almacenes ||--|{ GIV_UsuarioPorAlmacen
+GIV_Almacenes ||--o{ GIV_Almacenes
+GIV_Almacenes ||--o{ GIV_EqHistEstados
+GIV_Almacenes ||--o{ GIV_Movimientos
+GIV_Equipos ||--o{ GIV_EqHistEstados
+Tipos ||--o{ GIV_EqHistEstados
+GIV_Ubicaciones ||--o{ GIV_Movimientos
+Tipos ||--o{ GIV_Ubicaciones
+GIV_Proyectos ||--o{ GIV_Ubicaciones
+GIV_Proyectos ||--o{ GIV_Movimientos
+GIV_Movimientos ||--o| GIV_Movimientos
+GIV_Equipos ||--o{ GIV_Movimientos
+ACT_Activos |o--o| GIV_Equipos
+LOG_Productos ||--o{ GIV_Equipos
+LOG_Marcas ||--o{ LOG_Productos
+LOG_Marcas ||--o{ GIV_Modelos
+GIV_Modelos ||--o{ GIV_Equipos
+GIV_Equipos ||--o{ GIV_AtributosEquipos
+GIV_PlantillaAtributos ||--o{ GIV_AtributosEquipos
+GIV_PlantillaAtributos ||--o{ GIV_AtributosPorTipoEquipo
+Tipos ||--o{ GIV_PlantillaAtributos
+GIV_ConfiguracionEquipo ||--o{ GIV_Equipos
+GIV_ConfiguracionEquipo ||--o{ GIV_ConfiguracionEquipo
+GIV_ConfiguracionEquipo ||--o{ GIV_AtributosPorTipoEquipo
+@enduml
