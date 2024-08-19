@@ -28,34 +28,37 @@ Tipos ..> INotifyPropertyChanged
 Ubicaciones ..> INotifyPropertyChanged
 UsuarioPorAlmacen ..> INotifyPropertyChanged
 
-Marcas "1" -- "0..*" Modelos
+Almacenes "1" -- "0..*" UsuarioPorAlmacen
+AtributosEquipos "1" -- "1" PlantillaAtributos
+Calibraciones "1" -- "0..*" Archivos
+ConfiguracionEquipo "1" -- "1..*" AtributosPorTipoEquipo
 Equipos "0..*" -- "1" Marcas
 Equipos "0..*" -- "1" Modelos
 Equipos "0..*" -- "1" ConfiguracionEquipo
-Equipos "0..1" -left- "0..1" Activos
-Equipos "0..*" -right- "1" Productos
-Equipos "1..*" -right- "1" Movimientos
+' Equipos "0..1" -left- "0..1" Activos
+' Equipos "0..*" -right- "1" Productos
+' Equipos "1..*" -right- "1" Movimientos
+Equipos "0..1" -- "0..1" Activos
+Equipos "0..*" -- "1" Productos
+Equipos "1..*" -- "1" Movimientos
 Equipos "1" -- "1..*" EqHistEstados
-Equipos "1" -left- "0..*" AtributosEquipos
-Equipos "1" -right- "0..*" Calibraciones
+' Equipos "1" -left- "0..*" AtributosEquipos
+' Equipos "1" -right- "0..*" Calibraciones
+Equipos "1" -- "0..*" AtributosEquipos
+Equipos "1" -- "0..*" Calibraciones
+Marcas "1" -- "0..*" Modelos
 Movimientos "0..*" -- "1" Almacenes
 Movimientos "0..*" -- "1" Ubicaciones
 Movimientos "0..*" -- "1" Tipos
 Movimientos "0..*" -- "1" Proyectos
 Movimientos "1" -- "1" MovimientoArchivo
 Movimientos "1" -- "1" Entidad: Responsable
-Calibraciones "1" -- "0..*" Adjuntos
-Almacenes "1" -- "0..*" UsuarioPorAlmacen
-Proyectos "1" -- "0..*" Ubicaciones
-Tipos "1" -- "0..*" Ubicaciones: Sector
-Proyectos "1" -- "0..*" Tipos: Sector
-Adjuntos "1" -- "1" Archivos
-ConfiguracionEquipo "1" -- "1..*" AtributosPorTipoEquipo
 PlantillaAtributos "1" -- "0..*" AtributosPorTipoEquipo
-AtributosEquipos "1" -- "1" PlantillaAtributos
+Proyectos "1" -- "0..*" Ubicaciones
+Proyectos "1" -- "0..*" Tipos: Sector
+Tipos "1" -- "0..*" Ubicaciones: Sector
 
 class Activos extends MasterBusinessEntity {
-' class Activos {
     - m_acti_codigo: String
     - m_acti_desc: String
     - m_acti_serie: String
@@ -70,26 +73,7 @@ class Activos extends MasterBusinessEntity {
     + CopyTo(ref Activos Item): void
 }
 
-' class Adjuntos extends MasterBusinessEntity {
-' ' class Adjuntos {
-'     - Int16 m_equi_codigo
-'     - Int16 m_cali_id
-'     - Int32 m_arch_interno
-'     - String m_audi_usrcrea
-'     - DateTime m_audi_feccrea
-'     - String m_audi_hostcrea
-'     + Int16 EQUI_Codigo
-'     + Int16 CALI_Id
-'     + Int32 ARCH_Interno
-'     + String AUDI_UsrCrea
-'     + DateTime AUDI_FecCrea
-'     + String AUDI_HostCrea
-'     + Adjuntos()
-'     + CopyTo(ref Item: Adjuntos): void
-' }
-
 class Almacenes extends MasterBusinessEntity {
-' class Almacenes {
     - m_alma_codigo: String
     - m_alma_codpadre: String
     - m_alma_nombre: String
@@ -117,7 +101,6 @@ class Almacenes extends MasterBusinessEntity {
 }
 
 class Archivos extends MasterBusinessEntity {
-' class Archivos {
     - m_arch_interno: Int32
     - m_arch_tabla: String
     - m_arch_descripcion: String
@@ -155,7 +138,6 @@ class Archivos extends MasterBusinessEntity {
 }
 
 class AtributosEquipos extends MasterBusinessEntity {
-' class AtributosEquipos {
     - m_aequ_item: Int16
     - m_equi_codigo: Int16
     - m_aequ_valor: String
@@ -181,7 +163,6 @@ class AtributosEquipos extends MasterBusinessEntity {
 }
 
 class AtributosPorTipoEquipo extends MasterBusinessEntity {
-' class AtributosPorTipoEquipo {
     - m_conf_codigo: Int16
     - m_plat_item: Int16
     - m_ateu_baja: Nullable<Boolean>
@@ -209,7 +190,6 @@ class AtributosPorTipoEquipo extends MasterBusinessEntity {
 }
 
 class Calibraciones extends MasterBusinessEntity {
-' class Calibraciones {
     - m_equi_codigo: Int16?
     - m_cali_id: Int16
     - m_cali_fecha: DateTime
@@ -243,7 +223,6 @@ class Calibraciones extends MasterBusinessEntity {
 }
 
 class ConfiguracionEquipo extends MasterBusinessEntity {
-' class ConfiguracionEquipo {
     - m_conf_codigo: Int16
     - m_conf_codpadre: Nullable<Int16>
     - m_conf_descripcion: String
@@ -267,7 +246,6 @@ class ConfiguracionEquipo extends MasterBusinessEntity {
 }
 
 class Entidad extends MasterBusinessEntity {
-' class Entidad {
     - m_entc_codigo: String
     - m_entc_ruc: String
     - m_entc_nomcom: String
@@ -281,7 +259,6 @@ class Entidad extends MasterBusinessEntity {
 }
 
 class EqHistEstados extends MasterBusinessEntity {
-' class EqHistEstados {
     - m_equi_codigo: Int16
     - m_ehes_item: Int16
     - m_ehes_fecha: DateTime
@@ -311,7 +288,6 @@ class EqHistEstados extends MasterBusinessEntity {
 }
 
 class Equipos extends MasterBusinessEntity {
-' class Equipos {
     - m_equi_codigo: Int16
     - m_equi_nombre: String
     - m_equi_descripcion: String
@@ -369,7 +345,6 @@ class Equipos extends MasterBusinessEntity {
 }
 
 class Marcas extends MasterBusinessEntity {
-' class Marcas {
     - m_marc_codigo: String
     - m_marc_descripcion: String
     - m_marc_usrcrea: String
@@ -387,7 +362,6 @@ class Marcas extends MasterBusinessEntity {
 }
 
 class Modelos extends MasterBusinessEntity {
-' class Modelos {
     - m_mode_codigo: Int16?
     - m_marc_codigo: String
     - m_mode_nombre: String
@@ -415,7 +389,6 @@ class Modelos extends MasterBusinessEntity {
 }
 
 class MovimientoArchivo extends MasterBusinessEntity {
-' class MovimientoArchivo {
     - m_moar_codigo: int
     - m_movi_tipo: String
     - m_movi_codigo: Int32?
@@ -435,7 +408,6 @@ class MovimientoArchivo extends MasterBusinessEntity {
 }
 
 class Movimientos extends MasterBusinessEntity {
-' class Movimientos {
     - m_movi_tipo: String
     - m_movi_codigo: Int32?
     - m_movi_fecha: DateTime
@@ -489,7 +461,6 @@ class Movimientos extends MasterBusinessEntity {
 }
 
 class ParametrosGral extends MasterBusinessEntity {
-' class ParametrosGral {
     - m_sucr_codigo: String
     - m_para_aplicacion: String
     - m_para_nombre: String
@@ -515,7 +486,6 @@ class ParametrosGral extends MasterBusinessEntity {
 }
 
 class PlantillaAtributos extends MasterBusinessEntity {
-' class PlantillaAtributos {
     - m_plat_item: Int16
     - m_plat_descripcion: String
     - m_plat_valor: String
@@ -549,7 +519,6 @@ class PlantillaAtributos extends MasterBusinessEntity {
 }
 
 class Proyectos extends MasterBusinessEntity {
-' class Proyectos {
     - m_proy_codigo: Int16?
     - m_proy_nombre: String
     - m_proy_descripcion: String
@@ -575,7 +544,6 @@ class Proyectos extends MasterBusinessEntity {
 }
 
 class Tipos extends MasterBusinessEntity {
-' class Tipos {
     - m_tipo_codtabla: String
     - m_tipo_codtipo: String
     - m_tipo_desc1: String
@@ -617,7 +585,6 @@ class Tipos extends MasterBusinessEntity {
 }
 
 class Ubicaciones extends MasterBusinessEntity {
-' class Ubicaciones {
     - m_ubic_id: Int16
     - m_ubic_nombre: String
     - m_ubic_desccorta: String
@@ -647,7 +614,6 @@ class Ubicaciones extends MasterBusinessEntity {
 }
 
 class UsuarioPorAlmacen extends MasterBusinessEntity {
-' class UsuarioPorAlmacen {
     - m_ualm_usuario: String
     - m_ualm_administrador: Nullable<Boolean>
     - m_ualm_sololectura: Nullable<Boolean>

@@ -20,6 +20,7 @@
 \usepackage{standalone}
 \usepackage{csquotes}
 \usepackage[page]{appendix}
+\usepackage{listings}
 \selectlanguage{spanish}
 \useunder{\uline}{\ul}{}
 \newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}\\}
@@ -53,7 +54,8 @@
 % Document
 \begin{document}
 \maketitle
-
+% \renewcommand\bibname{Bibliografia}
+\renewcommand\refname{\textbf{Bibliograf\'{\i}a}}
 %   Indices
 \pagenumbering{roman}
 %   Contenido
@@ -62,13 +64,16 @@
 \setcounter{tocdepth}{2}
 \newpage
 %   Figuras
-\renewcommand\listfigurename{\'Indice de figuras}
+\renewcommand\listfigurename{\'Indice de Figuras}
 \listoffigures
 \newpage
 %   Tablas
-\renewcommand\listtablename{\'Indice de tablas}
+\renewcommand\listtablename{\'Indice de Tablas}
 \listoftables
 \newpage
+\renewcommand\lstlistlistingname{\'Indice de C\'odigos}
+\renewcommand\lstlistingname{C\'odigo}
+\lstlistoflistings\newpage
 
 %   Cuerpo
 \pagenumbering{arabic}
@@ -199,7 +204,7 @@ Un sistema de informaci\'on es un conjunto organizado de recursos que permite la
 de la gesti\'on de inventario, los sistemas de informaci\'on juegan un papel crucial al proporcionar herramientas que automatizan y optimizan el seguimiento y control de los recursos.~\cite{om} definen los sistemas de informaci\'on
 como un componente clave en la gesti\'on empresarial moderna, al integrar datos, procesos y tecnolog\'{\i}as para mejorar la eficiencia y efectividad de las operaciones.
 \subsubsection{M\'odulos de Gesti\'on de Inventario}
-Los m\'odulos de gesti\'on de inventario son componentes espec\'{\i}ficos dentro de un sistema de informaci\'on m\'as amplio, dise\'{n}ados para gestionar de manera centralizada y automatizada todos los aspectos relacionados con el control de
+Los m\'odulos de gesti\'on de inventario son componentes espec\'{\i}ficos dentro de un sistema de informaci\'on m\'as amplio, dise\~{n}ados para gestionar de manera centralizada y automatizada todos los aspectos relacionados con el control de
 inventarios. Estos m\'odulos suelen incluir funcionalidades como el registro de entradas y salidas, la generaci\'on de reportes, el control de niveles de stock, y la planificaci\'on de reaprovisionamientos. En el caso de los equipos,
 un m\'odulo especializado permite no solo la gesti\'on de existencias, sino tambi\'en el seguimiento del ciclo de vida de cada equipo, incluyendo su mantenimiento, traslado, y eventual desincorporaci\'on.
 \subsubsection{Beneficios de la Automatizaci\'on en la Gesti\'on de Inventario}
@@ -209,7 +214,7 @@ operativos, mejorar la eficiencia y aumentar la competitividad de las empresas.
 \subsection{Desarrollo de Software para la Gesti\'on de Inventarios}
 \subsubsection{Ciclo de Vida del Desarrollo de Software (SDLC)}
 El desarrollo de software, en particular de m\'odulos como el propuesto en este proyecto, sigue un ciclo de vida estructurado conocido como SDLC (Software Development Life Cycle). Este ciclo incluye etapas como la planificaci\'on,
-an\'alisis de requerimientos, dise\'{n}o, implementaci\'on, pruebas, y mantenimiento. Cada una de estas etapas es crucial para garantizar que el software desarrollado cumpla con los objetivos planteados y se integre adecuadamente en
+an\'alisis de requerimientos, dise\~{n}o, implementaci\'on, pruebas, y mantenimiento. Cada una de estas etapas es crucial para garantizar que el software desarrollado cumpla con los objetivos planteados y se integre adecuadamente en
 los procesos de la empresa.
 \subsubsection{Metodolog\'{\i}as de Desarrollo \'Agil}
 En la actualidad, las metodolog\'{\i}as \'agiles han ganado popularidad en el desarrollo de software debido a su enfoque en la flexibilidad, colaboraci\'on continua con el cliente, y la entrega de productos funcionales en plazos cortos.
@@ -238,7 +243,7 @@ una visi\'on clara del estado de los recursos, facilitando la planificaci\'on y 
 \newpage
 \section{Metodolog\'{\i}a}
 \subsection{An\'alisis de Requerimientos}
-El m\'odulo de gesti\'on de inventario de equipos ser\'a una aplicaci\'on web responsiva, dise\'{n}ada para ser utilizada en diversas empresas y acoplarse al ERP de NextSoft. Este an\'alisis detalla los requerimientos funcionales y no funcionales,
+El m\'odulo de gesti\'on de inventario de equipos ser\'a una aplicaci\'on web responsiva, dise\~{n}ada para ser utilizada en diversas empresas y acoplarse al ERP de NextSoft. Este an\'alisis detalla los requerimientos funcionales y no funcionales,
 asegurando que el sistema cumpla con las expectativas de usabilidad, seguridad, y rendimiento.
 \subsubsection{Requerimientos Funcionales}
 \textbf{Gesti\'on de Usuarios y Acceso.}
@@ -314,7 +319,7 @@ asegurando que el sistema cumpla con las expectativas de usabilidad, seguridad, 
 \textit{\textbf{Interfaz de Usuario.}}
 \begin{itemize}
     \item\textbf{Angular 12: }La aplicaci\'on estar\'a desarrollada con Angular 12, ofreciendo una experiencia de usuario moderna, din\'amica, y responsiva, optimizada tanto para dispositivos de escritorio como m\'oviles.
-    \item\textbf{Navegaci\'on intuitiva: }La interfaz ser\'a dise\'{n}ada para ser intuitiva, con men\'us claros y accesibles, facilitando la navegaci\'on y el acceso r\'apido a las funcionalidades clave.
+    \item\textbf{Navegaci\'on intuitiva: }La interfaz ser\'a dise\~{n}ada para ser intuitiva, con men\'us claros y accesibles, facilitando la navegaci\'on y el acceso r\'apido a las funcionalidades clave.
 \end{itemize}
 
 \textit{\textbf{Mensajes de Error y Ayuda.}}
@@ -337,7 +342,7 @@ asegurando que el sistema cumpla con las expectativas de usabilidad, seguridad, 
 
 \textbf{Escalabilidad.}
 \begin{itemize}
-    \item\textbf{Acoplamiento con ERP:~}El m\'odulo estar\'a dise\'{n}ado para integrarse sin problemas con el ERP de NextSoft, permitiendo su despliegue en cualquier empresa que utilice este sistema.
+    \item\textbf{Acoplamiento con ERP:~}El m\'odulo estar\'a dise\~{n}ado para integrarse sin problemas con el ERP de NextSoft, permitiendo su despliegue en cualquier empresa que utilice este sistema.
     \item\textbf{Configuraci\'on personalizable: }La arquitectura del sistema permitir\'a personalizar los par\'ametros y configuraciones seg\'un las necesidades espec\'{\i}ficas de cada empresa, facilitando su adaptaci\'on a diferentes contextos.
 \end{itemize}
 
@@ -346,7 +351,7 @@ asegurando que el sistema cumpla con las expectativas de usabilidad, seguridad, 
 %     \item\textbf{Actualizaciones y mejoras: }El sistema ser\'a desarrollado con una arquitectura modular, facilitando las actualizaciones y la incorporaci\'on de nuevas funcionalidades sin interrumpir el servicio.
 %     \item\textbf{Configuraci\'on Personalizable: }Se proporcionar\'a documentaci\'on t\'ecnica y de usuario detallada, cubriendo la implementaci\'on, uso, y mantenimiento del sistema, para asegurar su sostenibilidad a largo plazo.
 % \end{itemize}
-\subsection{Dise\'{n}o del Sistema}
+\subsection{Dise\~{n}o del Sistema}
 \subsubsection{Casos de Uso}
 La Figura~\ref{admin} muestra los casos de uso espec\'{\i}ficos para el rol de administrador en el m\'odulo de gesti\'on de inventario de equipos, quien tiene acceso completo a todas las funcionalidades del sistema. Por otro lado,
 la Figura~\ref{readonly} presenta los casos de uso correspondientes al rol con permisos de solo lectura. Este usuario tiene acceso restringido, lo que le permite \'unicamente visualizar la informaci\'on, sin la capacidad de realizar modificaciones en el sistema.
@@ -362,36 +367,36 @@ la Figura~\ref{readonly} presenta los casos de uso correspondientes al rol con p
 \end{figure}
 \subsubsection{Especificaci\'on de Casos de Uso}
 Ahora se detallar\'an las especificaciones de cada uno de los casos de uso identificados anteriormente. Estas especificaciones proporcionan una descripci\'on precisa y estructurada de las interacciones entre los actores y el sistema, destacando los flujos
-de eventos principales, las precondiciones, postcondiciones, y las excepciones relevantes. La especificaci\'on de casos de uso es esencial para guiar el diseño y desarrollo del m\'odulo, asegurando que todas las funcionalidades requeridas est\'en claramente
+de eventos principales, las precondiciones, postcondiciones, y las excepciones relevantes. La especificaci\'on de casos de uso es esencial para guiar el dise\~{n}o y desarrollo del m\'odulo, asegurando que todas las funcionalidades requeridas est\'en claramente
 definidas y alineadas con los objetivos del sistema.
 \newline
 \begin{longtable}{@{} p{16.5cm} @{}}
-    \caption{Especificaci\'on de Caso de Uso Iniciar Sesi\'on}\label{tab:UC01}                                                            \\ \toprule
-    \multicolumn{1}{c}{Caso de uso: Iniciar Sesi\'on}                                                                                     \\ \midrule
-    ID:~UC01                                                                                                                              \\ \midrule
-    Breve descripci\'on:                                                                                                                  \\
-    El usuario se autentica en el sistema utilizando sus credenciales del ERP de NextSoft.                                                \\ \midrule
-    Actores principales:                                                                                                                  \\
-    Usuario (Administrador, Solo Lectura)                                                                                                 \\ \midrule
-    Actores secundarios:                                                                                                                  \\
-    Ninguno                                                                                                                               \\ \midrule
-    Precondiciones:                                                                                                                       \\
-    1. El usuario debe tener una cuenta activa en el ERP.                                                                                 \\ \midrule
-    Flujo principal:                                                                                                                      \\
-    1. El usuario navega a la pantalla de inicio de sesi\'on del m\'odulo de gesti\'on de inventario de equipos.                          \\
-    2. El sistema muestra un formulario de inicio de sesi\'on donde el usuario ingresa sus credenciales (nombre de usuario y contraseña). \\
-    3. El usuario ingresa sus credenciales y presiona el bot\'on ``Iniciar Sesi\'on''.                                                    \\
-    4. El sistema valida las credenciales proporcionadas.                                                                                 \\
-    5. Si las credenciales son correctas, el sistema autentica al usuario y muestra una pantalla para que elija el almac\'en.             \\
-    6. Una vez elegido el almac\'en determina su rol (Administrador o Solo Lectura).                                                      \\
-    7. El usuario es redirigido a la p\'agina principal del m\'odulo con los permisos correspondientes a su rol.                          \\ \midrule
-    Postcondiciones:                                                                                                                      \\
-    1. El usuario accede al m\'odulo con los permisos correspondientes a su rol.                                                          \\ \midrule
-    Flujos alternativos:                                                                                                                  \\
-    A1- Credenciales incorrectas:                                                                                                         \\
-    \hspace{1cm}1. El sistema ERP de NextSoft detecta que las credenciales ingresadas no son correctas.                                   \\
-    \hspace{1cm}2. El sistema muestra un mensaje de error indicando que las credenciales son inv\'alidas.                                 \\
-    \hspace{1cm}3. El flujo retorna al paso 2 del flujo principal si el usuario decide intentar nuevamente.                               \\ \bottomrule
+    \caption{Especificaci\'on de Caso de Uso Iniciar Sesi\'on}\label{tab:UC01}                                                                \\ \toprule
+    \multicolumn{1}{c}{Caso de uso: Iniciar Sesi\'on}                                                                                         \\ \midrule
+    ID:~UC01                                                                                                                                  \\ \midrule
+    Breve descripci\'on:                                                                                                                      \\
+    El usuario se autentica en el sistema utilizando sus credenciales del ERP de NextSoft.                                                    \\ \midrule
+    Actores principales:                                                                                                                      \\
+    Usuario (Administrador, Solo Lectura)                                                                                                     \\ \midrule
+    Actores secundarios:                                                                                                                      \\
+    Ninguno                                                                                                                                   \\ \midrule
+    Precondiciones:                                                                                                                           \\
+    1. El usuario debe tener una cuenta activa en el ERP.                                                                                     \\ \midrule
+    Flujo principal:                                                                                                                          \\
+    1. El usuario navega a la pantalla de inicio de sesi\'on del m\'odulo de gesti\'on de inventario de equipos.                              \\
+    2. El sistema muestra un formulario de inicio de sesi\'on donde el usuario ingresa sus credenciales (nombre de usuario y contrase\~{n}a). \\
+    3. El usuario ingresa sus credenciales y presiona el bot\'on ``Iniciar Sesi\'on''.                                                        \\
+    4. El sistema valida las credenciales proporcionadas.                                                                                     \\
+    5. Si las credenciales son correctas, el sistema autentica al usuario y muestra una pantalla para que elija el almac\'en.                 \\
+    6. Una vez elegido el almac\'en determina su rol (Administrador o Solo Lectura).                                                          \\
+    7. El usuario es redirigido a la p\'agina principal del m\'odulo con los permisos correspondientes a su rol.                              \\ \midrule
+    Postcondiciones:                                                                                                                          \\
+    1. El usuario accede al m\'odulo con los permisos correspondientes a su rol.                                                              \\ \midrule
+    Flujos alternativos:                                                                                                                      \\
+    A1- Credenciales incorrectas:                                                                                                             \\
+    \hspace{1cm}1. El sistema ERP de NextSoft detecta que las credenciales ingresadas no son correctas.                                       \\
+    \hspace{1cm}2. El sistema muestra un mensaje de error indicando que las credenciales son inv\'alidas.                                     \\
+    \hspace{1cm}3. El flujo retorna al paso 2 del flujo principal si el usuario decide intentar nuevamente.                                   \\ \bottomrule
 \end{longtable}
 \newpage
 \begin{longtable}{@{} p{16.5cm} @{}}
@@ -852,8 +857,598 @@ definidas y alineadas con los objetivos del sistema.
     \hspace{1cm}2. El usuario puede intentar generar el reporte nuevamente, seleccionar un conjunto de filtros diferente, o contactar al soporte t\'ecnico si el problema persiste.                                                                                              \\
     \hspace{1cm}3. El flujo puede continuar con una nueva tentativa de generaci\'on o finalizar el caso de uso.                                                                                                                                                                  \\ \bottomrule
 \end{longtable}
+\newpage
 \subsubsection{Diagramas de Clases}
+\begin{figure}[H]
+    \centering
+    \caption{Entidades}
+    \includegraphics[width=21cm, height=16.5cm, angle=90]{./diagrams/Classes/Entities/Entities.pdf}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \caption{DTO}
+    \includegraphics[width=16.5cm, height=21cm, angle=0]{./diagrams/Classes/DTO/DTO.pdf}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \caption{L\'ogica de negocio}
+    \includegraphics[width=21cm, height=16.5cm, angle=90]{./diagrams/Classes/BusinessLogic/BusinessLogic.pdf}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \caption{API}
+    \includegraphics[width=21cm, height=16.5cm, angle=90]{./diagrams/Classes/Services/Service.pdf}
+\end{figure}
+\subsubsection{Diagrama de Entidad Relaci\'on}
+\begin{figure}[H]
+    \centering
+    \caption{Base de datos}
+    \includegraphics[width=21cm, height=16.5cm, angle=90]{./diagrams/ER/ER.pdf}
+\end{figure}
+\subsubsection{Diagramas de Secuencia}
+\begin{figure}[H]
+    \centering
+    \caption{Registrar equipo individual}
+    \includegraphics[width=21cm, height=16.5cm, angle=90]{./diagrams/Sequence/RegistrarEquipo/RegistrarEquipo.pdf}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \caption{Registrar equipo de forma masiva}
+    \includegraphics[width=21cm, height=16.5cm, angle=90]{./diagrams/Sequence/RegistrarEquipoMasivo/RegistrarEquipoMasivo.pdf}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \caption{Registrar Movimiento de Entrega de Equipos y Registrar Transferencia de Equipos entre Almacenes}
+    \includegraphics[width=21cm, height=16.5cm, angle=90]{./diagrams/Sequence/EntregaTransferencia/EntregaTransferencia.pdf}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \caption{Registrar Movimiento de Devoluci\'on de Equipos}
+    \includegraphics[width=21cm, height=16.5cm, angle=90]{./diagrams/Sequence/RegistrarDevolucion/RegistrarDevolucion.pdf}
+\end{figure}
+\subsubsection{Interfaces}
+El dise\~{n}o de la interfaz de usuario es crucial para garantizar que los usuarios puedan interactuar de manera eficiente y efectiva con el m\'odulo de gesti\'on de inventario de equipos. Ahora se presentar\'an mockups que representan las principales pantallas del m\'odulo. Estos dise\~{n}os ayudar\'an a visualizar la disposici\'on de los elementos en la interfaz y asegurar\'an que la experiencia del usuario sea intuitiva y coherente.
 
+\textbf{Pantalla de Inicio de Sesi\'on (Figura~\ref{login}). }La pantalla de inicio de sesi\'on es la primera interacci\'on del usuario con el m\'odulo. En esta pantalla, el usuario debe ingresar sus credenciales del ERP de NextSoft para acceder al sistema. La interfaz es sencilla, con campos para el usuario y la contrase\~{n}a, y un bot\'on de inicio de sesi\'on.
+\begin{figure}[H]
+    \centering
+    \caption{Inicio de Sesi\'on}\label{login}
+    \includegraphics[width=16.5cm, angle=0]{./images/login.png}
+\end{figure}
+\textbf{Pantalla de Registro Individual de Equipo (Figura~\ref{individual}). }Esta pantalla permite al administrador registrar un nuevo equipo en el sistema de forma individual. Incluye campos para ingresar detalles como el n\'umero de serie, modelo, marca, categor\'{\i}a, y otros atributos espec\'{\i}ficos del equipo. Una vez completado el formulario, el administrador puede guardar el registro y autom\'aticamente se generar\'a un movimiento de ingreso al almac\'en correspondiente.
+\begin{figure}[H]
+    \centering
+    \caption{Registrar Equipo Individual}\label{individual}
+    \includegraphics[width=16.5cm, angle=0]{./images/registroIndividual.png}
+\end{figure}
+\textbf{Pantalla de Registro Masivo de Equipos (Figura~\ref{masivo}). }La pantalla de registro masivo permite al administrador cargar un archivo Excel que contenga los detalles de m\'ultiples equipos. Esta interfaz incluye un \'area para seleccionar el archivo, una tabla con el contenido del archivo, y botones para confirmar la carga y procesamiento de los datos. Los equipos registrados a trav\'es de esta funcionalidad generar\'an movimientos de ingreso en el sistema.
+\begin{figure}[H]
+    \centering
+    \caption{Registrar Equipos Masivamente}\label{masivo}
+    \includegraphics[width=16.5cm, angle=0]{./images/registroMasivo.png}
+\end{figure}
+\textbf{Pantalla de Registro de Entrega. }En la pantalla de registro de entrega, el administrador puede registrar la entrega de uno o varios equipos a un responsable. La interfaz muestra una lista de equipos disponibles y permite seleccionar aquellos que ser\'an entregados, especificando el responsable y cualquier informaci\'on adicional relevante. Una vez confirmada la entrega, los equipos seleccionados tendr\'an su estado actualizado a ``Asignado''.
+\begin{figure}[H]
+    \centering
+    \caption{Registrar Movimiento (Primera Pesta\~{n}a)}\label{movimiento1}
+    \includegraphics[width=16.5cm, angle=0]{./images/registrarMovimiento.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \caption{Registrar Movimiento (Segunda Pesta\~{n}a)}\label{movimiento2}
+    \includegraphics[width=16.5cm, angle=0]{./images/registrarMovimiento2.png}
+\end{figure}
+\textbf{Pantalla de Registro de Devoluci\'on. }Esta pantalla facilita el registro de la devoluci\'on de equipos al almac\'en. Similar a la pantalla de entrega, se presentan los equipos que est\'an actualmente asignados a responsables, y el administrador puede seleccionar los que se est\'an devolviendo. Al confirmar la operaci\'on, el estado de los equipos se actualiza a ``Disponible''.
+
+\textbf{Pantalla de Registro de Transferencia. }La pantalla de registro de transferencia permite al administrador mover equipos de un almac\'en a otro. La interfaz muestra los equipos disponibles en el almac\'en de origen, y el administrador selecciona los que se transferir\'an, especificando el almac\'en de destino. Una vez completada la transferencia, se registran los movimientos correspondientes en el sistema y se actualiza la ubicaci\'on de los equipos.
+\subsubsection{Arquitectura}
+La arquitectura del sistema resume c\'omo las diferentes capas interact\'uan entre s\'{\i} para ofrecer una soluci\'on completa para la gesti\'on de inventario de equipos. La arquitectura est\'a dividida en tres capas principales: la Capa de Presentaci\'on, la Capa de L\'ogica de Negocio y la Capa de Acceso a Datos. Cada una de estas capas desempe\~{n}a un papel crucial en el funcionamiento del sistema, asegurando la separaci\'on de responsabilidades y facilitando el mantenimiento y la escalabilidad del m\'odulo.
+
+\textbf{Descripci\'on de Capas. }
+
+\textit{\textbf{Capa de Presentaci\'on (Angular 12). }}Esta capa es responsable de la interfaz de usuario (UI) y la experiencia del usuario (UX). Desarrollada en Angular 12, la Capa de Presentaci\'on maneja la interacci\'on del usuario con el sistema, permitiendo que los usuarios accedan a las funcionalidades a trav\'es de una aplicaci\'on web responsiva. Angular 12 se comunica con la Capa de L\'ogica de Negocio mediante llamadas a la API REST, enviando solicitudes y recibiendo datos para ser mostrados en la UI.
+
+\textit{\textbf{Capa de L\'ogica de Negocio (.NET 8). }}La Capa de L\'ogica de Negocio est\'a implementada en .NET 8 y es el n\'ucleo del sistema, gestionando todas las operaciones, reglas de negocio y validaciones. Esta capa est\'a organizada en tres proyectos:
+\begin{enumerate}
+    \item\textbf{Service: } Este proyecto expone las funcionalidades del sistema a trav\'es de una API REST, permitiendo que la Capa de Presentaci\'on (Angular 12) interact\'ue con el sistema.
+    \item\textbf{BusinessLogic: }Aqu\'{\i} se implementa la l\'ogica de negocio, donde se gestionan todas las operaciones y procesos que el sistema debe realizar, como la gesti\'on de equipos, movimientos, usuarios y configuraci\'on del sistema.
+    \item\textbf{Entities: }Este proyecto contiene las entidades que representan los objetos de negocio, como Equipos, Almacenes, Movimientos, entre otros. Estas entidades son las que se manipulan en las operaciones de la l\'ogica de negocio.
+\end{enumerate}
+
+\textit{\textbf{Capa de Acceso a Datos (SQL Server). }}La Capa de Acceso a Datos se encarga de interactuar con la base de datos SQL Server. Desde la Capa de L\'ogica de Negocio, espec\'{\i}ficamente a trav\'es del proyecto BusinessLogic, se realizan las consultas y operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en la base de datos. SQL Server almacena toda la informaci\'on relacionada con el inventario de equipos, incluyendo sus atributos, movimientos, estados y configuraciones.
+
+\textbf{Patr\'on de Dise\~{n}o. }El sistema utiliza el patr\'on de dise\~{n}o MVC (Model-View-Controller) para organizar el c\'odigo y facilitar la separaci\'on de responsabilidades. En este caso, Angular 12 act\'ua como la vista (View), presentando la informaci\'on al usuario. La API REST expuesta por .NET 8 (Service) sirve como el controlador (Controller), gestionando las solicitudes del usuario y respondiendo con los datos adecuados. Finalmente, las entidades y la l\'ogica de negocio (Entities y BusinessLogic) representan el modelo (Model), donde se definen y gestionan los datos y las reglas del negocio.
+\subsubsection{Desarrollo}
+En la implementaci\'on del m\'odulo de gesti\'on de inventario de equipos, se adopt\'o un enfoque \'agil utilizando la metodolog\'{\i}a SCRUM, lo que permiti\'o una gesti\'on eficiente y flexible del desarrollo. A pesar de que el proyecto fue realizado por un solo desarrollador, se estructur\'o de manera que las tareas se organizaran y gestionaran de forma efectiva, similar a un entorno de desarrollo colaborativo.
+
+\textbf{Metodolog\'{\i}a de Desarrollo. }Se utiliz\'o SCRUM como marco de trabajo para gestionar el desarrollo del m\'odulo. SCRUM, al ser una metodolog\'{\i}a \'agil, facilit\'o la adaptaci\'on continua a los cambios en los requerimientos y la retroalimentaci\'on constante. A trav\'es de la implementaci\'on de sprints cortos y enfocados, se logr\'o mantener un ritmo constante de avance, asegurando que cada incremento del producto estuviera alineado con las necesidades del proyecto.
+
+\textbf{Fases del Proyecto. }El desarrollo se dividi\'o en 6 sprints, cada uno con una duraci\'on definida, lo que permiti\'o una entrega incremental del producto. Las fases principales incluyeron:
+\begin{itemize}
+    \item\textbf{Planificaci\'on: }Identificaci\'on de los requisitos del sistema y definici\'on del backlog.
+    \item\textbf{Dise\~{n}o: }Creaci\'on de diagramas y dise\~{n}o de la arquitectura del sistema.
+    \item\textbf{Desarrollo: }Implementaci\'on de las funcionalidades del m\'odulo, divididas en tareas manejables dentro de los sprints.
+    \item\textbf{Pruebas: }Verificaci\'on de cada incremento del producto, asegurando que cumpliera con los criterios de aceptaci\'on.
+    \item\textbf{Despliegue: }Integraci\'on del m\'odulo con el sistema existente y preparaci\'on para el uso en producci\'on.
+\end{itemize}
+
+\textbf{Gesti\'on de Tareas. }Las tareas del proyecto fueron organizadas y gestionadas a trav\'es de Azure DevOps. Se definieron historias de usuario para cada funcionalidad principal, y estas se dividieron en tareas individuales. A pesar de ser un solo desarrollador, el uso de herramientas de gesti\'on de proyectos como Azure DevOps permiti\'o un seguimiento detallado del progreso, la priorizaci\'on de tareas, y la resoluci\'on de problemas a medida que surg\'{\i}an.
+
+\textbf{Colaboraci\'on y Comunicaci\'on. }Aunque no hubo un equipo de desarrollo tradicional, se utiliz\'o Subversion para la gesti\'on del c\'odigo fuente y la documentaci\'on del proyecto, garantizando que cada cambio estuviera documentado y pudiera revertirse si fuera necesario.
+\newpage
+\section{Desarrollo e Implementaci\'on}
+\subsection{Desarrollo del M\'odulo}
+El desarrollo del m\'odulo de gesti\'on de inventario de equipos fue un proceso integral que involucr\'o varias etapas t\'ecnicas, utilizando un enfoque iterativo basado en la metodolog\'{\i}a SCRUM. A continuaci\'on, se detallan los aspectos t\'ecnicos, las tecnolog\'{\i}as empleadas, y el proceso de desarrollo del m\'odulo.
+\subsubsection{Tecnolog\'{\i}as Utilizadas.}
+\textbf{Frontend. }El m\'odulo fue desarrollado utilizando Angular 12, un framework que permite la creaci\'on de interfaces de usuario din\'amicas, responsivas y f\'aciles de mantener. Los componentes de la interfaz de usuario se dise\~{n}aron con una l\'ogica de navegaci\'on clara y conexi\'on a la API REST del backend. Se hizo uso de servicios y m\'odulos para organizar y reutilizar el c\'odigo eficientemente.
+
+\textbf{Backend. }Se utiliz\'o .NET 8 para implementar una API REST que interact\'ua con la base de datos y gestiona la l\'ogica de negocio. .NET 8 proporciona un entorno robusto para el desarrollo de aplicaciones empresariales, permitiendo una integraci\'on eficiente con el frontend.
+
+\textbf{Base de Datos. }SQL Server se utiliz\'o como el sistema de gesti\'on de bases de datos para almacenar de manera segura y eficiente toda la informaci\'on relacionada con los equipos, movimientos, usuarios y configuraciones del m\'odulo. SQL Server ofrece capacidades avanzadas de manejo de datos, incluyendo transacciones, integridad referencial y consultas optimizadas.
+\subsubsection{Estructura del Proyecto.}
+\textbf{Capa de Presentaci\'on. }La capa de presentaci\'on se dise\~{n}\'o utilizando los principios de Angular 12, donde los componentes (C\'odigo~\ref{componente}) se organizaron en m\'odulos (C\'odigo~\ref{modulo}) para mantener la modularidad y escalabilidad de la aplicaci\'on. Los componentes de la UI se encargan de manejar la interacci\'on (C\'odigo~\ref{interaccion}) del usuario y de enviar las solicitudes al backend a trav\'es de servicios especializados (C\'odigo~\ref{conexion}). Adem\'as, se implement\'o un sistema de enrutamiento (C\'odigo~\ref{enrutamiento}) para gestionar la navegaci\'on entre las distintas vistas, y se utilizaron formularios reactivos (C\'odigo~\ref{formulario}) para capturar y validar la informaci\'on de manera eficiente.
+\begin{lstlisting}[caption={M\'odulo en Angular}\label{componente}, numbers=left, breaklines=true, basicstyle=\small]
+@Component({
+    selector: 'ns-ss',
+    templateUrl: './almacenes.component.html',
+    styleUrls: ['./almacenes.component.css'],
+})
+export class AlmacenesComponent implements OnInit {
+    public searchForm: FormGroup = new FormGroup({});
+    public almacenForm: FormGroup = new FormGroup({});
+    public almacenes: Almacen[] = [];
+    constructor(
+        private repositoryService: RepositoryService,
+        private contextService: ContextService,
+        private notificationService: NotificationService,
+        private almacenesService: AlmacenesService
+    ) { }
+    ngOnInit() { }
+}
+\end{lstlisting}
+\begin{lstlisting}[caption={M\'odulo en Angular}\label{modulo}, numbers=left, breaklines=true, basicstyle=\small]
+@NgModule({
+    imports: [
+        AlmacenesRoutingModule,
+        SharedModule,
+        FeatureModule
+    ],
+    declarations: [AlmacenesComponent]
+})
+export class AlmacenesModule { }
+\end{lstlisting}
+\begin{lstlisting}[language=TeX, caption={M\'etodo en Componente Angular}\label{interaccion}, numbers=left, breaklines=true, basicstyle=\small]
+async GuardarAlmacen() {
+    if (this.isSaving) {
+        return;
+    }
+    this.isSaving = true;
+    if (!this.almacenForm.valid) {
+        this.notificationService.showInformationMessage('Verifica los campos obligatorios');
+        Object.keys(this.almacenForm.controls).forEach((controlName) => {
+            const control = this.almacenForm.get(controlName);
+            control?.markAsTouched();
+        });
+        this.isSaving = false;
+        return;
+    }
+    const request: RequestRestGIV = {
+        itemRequest: this.contextService.getRequest(),
+        almacen: this.almacenForm.value || Almacen,
+    };
+    const apiresponse: ApiResponse = await this.repositoryService.AddAlmacen(request);
+    if (apiresponse && apiresponse.Codigo == 0) {
+        if (!request.almacen?.ALMA_CodPadre) {
+            const request: RequestRestGIV = {
+                itemRequest: this.contextService.getRequest(),
+                almacen: this.searchForm.value as Almacen,
+            };
+            let ListadoAlmacenes = await this.repositoryService.GetAlmacenesPadre(request);
+            this.almacenesService.SetAlmacenesPrincipal(ListadoAlmacenes);
+            this.almacenes = this.almacenesService.GetAlmacenesPrincipal();
+        }
+        this.MView?.hide();
+        this.notificationService.showSmallMessage('Se ha guardado el almacen.', true);
+    }
+    this.isSaving = false;
+    await this.Buscar();
+}
+\end{lstlisting}
+\begin{lstlisting}[language=TeX, caption={M\'etodo de Conexi\'on al Backend Angular}\label{conexion}, numbers=left, breaklines=true, basicstyle=\small]
+public CallService = (payload: any, method: string) => new Promise<any>((resolve) =>
+    this.http.post<any>((this.url + method), payload, { headers: this.core.getDefaultOptions() })
+    .subscribe(
+        data => resolve(data),
+        err => resolve(null)
+    )
+)
+\end{lstlisting}
+\begin{lstlisting}[language=TeX, caption={Enrutamiento en Angular}\label{enrutamiento}, numbers=left, breaklines=true, basicstyle=\small]
+const routes: Routes = [
+    {
+        path: '',
+        component: MainLayoutComponent,
+        canActivate: [AuthGuard],
+        children: [
+            {
+                path: 'maestros',
+                loadChildren: () => import('src/app/features/maestros/maestros.module').then((m) => m.MaestrosModule),
+            },
+        ],
+    },
+    {
+        path: 'auth',
+        component: AuthLayoutComponent,
+        loadChildren: () => import('src/app/features/auth/auth.module').then((m) => m.AuthModule),
+    },
+    { path: '**', redirectTo: 'auth' },
+];
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
+})
+export class AppRoutingModule { }
+\end{lstlisting}
+\begin{lstlisting}[language=TeX, caption={Formulario Reactivo en Angular}\label{formulario}, numbers=left, breaklines=true, basicstyle=\small]
+createAlmacenForm(Mview: boolean) {
+    return new FormGroup({
+        ALMA_Codigo: new FormControl('', []),
+        ALMA_CodPadre: new FormControl('', []),
+        ALMA_Nombre: new FormControl('', [Validators.required, Validators.maxLength(100)]),
+        ALMA_Descripcion: new FormControl('', [Validators.required, Validators.maxLength(100)]),
+        ALMA_Estado: new FormControl(true, [Validators.required]),
+    });
+}
+\end{lstlisting}
+
+\textbf{Capa de L\'ogica de Negocio. }
+
+\textit{\textbf{Service. }}Los controladores API exponen los endpoints (C\'odigo~\ref{endpoint}) necesarios para que el frontend realice operaciones CRUD (Crear, Leer, Actualizar, Eliminar) y otras interacciones con el sistema. Estos controladores gestionan las solicitudes HTTP y se comunican con el proyecto BusinessLogic para ejecutar las acciones correspondientes.
+\begin{lstlisting}[language=TeX, caption={Endpoint en .NET 8}\label{endpoint}, numbers=left, breaklines=true, basicstyle=\small]
+[HttpPost("AddAlmacen")]
+public ActionResult<Response> AddAlmacen([FromBody] RequestRestGIV request)
+{
+    Response _response = new Response();
+    try
+    {
+        int _tiempodisponible = 0;
+        if (ValidarSession(request.itemRequest.SESS_Token, request.itemRequest, ref _tiempodisponible))
+        {
+            BLAlmacenes BL_Almacen = new BLAlmacenes();
+            Almacenes almacen = new Almacenes();
+            request.almacen.CopyTo(ref almacen);
+            almacen.Instance = Infrastructure.Aspect.BusinessEntity.InstanceEntity.Added;
+            almacen.ALMA_Estado = true;
+            almacen.AUDI_UsrCrea = request.itemRequest.USER_CodUsr;
+            almacen.AUDI_HostCrea = request.itemRequest.AUDI_Host;
+            if (BL_Almacen.Save(ref almacen))
+            {
+                _response.Mensaje = $"Se realizo correctamente el registro del almacen \"{request.almacen.ALMA_Nombre}\" con el ID {almacen.ALMA_Codigo}.";
+                _response.Codigo = 0;
+            }
+            else
+            {
+                _response.Codigo = 1;
+                _response.Mensaje = "Ha ocurido un error al realizar el registro del almacen. </br>";
+            }
+            _response.TiempoSesion = _tiempodisponible;
+        }
+        else
+        {
+            _response.Codigo = 98;
+            _response.Mensaje = string.Format("Mensaje: {0} - Tiempo Disponible: {1} minutos", "TOKEN No Valido", _tiempodisponible);
+        }
+    }
+    catch (Exception ex)
+    {
+        String _code = Guid.NewGuid().ToString();
+        _response.Codigo = 1;
+        _response.Mensaje = string.Format("Error-{0}: {1}", _code, ex.Message);
+        Util.WriteError(_code, ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+    }
+    return _response;
+}
+\end{lstlisting}
+
+\textit{\textbf{BusinessLogic. }}Aqu\'{\i} se implementaron todas las reglas de negocio y validaciones necesarias para el correcto funcionamiento del m\'odulo. La l\'ogica de negocio se organiz\'o en m\'etodos y clases (C\'odigo~\ref{bl}), permitiendo una separaci\'on clara de responsabilidades. Esta capa interact\'ua directamente con la capa de acceso a datos para realizar operaciones sobre la base de datos.
+\begin{lstlisting}[language=TeX, caption={M\'etodos de Business Logic en .NET 8}\label{bl}, numbers=left, breaklines=true, basicstyle=\small]
+public partial class BLAlmacenes
+{
+    public Boolean Save(ref Almacenes Item)
+    {
+        try
+        {
+            Boolean m_isCorrect = true;
+            switch (Item.Instance)
+            {
+                case InstanceEntity.Added:
+                    m_isCorrect = Insert(ref Item); break;
+                case InstanceEntity.Modified:
+                    m_isCorrect = Update(ref Item); break;
+                case InstanceEntity.Deleted:
+                    m_isCorrect = Delete(ref Item); break;
+            }
+            return m_isCorrect;
+        }
+        catch (Exception)
+        { throw; }
+    }
+
+    private bool Insert(ref Almacenes Item)
+    {
+        try
+        {
+            if (Item.Instance == InstanceEntity.Added)
+            {
+                SqlCommand DASqlCommand = DataAccessEnterpriseSQL.DAAsignarProcedure("GIV_ALMASI_UnReg");
+                DataAccessEnterpriseSQL.DAAgregarParametro(DASqlCommand, "@ALMA_Codigo", Item.ALMA_Codigo, SqlDbType.VarChar, 6, ParameterDirection.InputOutput);
+                DataAccessEnterpriseSQL.DAAgregarParametro(DASqlCommand, "@ALMA_CodPadre", string.IsNullOrEmpty(Item.ALMA_CodPadre) ? null : Item.ALMA_CodPadre, SqlDbType.VarChar, 6, ParameterDirection.Input);
+                DataAccessEnterpriseSQL.DAAgregarParametro(DASqlCommand, "@ALMA_Nombre", Item.ALMA_Nombre, SqlDbType.VarChar, 100, ParameterDirection.Input);
+                DataAccessEnterpriseSQL.DAAgregarParametro(DASqlCommand, "@ALMA_Descripcion", Item.ALMA_Descripcion, SqlDbType.VarChar, 100, ParameterDirection.Input);
+                DataAccessEnterpriseSQL.DAAgregarParametro(DASqlCommand, "@ALMA_Estado", Item.ALMA_Estado, SqlDbType.Bit, 1, ParameterDirection.Input);
+                DataAccessEnterpriseSQL.DAAgregarParametro(DASqlCommand, "@AUDI_UsrCrea", Item.AUDI_UsrCrea, SqlDbType.VarChar, 20, ParameterDirection.Input);
+                DataAccessEnterpriseSQL.DAAgregarParametro(DASqlCommand, "@AUDI_HostCrea", Item.AUDI_HostCrea, SqlDbType.VarChar, 50, ParameterDirection.Input);
+                if (DataAccessEnterpriseSQL.DAExecuteNonQuery(DASqlCommand, null) > 0)
+                {
+                    if (DASqlCommand.Parameters["@ALMA_Codigo"].Value != DBNull.Value && !String.IsNullOrEmpty(DASqlCommand.Parameters["@ALMA_Codigo"].Value.ToString()))
+                    { Item.ALMA_Codigo = DASqlCommand.Parameters["@ALMA_Codigo"].Value.ToString(); }
+                    return true;
+                }
+                else
+                { return false; }
+            }
+            else
+            { return true; }
+        }
+        catch (Exception)
+        { throw; }
+    }
+}
+\end{lstlisting}
+
+\textit{\textbf{Entities. }}Las entidades (C\'odigo~\ref{entidad}) representan los datos clave dentro del sistema, como equipos, categor\'{\i}as, movimientos, y usuarios. Estas entidades est\'an definidas con sus respectivas relaciones, lo que permite una representaci\'on clara y estructurada de la informaci\'on en la base de datos.
+\begin{lstlisting}[language=TeX, caption={Entidad en .NET 8}\label{entidad}, numbers=left, breaklines=true, basicstyle=\small]
+public partial class Almacenes
+{
+    #region [ Variables ]
+    private String m_alma_codigo;
+    private String m_alma_codpadre;
+    private String m_alma_nombre;
+    private String m_alma_descripcion;
+    private Nullable<Boolean> m_alma_estado;
+    private String m_audi_usrcrea;
+    private Nullable<DateTime> m_audi_feccrea;
+    private String m_audi_hostcrea;
+    private String m_audi_usrmod;
+    private Nullable<DateTime> m_audi_fecmod;
+    private String m_audi_hostmod;
+    #endregion
+    #region [ Constructores ]
+    public Almacenes(){ }
+    #endregion
+    #region [ Propiedades ]
+    [DataMember]
+    public String ALMA_Codigo
+    {
+        get { return m_alma_codigo; }
+        set
+        {
+            if (m_alma_codigo != value)
+            {
+                m_alma_codigo = value;
+                OnPropertyChanged("ALMA_Codigo");
+            }
+        }
+    }
+    [DataMember]
+    public String ALMA_CodPadre
+    {
+        get { return m_alma_codpadre; }
+        set
+        {
+            if (m_alma_codpadre != value)
+            {
+                m_alma_codpadre = value;
+                OnPropertyChanged("ALMA_CodPadre");
+            }
+        }
+    }
+    [DataMember]
+    public String ALMA_Nombre
+    {
+        get { return m_alma_nombre; }
+        set
+        {
+            if (m_alma_nombre != value)
+            {
+                m_alma_nombre = value;
+                OnPropertyChanged("ALMA_Nombre");
+            }
+        }
+    }
+    [DataMember]
+    public String ALMA_Descripcion
+    {
+        get { return m_alma_descripcion; }
+        set
+        {
+            if (m_alma_descripcion != value)
+            {
+                m_alma_descripcion = value;
+                OnPropertyChanged("ALMA_Descripcion");
+            }
+        }
+    }
+    [DataMember]
+    public Nullable<Boolean> ALMA_Estado
+    {
+        get { return m_alma_estado; }
+        set
+        {
+            if (m_alma_estado != value)
+            {
+                m_alma_estado = value;
+                OnPropertyChanged("ALMA_Estado");
+            }
+        }
+    }
+    [IgnoreDataMember]
+    public String AUDI_UsrCrea
+    {
+        get { return m_audi_usrcrea; }
+        set
+        {
+            if (m_audi_usrcrea != value)
+            {
+                m_audi_usrcrea = value;
+                OnPropertyChanged("AUDI_UsrCrea");
+            }
+        }
+    }
+    [IgnoreDataMember]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+    public Nullable<DateTime> AUDI_FecCrea
+    {
+        get { return m_audi_feccrea; }
+        set
+        {
+            if (m_audi_feccrea != value)
+            {
+                m_audi_feccrea = value;
+                OnPropertyChanged("AUDI_FecCrea");
+            }
+        }
+    }
+    [IgnoreDataMember]
+    public String AUDI_HostCrea
+    {
+        get { return m_audi_hostcrea; }
+        set
+        {
+            if (m_audi_hostcrea != value)
+            {
+                m_audi_hostcrea = value;
+                OnPropertyChanged("AUDI_HostCrea");
+            }
+        }
+    }
+    [IgnoreDataMember]
+    public String AUDI_UsrMod
+    {
+        get { return m_audi_usrmod; }
+        set
+        {
+            if (m_audi_usrmod != value)
+            {
+                m_audi_usrmod = value;
+                OnPropertyChanged("AUDI_UsrMod");
+            }
+        }
+    }
+    [IgnoreDataMember]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+    public Nullable<DateTime> AUDI_FecMod
+    {
+        get { return m_audi_fecmod; }
+        set
+        {
+            if (m_audi_fecmod != value)
+            {
+                m_audi_fecmod = value;
+                OnPropertyChanged("AUDI_FecMod");
+            }
+        }
+    }
+    [IgnoreDataMember]
+    public String AUDI_HostMod
+    {
+        get { return m_audi_hostmod; }
+        set
+        {
+            if (m_audi_hostmod != value)
+            {
+                m_audi_hostmod = value;
+                OnPropertyChanged("AUDI_HostMod");
+            }
+        }
+    }
+    #endregion
+    #region [ CopyTo ]
+    public void CopyTo(ref Almacenes Item)
+    {
+        try
+        {
+            if (Item == null) { Item = new Almacenes(); }
+            Item.ALMA_Codigo = this.ALMA_Codigo;
+            Item.ALMA_CodPadre = this.ALMA_CodPadre;
+            Item.ALMA_Nombre = this.ALMA_Nombre;
+            Item.ALMA_Descripcion = this.ALMA_Descripcion;
+            Item.ALMA_Estado = this.ALMA_Estado;
+            Item.AUDI_HostCrea = this.AUDI_HostCrea;
+            Item.AUDI_HostMod = this.AUDI_HostMod;
+            Item.ALMA_NomPadre = this.ALMA_NomPadre;
+        }
+        catch (Exception ex)
+        { throw ex; }
+    }
+    #endregion
+}
+\end{lstlisting}
+
+\textbf{Capa de Acceso a Datos. }La capa de acceso a datos se implement\'o en el proyecto BusinessLogic, utilizando procedimientos almacenados (C\'odigo~\ref{sp}) para ejecutar consultas a la base de datos. Esto permiti\'o una interacci\'on eficiente y segura con SQL Server, manteniendo la l\'ogica de acceso a datos separada de la l\'ogica de negocio.
+\begin{lstlisting}[language=TeX, caption={Procedimiento Almacenado en SQL Server}\label{sp}, numbers=left, breaklines=true, basicstyle=\small]
+CREATE PROCEDURE dbo.GIV_ALMASI_UnReg 
+    @ALMA_Codigo      VARCHAR(6) OUTPUT
+  , @ALMA_CodPadre    VARCHAR(6)
+  , @ALMA_Nombre      VARCHAR(100)
+  , @ALMA_Descripcion VARCHAR(100)
+  , @ALMA_Estado      BIT
+  , @AUDI_UsrCrea     VARCHAR(20)
+  , @AUDI_HostCrea    VARCHAR(50)  
+AS  
+BEGIN
+    IF((SELECT ALMA_CodPadre 
+          FROM GIV_Almacenes  
+         WHERE ALMA_Codigo = @ALMA_CodPadre) IS NULL)  
+        BEGIN  
+            SET @ALMA_Codigo = ISNULL((SELECT MAX(CONVERT(INT,ALMA_Codigo))  
+                                         FROM GIV_Almacenes), 0) + 1
+            INSERT INTO GIV_Almacenes  
+            ( ALMA_Codigo , ALMA_CodPadre , ALMA_Nombre , ALMA_Descripcion     
+            , ALMA_Estado , AUDI_UsrCrea  , AUDI_FecCrea, AUDI_HostCrea    )  
+            VALUES  
+            ( @ALMA_Codigo, @ALMA_CodPadre, @ALMA_Nombre, @ALMA_Descripcion     
+            , @ALMA_Estado, @AUDI_UsrCrea , GETDATE()   , @AUDI_HostCrea   )  
+        END
+    ELSE  
+        BEGIN  
+            RAISERROR('El almacen superior elegido no es valido, seleccione otro para continuar.', 18, 1)  
+            RETURN  
+        END  
+END
+\end{lstlisting}
+\subsubsection{Proceso de Desarrollo.}
+\textbf{Metodolog\'{\i}a de Desarrollo. }El proyecto fue gestionado utilizando la metodolog\'{\i}a \'agil SCRUM, lo que permiti\'o un desarrollo iterativo y adaptable. A lo largo de los seis sprints, se realiz\'o un seguimiento continuo del progreso y se ajustaron las tareas seg\'un las necesidades emergentes. La gesti\'on de tareas y sprints se llev\'o a cabo en Azure DevOps y la versi\'on del c\'odigo fue controlada mediante Subversion, asegurando un historial claro de cambios y la capacidad de revertir a versiones anteriores si era necesario.
+
+\textbf{Desarrollo Iterativo. }El m\'odulo se desarroll\'o en seis sprints, cada uno con un objetivo claro y espec\'{\i}fico:
+\begin{enumerate}
+    \item\textbf{An\'alisis y dise\~{n}o: }Se realiz\'o el an\'alisis de requerimientos y el dise\~{n}o de mockups.
+    \item\textbf{Desarrollo de mantenimiento de maestros: }Implementaci\'on de funcionalidades para la gesti\'on de datos maestros.
+    \item\textbf{Desarrollo de registro de equipos: }Creaci\'on de las funcionalidades para registrar equipos de manera individual y masiva.
+    \item\textbf{Desarrollo de registro de movimientos: }Implementaci\'on de funcionalidades para registrar entregas, devoluciones y transferencias de equipos.
+    \item\textbf{Desarrollo de reportes: }Creaci\'on de reportes detallados sobre equipos y movimientos.
+    \item\textbf{Despliegue del m\'odulo: }Despliegue final del m\'odulo y preparaci\'on para su uso en el entorno de producci\'on.
+\end{enumerate}
+
+\textbf{Pruebas Realizadas. }Las pruebas se realizaron en diferentes niveles para asegurar la calidad y funcionalidad del m\'odulo:
+\begin{itemize}
+    \item\textbf{Pruebas de usuario: }Se llevaron a cabo pruebas de usuario para validar que el m\'odulo cumpliera con los requerimientos y expectativas.
+    \item\textbf{Pruebas del backend: }Utilizando Postman, se probaron exhaustivamente las APIs, verificando que respondieran correctamente y cumplieran con las especificaciones.
+    \item\textbf{Pruebas del frontend: }Se realizaron pruebas en los formularios reactivos de Angular para asegurar que validaran correctamente la informaci\'on obligatoria. Adem\'as, se prob\'o la interacci\'on entre el frontend y el backend.
+    \item\textbf{Pruebas de integraci\'on: }Se verific\'o que la comunicaci\'on entre el frontend y el backend funcionara sin problemas, incluyendo pruebas de guardado y recuperaci\'on de datos desde la base de datos.
+    \item\textbf{Pruebas de guardado y recuperaci\'on de la base de datos: }Se llevaron a cabo pruebas para asegurar que los datos se guardaran y recuperaran correctamente en SQL Server, garantizando la integridad y consistencia de la informaci\'on almacenada.
+\end{itemize}
+\subsection{Integración con Otros Sistemas}
 
 \newpage
 \section{Conclusiones}
@@ -868,10 +1463,4 @@ definidas y alineadas con los objetivos del sistema.
 
 \newpage
 \section{Anexos}
-\subsection{Diagrama de Clases BusinessLogic}
-\begin{figure}
-    \centering
-    \caption{Descripci\'on de figuras.}
-    \includegraphics[scale=0.13, angle=90]{./diagrams/BusinessLogic/BusinessLogic.pdf}
-\end{figure}
 \end{document}

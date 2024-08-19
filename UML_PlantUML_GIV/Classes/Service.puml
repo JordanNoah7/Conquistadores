@@ -1,5 +1,7 @@
 @startuml Clases Service
 skinparam ClassAttributeIconSize 0
+hide circle
+skinparam Linetype ortho
 
 package "Service" {
     class Request {
@@ -128,15 +130,13 @@ package "Service" {
 
     Request -[hidden]-> RequestRest
     RequestRest -[hidden]-> RequestRestGIV
-    RequestRestGIV -[hidden]-> Response
+    RequestRestGIV -[hidden]-> ResponseUsuario
 
     ResponseEmpresa -[hidden]-> ResponseRecuperarContrasena
-    ResponseRecuperarContrasena -[hidden]-> ResponseUsuario
+    ResponseRecuperarContrasena -[hidden]-> Response
 }
 
 package "API" {
-    abstract ControllerBase
-
     class RESTService {
         - _configuration: IConfiguration
         + RESTService(configuration: IConfiguration)
@@ -237,8 +237,7 @@ package "API" {
         - checkMailFormat(x_mail: string): bool
     }
 
-    RESTService --|> ControllerBase
-    RESTServiceGIV --|> ControllerBase
+    RESTService -[hidden]-> RESTServiceGIV
 }
 
 Service -[hidden]-> API

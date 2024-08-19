@@ -1,0 +1,192 @@
+@startuml Registrar entrega
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+
+boundary Usuario
+control RESTServiceGIV
+entity Response
+participant BLMovimientos
+participant BLEntidad
+participant BLUsuarios
+participant BLMovimientoArchivo
+entity CMovimientos
+entity Movimientos
+participant Movimientos as ListMovimientos <<ObservableCollection>>
+participant TransactionScope
+participant Report
+participant Stream 
+participant DataAccessFilterSQL as ListFiltros <<ObservableCollection>>
+
+Usuario -> RESTServiceGIV: MovimientoDevolucion(request: RequestRestGIV): Response
+activate RESTServiceGIV
+create Response
+RESTServiceGIV -->> Response: Response()
+RESTServiceGIV -> RESTServiceGIV: ValidarSession(token: Guid, x_itemRequest: Request, ref x_tiempo: int): Boolean
+alt Sesión Válida
+    create BLMovimientos
+    RESTServiceGIV -->> BLMovimientos: BLMovimientos()
+    create BLEntidad
+    RESTServiceGIV -->> BLEntidad: BLEntidad()
+    create BLUsuarios
+    RESTServiceGIV -->> BLUsuarios: BLUsuarios()
+    create BLMovimientoArchivo
+    RESTServiceGIV -->> BLMovimientoArchivo: BLMovimientoArchivo()
+    create ListMovimientos
+    RESTServiceGIV -->> ListMovimientos: ObservableCollection<Movimientos>()
+    loop CMovimientos
+        create Movimientos
+        RESTServiceGIV -->> Movimientos: Movimientos()
+        RESTServiceGIV -> CMovimientos: CopyTo(ref Item: Movimientos): void
+        activate CMovimientos
+        deactivate CMovimientos
+        RESTServiceGIV -> ListMovimientos: Add(item: Movimientos): void
+        activate ListMovimientos
+        deactivate ListMovimientos
+    end
+    RESTServiceGIV -> BLMovimientos: Save(ref Items: ObservableCollection<Movimientos>): Boolean
+    activate BLMovimientos
+    create TransactionScope
+    BLMovimientos -->> TransactionScope: TransactionScope()
+    BLMovimientos -> BLMovimientos: MOVI_LastNumber(MOVI_Tipo: string): int
+    loop Movimientos
+        BLMovimientos -> BLMovimientos: Update(ref Item: Movimientos): bool
+        alt Guardado no exitoso
+            BLMovimientos -->> RESTServiceGIV: bool
+        end
+    end
+    BLMovimientos -> TransactionScope: Complete()
+    activate TransactionScope
+    deactivate TransactionScope
+    BLMovimientos -->> RESTServiceGIV: bool
+    alt Exception
+        BLMovimientos -->> RESTServiceGIV: throw
+    end
+    deactivate BLMovimientos
+    alt bool == true
+        create Report
+        RESTServiceGIV -->> Report: Report()
+        RESTServiceGIV -->> Stream: MemoryStream(buffer: byte[])
+        RESTServiceGIV -> Report: Load(stream: Stream): void
+        create ListFiltros
+        RESTServiceGIV -->> ListFiltros: ObservableCollection<DataAccessFilterSQL>()
+        RESTServiceGIV -> ListFiltros: Add(item: DataAccessFilterSQL): void
+        activate ListFiltros
+        deactivate ListFiltros
+        RESTServiceGIV -> ListFiltros: Add(item: DataAccessFilterSQL): void
+        activate ListFiltros
+        deactivate ListFiltros
+        RESTServiceGIV -> ListFiltros: Add(item: DataAccessFilterSQL): void
+        activate ListFiltros
+        deactivate ListFiltros
+        RESTServiceGIV -> BLMovimientos: GetAllFilterDS(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
+        activate BLMovimientos
+        BLMovimientos -> BLMovimientos: SelectAllByFilterDS(x_procedure: String, x_filters: ObservableCollection<DataAccessFilterSQL>): DataSet
+        BLMovimientos -->> RESTServiceGIV: DataSet
+        alt Exception
+            BLMovimientos -->> RESTServiceGIV: throw
+        end
+        deactivate BLMovimientos
+        RESTServiceGIV -> BLUsuarios: GetOne(USER_IdUser: Int32): Usuarios
+        activate BLUsuarios
+        alt USER_IdUser == null
+            BLUsuarios -->> RESTServiceGIV: null
+        end
+        BLUsuarios -> BLUsuarios: SelectOne(USER_IdUser: Int32): Usuarios
+        BLUsuarios -->> RESTServiceGIV: Usuarios
+        alt Exception
+            BLUsuarios -->> RESTServiceGIV: throw
+        end
+        deactivate BLUsuarios
+        RESTServiceGIV -> ListMovimientos: ObservableCollection<Movimientos>()
+        loop DataRow
+            RESTServiceGIV -> ListMovimientos: Add(item: Movimientos): void
+            activate ListMovimientos
+            deactivate ListMovimientos
+        end
+        create Entidad
+        RESTServiceGIV -->> Entidad: Entidad()
+        alt DataRow.Count > 0
+            RESTServiceGIV -->> Entidad: Entidad()
+        end
+        RESTServiceGIV -> Report: SetParameterValue(complexName: string, value: object): void
+        activate Report
+        deactivate Report
+        RESTServiceGIV -> Report: SetParameterValue(complexName: string, value: object): void
+        activate Report
+        deactivate Report
+        RESTServiceGIV -> Report: SetParameterValue(complexName: string, value: object): void
+        activate Report
+        deactivate Report
+        RESTServiceGIV -> Report: SetParameterValue(complexName: string, value: object): void
+        activate Report
+        deactivate Report
+        RESTServiceGIV -> Report: SetParameterValue(complexName: string, value: object): void
+        activate Report
+        deactivate Report
+        RESTServiceGIV -> Report: SetParameterValue(complexName: string, value: object): void
+        activate Report
+        deactivate Report
+        RESTServiceGIV -> Report: RegisterData(data: IEnumerable, name: string): void
+        activate Report
+        deactivate Report
+        alt Report.Prepare() == true
+            create PDFSimpleExport
+            RESTServiceGIV -->> PDFSimpleExport: PDFSimpleExport()
+            create MemoryStream
+            RESTServiceGIV -->> MemoryStream: MemoryStream()
+            RESTServiceGIV -> Report: Export(export: ExportBase, stream: Stream): void
+            activate Report
+            deactivate Report
+            RESTServiceGIV -> Report: Dispose()
+            activate Report
+            deactivate Report
+            RESTServiceGIV -> PDFSimpleExport: Dispose()
+            activate PDFSimpleExport
+            deactivate PDFSimpleExport
+            RESTServiceGIV -> MemoryStream: ToArray()
+            activate MemoryStream
+            deactivate MemoryStream
+            create MovimientoArchivo
+            RESTServiceGIV -->> MovimientoArchivo: MovimientoArchivo()
+            RESTServiceGIV -> BLMovimientoArchivo: Save(ref Item: MovimientoArchivo): Boolean
+            activate BLMovimientoArchivo
+            BLMovimientoArchivo -> BLMovimientoArchivo: Insert(ref Item: MovimientoArchivo): bool
+            BLMovimientoArchivo -->> RESTServiceGIV: bool
+            alt Exception
+                BLMovimientoArchivo -->> RESTServiceGIV: throw
+            end
+            deactivate BLMovimientoArchivo
+        end
+        RESTServiceGIV -> RESTServiceGIV: EnviarCorreo(x_body: String, To: String, CC: String, Asunto: String): void
+    else
+        Response -> Response: Codigo = 1
+        activate Response
+        deactivate Response
+        Response -> Response: Mensase = "Ha ocurido un error al realizar el registro del movimiento. </br>"
+        activate Response
+        deactivate Response
+    end
+    Response -> Response: TiempoSesion = _tiempodisponible
+    activate Response
+    deactivate Response
+else
+    Response -> Response: Codigo = 98
+    activate Response
+    deactivate Response
+    Response -> Response: Mensase = string.Format("Mensaje: {0} - Tiempo Disponible: {1} minutos", "TOKEN No Valido", _tiempodisponible)
+    activate Response
+    deactivate Response
+end
+alt Exception
+    Response -> Response: Codigo = 1
+    activate Response
+    deactivate Response
+    Response -> Response: Mensase = string.Format("Error-{0}: {1}", _code, ex.Message)
+    activate Response
+    deactivate Response
+    RESTServiceGIV -> Util: WriteError(x_CodeError: String, ex: Exception, x_Metodo: String, x_ParAdic: String, x_JSON: String): String
+    activate Util
+    deactivate Util
+end
+RESTServiceGIV -->> Usuario: Response
+@enduml

@@ -1,5 +1,6 @@
 @startuml Entidades Acceso
 skinparam ClassAttributeIconSize 0
+hide circle
 
 interface INotifyPropertyChanged
 class MasterBusinessEntity

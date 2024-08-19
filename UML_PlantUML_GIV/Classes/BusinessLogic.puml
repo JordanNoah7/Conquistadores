@@ -1,5 +1,7 @@
 @startuml BusinessLogic
 skinparam ClassAttributeIconSize 0
+hide circle
+skinparam Linetype ortho
 
 package "NextAdmin"{
     class BLSession{

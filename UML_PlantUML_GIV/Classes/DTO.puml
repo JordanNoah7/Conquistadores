@@ -1,5 +1,7 @@
 @startuml Entidades Service
 skinparam ClassAttributeIconSize 0
+hide circle
+skinparam Linetype ortho
 
 package "NextAdmin" {
     class CUsuarios {
