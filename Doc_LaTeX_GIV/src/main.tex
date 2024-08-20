@@ -1448,19 +1448,26 @@ END
     \item\textbf{Pruebas de integraci\'on: }Se verific\'o que la comunicaci\'on entre el frontend y el backend funcionara sin problemas, incluyendo pruebas de guardado y recuperaci\'on de datos desde la base de datos.
     \item\textbf{Pruebas de guardado y recuperaci\'on de la base de datos: }Se llevaron a cabo pruebas para asegurar que los datos se guardaran y recuperaran correctamente en SQL Server, garantizando la integridad y consistencia de la informaci\'on almacenada.
 \end{itemize}
-\subsection{Integración con Otros Sistemas}
+\subsection{Integraci\'on con Otros Sistemas}
+\subsubsection{Integraci\'on con el ERP de NextSoft}
+\textbf{Autenticaci\'on. }El m\'odulo utiliza el sistema NextSis para gestionar el inicio de sesi\'on. Las credenciales del ERP de NextSoft, proporcionadas a trav\'es de NextSis, permiten que solo usuarios autorizados accedan al m\'odulo. Esta integraci\'on asegura que el acceso al sistema est\'e restringido y que se mantenga la coherencia en la gesti\'on de usuarios a trav\'es de los diferentes sistemas del ERP.
+
+\textbf{Sincronizaci\'on de Datos. }El m\'odulo de gesti\'on de inventario de equipos est\'a dise\~{n}ado para integrarse con varios sistemas del ERP. Esto incluye:
+\begin{itemize}
+    \item\textbf{Sistema de log\'{\i}stica: }Se sincroniza con el sistema de log\'{\i}stica para utilizar datos de marcas y productos. Esto garantiza que la informaci\'on sobre los equipos sea precisa y est\'e alineada con las categor\'{\i}as y especificaciones definidas en el sistema de log\'{\i}stica.
+    \item\textbf{Sistema de activos: }Se conecta con el sistema de activos para obtener y relacionar datos de activos existentes. Esta integraci\'on permite una gesti\'on m\'as eficiente al asociar los datos de los activos con los equipos registrados en el m\'odulo.
+    \item\textbf{Sistema de tesorer\'{\i}a: }El m\'odulo se integra con el sistema de tesorer\'{\i}a para acceder a comprobantes de compra, como boletas y facturas. Esto facilita la correcta asociaci\'on de los equipos con sus documentos de adquisici\'on, asegurando que la informaci\'on financiera y de inventario est\'e correctamente vinculada.
+\end{itemize}
+\subsubsection{Beneficios de la Integraci\'on}
+\begin{itemize}
+    \item\textbf{Optimizaci\'on de procesos: }La integraci\'on con los sistemas de log\'{\i}stica, activos, y tesorer\'{\i}a facilita la automatizaci\'on de procesos y reduce la duplicaci\'on de datos. Al sincronizar la informaci\'on entre los sistemas, se minimiza la necesidad de ingresar datos manualmente y se asegura que la informaci\'on est\'e actualizada en tiempo real. Esto contribuye a una gesti\'on de inventario m\'as eficiente y a una reducci\'on de errores.
+    \item\textbf{Mejora en la Toma de Decisiones: }La integraci\'on permite una visi\'on m\'as completa y precisa de la informaci\'on relacionada con el inventario de equipos. Al tener acceso a datos consolidados de los sistemas de log\'{\i}stica, activos y tesorer\'{\i}a, los usuarios pueden tomar decisiones m\'as informadas basadas en informaci\'on actualizada y relevante. Esto facilita la planificaci\'on, el control y la toma de decisiones estrat\'egicas relacionadas con el manejo de inventarios.
+\end{itemize}
 
 \newpage
 \section{Conclusiones}
 \newpage
 \section{Recomendaciones}
 \newpage
-\section{Agradecimientos}
-\newpage
 \bibliography{bibliography}
-\newpage
-\section{Figuras}
-
-\newpage
-\section{Anexos}
 \end{document}
