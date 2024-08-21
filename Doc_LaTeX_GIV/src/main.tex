@@ -21,6 +21,7 @@
 \usepackage{csquotes}
 \usepackage[page]{appendix}
 \usepackage{listings}
+\usepackage{subcaption}
 \selectlanguage{spanish}
 \useunder{\uline}{\ul}{}
 \newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}\\}
@@ -1463,6 +1464,92 @@ END
     \item\textbf{Optimizaci\'on de procesos: }La integraci\'on con los sistemas de log\'{\i}stica, activos, y tesorer\'{\i}a facilita la automatizaci\'on de procesos y reduce la duplicaci\'on de datos. Al sincronizar la informaci\'on entre los sistemas, se minimiza la necesidad de ingresar datos manualmente y se asegura que la informaci\'on est\'e actualizada en tiempo real. Esto contribuye a una gesti\'on de inventario m\'as eficiente y a una reducci\'on de errores.
     \item\textbf{Mejora en la Toma de Decisiones: }La integraci\'on permite una visi\'on m\'as completa y precisa de la informaci\'on relacionada con el inventario de equipos. Al tener acceso a datos consolidados de los sistemas de log\'{\i}stica, activos y tesorer\'{\i}a, los usuarios pueden tomar decisiones m\'as informadas basadas en informaci\'on actualizada y relevante. Esto facilita la planificaci\'on, el control y la toma de decisiones estrat\'egicas relacionadas con el manejo de inventarios.
 \end{itemize}
+\newpage
+\section{Resultados}
+En esta sección se presentan los resultados obtenidos tras la implementación del módulo de gestión de inventario de equipos. Se describen los aspectos más destacados del sistema, incluyendo su funcionamiento, interfaces desarrolladas, generación de reportes, y la integración con otros sistemas dentro de la empresa.
+\subsection{Implementación del Sistema}
+A través de la API REST implementada en~.NET 8, el sistema permite una comunicación fluida y eficiente, asegurando un manejo robusto de la lógica de negocio y acceso a los datos almacenados en SQL Server. La integración con el ERP de NextSoft mediante el sistema NextSis garantiza que la autenticación y autorización de los usuarios se gestionen de manera centralizada y segura.
+\subsection{Interfaces Desarrolladas}
+\subsubsection{Pantalla de Inicio de Sesión}
+La pantalla de inicio de sesión [Figura~\ref{loginProd}] permite a los usuarios acceder al módulo utilizando sus credenciales del ERP de NextSoft, gestionadas a través de NextSis. La autenticación centralizada asegura que solo los usuarios autorizados puedan acceder al sistema, manteniendo la seguridad y el control de acceso.
+\begin{figure}[H]
+    \centering
+    \caption{Pantalla de Inicio de Sesión}\label{loginProd}
+    \includegraphics[width=16.5cm]{./images/loginProd.png}
+\end{figure}
+\subsubsection{Pantalla de Registro Individual de Equipo}
+La interfaz para el registro individual de equipos [Figura~\ref{datosEquipo}] permite a los administradores ingresar detalladamente la información de cada equipo, asi como sus atributos [Figura~\ref{atributosEquipo}] y sus calibraciones [Figura~\ref{calibracionesEquipo}], asegurando que cada registro esté completo.
+\begin{figure}[H]
+    \centering
+    \caption{Pantalla de Registro Individual de Equipo (Información)}\label{datosEquipo}
+    \includegraphics[width=16.5cm]{./images/datosEquipo.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \caption{Pantalla de Registro Individual de Equipo (Atributos)}\label{atributosEquipo}
+    \includegraphics[width=16.5cm]{./images/equipoAtributos.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \caption{Pantalla de Registro Individual de Equipo (Calibraciones)}\label{calibracionesEquipo}
+    \includegraphics[width=16.5cm]{./images/calibracionesEquipo.png}
+\end{figure}
+\subsubsection{Pantalla de Registro Masivo de Equipos}
+Para facilitar la carga de múltiples equipos, se desarrolló una interfaz para el registro masivo [Figura~\ref{equipoMasivo}], que permite al administrador cargar un archivo Excel con los datos de los equipos. Esta funcionalidad agiliza el proceso de registro y minimiza el riesgo de errores en la entrada de datos.
+\begin{figure}[H]
+    \centering
+    \caption{Pantalla de Registro Masivo de Equipos}\label{equipoMasivo}
+    \includegraphics[width=16.5cm]{./images/equipoMasivo.png}
+\end{figure}
+\subsubsection{Pantalla de Registro de Entregas}
+La interfaz de registro de entregas [Figura~\ref{entrega}] permite a los administradores documentar la entrega de equipos a los responsables correspondientes. El estado de los equipos se actualiza automáticamente a "Asignado", garantizando que la información en el sistema esté siempre actualizada.
+\begin{figure}[H]
+    \centering
+    \caption{Pantalla de Registro de Entrega}\label{entrega}
+    \includegraphics[width=16.5cm]{./images/entregaEquipo.png}
+\end{figure}
+\subsubsection{Pantalla de Registro de Devoluciones}
+Similar a la entrega, la pantalla de registro de devoluciones [Figura~\ref{devolucion}] facilita la documentación de equipos que han sido devueltos al almacén, actualizando su estado a ``Disponible''.
+\begin{figure}[H]
+    \centering
+    \caption{Pantalla de Registro de Devolución}\label{devolucion}
+    \includegraphics[width=16.5cm]{./images/devolucionEquipo.png}
+\end{figure}
+\subsubsection{Pantalla de Registro de Transferencias}
+La pantalla para registrar transferencias [Figura~\ref{transferencia}] permite mover equipos de un almacén a otro, generando los movimientos necesarios y asegurando que el inventario se mantenga preciso y sincronizado entre las diferentes ubicaciones.
+\begin{figure}[H]
+    \centering
+    \caption{Pantalla de Registro de Transferencia}\label{transferencia}
+    \includegraphics[width=16.5cm]{./images/transferencia.png}
+\end{figure}
+\subsection{Generación de Reportes}
+El módulo cuenta con una funcionalidad avanzada de generación de reportes [Figura~\ref{reportes}] que permite a los usuarios crear informes detallados y personalizables sobre el inventario de equipos. Estos reportes pueden filtrarse por múltiples criterios, como estado, categoría, almacén, y otros parámetros relevantes, proporcionando una visión integral y precisa del inventario. Además de los reportes generales, cada movimiento realizado en el sistema (como entregas, devoluciones y transferencias) genera un reporte específico, como cargos de entrega [Figura~\ref{cargoEntrega}], cargos de devolución [Figura~\ref{cargoDevolucion}] y cargos de transferencia [Figura~\ref{cargoTransferencia}]. Estos documentos facilitan el seguimiento y la documentación de cada operación. Los reportes pueden ser exportados en formatos como Excel, lo que permite un análisis detallado y la fácil presentación de la información.
+\begin{figure}[H]
+    \centering
+    \caption{Reportes}\label{reportes}
+    \includegraphics[scale=1]{./images/reportes.png}
+\end{figure}
+\begin{figure}[h]
+    \caption{Cargos de Movimientos}\label{cargos}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \caption{Cargo de Entrega}\label{cargoEntrega}
+        \includegraphics[width=\textwidth]{./images/reporteEntrega.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \caption{Cargo de Devolución}\label{cargoDevolucion}
+        \includegraphics[width=\textwidth]{./images/reporteDevolucion.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \caption{Cargo de Transferencia}\label{cargoTransferencia}
+        \includegraphics[width=\textwidth]{./images/reporteTransferencia.png}
+    \end{subfigure}
+\end{figure}
 
 \newpage
 \section{Conclusiones}
