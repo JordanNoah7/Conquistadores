@@ -1466,22 +1466,22 @@ END
 \end{itemize}
 \newpage
 \section{Resultados}
-En esta sección se presentan los resultados obtenidos tras la implementación del módulo de gestión de inventario de equipos. Se describen los aspectos más destacados del sistema, incluyendo su funcionamiento, interfaces desarrolladas, generación de reportes, y la integración con otros sistemas dentro de la empresa.
-\subsection{Implementación del Sistema}
-A través de la API REST implementada en~.NET 8, el sistema permite una comunicación fluida y eficiente, asegurando un manejo robusto de la lógica de negocio y acceso a los datos almacenados en SQL Server. La integración con el ERP de NextSoft mediante el sistema NextSis garantiza que la autenticación y autorización de los usuarios se gestionen de manera centralizada y segura.
+En esta secci\'on se presentan los resultados obtenidos tras la implementaci\'on del m\'odulo de gesti\'on de inventario de equipos. Se describen los aspectos m\'as destacados del sistema, incluyendo su funcionamiento, interfaces desarrolladas, generaci\'on de reportes, y la integraci\'on con otros sistemas dentro de la empresa.
+\subsection{Implementaci\'on del Sistema}
+A trav\'es de la API REST implementada en~.NET 8, el sistema permite una comunicaci\'on fluida y eficiente, asegurando un manejo robusto de la l\'ogica de negocio y acceso a los datos almacenados en SQL Server. La integraci\'on con el ERP de NextSoft mediante el sistema NextSis garantiza que la autenticaci\'on y autorizaci\'on de los usuarios se gestionen de manera centralizada y segura.
 \subsection{Interfaces Desarrolladas}
-\subsubsection{Pantalla de Inicio de Sesión}
-La pantalla de inicio de sesión [Figura~\ref{loginProd}] permite a los usuarios acceder al módulo utilizando sus credenciales del ERP de NextSoft, gestionadas a través de NextSis. La autenticación centralizada asegura que solo los usuarios autorizados puedan acceder al sistema, manteniendo la seguridad y el control de acceso.
+\subsubsection{Pantalla de Inicio de Sesi\'on}
+La pantalla de inicio de sesi\'on [Figura~\ref{loginProd}] permite a los usuarios acceder al m\'odulo utilizando sus credenciales del ERP de NextSoft, gestionadas a trav\'es de NextSis. La autenticaci\'on centralizada asegura que solo los usuarios autorizados puedan acceder al sistema, manteniendo la seguridad y el control de acceso.
 \begin{figure}[H]
     \centering
-    \caption{Pantalla de Inicio de Sesión}\label{loginProd}
+    \caption{Pantalla de Inicio de Sesi\'on}\label{loginProd}
     \includegraphics[width=16.5cm]{./images/loginProd.png}
 \end{figure}
 \subsubsection{Pantalla de Registro Individual de Equipo}
-La interfaz para el registro individual de equipos [Figura~\ref{datosEquipo}] permite a los administradores ingresar detalladamente la información de cada equipo, asi como sus atributos [Figura~\ref{atributosEquipo}] y sus calibraciones [Figura~\ref{calibracionesEquipo}], asegurando que cada registro esté completo.
+La interfaz para el registro individual de equipos [Figura~\ref{datosEquipo}] permite a los administradores ingresar detalladamente la informaci\'on de cada equipo, asi como sus atributos [Figura~\ref{atributosEquipo}] y sus calibraciones [Figura~\ref{calibracionesEquipo}], asegurando que cada registro est\'e completo.
 \begin{figure}[H]
     \centering
-    \caption{Pantalla de Registro Individual de Equipo (Información)}\label{datosEquipo}
+    \caption{Pantalla de Registro Individual de Equipo (Informaci\'on)}\label{datosEquipo}
     \includegraphics[width=16.5cm]{./images/datosEquipo.png}
 \end{figure}
 \begin{figure}[H]
@@ -1495,35 +1495,35 @@ La interfaz para el registro individual de equipos [Figura~\ref{datosEquipo}] pe
     \includegraphics[width=16.5cm]{./images/calibracionesEquipo.png}
 \end{figure}
 \subsubsection{Pantalla de Registro Masivo de Equipos}
-Para facilitar la carga de múltiples equipos, se desarrolló una interfaz para el registro masivo [Figura~\ref{equipoMasivo}], que permite al administrador cargar un archivo Excel con los datos de los equipos. Esta funcionalidad agiliza el proceso de registro y minimiza el riesgo de errores en la entrada de datos.
+Para facilitar la carga de m\'ultiples equipos, se desarroll\'o una interfaz para el registro masivo [Figura~\ref{equipoMasivo}], que permite al administrador cargar un archivo Excel con los datos de los equipos. Esta funcionalidad agiliza el proceso de registro y minimiza el riesgo de errores en la entrada de datos.
 \begin{figure}[H]
     \centering
     \caption{Pantalla de Registro Masivo de Equipos}\label{equipoMasivo}
     \includegraphics[width=16.5cm]{./images/equipoMasivo.png}
 \end{figure}
 \subsubsection{Pantalla de Registro de Entregas}
-La interfaz de registro de entregas [Figura~\ref{entrega}] permite a los administradores documentar la entrega de equipos a los responsables correspondientes. El estado de los equipos se actualiza automáticamente a "Asignado", garantizando que la información en el sistema esté siempre actualizada.
+La interfaz de registro de entregas [Figura~\ref{entrega}] permite a los administradores documentar la entrega de equipos a los responsables correspondientes. El estado de los equipos se actualiza autom\'aticamente a "Asignado", garantizando que la informaci\'on en el sistema est\'e siempre actualizada.
 \begin{figure}[H]
     \centering
     \caption{Pantalla de Registro de Entrega}\label{entrega}
     \includegraphics[width=16.5cm]{./images/entregaEquipo.png}
 \end{figure}
 \subsubsection{Pantalla de Registro de Devoluciones}
-Similar a la entrega, la pantalla de registro de devoluciones [Figura~\ref{devolucion}] facilita la documentación de equipos que han sido devueltos al almacén, actualizando su estado a ``Disponible''.
+Similar a la entrega, la pantalla de registro de devoluciones [Figura~\ref{devolucion}] facilita la documentaci\'on de equipos que han sido devueltos al almac\'en, actualizando su estado a ``Disponible''.
 \begin{figure}[H]
     \centering
-    \caption{Pantalla de Registro de Devolución}\label{devolucion}
+    \caption{Pantalla de Registro de Devoluci\'on}\label{devolucion}
     \includegraphics[width=16.5cm]{./images/devolucionEquipo.png}
 \end{figure}
 \subsubsection{Pantalla de Registro de Transferencias}
-La pantalla para registrar transferencias [Figura~\ref{transferencia}] permite mover equipos de un almacén a otro, generando los movimientos necesarios y asegurando que el inventario se mantenga preciso y sincronizado entre las diferentes ubicaciones.
+La pantalla para registrar transferencias [Figura~\ref{transferencia}] permite mover equipos de un almac\'en a otro, generando los movimientos necesarios y asegurando que el inventario se mantenga preciso y sincronizado entre las diferentes ubicaciones.
 \begin{figure}[H]
     \centering
     \caption{Pantalla de Registro de Transferencia}\label{transferencia}
     \includegraphics[width=16.5cm]{./images/transferencia.png}
 \end{figure}
-\subsection{Generación de Reportes}
-El módulo cuenta con una funcionalidad avanzada de generación de reportes [Figura~\ref{reportes}] que permite a los usuarios crear informes detallados y personalizables sobre el inventario de equipos. Estos reportes pueden filtrarse por múltiples criterios, como estado, categoría, almacén, y otros parámetros relevantes, proporcionando una visión integral y precisa del inventario. Además de los reportes generales, cada movimiento realizado en el sistema (como entregas, devoluciones y transferencias) genera un reporte específico, como cargos de entrega [Figura~\ref{cargoEntrega}], cargos de devolución [Figura~\ref{cargoDevolucion}] y cargos de transferencia [Figura~\ref{cargoTransferencia}]. Estos documentos facilitan el seguimiento y la documentación de cada operación. Los reportes pueden ser exportados en formatos como Excel, lo que permite un análisis detallado y la fácil presentación de la información.
+\subsection{Generaci\'on de Reportes}
+El m\'odulo cuenta con una funcionalidad avanzada de generaci\'on de reportes [Figura~\ref{reportes}] que permite a los usuarios crear informes detallados y personalizables sobre el inventario de equipos. Estos reportes pueden filtrarse por m\'ultiples criterios, como estado, categor\'{\i}a, almac\'en, y otros par\'ametros relevantes, proporcionando una visi\'on integral y precisa del inventario. Adem\'as de los reportes generales, cada movimiento realizado en el sistema (como entregas, devoluciones y transferencias) genera un reporte espec\'{\i}fico, como cargos de entrega [Figura~\ref{cargoEntrega}], cargos de devoluci\'on [Figura~\ref{cargoDevolucion}] y cargos de transferencia [Figura~\ref{cargoTransferencia}]. Estos documentos facilitan el seguimiento y la documentaci\'on de cada operaci\'on. Los reportes pueden ser exportados en formatos como Excel, lo que permite un an\'alisis detallado y la f\'acil presentaci\'on de la informaci\'on.
 \begin{figure}[H]
     \centering
     \caption{Reportes}\label{reportes}
@@ -1540,7 +1540,7 @@ El módulo cuenta con una funcionalidad avanzada de generación de reportes [Fig
     \hfill
     \begin{subfigure}[b]{0.3\textwidth}
         \centering
-        \caption{Cargo de Devolución}\label{cargoDevolucion}
+        \caption{Cargo de Devoluci\'on}\label{cargoDevolucion}
         \includegraphics[width=\textwidth]{./images/reporteDevolucion.png}
     \end{subfigure}
     \hfill
@@ -1553,8 +1553,41 @@ El módulo cuenta con una funcionalidad avanzada de generación de reportes [Fig
 
 \newpage
 \section{Conclusiones}
+La implementaci\'on del m\'odulo de gesti\'on de inventario de equipos desarrollado para la empresa NextSoft ha cumplido con los objetivos planteados, proporcionando una soluci\'on robusta, eficiente y alineada con las necesidades operativas de la organizaci\'on. A lo largo del proyecto, se ha demostrado la importancia de una planificaci\'on meticulosa y una ejecuci\'on rigurosa, apoyada en una metodolog\'{\i}a \'agil como SCRUM, que permiti\'o un desarrollo iterativo y adaptable a los requerimientos cambiantes del entorno empresarial.
+\subsection{Integraci\'on Exitosa con Sistemas Existentes}
+El m\'odulo se integr\'o de manera efectiva con los sistemas existentes en la empresa, como el ERP de NextSoft, el sistema de log\'{\i}stica, el sistema de activos y el sistema de tesorer\'{\i}a. Estas integraciones no solo han optimizado los procesos de gesti\'on de inventario, evitando la duplicaci\'on de datos y automatizando tareas, sino que tambi\'en han mejorado la calidad y precisi\'on de la informaci\'on disponible para la toma de decisiones estrat\'egicas.
+\subsection{Arquitectura T\'ecnica Solida}
+El dise\~{n}o y la implementaci\'on del m\'odulo se realizaron utilizando tecnolog\'{\i}as modernas y probadas, como Angular 12 para el frontend y .NET 8 para el backend. La arquitectura multicapa implementada, que incluye la capa de presentaci\'on, la capa de l\'ogica de negocio, la capa de acceso a datos y la capa de servicios, ha garantizado una clara separaci\'on de responsabilidades, facilitando el mantenimiento y la escalabilidad del sistema. Adem\'as, el uso de procedimientos almacenados en SQL Server ha optimizado las operaciones de base de datos, garantizando una gesti\'on eficiente de los datos.
+\subsection{Funcionalidades Clave y Experiencia de Usuario}
+El m\'odulo ha proporcionado una amplia gama de funcionalidades esenciales para la gesti\'on de inventario de equipos, incluyendo el registro individual y masivo de equipos, la gesti\'on de movimientos como entregas, devoluciones y transferencias, y la generaci\'on de reportes detallados. La interfaz de usuario, dise\~{n}ada con un enfoque en la usabilidad y la eficiencia, ha permitido a los usuarios interactuar con el sistema de manera intuitiva y productiva, asegurando una curva de aprendizaje m\'{\i}nima.
+\subsection{Pruebas Exhaustivas y Aseguramiento de Calidad}
+Las pruebas exhaustivas realizadas durante el desarrollo, utilizando herramientas como Postman para el backend y pruebas en formularios reactivos para el frontend, han asegurado un alto nivel de calidad en el sistema. La integraci\'on entre frontend y backend fue rigurosamente probada, as\'{\i} como las operaciones de guardado y recuperaci\'on de datos desde la base de datos, garantizando que el sistema funcione de manera correcta y confiable en producci\'on.
+\subsection{Resultados y Beneficios}
+El m\'odulo ha resultado en una significativa mejora en la gesti\'on de inventario de equipos dentro de NextSoft. La capacidad de generar reportes detallados y espec\'{\i}ficos para cada tipo de movimiento (como cargos de entrega, devoluci\'on y transferencia) ha proporcionado a la empresa una herramienta poderosa para el seguimiento y la auditor\'{\i}a de sus activos. En resumen, este proyecto ha demostrado ser un paso fundamental hacia la modernizaci\'on y optimizaci\'on de los procesos de gesti\'on de inventario de la empresa, aline\'andose con las mejores pr\'acticas de la industria y cumpliendo con los m\'as altos est\'andares de calidad.
+\subsection{Futuras Mejoras y Extensibilidad}
+Finalmente, la arquitectura del sistema y su integraci\'on con los sistemas existentes en NextSoft permiten futuras mejoras y extensiones. Esto asegura que el m\'odulo puede adaptarse a las necesidades cambiantes de la empresa, soportar nuevos requerimientos y seguir aportando valor a largo plazo.
 \newpage
 \section{Recomendaciones}
+A partir de la experiencia obtenida durante el desarrollo e implementaci\'on del m\'odulo de gesti\'on de inventario de equipos para NextSoft, se presentan las siguientes recomendaciones para maximizar el aprovechamiento del sistema y facilitar futuras mejoras:
+\subsection{Capacitaci\'on Continua de los Usuarios}
+Aunque el sistema fue dise\~{n}ado con un enfoque en la usabilidad y eficiencia, es recomendable realizar capacitaciones peri\'odicas para los usuarios. Esto garantizar\'a que todos los actores involucrados comprendan completamente las funcionalidades del sistema, especialmente en lo que respecta a la generaci\'on de reportes y la gesti\'on de movimientos. La familiarizaci\'on con el sistema permitir\'a a los usuarios aprovechar al m\'aximo todas sus capacidades.
+\subsection{Monitoreo y Mantenimiento Regular del Sistema}
+Para asegurar el correcto funcionamiento del m\'odulo a largo plazo, se recomienda establecer un plan de monitoreo y mantenimiento regular. Esto incluye la supervisi\'on del rendimiento del sistema, la actualizaci\'on de las tecnolog\'{\i}as utilizadas (como Angular y~.NET) y la optimizaci\'on de la base de datos mediante la revisi\'on peri\'odica de los procedimientos almacenados.
+\subsection{Extensi\'on de Funcionalidades}
+Dado que el sistema ha sido dise\~{n}ado con una arquitectura modular y escalable, se recomienda evaluar la posibilidad de extender las funcionalidades del m\'odulo en futuras fases. Por ejemplo, podr\'{\i}a incorporarse un sistema de notificaciones automatizadas para alertar a los usuarios sobre eventos clave, como el vencimiento de mantenimientos o la necesidad de reabastecer inventarios espec\'{\i}ficos.
+\subsection{Mejora en la Integraci\'on con Otros Sistemas}
+Aunque la integraci\'on actual con el ERP de NextSoft, el sistema de log\'{\i}stica, el sistema de activos y el sistema de tesorer\'{\i}a ha sido exitosa, se recomienda explorar opciones para una integraci\'on m\'as profunda. Por ejemplo, automatizar la actualizaci\'on de inventarios en tiempo real o integrar el sistema con herramientas de an\'alisis de datos podr\'{\i}a proporcionar a la empresa una visi\'on a\'un m\'as completa y din\'amica de su gesti\'on de equipos.
+\subsection{Revisi\'on Peri\'odica de la Seguridad del Sistema}
+La seguridad es un aspecto cr\'{\i}tico, especialmente cuando el sistema maneja informaci\'on sensible. Se recomienda realizar auditor\'{\i}as de seguridad peri\'odicas para identificar y mitigar posibles vulnerabilidades. Esto incluye la revisi\'on de las pol\'{\i}ticas de autenticaci\'on, la protecci\'on de los datos en tr\'ansito y en reposo, y la implementaci\'on de mecanismos de control de acceso m\'as detallados si fuera necesario.
+\subsection{Evaluaci\'on de la Satisfacci\'on del Usuario}
+Para asegurar que el sistema sigue cumpliendo con las expectativas y necesidades de los usuarios, es recomendable realizar encuestas de satisfacci\'on peri\'odicas. Esto permitir\'a identificar \'areas de mejora y ajustar el sistema en funci\'on de las experiencias y sugerencias de los usuarios finales.
+\subsection{Documentaci\'on y Actualizaci\'on Constante}
+Es fundamental mantener una documentaci\'on actualizada y accesible para todos los desarrolladores y usuarios del sistema. Esto incluye manuales de usuario, gu\'{\i}as t\'ecnicas y documentaci\'on sobre la arquitectura del sistema. Mantener esta documentaci\'on al d\'{\i}a facilitar\'a el mantenimiento futuro del sistema y asegurar\'a la continuidad del conocimiento, incluso si el equipo de desarrollo cambia.
+\subsection{Exploraci\'on de Nuevas Tecnolog\'{\i}as}
+Finalmente, se recomienda estar atentos a la evoluci\'on de las tecnolog\'{\i}as utilizadas en el proyecto. La r\'apida evoluci\'on de frameworks como Angular y plataformas como~.NET podr\'{\i}a ofrecer nuevas herramientas y enfoques para mejorar el rendimiento, la seguridad y la usabilidad del sistema en el futuro. Evaluar estas tecnolog\'{\i}as y planificar actualizaciones puede ser clave para mantener el sistema a la vanguardia.
+
+Siguiendo estas recomendaciones, NextSoft puede asegurarse de que el m\'odulo de gesti\'on de inventario de equipos siga siendo una herramienta valiosa, eficaz y alineada con los objetivos estrat\'egicos de la empresa, garantizando su relevancia y eficiencia a largo plazo.
 \newpage
 \bibliography{bibliography}
+\nocite{*}
 \end{document}
