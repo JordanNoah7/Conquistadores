@@ -127,154 +127,193 @@ soluciones tecnol\'ogicas para diversas industrias. Su capacidad para adaptarse 
 fundamental para su crecimiento y reconocimiento en el sector.
 
 \subsubsection{Diagn\'ostico de la Situaci\'on Actual}
-En la actualidad, la gesti\'on de inventario de equipos en diversas empresas presenta desaf\'{\i}os significativos, debido a la falta de herramientas espec\'{\i}ficas que permitan un control eficiente y centralizado. Muchas
-organizaciones dependen de sistemas manuales o soluciones tecnol\'ogicas gen\'ericas que no est\'an adaptadas a las necesidades particulares de la gesti\'on de equipos. Esto resulta en procesos ineficaces, errores en el
-registro de datos, dificultades en el seguimiento de movimientos y transferencias de equipos, y una visibilidad limitada sobre el estado y la ubicaci\'on de los recursos.
+En la actualidad, la gesti\'on de inventario de equipos en diversas empresas presenta desaf\'{\i}os significativos, debido a la falta de herramientas
+espec\'{\i}ficas que permitan un control eficiente y centralizado. Muchas organizaciones dependen de sistemas manuales o soluciones tecnol\'ogicas gen\'ericas que
+no est\'an adaptadas a las necesidades particulares de la gesti\'on de equipos. Esto resulta en procesos ineficaces, errores en el registro de datos, dificultades
+en el seguimiento de movimientos y transferencias de equipos, y una visibilidad limitada sobre el estado y la ubicaci\'on de los recursos.
 
-\textbf{Sistemas y Procesos Existentes. }En la mayor\'{\i}a de las empresas, la gesti\'on de inventario de equipos se lleva a cabo mediante hojas de c\'alculo o software b\'asico de gesti\'on, que no est\'an dise\~{n}ados
-espec\'{\i}ficamente para manejar la complejidad de los movimientos, entregas, devoluciones y transferencias de equipos entre almacenes. Estos m\'etodos suelen ser propensos a errores humanos, carecen de funcionalidades
-avanzadas para la generaci\'on de reportes detallados y no permiten un seguimiento en tiempo real, lo que complica la toma de decisiones informadas.
+\textbf{Sistemas y Procesos Existentes. }En la mayor\'{\i}a de las empresas, la gesti\'on de inventario de equipos se lleva a cabo mediante hojas de c\'alculo o
+software b\'asico de gesti\'on, que no est\'an dise\~{n}ados espec\'{\i}ficamente para manejar la complejidad de los movimientos, entregas, devoluciones y
+transferencias de equipos entre almacenes. Estos m\'etodos suelen ser propensos a errores humanos, carecen de funcionalidades avanzadas para la generaci\'on de
+reportes detallados y no permiten un seguimiento en tiempo real, lo que complica la toma de decisiones informadas.
 
-\textbf{Deficiencias y \'Areas de Mejora. }Entre las principales deficiencias de los sistemas actuales se encuentra la falta de integrabilidad con otros sistemas de la empresa, la ausencia de control de estados para el
-mantenimiento de equipos o el seguimiento de su ciclo de vida, y la incapacidad para generar reportes que ofrezcan una visi\'on clara y actualizada del estado del inventario. Adem\'as, la falta de un sistema centralizado
-para la gesti\'on de marcas, modelos y categor\'{\i}as de equipos dificulta el an\'alisis y la planificaci\'on de compras o reposiciones.
+\textbf{Deficiencias y \'Areas de Mejora. }Entre las principales deficiencias de los sistemas actuales se encuentra la falta de integrabilidad con otros sistemas
+de la empresa, la ausencia de control de estados para el mantenimiento de equipos o el seguimiento de su ciclo de vida, y la incapacidad para generar reportes que
+ofrezcan una visi\'on clara y actualizada del estado del inventario. Adem\'as, la falta de un sistema centralizado para la gesti\'on de marcas, modelos y
+categor\'{\i}as de equipos dificulta el an\'alisis y la planificaci\'on de compras o reposiciones.
 
-\textbf{Oportunidad de Mejora. }La implementaci\'on de un m\'odulo espec\'{\i}fico para la gesti\'on de inventario de equipos, que contemple no solo el registro y control de los equipos, sino tambi\'en la gesti\'on de
-movimientos, transferencias entre almacenes, y la generaci\'on de reportes, representa una oportunidad significativa para optimizar estos procesos. Este m\'odulo est\'a dise\~{n}ado para ser adaptable y escalable, permitiendo
-su implementaci\'on en diferentes empresas que requieran mejorar su gesti\'on de inventario, independientemente de su tama\~{n}o o sector.
+\textbf{Oportunidad de Mejora. }La implementaci\'on de un m\'odulo espec\'{\i}fico para la gesti\'on de inventario de equipos, que contemple no solo el registro y
+control de los equipos, sino tambi\'en la gesti\'on de movimientos, transferencias entre almacenes, y la generaci\'on de reportes, representa una oportunidad
+significativa para optimizar estos procesos. Este m\'odulo est\'a dise\~{n}ado para ser adaptable y escalable, permitiendo su implementaci\'on en diferentes
+empresas que requieran mejorar su gesti\'on de inventario, independientemente de su tama\~{n}o o sector.
 
 % La soluci\'on propuesta busca atender estas deficiencias, proporcionando a las empresas una herramienta robusta y especializada que facilite la gesti\'on integral de sus inventarios de equipos, mejorando la eficiencia
 % operativa y la precisi\'on en el manejo de recursos.
 \subsection{Problema de Investigaci\'on}
-En el contexto actual, muchas empresas enfrentan dificultades significativas en la gesti\'on de inventario de equipos debido a la ausencia de sistemas especializados que puedan manejar eficazmente los distintos aspectos
-de este proceso. Estas deficiencias se manifiestan en errores en el registro de equipos, dificultades para rastrear movimientos y transferencias, falta de control sobre las devoluciones, y la carencia de reportes precisos
-y oportunos. Estos problemas no solo generan ineficiencias operativas, sino que tambi\'en aumentan el riesgo de p\'erdidas de equipos, mal uso de los recursos, y decisiones mal informadas.
+En el contexto actual, muchas empresas enfrentan dificultades significativas en la gesti\'on de inventario de equipos debido a la ausencia de sistemas
+especializados que puedan manejar eficazmente los distintos aspectos de este proceso. Estas deficiencias se manifiestan en errores en el registro de equipos,
+dificultades para rastrear movimientos y transferencias, falta de control sobre las devoluciones, y la carencia de reportes precisos y oportunos. Estos problemas
+no solo generan ineficiencias operativas, sino que tambi\'en aumentan el riesgo de p\'erdidas de equipos, mal uso de los recursos, y decisiones mal informadas.
 
-El problema espec\'{\i}fico identificado es la falta de un m\'odulo de gesti\'on de inventario de equipos que est\'e dise\~{n}ado para satisfacer las necesidades particulares de las empresas en cuanto al control detallado
-de sus activos. La falta de tal herramienta afecta negativamente la capacidad de las empresas para mantener un control riguroso sobre sus inventarios, lo que resulta en una gesti\'on desorganizada y poco eficiente. Adem\'as,
-la imposibilidad de generar reportes detallados limita la capacidad de las empresas para evaluar el estado de sus equipos y tomar decisiones informadas sobre la adquisici\'on, mantenimiento y reasignaci\'on de equipos.
+El problema espec\'{\i}fico identificado es la falta de un m\'odulo de gesti\'on de inventario de equipos que est\'e dise\~{n}ado para satisfacer las necesidades
+particulares de las empresas en cuanto al control detallado de sus activos. La falta de tal herramienta afecta negativamente la capacidad de las empresas para
+mantener un control riguroso sobre sus inventarios, lo que resulta en una gesti\'on desorganizada y poco eficiente. Adem\'as, la imposibilidad de generar reportes
+detallados limita la capacidad de las empresas para evaluar el estado de sus equipos y tomar decisiones informadas sobre la adquisici\'on, mantenimiento y
+reasignaci\'on de equipos.
 
-En el caso de Soluciones de Informaci\'on NextSoft S.A.C., y en otras empresas que podr\'{\i}an implementar este m\'odulo, la ausencia de una herramienta especializada en la gesti\'on de inventario de equipos ha resultado
-en procesos fragmentados y poco optimizados. Esto ha generado un incremento en el tiempo y esfuerzo necesarios para mantener actualizados los registros de equipos, una mayor posibilidad de errores en la transferencia de
-informaci\'on, y una visi\'on incompleta de la disponibilidad y ubicaci\'on de los recursos. Estos problemas no solo afectan la eficiencia operativa, sino que tambi\'en repercuten en la capacidad de la empresa para ofrecer
-servicios de alta calidad a sus clientes, ya que una gesti\'on inadecuada de los equipos puede impactar en la disponibilidad y fiabilidad de los recursos.
+En el caso de Soluciones de Informaci\'on NextSoft S.A.C., y en otras empresas que podr\'{\i}an implementar este m\'odulo, la ausencia de una herramienta
+especializada en la gesti\'on de inventario de equipos ha resultado en procesos fragmentados y poco optimizados. Esto ha generado un incremento en el tiempo y
+esfuerzo necesarios para mantener actualizados los registros de equipos, una mayor posibilidad de errores en la transferencia de informaci\'on, y una visi\'on
+incompleta de la disponibilidad y ubicaci\'on de los recursos. Estos problemas no solo afectan la eficiencia operativa, sino que tambi\'en repercuten en la
+capacidad de la empresa para ofrecer servicios de alta calidad a sus clientes, ya que una gesti\'on inadecuada de los equipos puede impactar en la disponibilidad
+y fiabilidad de los recursos.
 
-El problema que el m\'odulo propuesto resolver\'a es la falta de una soluci\'on integral y especializada para la gesti\'on de inventario de equipos, que contemple todos los aspectos cr\'{\i}ticos como el registro,
-seguimiento de movimientos, control de transferencias, y generaci\'on de reportes detallados, con el fin de optimizar la eficiencia operativa y mejorar la administraci\'on de recursos en las empresas.
+El problema que el m\'odulo propuesto resolver\'a es la falta de una soluci\'on integral y especializada para la gesti\'on de inventario de equipos, que contemple
+todos los aspectos cr\'{\i}ticos como el registro, seguimiento de movimientos, control de transferencias, y generaci\'on de reportes detallados, con el fin de
+optimizar la eficiencia operativa y mejorar la administraci\'on de recursos en las empresas.
 \subsection{Justificaci\'on}
-El desarrollo de un m\'odulo de gesti\'on de inventario de equipos es esencial debido a las deficiencias cr\'{\i}ticas que existen en los sistemas actuales utilizados por muchas empresas. La ausencia de una herramienta
-especializada ha llevado a procesos fragmentados, errores en el registro y seguimiento de equipos, y una falta de control efectivo sobre los movimientos y transferencias de activos. Estos problemas no solo generan ineficiencias
-operativas, sino que tambi\'en ponen en riesgo la disponibilidad y el uso adecuado de los recursos, afectando directamente la capacidad de las empresas para ofrecer servicios de alta calidad.
+El desarrollo de un m\'odulo de gesti\'on de inventario de equipos es esencial debido a las deficiencias cr\'{\i}ticas que existen en los sistemas actuales
+utilizados por muchas empresas. La ausencia de una herramienta especializada ha llevado a procesos fragmentados, errores en el registro y seguimiento de equipos, y
+una falta de control efectivo sobre los movimientos y transferencias de activos. Estos problemas no solo generan ineficiencias operativas, sino que tambi\'en ponen
+en riesgo la disponibilidad y el uso adecuado de los recursos, afectando directamente la capacidad de las empresas para ofrecer servicios de alta calidad.
 
-Este proyecto es de gran importancia porque aborda una necesidad real y urgente en la gesti\'on empresarial. La implementaci\'on de un m\'odulo especializado permitir\'a a las empresas, como Soluciones de Informaci\'on NextSoft
-S.A.C., optimizar la administraci\'on de sus inventarios de equipos, reducir errores, y mejorar la precisi\'on en la informaci\'on disponible para la toma de decisiones. Esto, a su vez, contribuir\'a a una mayor eficiencia
-operativa, un mejor control de los activos, y una reducci\'on de los costos asociados con la gesti\'on ineficaz de recursos.
+Este proyecto es de gran importancia porque aborda una necesidad real y urgente en la gesti\'on empresarial. La implementaci\'on de un m\'odulo especializado
+permitir\'a a las empresas, como Soluciones de Informaci\'on NextSoft S.A.C., optimizar la administraci\'on de sus inventarios de equipos, reducir errores, y
+mejorar la precisi\'on en la informaci\'on disponible para la toma de decisiones. Esto, a su vez, contribuir\'a a una mayor eficiencia operativa, un mejor control
+de los activos, y una reducci\'on de los costos asociados con la gesti\'on ineficaz de recursos.
 \subsubsection{Beneficios Potenciales}
 El desarrollo de este m\'odulo proporcionar\'a m\'ultiples beneficios, entre los que destacan:
 \begin{itemize}
-    \item\textbf{Mejora en la eficiencia operativa:} Al automatizar y centralizar el control de inventarios, las empresas podr\'an reducir el tiempo y esfuerzo necesarios para mantener actualizados sus registros de equipos.
-    \item\textbf{Reducci\'on de errores y p\'erdidas:} La herramienta permitir\'a un seguimiento m\'as preciso de los movimientos y transferencias de equipos, minimizando los errores humanos y reduciendo el riesgo de p\'erdidas
-          de activos.
-    \item\textbf{Decisiones m\'as informadas:} La generaci\'on de reportes detallados ofrecer\'a a las empresas una visi\'on clara y actualizada del estado de sus equipos, facilitando la planificaci\'on de adquisiciones, mantenimientos
-          y reasignaciones.
+    \item\textbf{Mejora en la eficiencia operativa:} Al automatizar y centralizar el control de inventarios, las empresas podr\'an reducir el tiempo y esfuerzo
+          necesarios para mantener actualizados sus registros de equipos.
+    \item\textbf{Reducci\'on de errores y p\'erdidas:} La herramienta permitir\'a un seguimiento m\'as preciso de los movimientos y transferencias de equipos,
+          minimizando los errores humanos y reduciendo el riesgo de p\'erdidas de activos.
+    \item\textbf{Decisiones m\'as informadas:} La generaci\'on de reportes detallados ofrecer\'a a las empresas una visi\'on clara y actualizada del estado de
+          sus equipos, facilitando la planificaci\'on de adquisiciones, mantenimientos y reasignaciones.
 \end{itemize}
 \subsection{Objetivos}
 \subsubsection{Objetivo General}
-Desarrollar e implementar un m\'odulo de gesti\'on de inventario de equipos que permita optimizar el control de recursos, incluyendo el registro de equipos, movimientos (entregas a responsables y devoluciones a almac\'en),
-transferencias entre almacenes, y la generaci\'on de reportes detallados, mejorando as\'{\i} la eficiencia operativa de las empresas que lo utilicen.
+Desarrollar e implementar un m\'odulo de gesti\'on de inventario de equipos que permita optimizar el control de recursos, incluyendo el registro de equipos,
+movimientos (entregas a responsables y devoluciones a almac\'en), transferencias entre almacenes, y la generaci\'on de reportes detallados, mejorando as\'{\i} la
+eficiencia operativa de las empresas que lo utilicen.
 \subsubsection{Objetivos Espec\'{\i}ficos}
 \begin{enumerate}
     \item Analizar y definir los requisitos funcionales y no funcionales necesarios para la implementaci\'on del m\'odulo de gesti\'on de inventario de equipos.
-    \item Dise\~{n}ar un sistema que contemple todas las funciones clave de la gesti\'on de inventario de equipos, incluyendo el registro, control de movimientos, y manejo de transferencias entre almacenes.
+    \item Dise\~{n}ar un sistema que contemple todas las funciones clave de la gesti\'on de inventario de equipos, incluyendo el registro, control de movimientos,
+          y manejo de transferencias entre almacenes.
     \item Desarrollar el m\'odulo utilizando tecnolog\'{\i}as actuales, asegurando su integrabilidad y escalabilidad dentro de diferentes infraestructuras empresariales.
     \item Implementar y probar el m\'odulo en un entorno real, evaluando su eficacia en la optimizaci\'on de la gesti\'on de inventario de equipos.
     \item Generar reportes detallados y personalizados que permitan a las empresas obtener una visi\'on clara y actualizada del estado de sus equipos.
 \end{enumerate}
 \newpage
 \section{Marco Te\'orico}
-El marco te\'orico de este proyecto se enfoca en fundamentar conceptualmente los elementos clave relacionados con la gesti\'on de inventario de equipos, el desarrollo de m\'odulos de software, su impacto en la eficiencia
-operativa de las empresas, y las tecnolog\'{\i}as a utilizar. A continuaci\'on, se exploran los conceptos y teor\'{\i}as m\'as relevantes para este estudio.
+El marco te\'orico de este proyecto se enfoca en fundamentar conceptualmente los elementos clave relacionados con la gesti\'on de inventario de equipos, el
+desarrollo de m\'odulos de software, su impacto en la eficiencia operativa de las empresas, y las tecnolog\'{\i}as a utilizar. A continuaci\'on, se exploran los
+conceptos y teor\'{\i}as m\'as relevantes para este estudio.
 \subsection{Gesti\'on de Inventario}
 \subsubsection{Concepto y Funci\'on de la Gesti\'on de Inventario}
-La gesti\'on de inventario es un proceso cr\'{\i}tico en la administraci\'on de recursos de una empresa, cuyo objetivo principal es asegurar la disponibilidad de los materiales o productos necesarios para las operaciones, al
-tiempo que se minimizan los costos asociados. En el contexto de equipos, la gesti\'on de inventario implica el registro, seguimiento, y control de activos como hardware, maquinaria, y otros equipos esenciales para el funcionamiento
-de la empresa. Seg\'un~\cite{cja}, una gesti\'on de inventario eficiente permite a las empresas mantener un equilibrio adecuado entre la oferta y la demanda, evitando tanto el exceso como la falta de recursos.
+La gesti\'on de inventario es un proceso cr\'{\i}tico en la administraci\'on de recursos de una empresa, cuyo objetivo principal es asegurar la disponibilidad de
+los materiales o productos necesarios para las operaciones, al tiempo que se minimizan los costos asociados. En el contexto de equipos, la gesti\'on de inventario
+implica el registro, seguimiento, y control de activos como hardware, maquinaria, y otros equipos esenciales para el funcionamiento de la empresa. Seg\'un~\cite{cja}
+, una gesti\'on de inventario eficiente permite a las empresas mantener un equilibrio adecuado entre la oferta y la demanda, evitando tanto el exceso como la falta de
+recursos.
 \subsubsection{Importancia de la Gesti\'on de Inventario de Equipos}
-En muchas organizaciones, los equipos representan una inversi\'on significativa, y su gesti\'on adecuada es esencial para garantizar la continuidad operativa. La falta de control en el inventario puede llevar a la p\'erdida de
-equipos, sobrecostos, y una disminuci\'on en la capacidad de respuesta de la empresa. La gesti\'on de inventario de equipos tambi\'en incluye la planificaci\'on de mantenimientos preventivos y correctivos, la evaluaci\'on del
-ciclo de vida de los activos, y la optimizaci\'on de su uso a lo largo del tiempo.
+En muchas organizaciones, los equipos representan una inversi\'on significativa, y su gesti\'on adecuada es esencial para garantizar la continuidad operativa. La
+falta de control en el inventario puede llevar a la p\'erdida de equipos, sobrecostos, y una disminuci\'on en la capacidad de respuesta de la empresa. La gesti\'on
+de inventario de equipos tambi\'en incluye la planificaci\'on de mantenimientos preventivos y correctivos, la evaluaci\'on del ciclo de vida de los activos, y la
+optimizaci\'on de su uso a lo largo del tiempo.
 \subsection{Sistemas de Informaci\'on para la Gesti\'on de Inventario}
 \subsubsection{Concepto y Tipos}
-Un sistema de informaci\'on es un conjunto organizado de recursos que permite la recolecci\'on, almacenamiento, procesamiento y distribuci\'on de informaci\'on para apoyar la toma de decisiones en una organizaci\'on. En el \'ambito
-de la gesti\'on de inventario, los sistemas de informaci\'on juegan un papel crucial al proporcionar herramientas que automatizan y optimizan el seguimiento y control de los recursos.~\cite{om} definen los sistemas de informaci\'on
-como un componente clave en la gesti\'on empresarial moderna, al integrar datos, procesos y tecnolog\'{\i}as para mejorar la eficiencia y efectividad de las operaciones.
+Un sistema de informaci\'on es un conjunto organizado de recursos que permite la recolecci\'on, almacenamiento, procesamiento y distribuci\'on de informaci\'on para
+apoyar la toma de decisiones en una organizaci\'on. En el \'ambito de la gesti\'on de inventario, los sistemas de informaci\'on juegan un papel crucial al
+proporcionar herramientas que automatizan y optimizan el seguimiento y control de los recursos.~\cite{om} definen los sistemas de informaci\'on como un componente
+clave en la gesti\'on empresarial moderna, al integrar datos, procesos y tecnolog\'{\i}as para mejorar la eficiencia y efectividad de las operaciones.
 \subsubsection{M\'odulos de Gesti\'on de Inventario}
-Los m\'odulos de gesti\'on de inventario son componentes espec\'{\i}ficos dentro de un sistema de informaci\'on m\'as amplio, dise\~{n}ados para gestionar de manera centralizada y automatizada todos los aspectos relacionados con el control de
-inventarios. Estos m\'odulos suelen incluir funcionalidades como el registro de entradas y salidas, la generaci\'on de reportes, el control de niveles de stock, y la planificaci\'on de reaprovisionamientos. En el caso de los equipos,
-un m\'odulo especializado permite no solo la gesti\'on de existencias, sino tambi\'en el seguimiento del ciclo de vida de cada equipo, incluyendo su mantenimiento, traslado, y eventual desincorporaci\'on.
+Los m\'odulos de gesti\'on de inventario son componentes espec\'{\i}ficos dentro de un sistema de informaci\'on m\'as amplio, dise\~{n}ados para gestionar de manera
+centralizada y automatizada todos los aspectos relacionados con el control de inventarios. Estos m\'odulos suelen incluir funcionalidades como el registro de
+entradas y salidas, la generaci\'on de reportes, el control de niveles de stock, y la planificaci\'on de reaprovisionamientos. En el caso de los equipos, un
+m\'odulo especializado permite no solo la gesti\'on de existencias, sino tambi\'en el seguimiento del ciclo de vida de cada equipo, incluyendo su mantenimiento,
+traslado, y eventual desincorporaci\'on.
 \subsubsection{Beneficios de la Automatizaci\'on en la Gesti\'on de Inventario}
-La automatizaci\'on de la gesti\'on de inventarios a trav\'es de m\'odulos especializados ofrece m\'ultiples beneficios, incluyendo una mayor precisi\'on en los registros, reducci\'on de errores humanos, visibilidad en tiempo real del estado
-de los recursos, y la capacidad de generar reportes detallados que faciliten la toma de decisiones. Seg\'un~\cite{ll}, la implementaci\'on de sistemas automatizados en la gesti\'on de inventarios puede reducir los costos
-operativos, mejorar la eficiencia y aumentar la competitividad de las empresas.
+La automatizaci\'on de la gesti\'on de inventarios a trav\'es de m\'odulos especializados ofrece m\'ultiples beneficios, incluyendo una mayor precisi\'on en los
+registros, reducci\'on de errores humanos, visibilidad en tiempo real del estado de los recursos, y la capacidad de generar reportes detallados que faciliten la toma
+de decisiones. Seg\'un~\cite{ll}, la implementaci\'on de sistemas automatizados en la gesti\'on de inventarios puede reducir los costos operativos, mejorar la
+eficiencia y aumentar la competitividad de las empresas.
 \subsection{Desarrollo de Software para la Gesti\'on de Inventarios}
 \subsubsection{Ciclo de Vida del Desarrollo de Software (SDLC)}
-El desarrollo de software, en particular de m\'odulos como el propuesto en este proyecto, sigue un ciclo de vida estructurado conocido como SDLC (Software Development Life Cycle). Este ciclo incluye etapas como la planificaci\'on,
-an\'alisis de requerimientos, dise\~{n}o, implementaci\'on, pruebas, y mantenimiento. Cada una de estas etapas es crucial para garantizar que el software desarrollado cumpla con los objetivos planteados y se integre adecuadamente en
-los procesos de la empresa.
+El desarrollo de software, en particular de m\'odulos como el propuesto en este proyecto, sigue un ciclo de vida estructurado conocido como SDLC (Software Development
+Life Cycle). Este ciclo incluye etapas como la planificaci\'on, an\'alisis de requerimientos, dise\~{n}o, implementaci\'on, pruebas, y mantenimiento. Cada una de
+estas etapas es crucial para garantizar que el software desarrollado cumpla con los objetivos planteados y se integre adecuadamente en los procesos de la empresa.
 \subsubsection{Metodolog\'{\i}as de Desarrollo \'Agil}
-En la actualidad, las metodolog\'{\i}as \'agiles han ganado popularidad en el desarrollo de software debido a su enfoque en la flexibilidad, colaboraci\'on continua con el cliente, y la entrega de productos funcionales en plazos cortos.
-Metodolog\'{\i}as como Scrum y Kanban permiten a los equipos de desarrollo adaptarse r\'apidamente a los cambios en los requerimientos y asegurar que el producto final satisfaga las necesidades del usuario. En el desarrollo del m\'odulo
-de gesti\'on de inventarios de equipos, la adopci\'on de una metodolog\'{\i}a \'agil permitir\'a iterar r\'apidamente y ajustar el software seg\'un las pruebas y feedback obtenidos durante su implementaci\'on.
+En la actualidad, las metodolog\'{\i}as \'agiles han ganado popularidad en el desarrollo de software debido a su enfoque en la flexibilidad, colaboraci\'on continua
+con el cliente, y la entrega de productos funcionales en plazos cortos. Metodolog\'{\i}as como Scrum y Kanban permiten a los equipos de desarrollo adaptarse
+r\'apidamente a los cambios en los requerimientos y asegurar que el producto final satisfaga las necesidades del usuario. En el desarrollo del m\'odulo de gesti\'on
+de inventarios de equipos, la adopci\'on de una metodolog\'{\i}a \'agil permitir\'a iterar r\'apidamente y ajustar el software seg\'un las pruebas y feedback
+obtenidos durante su implementaci\'on.
 \subsection{Tecnolog\'{\i}as a Utilizar}
 \subsubsection{Angular 12}
-Angular 12 es un framework de desarrollo web front-end basado en TypeScript, mantenido por Google. Es ampliamente utilizado para construir aplicaciones web de una sola p\'agina (SPA) debido a su arquitectura modular, su robusto
-sistema de inyecci\'on de dependencias y su capacidad para manejar formularios y validaciones de manera eficiente. En este proyecto, Angular 12 se utilizar\'a para desarrollar la interfaz de usuario del m\'odulo de gesti\'on de inventarios
-, permitiendo una experiencia de usuario din\'amica y responsiva.
+Angular 12 es un framework de desarrollo web front-end basado en TypeScript, mantenido por Google. Es ampliamente utilizado para construir aplicaciones web de una
+sola p\'agina (SPA) debido a su arquitectura modular, su robusto sistema de inyecci\'on de dependencias y su capacidad para manejar formularios y validaciones de
+manera eficiente. En este proyecto, Angular 12 se utilizar\'a para desarrollar la interfaz de usuario del m\'odulo de gesti\'on de inventarios, permitiendo una
+experiencia de usuario din\'amica y responsiva.
 \subsubsection{.NET 8}
-.NET 8 es una plataforma de desarrollo de software mantenida por Microsoft que permite construir aplicaciones robustas y escalables. Con un enfoque en la alta performance y la seguridad,~.NET 8 se utilizar\'a en este proyecto para
-desarrollar la l\'ogica de negocio y los servicios backend del m\'odulo de gesti\'on de inventarios. Esta tecnolog\'{\i}a permitir\'a integrar de manera eficiente el front-end desarrollado en Angular 12 con el servidor y la base de datos.
+.NET 8 es una plataforma de desarrollo de software mantenida por Microsoft que permite construir aplicaciones robustas y escalables. Con un enfoque en la alta
+performance y la seguridad,~.NET 8 se utilizar\'a en este proyecto para desarrollar la l\'ogica de negocio y los servicios backend del m\'odulo de gesti\'on de
+inventarios. Esta tecnolog\'{\i}a permitir\'a integrar de manera eficiente el front-end desarrollado en Angular 12 con el servidor y la base de datos.
 \subsubsection{SQL Server}
-SQL Server es un sistema de gesti\'on de bases de datos relacional (RDBMS) desarrollado por Microsoft, conocido por su fiabilidad, escalabilidad y capacidades de an\'alisis avanzadas. En este proyecto, SQL Server ser\'a utilizado para
-almacenar, gestionar, y consultar los datos relacionados con los equipos, movimientos, transferencias, y reportes del m\'odulo de gesti\'on de inventario. La elecci\'on de SQL Server asegura un manejo eficiente de grandes vol\'umenes
-de datos y soporte para consultas complejas, lo que es crucial para mantener la integridad y disponibilidad de la informaci\'on.
+SQL Server es un sistema de gesti\'on de bases de datos relacional (RDBMS) desarrollado por Microsoft, conocido por su fiabilidad, escalabilidad y capacidades de
+an\'alisis avanzadas. En este proyecto, SQL Server ser\'a utilizado para almacenar, gestionar, y consultar los datos relacionados con los equipos, movimientos,
+transferencias, y reportes del m\'odulo de gesti\'on de inventario. La elecci\'on de SQL Server asegura un manejo eficiente de grandes vol\'umenes de datos y soporte
+para consultas complejas, lo que es crucial para mantener la integridad y disponibilidad de la informaci\'on.
 \subsection{Impacto de la Gesti\'on de Inventario en la Eficiencia Operativa}
 \subsubsection{Relaci\'on entre Gesti\'on de Inventario y Eficiencia Operativa}
-La eficiencia operativa se refiere a la capacidad de una organizaci\'on para maximizar su productividad y minimizar costos mediante el uso \'optimo de sus recursos. Una gesti\'on eficaz de inventario es fundamental para lograr esta
-eficiencia, ya que garantiza que los recursos est\'en disponibles cuando se necesitan, evitando interrupciones en las operaciones y reduciendo los costos asociados con el almacenamiento y la obsolescencia de los equipos.
+La eficiencia operativa se refiere a la capacidad de una organizaci\'on para maximizar su productividad y minimizar costos mediante el uso \'optimo de sus recursos.
+Una gesti\'on eficaz de inventario es fundamental para lograr esta eficiencia, ya que garantiza que los recursos est\'en disponibles cuando se necesitan, evitando
+interrupciones en las operaciones y reduciendo los costos asociados con el almacenamiento y la obsolescencia de los equipos.
 \subsubsection{Contribuci\'on del M\'odulo de Gesti\'on de Inventario a la Eficiencia}
-El m\'odulo de gesti\'on de inventario propuesto contribuir\'a directamente a la eficiencia operativa al proporcionar una herramienta centralizada y automatizada para el control de equipos. Esto permitir\'a a las empresas reducir el
-tiempo y esfuerzo dedicados a la gesti\'on manual del inventario, minimizar errores, y mejorar la capacidad para tomar decisiones basadas en datos precisos y actualizados. Adem\'as, la generaci\'on de reportes ofrecer\'a
-una visi\'on clara del estado de los recursos, facilitando la planificaci\'on y optimizaci\'on del uso de los equipos.
+El m\'odulo de gesti\'on de inventario propuesto contribuir\'a directamente a la eficiencia operativa al proporcionar una herramienta centralizada y automatizada
+para el control de equipos. Esto permitir\'a a las empresas reducir el tiempo y esfuerzo dedicados a la gesti\'on manual del inventario, minimizar errores, y
+mejorar la capacidad para tomar decisiones basadas en datos precisos y actualizados. Adem\'as, la generaci\'on de reportes ofrecer\'a una visi\'on clara del
+estado de los recursos, facilitando la planificaci\'on y optimizaci\'on del uso de los equipos.
 \newpage
 \section{Metodolog\'{\i}a}
 \subsection{An\'alisis de Requerimientos}
-El m\'odulo de gesti\'on de inventario de equipos ser\'a una aplicaci\'on web responsiva, dise\~{n}ada para ser utilizada en diversas empresas y acoplarse al ERP de NextSoft. Este an\'alisis detalla los requerimientos funcionales y no funcionales,
-asegurando que el sistema cumpla con las expectativas de usabilidad, seguridad, y rendimiento.
+El m\'odulo de gesti\'on de inventario de equipos ser\'a una aplicaci\'on web responsiva, dise\~{n}ada para ser utilizada en diversas empresas y acoplarse al ERP de
+NextSoft. Este an\'alisis detalla los requerimientos funcionales y no funcionales, asegurando que el sistema cumpla con las expectativas de usabilidad, seguridad,
+y rendimiento.
 \subsubsection{Requerimientos Funcionales}
 \textbf{Gesti\'on de Usuarios y Acceso.}
 
 \textit{\textbf{Autenticaci\'on y Control de Acceso.}}
 \begin{itemize}
-    \item\textbf{Inicio de sesi\'on: }Los usuarios acceder\'an al m\'odulo utilizando sus credenciales del ERP de NextSoft, asegurando un \'unico punto de autenticaci\'on y facilitando la integraci\'on con los sistemas existentes.
+    \item\textbf{Inicio de sesi\'on: }Los usuarios acceder\'an al m\'odulo utilizando sus credenciales del ERP de NextSoft, asegurando un \'unico punto de
+          autenticaci\'on y facilitando la integraci\'on con los sistemas existentes.
     \item\textbf{Roles de usuario: }El sistema manejar\'a dos roles principales:
           \begin{itemize}
-              \item\textbf{Administrador: }Tendr\'a acceso completo a todas las funcionalidades del m\'odulo, incluyendo la gesti\'on de usuarios por almac\'en, configuraci\'on de par\'ametros, registro y gesti\'on de equipos, movimientos, y generaci\'on de reportes.
-              \item\textbf{Solo lectura: }Este rol permitir\'a a los usuarios visualizar la informaci\'on registrada en el sistema sin la capacidad de modificar datos o realizar movimientos.
+              \item\textbf{Administrador: }Tendr\'a acceso completo a todas las funcionalidades del m\'odulo, incluyendo la gesti\'on de usuarios por almac\'en,
+                    configuraci\'on de par\'ametros, registro y gesti\'on de equipos, movimientos, y generaci\'on de reportes.
+              \item\textbf{Solo lectura: }Este rol permitir\'a a los usuarios visualizar la informaci\'on registrada en el sistema sin la capacidad de modificar datos
+                    o realizar movimientos.
           \end{itemize}
 \end{itemize}
 
 \textit{\textbf{Configuraci\'on de Accesos y Par\'ametros.}}
 \begin{itemize}
-    \item\textbf{Gesti\'on de usuarios: }Dentro del apartado de configuraci\'on, los administradores podr\'an definir qu\'e usuarios tienen acceso a los diferentes almacenes, as\'{\i} como asignarles los roles correspondientes.
-    \item\textbf{Definici\'on de par\'ametros: }Los administradores podr\'an configurar par\'ametros clave de la aplicaci\'on, como la familia de productos para adaptarse a las necesidades de cada empresa.
+    \item\textbf{Gesti\'on de usuarios: }Dentro del apartado de configuraci\'on, los administradores podr\'an definir qu\'e usuarios tienen acceso a los diferentes
+          almacenes, as\'{\i} como asignarles los roles correspondientes.
+    \item\textbf{Definici\'on de par\'ametros: }Los administradores podr\'an configurar par\'ametros clave de la aplicaci\'on, como la familia de productos para
+          adaptarse a las necesidades de cada empresa.
 \end{itemize}
 
 \textbf{Gesti\'on de Maestros.}
 \begin{itemize}
-    \item\textbf{Categor\'{\i}as y atributos de equipos: }El sistema permitir\'a la creaci\'on y gesti\'on de categor\'{\i}as de equipos, definiendo atributos personalizados para cada una (e.g., almacenamiento, memoria RAM, procesador).
-    \item\textbf{Marcas y modelos: }Los usuarios podr\'an gestionar un cat\'alogo de marcas y modelos, facilitando la estandarizaci\'on de los datos relacionados con los equipos registrados.
+    \item\textbf{Categor\'{\i}as y atributos de equipos: }El sistema permitir\'a la creaci\'on y gesti\'on de categor\'{\i}as de equipos, definiendo atributos
+          personalizados para cada una (e.g., almacenamiento, memoria RAM, procesador).
+    \item\textbf{Marcas y modelos: }Los usuarios podr\'an gestionar un cat\'alogo de marcas y modelos, facilitando la estandarizaci\'on de los datos relacionados con
+          los equipos registrados.
     \item\textbf{Almacenes: }Se podr\'an definir m\'ultiples almacenes.
-    \item\textbf{Proyectos y ubicaciones: }El m\'odulo permitir\'a asociar equipos a proyectos espec\'{\i}ficos y ubicaciones dentro de la empresa, mejorando el control y la trazabilidad de los recursos.
+    \item\textbf{Proyectos y ubicaciones: }El m\'odulo permitir\'a asociar equipos a proyectos espec\'{\i}ficos y ubicaciones dentro de la empresa, mejorando el control
+          y la trazabilidad de los recursos.
 \end{itemize}
 
 \textbf{Registro y Gesti\'on de Equipos.}
@@ -1455,7 +1494,7 @@ END
 \end{itemize}
 \subsection{Integraci\'on con Otros Sistemas}
 \subsubsection{Integraci\'on con el ERP de NextSoft}
-\textbf{Autenticaci\'on. }El m\'odulo utiliza el sistema NextSis para gestionar el inicio de sesi\'on. Las credenciales del ERP de NextSoft, proporcionadas a trav\'es de NextSis, permiten que solo usuarios autorizados accedan al m\'odulo. Esta integraci\'on asegura que el acceso al sistema est\'e restringido y que se mantenga la coherencia en la gesti\'on de usuarios a trav\'es de los diferentes sistemas del ERP.
+\textbf{Autenticaci\'on. }El m\'odulo utiliza el sistema NextAdmin para gestionar el inicio de sesi\'on. Las credenciales del ERP de NextSoft, proporcionadas a trav\'es del NextAdmin, permiten que solo usuarios autorizados accedan al m\'odulo. Esta integraci\'on asegura que el acceso al sistema est\'e restringido y que se mantenga la coherencia en la gesti\'on de usuarios a trav\'es de los diferentes sistemas del ERP.
 
 \textbf{Sincronizaci\'on de Datos. }El m\'odulo de gesti\'on de inventario de equipos est\'a dise\~{n}ado para integrarse con varios sistemas del ERP. Esto incluye:
 \begin{itemize}
@@ -1472,10 +1511,10 @@ END
 \section{Resultados}
 En esta secci\'on se presentan los resultados obtenidos tras la implementaci\'on del m\'odulo de gesti\'on de inventario de equipos. Se describen los aspectos m\'as destacados del sistema, incluyendo su funcionamiento, interfaces desarrolladas, generaci\'on de reportes, y la integraci\'on con otros sistemas dentro de la empresa.
 \subsection{Implementaci\'on del Sistema}
-A trav\'es de la API REST implementada en~.NET 8, el sistema permite una comunicaci\'on fluida y eficiente, asegurando un manejo robusto de la l\'ogica de negocio y acceso a los datos almacenados en SQL Server. La integraci\'on con el ERP de NextSoft mediante el sistema NextSis garantiza que la autenticaci\'on y autorizaci\'on de los usuarios se gestionen de manera centralizada y segura.
+A trav\'es de la API REST implementada en~.NET 8, el sistema permite una comunicaci\'on fluida y eficiente, asegurando un manejo robusto de la l\'ogica de negocio y acceso a los datos almacenados en SQL Server. La integraci\'on con el ERP de NextSoft mediante el sistema NextAdmin garantiza que la autenticaci\'on y autorizaci\'on de los usuarios se gestionen de manera centralizada y segura.
 \subsection{Interfaces Desarrolladas}
 \subsubsection{Pantalla de Inicio de Sesi\'on}
-La pantalla de inicio de sesi\'on [Figura~\ref{loginProd}] permite a los usuarios acceder al m\'odulo utilizando sus credenciales del ERP de NextSoft, gestionadas a trav\'es de NextSis. La autenticaci\'on centralizada asegura que solo los usuarios autorizados puedan acceder al sistema, manteniendo la seguridad y el control de acceso.
+La pantalla de inicio de sesi\'on [Figura~\ref{loginProd}] permite a los usuarios acceder al m\'odulo utilizando sus credenciales del ERP de NextSoft, gestionadas a trav\'es de NextAdmin. La autenticaci\'on centralizada asegura que solo los usuarios autorizados puedan acceder al sistema, manteniendo la seguridad y el control de acceso.
 \begin{figure}[H]
     \centering
     \caption{Pantalla de Inicio de Sesi\'on}\label{loginProd}
