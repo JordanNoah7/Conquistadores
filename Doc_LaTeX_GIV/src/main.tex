@@ -33,7 +33,7 @@
 %\DeclareLanguageMapping{american}{american-apa}
 % \addbibresource{bibliography.bib}
 \thispagestyle{empty}
-\title{OPTIMIZACIÓN DE LA GESTIÓN DE INVENTARIO DE EQUIPOS MEDIANTE EL DISEÑO E IMPLEMENTACIÓN DE UN MODULO CON GESTIÓN DE MOVIMIENTOS Y REPORTES}
+\title{OPTIMIZACIÓN DE LA GESTIÓN DE INVENTARIO DE EQUIPOS MEDIANTE EL DISEÑO E IMPLEMENTACIÓN DE UN MÓDULO CON GESTIÓN DE MOVIMIENTOS Y REPORTES}
 \shorttitle{Gestión de Inventario de Equipos}
 \author{John Jordan Quispe Supo}
 \authorsaffiliations{Instituto de Educación Superior Privado del Sur}
@@ -73,7 +73,7 @@
 \listoftables
 \newpage
 \renewcommand\lstlistlistingname{Índice de Códigos}
-\renewcommand\lstlistingname{Código}
+\renewcommand\lstlistingname{\textbf{Código}}
 \lstlistoflistings\newpage
 
 %   Cuerpo
@@ -433,7 +433,7 @@ correspondientes al rol con permisos de solo lectura. Este usuario tiene acceso 
 información, sin la capacidad de realizar modificaciones en el sistema.
 \begin{figure}[H]
     \centering
-    \caption{Casos de Uso: Solo Lectura}\label{readonly}
+    \caption{Casos de Uso: Solo Lector}\label{readonly}
     \includegraphics[scale=0.62]{./diagrams/CaseUses/ReadOnly/Solo Lectura.pdf}
 \end{figure}
 \begin{figure}[H]
@@ -454,7 +454,7 @@ del módulo, asegurando que todas las funcionalidades requeridas estén claramen
     Breve descripción:                                                                                                                  \\
     El usuario se autentica en el sistema utilizando sus credenciales de NextSoft-ERP.                                                  \\ \midrule
     Actores principales:                                                                                                                \\
-    Usuario (Administrador, Solo Lectura)                                                                                               \\ \midrule
+    Usuario (Administrador, Solo Lector)                                                                                                \\ \midrule
     Actores secundarios:                                                                                                                \\
     Ninguno                                                                                                                             \\ \midrule
     Precondiciones:                                                                                                                     \\
@@ -607,7 +607,7 @@ del módulo, asegurando que todas las funcionalidades requeridas estén claramen
     Breve descripción:                                                                                                                                                                  \\
     El usuario visualiza el historial de vida de un equipo.                                                                                                                             \\ \midrule
     Actores principales:                                                                                                                                                                \\
-    Administrador, Solo Lectura                                                                                                                                                         \\ \midrule
+    Administrador, Solo Lector                                                                                                                                                          \\ \midrule
     Actores secundarios:                                                                                                                                                                \\
     Ninguno                                                                                                                                                                             \\ \midrule
     Precondiciones:                                                                                                                                                                     \\
@@ -772,7 +772,7 @@ del módulo, asegurando que todas las funcionalidades requeridas estén claramen
     Breve descripción:                                                                                                                                                                                                                                                         \\
     El usuario genera un reporte que muestra todos los equipos registrados en el sistema, filtrando por categoría, marca, equipo, estado, entre otros criterios.                                                                                                               \\ \midrule
     Actores principales:                                                                                                                                                                                                                                                       \\
-    Administrador, Solo Lectura                                                                                                                                                                                                                                                \\ \midrule
+    Administrador, Solo Lector                                                                                                                                                                                                                                                 \\ \midrule
     Actores secundarios:                                                                                                                                                                                                                                                       \\
     Ninguno                                                                                                                                                                                                                                                                    \\ \midrule
     Precondiciones:                                                                                                                                                                                                                                                            \\
@@ -806,7 +806,7 @@ del módulo, asegurando que todas las funcionalidades requeridas estén claramen
     Breve descripción:                                                                                                                                                                                                                                                             \\
     El usuario genera un reporte detallado de los movimientos de equipos, incluyendo entregas, devoluciones y transferencias.                                                                                                                                                      \\ \midrule
     Actores principales:                                                                                                                                                                                                                                                           \\
-    Administrador, Solo Lectura                                                                                                                                                                                                                                                    \\ \midrule
+    Administrador, Solo Lector                                                                                                                                                                                                                                                     \\ \midrule
     Actores secundarios:                                                                                                                                                                                                                                                           \\
     Ninguno                                                                                                                                                                                                                                                                        \\ \midrule
     Precondiciones:                                                                                                                                                                                                                                                                \\
@@ -840,7 +840,7 @@ del módulo, asegurando que todas las funcionalidades requeridas estén claramen
     Breve descripción:                                                                                                                                                                                                                                                                \\
     El usuario genera un reporte detallado de las transferencias de equipos, filtrando por almacén de origen y almacén de destino.                                                                                                                                                    \\ \midrule
     Actores principales:                                                                                                                                                                                                                                                              \\
-    Administrador, Solo Lectura                                                                                                                                                                                                                                                       \\ \midrule
+    Administrador, Solo Lector                                                                                                                                                                                                                                                        \\ \midrule
     Actores secundarios:                                                                                                                                                                                                                                                              \\
     Ninguno                                                                                                                                                                                                                                                                           \\ \midrule
     Precondiciones:                                                                                                                                                                                                                                                                   \\
@@ -874,7 +874,7 @@ del módulo, asegurando que todas las funcionalidades requeridas estén claramen
     Breve descripción:                                                                                                                                                                                                                                                             \\
     El usuario genera un reporte que lista los equipos devueltos y pendientes de devolución.                                                                                                                                                                                       \\ \midrule
     Actores principales:                                                                                                                                                                                                                                                           \\
-    Administrador, Solo Lectura                                                                                                                                                                                                                                                    \\ \midrule
+    Administrador, Solo Lector                                                                                                                                                                                                                                                     \\ \midrule
     Actores secundarios:                                                                                                                                                                                                                                                           \\
     Ninguno                                                                                                                                                                                                                                                                        \\ \midrule
     Precondiciones:                                                                                                                                                                                                                                                                \\
@@ -908,7 +908,7 @@ del módulo, asegurando que todas las funcionalidades requeridas estén claramen
     Breve descripción:                                                                                                                                                                                                                                                         \\
     El usuario genera un reporte que muestra todos los equipos asignados a un trabajador específico o a una ubicación determinada.                                                                                                                                             \\ \midrule
     Actores principales:                                                                                                                                                                                                                                                       \\
-    Administrador, Solo Lectura                                                                                                                                                                                                                                                \\ \midrule
+    Administrador, Solo Lector                                                                                                                                                                                                                                                 \\ \midrule
     Actores secundarios:                                                                                                                                                                                                                                                       \\
     Ninguno                                                                                                                                                                                                                                                                    \\ \midrule
     Precondiciones:                                                                                                                                                                                                                                                            \\
@@ -1734,83 +1734,83 @@ La implementación del módulo de gestión de inventario de equipos desarrollado
 una solución robusta y eficiente, alineada con las necesidades operativas de la organización. El proyecto subraya la importancia de una
 planificación cuidadosa y una ejecución rigurosa, utilizando una metodología ágil como SCRUM, que permitió un desarrollo adaptable a los
 requerimientos cambiantes del entorno empresarial.
-
-% \subsection{Integración Exitosa con Sistemas Existentes}
-El módulo se integró eficazmente con los sistemas existentes de NextSoft-ERP, como el sistema de logística, el sistema de activos, y el
-sistema de tesorería. Estas integraciones no solo optimizaron los procesos de gestión de inventario, evitando la duplicación de datos y
-automatizando tareas, sino que también mejoraron la calidad y precisión de la información disponible para la toma de decisiones estratégicas.
-
-% \subsection{Arquitectura Técnica Solida}
-El diseño e implementación del módulo se llevaron a cabo utilizando tecnologías como Angular 12 para el frontend y~.NET 8 para el backend. La
-arquitectura multicapa, que incluye la capa de presentación, la capa de lógica de negocio, y la capa de acceso a datos, garantiza una clara
-separación de responsabilidades, facilitando tanto el mantenimiento como la escalabilidad del sistema. Además, el uso de procedimientos
-almacenados en SQL Server optimizó las operaciones de base de datos, asegurando una gestión eficiente y segura de los datos.
-
-% \subsection{Funcionalidades Clave y Experiencia de Usuario}
-El módulo ha proporcionado funcionalidades esenciales para la gestión de inventario de equipos, tales como el registro individual y masivo de
-equipos, la gestión de movimientos (entregas, devoluciones, y transferencias), y la generación de reportes detallados. La interfaz de usuario
-fue diseñada con un enfoque en la usabilidad, permitiendo a los usuarios interactuar con el sistema de manera intuitiva y productiva,
-garantizando una curva de aprendizaje mínima.
-
-% \subsection{Pruebas Exhaustivas y Aseguramiento de Calidad}
-Durante el desarrollo, se realizaron pruebas exhaustivas, utilizando herramientas como Postman para el backend y pruebas en formularios
-reactivos para el frontend. Estas pruebas aseguraron la calidad del sistema, verificando que la integración entre frontend y backend
-funcionara de manera correcta y confiable en producción. Asimismo, se garantizó la integridad de las operaciones de guardado y recuperación
-de datos desde la base de datos.
-
-% \subsection{Resultados y Beneficios}
-El módulo ha generado una mejora significativa en la gestión de inventario de equipos dentro de NextSoft. La capacidad para generar reportes
-detallados y específicos para cada tipo de movimiento ha proporcionado a la empresa una herramienta poderosa para el seguimiento y la auditoría
-de sus activos. Este proyecto representa un paso fundamental hacia la modernización y optimización de los procesos de gestión de inventario de
-la empresa, alineándose con las mejores prácticas de la industria y cumpliendo con altos estándares de calidad.
-
-% \subsection{Futuras Mejoras y Extensibilidad}
-Finalmente, la arquitectura del sistema y su integración con los sistemas existentes en NextSoft permiten futuras mejoras y extensiones,
-asegurando que el módulo pueda adaptarse a las necesidades cambiantes de la empresa y seguir aportando valor a largo plazo.
+\begin{enumerate}
+    \item % \subsection{Integración Exitosa con Sistemas Existentes}
+          El módulo se integró eficazmente con los sistemas existentes de NextSoft-ERP, como el sistema de logística, el sistema de activos, y
+          el sistema de tesorería. Estas integraciones no solo optimizaron los procesos de gestión de inventario, evitando la duplicación de
+          datos y automatizando tareas, sino que también mejoraron la calidad y precisión de la información disponible para la toma de
+          decisiones estratégicas.
+    \item % \subsection{Arquitectura Técnica Solida}
+          El diseño e implementación del módulo se llevaron a cabo utilizando tecnologías como Angular 12 para el frontend y~.NET 8 para el
+          backend. La arquitectura multicapa, que incluye la capa de presentación, la capa de lógica de negocio, y la capa de acceso a datos,
+          garantiza una clara separación de responsabilidades, facilitando tanto el mantenimiento como la escalabilidad del sistema. Además,
+          el uso de procedimientos almacenados en SQL Server optimizó las operaciones de base de datos, asegurando una gestión eficiente y
+          segura de los datos.
+    \item % \subsection{Funcionalidades Clave y Experiencia de Usuario}
+          El módulo ha proporcionado funcionalidades esenciales para la gestión de inventario de equipos, tales como el registro individual y
+          masivo de equipos, la gestión de movimientos (entregas, devoluciones, y transferencias), y la generación de reportes detallados. La
+          interfaz de usuario fue diseñada con un enfoque en la usabilidad, permitiendo a los usuarios interactuar con el sistema de manera
+          intuitiva y productiva, garantizando una curva de aprendizaje mínima.
+    \item % \subsection{Pruebas Exhaustivas y Aseguramiento de Calidad}
+          Durante el desarrollo, se realizaron pruebas exhaustivas, utilizando herramientas como Postman para el backend y pruebas en formularios
+          reactivos para el frontend. Estas pruebas aseguraron la calidad del sistema, verificando que la integración entre frontend y backend
+          funcionara de manera correcta y confiable en producción. Asimismo, se garantizó la integridad de las operaciones de guardado y
+          recuperación de datos desde la base de datos.
+    \item % \subsection{Resultados y Beneficios}
+          El módulo ha generado una mejora significativa en la gestión de inventario de equipos dentro de NextSoft. La capacidad para generar
+          reportes detallados y específicos para cada tipo de movimiento ha proporcionado a la empresa una herramienta poderosa para el
+          seguimiento y la auditoría de sus activos. Este proyecto representa un paso fundamental hacia la modernización y optimización de los
+          procesos de gestión de inventario de la empresa, alineándose con las mejores prácticas de la industria y cumpliendo con altos
+          estándares de calidad.
+    \item % \subsection{Futuras Mejoras y Extensibilidad}
+          Finalmente, la arquitectura del sistema y su integración con los sistemas existentes en NextSoft permiten futuras mejoras y extensiones,
+          asegurando que el módulo pueda adaptarse a las necesidades cambiantes de la empresa y seguir aportando valor a largo plazo.
+\end{enumerate}
 \newpage
 \section{Recomendaciones}
 A partir de la experiencia adquirida durante el desarrollo e implementación del módulo de gestión de inventario de equipos para Soluciones de
 Información NextSoft S.A.C., se presentan las siguientes recomendaciones para maximizar el aprovechamiento del sistema y facilitar futuras
 mejoras:
-\subsection{Capacitación Continua de los Usuarios}
-Aunque el sistema fue diseñado con un enfoque en la usabilidad y eficiencia, es recomendable llevar a cabo capacitaciones periódicas para los
-usuarios. Esto garantizará que todos los actores comprendan completamente las funcionalidades del sistema. La familiarización constante
-permitirá a los usuarios maximizar el uso de las capacidades del sistema.
-\subsection{Monitoreo y Mantenimiento Regular del Sistema}
-Para asegurar el correcto funcionamiento del módulo a largo plazo, es esencial establecer un plan de monitoreo y mantenimiento regular. Esto
-incluye la supervisión del rendimiento del sistema, la actualización de las tecnologías utilizadas, como Angular y~.NET, y la optimización de
-la base de datos mediante la revisión periódica de los procedimientos almacenados. Mantener el sistema actualizado y en buen estado garantizará
-su eficiencia y seguridad continua.
-\subsection{Extensión de Funcionalidades}
-Dado que el sistema ha sido diseñado con una arquitectura modular y escalable, se recomienda evaluar la posibilidad de extender sus
-funcionalidades en futuras fases. Ejemplos de mejoras podrían incluir la incorporación de un sistema de notificaciones automatizadas para
-alertar sobre eventos clave, como la llegada de equipos por transferencia, el vencimiento de la garantía de un equipo, o la implementación de
-la firma digital para cargos de movimientos realizados. Estas extensiones podrían incrementar aún más la eficiencia y el control sobre los
-activos.
+\begin{enumerate}
+    \item % \subsection{Capacitación Continua de los Usuarios}
+          Aunque el sistema fue diseñado con un enfoque en la usabilidad y eficiencia, es recomendable llevar a cabo capacitaciones periódicas para los
+          usuarios. Esto garantizará que todos los actores comprendan completamente las funcionalidades del sistema. La familiarización constante
+          permitirá a los usuarios maximizar el uso de las capacidades del sistema.
+    \item % \subsection{Monitoreo y Mantenimiento Regular del Sistema}
+          Para asegurar el correcto funcionamiento del módulo a largo plazo, es esencial establecer un plan de monitoreo y mantenimiento regular. Esto
+          incluye la supervisión del rendimiento del sistema, la actualización de las tecnologías utilizadas, como Angular y~.NET, y la optimización de
+          la base de datos mediante la revisión periódica de los procedimientos almacenados. Mantener el sistema actualizado y en buen estado garantizará
+          su eficiencia y seguridad continua.
+    \item % \subsection{Extensión de Funcionalidades}
+          Dado que el sistema ha sido diseñado con una arquitectura modular y escalable, se recomienda evaluar la posibilidad de extender sus
+          funcionalidades en futuras fases. Ejemplos de mejoras podrían incluir la incorporación de un sistema de notificaciones automatizadas para
+          alertar sobre eventos clave, como la llegada de equipos por transferencia, el vencimiento de la garantía de un equipo, o la implementación de
+          la firma digital para cargos de movimientos realizados. Estas extensiones podrían incrementar aún más la eficiencia y el control sobre los
+          activos.
+    \item % \subsection{Revisión Periódica de la Seguridad del Sistema}
+          La seguridad es un aspecto crítico, especialmente cuando se maneja información sensible. Se recomienda realizar auditorías de seguridad
+          periódicas para identificar y mitigar posibles vulnerabilidades. Esto incluye la revisión de las políticas de autenticación, la protección de
+          los datos en tránsito y en reposo, y la implementación de mecanismos de control de acceso más detallados, si fuera necesario. Un enfoque
+          proactivo en la seguridad protegerá los activos de la empresa y la integridad de la información.
+    \item % \subsection{Evaluación de la Satisfacción del Usuario}
+          Para asegurar que el sistema continúa cumpliendo con las expectativas y necesidades de los usuarios, es recomendable realizar encuestas de
+          satisfacción periódicas. Esto permitirá identificar áreas de mejora y ajustar el sistema en función de las experiencias y sugerencias de los
+          usuarios finales, asegurando que el sistema evolucione con las necesidades del negocio.
+    \item % \subsection{Documentación y Actualización Constante}
+          Mantener una documentación actualizada y accesible es fundamental para la continuidad operativa y el mantenimiento del sistema. Esto incluye
+          manuales de usuario, guías técnicas y documentación sobre la arquitectura del sistema. Una documentación bien mantenida facilita el proceso
+          de mantenimiento y asegura la continuidad del conocimiento, incluso si el equipo de desarrollo cambia.
+    \item % \subsection{Exploración de Nuevas Tecnologías}
+          Finalmente, es recomendable estar atentos a la evolución de las tecnologías utilizadas en el proyecto. La rápida evolución de frameworks como
+          Angular y plataformas como~.NET podría ofrecer nuevas herramientas y enfoques que mejoren el rendimiento, la seguridad y la usabilidad del
+          sistema. Evaluar estas tecnologías y planificar actualizaciones garantizará que el sistema se mantenga a la vanguardia y continúe aportando
+          valor.
+\end{enumerate}
 % \subsection{Mejora en la Integración con Otros Sistemas}
 % Aunque la integración actual con los sistemas de logística, activos y tesorería de NextSoft-ERP ha sido exitosa, se recomienda explorar
 % opciones para una integración más profunda. Por ejemplo, automatizar la actualización de inventarios en tiempo real o integrar el sistema con
 % herramientas de análisis de datos podría proporcionar a la empresa una visión aún más completa y dinámica de su gestión de equipos.
-\subsection{Revisión Periódica de la Seguridad del Sistema}
-La seguridad es un aspecto crítico, especialmente cuando se maneja información sensible. Se recomienda realizar auditorías de seguridad
-periódicas para identificar y mitigar posibles vulnerabilidades. Esto incluye la revisión de las políticas de autenticación, la protección de
-los datos en tránsito y en reposo, y la implementación de mecanismos de control de acceso más detallados, si fuera necesario. Un enfoque
-proactivo en la seguridad protegerá los activos de la empresa y la integridad de la información.
-\subsection{Evaluación de la Satisfacción del Usuario}
-Para asegurar que el sistema continúa cumpliendo con las expectativas y necesidades de los usuarios, es recomendable realizar encuestas de
-satisfacción periódicas. Esto permitirá identificar áreas de mejora y ajustar el sistema en función de las experiencias y sugerencias de los
-usuarios finales, asegurando que el sistema evolucione con las necesidades del negocio.
-\subsection{Documentación y Actualización Constante}
-Mantener una documentación actualizada y accesible es fundamental para la continuidad operativa y el mantenimiento del sistema. Esto incluye
-manuales de usuario, guías técnicas y documentación sobre la arquitectura del sistema. Una documentación bien mantenida facilita el proceso
-de mantenimiento y asegura la continuidad del conocimiento, incluso si el equipo de desarrollo cambia.
-\subsection{Exploración de Nuevas Tecnologías}
-Finalmente, es recomendable estar atentos a la evolución de las tecnologías utilizadas en el proyecto. La rápida evolución de frameworks como
-Angular y plataformas como~.NET podría ofrecer nuevas herramientas y enfoques que mejoren el rendimiento, la seguridad y la usabilidad del
-sistema. Evaluar estas tecnologías y planificar actualizaciones garantizará que el sistema se mantenga a la vanguardia y continúe aportando
-valor.
-\newline
-
+% \newline
 Siguiendo estas recomendaciones, NextSoft puede asegurarse de que el módulo de gestión de inventario de equipos siga siendo una herramienta
 valiosa, eficaz y alineada con los objetivos estratégicos de la empresa, garantizando su relevancia y eficiencia a largo plazo.
 \newpage

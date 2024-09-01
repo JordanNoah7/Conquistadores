@@ -1,7 +1,7 @@
 @startuml Solo Lectura
 left to right direction
 
-actor "Solo Lectura" as b
+actor "Solo Lector" as b
 rectangle "Sistema de Gestion de Inventario de Equipos" {
     usecase "Iniciar Sesión" as uc1
     usecase "Ver Historial de Vida del Equipo" as uc6
